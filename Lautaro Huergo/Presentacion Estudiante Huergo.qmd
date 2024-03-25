@@ -4,14 +4,14 @@ format: html
 editor: visual
 ---
 
-## Quien Soy
+# Quien soy?
 
-Mi nombre es Lautaro Huergo estudiante del ultimo año de la carrera de Estudios de Comunicación de la UNSAM.
+Mi nombre es Lautaro Huergo. Estudiante del 5to año de la carrera de Estudios de la Comunicación.
 
-## Conocimientos
+## Conocimientos estadistico:
 
-Trabaje con Python en otras materias.
+Muy pocos. Curse metodologias Cuantitativas, ese fue mi mayor acercamiento mediante Phyton.
 
-### Tipos de Proyectos
+### Tipos de proyectos:
 
-No presento un proyecto en específico.
+Aun no se.

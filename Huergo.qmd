@@ -1,0 +1,61 @@
+---
+title: "Tarea 2/Huergo"
+format: html
+editor: visual
+---
+
+## Tarea 2 y 3 Huergo, algunos códigos R:
+
+```{r}
+# Estudiantes Materia Ciencia de Datos:
+nombres <- c ("Joaquin", "Evelina", "Belen", "Lautaro", "Maria", "Camila", "Geronimo", "Michelle", "Joan")
+
+print(nombres)
+```
+
+```{r}
+edades <- c(23,22,23,23,22,24,20,21,23)
+print(edades)
+```
+
+```{r}
+mean (edades)
+```
+
+```{r}
+# Año de cursada Estudiantes: 
+año <- c ("5", "5", "5", "5", "5", "5", "5", "5", "5")
+print (año)
+```
+
+```{r}
+print(my_data)
+```
+
+## Histograma:
+
+```{r}
+nombres <- c("Joaquin", "Evelina", "Belen", "Lautaro", "Maria", "Camila", "Geronimo", "Michelle", "Joan")
+edades <- c(23,22,23,23,22,24,20,21,23)
+my_data <- data.frame(nombres,edades)
+```
+
+```{r}
+print(my_data)
+```
+
+```{r}
+hist(my_data$edades)
+```
+
+### Archivo INDEC:
+
+#### Variables elegidas:
+
+-   PP11S (¿le pagaron indemnización? 1. Sí 2. No). nivel de medición ordinal. Variables discreta, se registra con números naturales, se hace una enumeración.
+
+-   PP04C (¿cuántas personas trabajan allí en total?) nivel de medición nominal. Variable discreta, toma solo números de valores finitos.
+
+-   IV8: (¿tiene baño/letrina?) nivel de medición ordinal. Discreta
+
+-   II7 (régimen de tenencia) nivel de medición nominal. Variable discreta.

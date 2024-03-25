@@ -1,0 +1,54 @@
+---
+title: "Tarea 25/3 Huergo"
+format: html
+editor: visual
+---
+
+## Tarea 25/3 Huergo
+
+```{r}
+library(tidyverse)
+my_data <- read_delim("./data/usu_hogar_T323.txt", delim = ";")
+```
+
+```{r}
+problemas <- problems(my_data)
+print(problemas)
+```
+
+```{r}
+# Donde está el problema
+names(my_data)[19]
+```
+
+```{r}
+# Donde está el problema
+names(my_data)[19]
+
+```
+
+```{r}
+my_data <- read_delim("./data/usu_hogar_T323.txt", delim = ";", guess_max = 10000)
+```
+
+## Guardamos dato como rds (r data store):
+
+```{r}
+write_rds(my_data,file = "./data/datos_indec.rds")
+```
+
+### Tarea para Sasha:
+
+```{r}
+# Tarea para Sasha
+mis_variables <- sample(names(my_data),size = 2)
+print(mis_variables)
+```
+
+**IV1:**
+
+Variable tipo de vivienda por observación. Nominal. Es discreta.
+
+**V19_A:**
+
+Variable nominal. Menores de 10 años ayudan con algún dinero trabajando? (codigo 1 = Si 0 = No). Discreta.

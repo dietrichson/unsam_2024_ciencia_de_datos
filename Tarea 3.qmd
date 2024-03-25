@@ -1,0 +1,65 @@
+---
+title: "Clase 3"
+format: html
+editor: visual
+---
+
+## Tarea clase 3:
+
+**Guardamos datos como rds (rdata store)**
+
+```{r}
+library(tidyverse)
+my_data <- read_delim("./data/usu_hogar_T323.txt", delim = ";")
+```
+
+## 
+
+```{r}
+problemas <- problems(my_data)
+print(problemas)
+```
+
+```{r}
+# Donde está el problema
+names(my_data)[19]
+```
+
+```{r}
+# Donde está el problema
+names(my_data)[19]
+
+```
+
+```{r}
+my_data <- read_delim("./data/usu_hogar_T323.txt", delim = ";", guess_max = 10000)
+```
+
+**Guardamos datos como rds (r data store)**
+
+```{r}
+write_rds(my_data,file = "./data/datos_indec.rds")
+```
+
+**Tarea para Sasha**
+
+```{r}
+# Tarea para Sasha
+mis_variables <- sample(names(my_data),size = 2)
+print(mis_variables)
+```
+
+#### IPCF:
+
+Variable monto de ingreso per cápita familiar. Razón. Es discreta.
+
+#### II7
+
+Variable nominal (enumeración de los distintos régimenes de tenencia). Discreta.
+
+```{r}
+
+
+```
+
+# 
