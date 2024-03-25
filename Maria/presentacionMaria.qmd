@@ -1,0 +1,20 @@
+---
+title: "Presentacion"
+author: "María Acha"
+format: html
+editor: visual
+---
+
+## Quién soy
+
+Me llamo María y estudio Comunicación. Estoy en la UNSAM desde 2021.
+
+## Conocimientos de estadísticas
+
+Siempre me gustaron las estadísticas pero hace mucho tiempo que no estoy en contacto ni las uso en el día a día.
+
+## Tipos de proyectos
+
+Todavía no se me ocurre en qué tipo de proyecto me gustaría trabajar.
+
+## 

@@ -1,0 +1,87 @@
+---
+title: "prueba Quarto"
+format: html
+editor: visual
+---
+
+## Quarto
+
+## Nombres y profesiones
+
+Cruzar datos entre los nombres de unas personas y sus respectivas profesiones.
+
+**Nombres**
+
+```{r}
+## Nombres y profesiones 
+nombres <- c("matías", "maite", "francisco", "magalí", "paula")
+
+```
+
+**Profesiones**
+
+```{r}
+profesiones <- c("profesor", "arquitecta", "dentista", "maestra", "cocinera")
+```
+
+**Edades**
+
+```{r}
+edades <- c(25, 28, 34, 42, 53)
+```
+
+**Data frame de las variables**
+
+```{r}
+MisDatosProfesiones <- data.frame(nombres, profesiones)
+print(MisDatosProfesiones)
+```
+
+```{r}
+MisDatosEdades <- data.frame(nombres, edades)
+print(MisDatosEdades)
+```
+
+Histograma
+
+```{r}
+hist(MisDatosEdades$edades)
+```
+
+--------------------
+
+**Tarea 25/3**
+
+Eligir 4 variables del conjunto de datos de Indec:\<https://www.indec.gob.ar/ftp/cuadros/menusuperior/eph/EPH_registro_3T2023.pdf\>
+
+**IV1** **N (1) Tipo de vivienda (por observación) 1. casa 2. departamento 3. pieza de inquilinato 4. pieza en hotel / pensión 5. local no construido para habitación**
+
+Qué tipo de variable es? **Categórica**
+
+Cuál es su nivel de medición? **Nominal**
+
+Es continua o discreta? **Discreta**
+
+**II1 N (2) ¿Cuántos ambientes / habitaciones tiene este hogar para su uso exclusivo?**
+
+Qué tipo de variable es? **Numérica**
+
+Cuál es su nivel de medición? **Nivel de intervalo**
+
+Es continua o discreta? **Discreta**
+
+**II8 N (1) Combustible utilizado para cocinar 01 = Gas de red 02 = Gas de tubo / garrafa 03 = Kerosene / leña / carbón**
+
+Qué tipo de variable es? **Categórica**
+
+Cuál es su nivel de medición? **Nominal**
+
+Es continua o discreta? **Discreta**
+
+**CH03 N (2) Relación de parentesco 01 = Jefe/a 02 = Cónyuge/pareja 03 = Hijo / hijastro/a 04 = Yerno / nuera 05 = Nieto/a 06 = Madre / padre 07 = Suegro/a 08 = Hermano/a 09 = Otros familiares 10 = No familiares**
+
+Qué tipo de variable es? **Categórica**
+
+Cuál es su nivel de medición? **Nominal**
+
+Es continua o discreta? **Discreta**
