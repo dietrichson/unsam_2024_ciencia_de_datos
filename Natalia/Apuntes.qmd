@@ -1,0 +1,34 @@
+# Apuntes
+
+```{r}
+# Los datos se pueden mostrar con print(dato)
+# por defecto R muestra todos los datos
+# TIPOS DE DATOS
+entero <- 10
+nuemro_punto_flotante <- 15.5
+cadena_de_texto <- "texto"
+booleano <- TRUE
+# Inicializar variable
+alto <- 1.80
+ancho <- 2.00
+# Operacion aritmetica (el resultado se puede
+# guardar en una variable)
+alto * ancho
+# Inicializar un arreglo
+edades <- c(10,23,45,65,28,76)
+"Edades:"
+edades
+# Acceder a una posicion esp de un arreglo
+edades[3]
+# Acceder a mult posiciones del arreglo
+edades[c(3,4,5)]
+# Obtener suma total del arreglo
+sum(edades)
+# Obtener promedio del arreglo
+mean(edades)
+conjunto_de_nombres <- c("Natalia","Juan","Erick","Sofia","Patrick","Federico")
+Mis_datos <- data.frame(edades,conjunto_de_nombres)
+Mis_datos
+                      
+
+```

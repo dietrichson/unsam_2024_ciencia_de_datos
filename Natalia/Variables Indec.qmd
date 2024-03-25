@@ -1,0 +1,39 @@
+```{r}
+TRIMESTRE <- c(1,2,3,4)
+REGION <- c(1,40,41,42,43,44)
+MAS_500 <- c("N","S")
+AGLOMERADO <- c(2,3,4,5,6,7,8,9,10,12,13,14,15,17,18,19,20,22,23,25,26,27,29,30,31,32,33,34,36,38,91,93)
+TRIMESTRE
+REGION
+MAS_500
+AGLOMERADO
+
+```
+
+---
+title: "Variables Indec"
+author: "Natalia"
+format: html
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
