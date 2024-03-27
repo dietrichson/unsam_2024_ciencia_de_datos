@@ -1,0 +1,27 @@
+---
+title: "histograma"
+format: html
+editor: visual
+---
+
+```{r}
+nombres<-c("Belen","Camila","Evelina","Geronimo","Joan")
+edades<-c(20,21,22,23,24)
+carreras<-c("Comunicacion","Historia","Sociologia","Antropologia","Educacion")
+my_data<-data.frame(nombres,edades,carreras)
+print(my_data)
+```
+
+```{r}
+hist(my_data$edades)
+```
+
+## Variables
+
+**Tipo de vivienda:** es una variable nominal ya que se identifica el dato con unaetiqueta (como casa, departamente), al contrario de la variable ordinal, el orden de las variables carecen de sentido. Es una variable discreta porque tiene una precision cero, es decir, no se puede tener 1,5 casas.
+
+**Combustible utilizado para cocinar:** es una variable nominal ya que cada dato se vincula a una etiqueta sin que importe el orden en que se presenten los mismos. Es una varable discreta porque tiene una precision cero ya que no se puede tener 1,5 gas de red.
+
+**¿Cuántos ambientes/habitaciones tiene la vivienda en total?** : es una al variable nivel de razon ya que es una variable numerica y en donde el 0 representa la ausencia de la propiedad que se desea analizar. Es una variable discreta ya que no se puede tener 2,5 de habitaciones.
+
+**Regimen de tenencia**: es una variable nivel ordinal ya que a cada dato no solo le correspone una etiqueta sino que el orden indica una jerarquia en donde por ejemplo ser propietario seria mejor que ser inquilino. Es una variable discreta ya que tiene una precision cero porque, por ejemplo, no se puede ser mitad propietario y mitad inquilino.
