@@ -1,0 +1,28 @@
+---
+title: "Tarea clase 18/3"
+format: html
+editor: visual
+---
+
+## Alumnos de la Clase de Ciencia de Datos
+
+A continuación se presentarán los nombres, edades y ocupaciones de algunos de los alumnos de la clase:
+
+```{r}
+nombres <- c("Evelina", "Joaquín", "Joan", "Gerónimo", "Michelle", "Lautaro")
+edades <- c(22,23,21,24,20,25)
+ocupaciones <- c("Community Manager", "Comerciante", "Futbolista", "Economista", "Bailarina", "Estudiante" )
+```
+
+```{r}
+my_data <- data.frame(nombres,edades,ocupaciones)
+nombres_con_edad_y_ocupaciones <- data.frame(nombres,edades,ocupaciones)
+```
+
+```{r}
+print(my_data)
+```
+
+```{r}
+mean(edades)
+```

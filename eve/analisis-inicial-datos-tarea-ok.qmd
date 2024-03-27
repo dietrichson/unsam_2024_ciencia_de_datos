@@ -1,0 +1,54 @@
+---
+title: "Analisis inicial de datos OK"
+format: html
+editor: visual
+---
+
+## Tarea para el 8/4 - Análisis Inicial de Datos
+
+```{r}
+library(tidyverse)
+
+```
+
+```{r}
+my_data <- read_rds("../data/datos_indec.rds")
+
+```
+
+## Filtrar por una Región
+
+```{r}
+my_data$REGION %>% unique()
+my_data <- my_data %>% 
+  filter(REGION==40)
+```
+
+```{r}
+nrow(my_data)
+
+```
+
+## Distribución del ingreso en el Noroeste
+
+```{r}
+my_data$ITF %>%
+  mean()
+
+```
+
+```{r}
+my_data$ITF %>% 
+  median()
+```
+
+```{r}
+my_data$ITF %>% 
+  range()
+```
+
+```{r}
+my_data$ITF %>%
+  hist()
+
+```
