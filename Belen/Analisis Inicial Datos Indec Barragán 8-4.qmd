@@ -46,7 +46,7 @@ my_data$ITF |>
   range()
 ```
 
-## Para ver la distribución
+## Para ver la distribución.
 
 ```{r}
 my_data$ITF |> 
