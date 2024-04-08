@@ -1,6 +1,7 @@
 ---
 title: "Notas de la clase 3"
 author: "Aleksander Dietrichson"
+theme: darkly
 format: html
 editor: visual
 ---
@@ -90,7 +91,7 @@ a diferencia de países anglosajones (y angosajonizados)
 
 ```{r}
 library(tidyverse)
-my_data <- read_delim("../data/usu_hogar_T323.txt", delim = ";")
+my_data <- read_delim("../../data/usu_hogar_T323.txt", delim = ";")
 ```
 
 ```{r}
@@ -108,22 +109,20 @@ names(my_data)
 ```
 
 ```{r}
-my_data <- read_delim("../data/usu_hogar_T323.txt", delim = ";", guess_max = 10000)
-```
-
-```{r}
-
+my_data <- read_delim("../../data/usu_hogar_T323.txt", delim = ";", guess_max = 10000)
 ```
 
 ### Guardamos datos como rds (r data store)
 
 ```{r}
-write_rds(my_data,file = "../data/datos_indec.rds")
+#! eval: false
+write_rds(my_data,file = "../../data/datos_indec.rds")
 ```
 
 ## Sasha hace la tarea:
 
 ```{r}
+#! eval: false
 # Tarea para Sasha
 mis_variables <- sample(names(my_data),size = 4)
 print(mis_variables)

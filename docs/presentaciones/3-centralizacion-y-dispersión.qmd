@@ -167,7 +167,7 @@ Las principales son:
 
 -   La moda: Nominales y ordinales
 
-## Disperción
+## Dispersión
 
 Contesta a la pregunta: ¿cuán típico es el valor más típico?
 

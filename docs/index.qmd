@@ -17,3 +17,6 @@ theme: darkly
 -   [Notas de la clase 1](./notas/clase-1-notas.html)
 
 -   [Notas de la clase 2](./notas/clase-2-hacer-histograma.html)
+
+-   [Notas de la clase 3](./notas/notas-clase-3.html) y [Análisis Inicial Index](./notas/tarea-analisis-indec-1.html)
+
