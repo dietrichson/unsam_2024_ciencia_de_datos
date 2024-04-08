@@ -132,6 +132,8 @@ temp_df2
 ```
 
 ```{r}
+#| eval: false
+# Esto da error
 temp_df2 <- temp_df2 |> 
   rename("JORGE"=a)
 
@@ -191,3 +193,143 @@ Las alternativas son ....
 ## Ejercicio
 
 Con los datos del indec crear una variable nuev (Región) basada en región. Que cada región (1, 40,41,42 etc) tenga la etiqueta correspondiente. Pueden seleccionar solo las pocas columnas de interés y renombrar las variables para que sean a gusto/legibles y entendibles.
+
+## Visualizar datos con ggplot2
+
+El paquete se ggplot2 y es parte del tidyverse.
+
+```{r}
+temp_df
+```
+
+aes = aesthetic
+
+```{r}
+temp_df |> 
+  group_by(REGION2) |> 
+  summarize(
+    Ingreso = mean(Ingreso)
+  ) |> 
+  ggplot(aes(x=REGION2,y=Ingreso))+
+    geom_col()
+```
+
+Agreguemos color:
+
+```{r}
+temp_df |> 
+  group_by(REGION2) |> 
+  summarize(
+    Ingreso = mean(Ingreso)
+  ) |> 
+  ggplot(aes(x=REGION2,y=Ingreso, color = REGION2))+
+    geom_col()
+  
+```
+
+En realidad lo que quise hacer fue agregar `fill`
+
+```{r}
+temp_df |> 
+  group_by(REGION2) |> 
+  summarize(
+    Ingreso = mean(Ingreso)
+  ) |> 
+  ggplot(aes(x=REGION2,y=Ingreso, fill = REGION2))+
+    geom_col()
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso))+
+  geom_histogram()
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso,fill=REGION2))+
+  geom_histogram(position = "dodge")
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso))+
+  geom_density()
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso, fill = REGION2))+
+  geom_density()
+```
+
+Uno tapa el otro
+
+Hay dos soluciones
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso, fill = REGION2))+
+  geom_density(alpha=.5)
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso, fill = REGION2))+
+  geom_density(alpha=.5)+
+  facet_wrap(~REGION2)
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso, fill = REGION2))+
+  geom_density(alpha=.5)+
+  facet_wrap(~REGION2, ncol = 1)
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso, fill = REGION2))+
+  geom_density()+
+  facet_wrap(~REGION2, ncol = 1)
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso, color = REGION2,fill = REGION2))+
+  geom_density()+
+  facet_wrap(~REGION2, ncol = 1)
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso, color = REGION2, fill = REGION2))+
+  geom_density()+
+  facet_wrap(~REGION2, ncol = 1)+theme_bw()
+```
+
+## Tarea para el 15-4-24
+
+Realizar un análisis de diferencias entre regiones argentinas (Las 6):
+
+-   Generar una tabla con los promedios (media y mediano) y medidas de disperción por region.
+
+-   Graficar ls curva de distribución del ingreso por cada región. (Ojo: hacelo en un solo plot).
+
+-   Interpretar los resultados
+
+-   Formular hipótesis
+
+## Lectura 
+
+-   Capítulo 6 del libro.
