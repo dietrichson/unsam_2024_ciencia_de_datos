@@ -1,0 +1,115 @@
+---
+title: "clase3"
+format: html
+editor: visual
+---
+
+## media y mediana
+
+```{r}
+edades <- c(10, 23, 43, 12, 64, 23, 7, 33, 12, 70)
+mean(edades)
+```
+
+```{r}
+median(edades)
+
+```
+
+```{r}
+hist(edades)
+```
+
+```{r}
+table(edades)
+```
+
+**Dispersión**
+
+```{r}
+mean(edades)
+sd(edades)
+```
+
+sd: desviación estándar
+
+**Mad**
+
+desviación mediana absoluta. es menos sensible a valores extremos.
+
+```{r}
+mad(edades)
+```
+
+**Rango**
+
+valos más alto y valor más bajo
+
+```{r}
+range(edades)
+```
+
+```{r}
+
+
+```
+
+\
+**Datos del INDEC**
+
+```{r}
+library(tidyverse)
+my_data <- read_delim("../data/usu_hogar_T323.txt", delim = ";")
+```
+
+```{r}
+problemas <- problems(my_data)
+print(problemas)
+```
+
+```{r}
+my_data <- read_delim("../data/usu_hogar_T323.txt", delim = ";", guess_max = 10000)
+```
+
+```{r}
+write_rds(my_data,file = "../data/datos_indec.rds")
+```
+
+**Tarea clase 3**
+
+```{r}
+mis_variables <- sample(names(my_data),size = 4)
+print(mis_variables)
+```
+
+#### IDECCFR
+
+Variable ya computada de decil del ingreso. Ordinal. Es discreta
+
+#### REALIZADA
+
+Variable nominal (codigo 1 = si 0 = no) . Discreta.
+
+#### II4_1 «tiene cuarto de baño»
+
+Variable nominal (si/no). Discreta.
+
+```{r}
+my_data <- read_rds("../data/datos_indec.rds")
+```
+
+tomamos un parámetro
+
+```{r}
+nombres <- c("sasha", "maria","jorge")
+table(nombres)
+```
+
+```{r}
+
+```
+
+```{r}
+my_data$REGION |> 
+  unique() 
+```

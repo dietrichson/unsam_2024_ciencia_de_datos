@@ -1,0 +1,142 @@
+---
+title: "Notas de la clase 3"
+author: "Aleksander Dietrichson"
+format: html
+editor: visual
+---
+
+## Media y mediana
+
+```{r}
+edades <- c(51, 20,20,20,20,20,20,20,20,20,20,20,20,25)
+
+mean(edades)
+```
+
+```{r}
+median(edades)
+```
+
+```{r}
+sueldos <-c(100000,100000,100000,100000,100000,100000,100000,100000,100000,100000
+            ,100000,100000,100000,100000,100000,100000,100000,100000, 5000000)
+```
+
+```{r}
+mean(sueldos)
+```
+
+```{r}
+options(scipen = 999)
+median(sueldos)
+```
+
+## Moda
+
+No hay una función es a «ojo»
+
+```{r}
+hist(edades)
+```
+
+```{r}
+table(edades)
+```
+
+## Dispersión
+
+### Desviación estándar
+
+```{r}
+mean(edades)
+sd(edades)
+```
+
+```{r}
+sd(sueldos)
+```
+
+## Mad (Median absolute deviation)
+
+Desviación mediana absoluta
+
+```{r}
+mad(edades)
+```
+
+```{r}
+mad(sueldos)
+```
+
+## Rango
+
+```{r}
+range(edades)
+```
+
+```{r}
+range(sueldos)
+```
+
+## Datos del indec
+
+Analizamos datos por linea de comando y observamos que **No son** csv (comma-separated values) sino que están separados las columnas por **;**
+
+Esto es de datos de europa y america latina donde la coma (,) se usa para separar decimales.
+
+2,5
+
+a diferencia de países anglosajones (y angosajonizados)
+
+```{r}
+library(tidyverse)
+my_data <- read_delim("../data/usu_hogar_T323.txt", delim = ";")
+```
+
+```{r}
+problemas <- problems(my_data)
+print(problemas)
+```
+
+```{r}
+# Donde está el problema
+names(my_data)[19]
+```
+
+```{r}
+names(my_data)
+```
+
+```{r}
+my_data <- read_delim("../data/usu_hogar_T323.txt", delim = ";", guess_max = 10000)
+```
+
+```{r}
+
+```
+
+### Guardamos datos como rds (r data store)
+
+```{r}
+write_rds(my_data,file = "../data/datos_indec.rds")
+```
+
+## Sasha hace la tarea:
+
+```{r}
+# Tarea para Sasha
+mis_variables <- sample(names(my_data),size = 4)
+print(mis_variables)
+```
+
+#### IDECCFR
+
+Variable ya computada de decil del ingreso. Ordinal. Es discreta
+
+#### REALIZADA
+
+Variable nominal (codigo 1 = si 0 = no) . Discreta.
+
+#### II4_1 «tiene cuarto de baño»
+
+Variable nominal (si/no). Discreta.

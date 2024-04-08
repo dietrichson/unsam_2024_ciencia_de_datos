@@ -1,0 +1,28 @@
+---
+title: "Tarea Análisis Indec"
+author: "Natalia Luna"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+
+my_data <- read_rds("../data/datos_indec.rds")
+
+registros_NOA <- filter(my_data, REGION == 41)
+registros_NOA
+"NOROESTE ARGENTINO"
+"Cantidad de registros"
+nrow(registros_NOA)
+"Promedio de ingresos"
+mean(registros_NOA$ITF)
+"Ingreso medio familiar"
+median(registros_NOA$ITF)
+"Rango de ingresos"
+range(registros_NOA$ITF)
+
+hist(registros_NOA$ITF)
+
+
+```

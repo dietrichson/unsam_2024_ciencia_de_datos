@@ -1,0 +1,41 @@
+---
+title: "datos indec Barragan"
+author: "Barragán"
+format: html
+editor: visual
+---
+
+## Tarea
+
+```{r}
+write_rds(my_data,file = "../data/datos_indec.r"
+```
+
+```{r}
+mis_variables <- sample(names(my_data),size = 4)
+print(mis_variables)
+```
+
+## IV11
+
+El desague del baño es...
+
+1\. a red pública (cloaca) 2. a cámara séptica y pozo ciego 3. solo a pozo ciego 4. a hoyo/excavación en la tierra
+
+Variable nominal. Discreta.
+
+## V15
+
+• ¿En los últimos tres meses, las personas de este hogar han vivido.....pedir préstamos a bancos, financieras, etc.? 1 = Sí 2 = No
+
+Variable nominal. Discreta.
+
+## IV8
+
+¿Tiene baño / letrina? 1 = Sí 2 = No
+
+## IV12_2
+
+La vivienda está ubicada en zona inundable (en los últimos 12 meses) 1 = Sí 2 = No
+
+Variable nominal (Si/No). Discreta.

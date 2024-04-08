@@ -1,0 +1,93 @@
+---
+title: "Analisis Inicial Datos Indec"
+author: "Aleksander Dietrichson"
+format: html
+editor: visual
+---
+
+## Propósito
+
+Realizar un análisis inicial de los datos del indec. Ver algunas transformaciones y filtros con el paquete `dplyr` .
+
+```{r}
+# El paquete dplyr es parte del tidyverse así que se carga directametne junto con todo
+library(tidyverse)
+```
+
+## Cargamos los datos
+
+```{r}
+my_data <- read_rds("../data/datos_indec.rds")
+```
+
+REGION N (2) Código de región 01 = Gran Buenos Aires 40 = Noroeste 41 = Noreste 42 = Cuyo 43 = Pampeana 44 = Patagonia
+
+### Como funciona el pipe \|\>
+
+```{r}
+nombres <- c("sasha","maria","jorge")
+table(nombres)
+```
+
+```{r}
+nombres |>
+  table()
+```
+
+```{r}
+barplot(table(nombres))
+
+nombres |> 
+  table() |> 
+  barplot()
+```
+
+REGION N (2) Código de región 01 = Gran Buenos Aires 40 = Noroeste 41 = Noreste 42 = Cuyo 43 = Pampeana 44 = Patagonia
+
+## Filtrar por una región que me interesa
+
+```{r}
+# %>% 
+
+my_data$REGION |> 
+  unique() # Es para verificar
+
+my_data <- my_data |>
+  filter(REGION == 44) #es para filtrar.
+  
+  
+```
+
+```{r}
+nrow(my_data)
+```
+
+## Vamos a ver la distribución del ingreso en Patagonia
+
+```{r}
+my_data$ITF |> # Ingreso Total Familiar
+  mean()
+```
+
+```{r}
+my_data$ITF |> # Ingreso Total Familiar
+  median()
+```
+
+```{r}
+my_data$ITF |> 
+  range()
+```
+
+Para ver la distribución
+
+```{r}
+my_data$ITF |> 
+  hist()
+```
+
+## Tarea para la proxima clase:
+
+-   Eligir una región de la Argentina (que no sea la patagonia)
+
+-   Realizar un análisis de esta región en cuanto a nivel general y distribución del ingreso.

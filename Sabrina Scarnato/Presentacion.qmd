@@ -1,0 +1,22 @@
+---
+title: "Presentación"
+author: "Sabrina Scarnato"
+format: html
+editor: visual
+---
+
+## Quien soy
+
+Soy Sabrina Scarnato, estoy por entregar la tesis para recibirme. Soy de Buenos Aires
+
+## Conocimientos de estadísticas
+
+Se lo básico que he ido aprendiendo en otras materias o en algunos cursos de que hice para tener algo de conocimiento.
+
+## Tipos de proyectos
+
+Me interesan proyectos relacionados a las redes sociales o a los medios y la salud mental para que me sirva para mi tesis
+
+------------------------------------------------------------------------
+
+## 

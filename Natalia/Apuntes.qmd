@@ -1,0 +1,112 @@
+# Apuntes
+
+```{r}
+# Los datos se pueden mostrar con print(dato)
+# por defecto R muestra todos los datos
+# TIPOS DE DATOS
+entero <- 10
+nuemro_punto_flotante <- 15.5
+cadena_de_texto <- "texto"
+booleano <- TRUE
+# Inicializar variable
+alto <- 1.80
+ancho <- 2.00
+# Operacion aritmetica (el resultado se puede
+# guardar en una variable)
+alto * ancho
+# Inicializar un arreglo
+edades <- c(10,23,45,65,28,76)
+"Edades:"
+edades
+# Acceder a una posicion esp de un arreglo
+edades[3]
+# Acceder a mult posiciones del arreglo
+edades[c(3,4,5)]
+# Obtener suma total del arreglo
+sum(edades)
+# Obtener promedio del arreglo
+mean(edades)
+conjunto_de_nombres <- c("Natalia","Juan","Erick","Sofia","Patrick","Federico")
+Mis_datos <- data.frame(edades,conjunto_de_nombres)
+Mis_datos
+                      
+
+```
+
+# Conceptos de variables
+
+variables estadisticas:
+
+nominal - discretas
+
+Ej: sexo (F,M), nombre, DNI (pueden sumarlo)
+
+ordinal - discretas
+
+ej: star -rating
+
+intervalo
+
+ej: temperatura
+
+razon (ratio o racional)
+
+ej: edad, ingreso, numero de hijos
+
+```{r}
+sexo <- c(f,m,f,m)
+nombre <- c(mara,juan,dana,carlos)
+temperatura_en_buenos_aires <- sample(20:30, size = 20)
+cociente_de_inteligencia <- rnorm(1000,100,15)
+head(cociente_de_inteligencia)
+hist(cociente_de_inteligencia)
+rnorm(cociente_de_inteligencia)
+
+
+```
+
+## Centralización
+
+la media - ratio/intervalo
+
+la mediana - ratio/intervalo
+
+la moda - nominales ++ ordinales
+
+```{r}
+edades <- c(20,20,20,20,20,20,20,20,25,51)
+mean(edades)
+
+```
+
+```{r}
+sueldos <- c(100000,100000,100000,100000,100000,100000,500000)
+mean(sueldos)
+median(sueldos)
+options(scipen = 999)
+median(sueldos)
+table(edades)
+
+```
+
+```{r}
+problemas <- problemas(my_data)
+print(problemas)
+library(tidyverse)
+my_data <- read-delim
+
+```
+
+```{r}
+library(tidyverse)
+my_data <- read_rds("../data/datos_indec.rds")
+
+unique(my_data$REGION)
+nrow(my_data)
+filtrado <- filter(my_data, REGION == 44)
+nrow(filtrado)
+```
+
+### 
+
+### 

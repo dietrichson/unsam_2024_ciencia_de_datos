@@ -1,0 +1,30 @@
+---
+title: "Paths"
+author: "Aleksander Dietrichson"
+format: html
+editor: visual
+---
+
+## Problema:
+
+A veces no encuentra el archivo que queremos abrir desde el código.
+
+Ejemplo:
+
+```{r}
+my_data <- read_rds("./data/datos_indec.rds") # no lo encuentra porque estoy dentro de ./docs
+```
+
+2 Solucioines
+
+Uno: Agregar al path
+
+```{r}
+my_data <- read_rds("../data/datos_indec.rds")
+```
+
+DOS: Cambiar de directorio de trabajo.
+
+```{r}
+setwd("/cloud/project/sasha")
+```

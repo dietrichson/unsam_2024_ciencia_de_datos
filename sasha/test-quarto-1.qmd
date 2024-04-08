@@ -11,7 +11,7 @@ editor: visual
 1 + 1
 ```
 
-Se puede intercalar código. con **Control+Alt+I**
+You can add options to executable code like this
 
 ```{r}
 #| echo: false

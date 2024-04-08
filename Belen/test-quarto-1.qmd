@@ -1,0 +1,26 @@
+---
+title: "test-quarto-1 18-3-24"
+format: html
+editor: visual
+---
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+nombres<-c("Belen","Camila","Evelina","Geronimo","Joan")
+edades<-c(20,21,22,23,24)
+carreras<-c("Comunicacion","Historia","Sociologia","Antropologia","Educacion")
+my_data<-data.frame(nombres,edades,carreras)
+print(my_data)
+```

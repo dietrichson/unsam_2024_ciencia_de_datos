@@ -1,0 +1,47 @@
+---
+title: "Histograma-tarea-ok"
+format: html
+editor: visual
+---
+
+## Tarea para el lunes 25/03/2024
+
+-   Realizar un histograma de una de las columnas del data.frame que armaron en el ejercicio
+
+## Hacer Histograma
+
+```{r}
+nombres <- c("Evelina", "Joaquín", "Joan", "Gerónimo", "Michelle", "Lautaro") 
+edades <- c(22,23,21,24,20,25) 
+my_data <- data.frame(nombres,edades)
+```
+
+## Verificando
+
+```{r}
+print(my_data)
+```
+
+```{r}
+hist(my_data$edades)
+```
+
+## Tarea de Variables - Indec
+
+-   Elegir 4 variables del conjunto de datos de Indec: <https://www.indec.gob.ar/ftp/cuadros/menusuperior/eph/EPH_registro_3T2023.pdf>
+
+-   Qué tipo de variable es:
+
+    -   Cuál es su nivel de medición
+
+    -   Es continua o discreta
+
+**Variables elegidas:**
+
+-   "*REALIZADA*" = su nivel de medición es nominal. No es ni continua ni discreta ya que no se trata de una variable numérica.
+
+-   "*IX_Men10*" = su nivel de medición es ordinal. Se trata de una variable discreta.
+
+-   "*CH04*" = su nivel de medición es nominal. No es ni continua ni discreta ya que no se trata de una variable numérica.
+
+-   "*PP08D1*" = su nivel de medición es racional. Se trata de una variable discreta.
