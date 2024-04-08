@@ -187,3 +187,7 @@ H~0~: El nivel de ingresos entre AMBA y el Interior es igual.
 La hipótesis nula es...
 
 Las alternativas son ....
+
+## Ejercicio
+
+Con los datos del indec crear una variable nuev (Región) basada en región. Que cada región (1, 40,41,42 etc) tenga la etiqueta correspondiente. Pueden seleccionar solo las pocas columnas de interés y renombrar las variables para que sean a gusto/legibles y entendibles.
