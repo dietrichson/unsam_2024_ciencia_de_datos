@@ -1,6 +1,7 @@
 ---
 title: "Notas de la clase 4"
 author: "Aleksander Dietrichson"
+theme: darkly
 format: html
 editor: visual
 ---
@@ -47,11 +48,11 @@ Igualdad es con `==` (double igual) cando hacés comparaciones.
 simple igual `=` es lo mismo que `<-`
 
 ```{r}
-#! eval: false
+#| eval: false
 ## Ejemplo
 (1==1)
 (1==2)
-(1=1)
+(1=1) # Este da error
 ```
 
 ```{r}

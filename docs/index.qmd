@@ -22,3 +22,4 @@ theme: darkly
 
 -   [Notas de la clase 3](./notas/notas-clase-3.html) y [Análisis Inicial Index](./notas/tarea-analisis-indec-1.html)
 
+-   [Notas de la clase 4](./notas/clase-4-notas.html)
