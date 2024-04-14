@@ -1,5 +1,3 @@
-------------------------------------------------------------------------
-
 title: "Hacer Histograma" format: html editor: visual
 
 ## Hacer Histograma
