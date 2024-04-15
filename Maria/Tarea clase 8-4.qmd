@@ -1,0 +1,55 @@
+---
+title: "Tarea clase 8-4"
+format: html
+editor: visual
+---
+
+## Tarea 8-4
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+my_data <- read_rds("../data/datos_indec.rds")
+```
+
+Filtrar por una región
+
+```{r}
+my_data$REGION |> 
+  unique()
+```
+
+```{r}
+# Región Cuyo 
+my_data <- my_data |>
+  filter(REGION == 42)
+```
+
+```{r}
+nrow(my_data)
+```
+
+```{r}
+# Distribución del ingreso en la región cuyana
+my_data$ITF |> # Ingreso Total Familiar
+  mean()
+```
+
+```{r}
+my_data$ITF |> # Ingreso Total Familiar
+  median()
+```
+
+```{r}
+my_data$ITF |> 
+  range()
+```
+
+```{r}
+my_data$ITF |> 
+  hist()
+```
+
+El ingreso total familiar promedio (mean) es de 252978.3 y la mediana del ingreso total familiar (median) es de 208900. Esto puede indicar una gran amplitud entre los ingresos, lo cual puede verse en el amplio rango entre el menor y el mayor ingreso (0 / 3.048.000).

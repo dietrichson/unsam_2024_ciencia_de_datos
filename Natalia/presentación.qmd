@@ -1,0 +1,18 @@
+---
+title: "Presentacion"
+author: "Natalia"
+format: html
+editor: visual
+---
+
+## Quien soy
+
+Me llamo Natalia, soy estudiante de la carrera de Estudios de la comunicación.
+
+## Conocimientos de lenguaje de programación
+
+Conozco un poco de Python, muy básico.
+
+### Tipos de proyectos
+
+Me interesaría trabajar o saber como se hacer para establecer a partir de los datos, como se selecciona el público deseado para una campaña de difusión.

@@ -12,6 +12,8 @@ theme: darkly
 
 -   [Presentación de la clase 3](./presentaciones/3-centralizacion-y-dispersión.html)
 
+-   [Presentación de la clase 4](./presentaciones/4-metodo-científico.html)
+
 ## Notas
 
 -   [Notas de la clase 1](./notas/clase-1-notas.html)
@@ -20,3 +22,4 @@ theme: darkly
 
 -   [Notas de la clase 3](./notas/notas-clase-3.html) y [Análisis Inicial Index](./notas/tarea-analisis-indec-1.html)
 
+-   [Notas de la clase 4](./notas/clase-4-notas.html)

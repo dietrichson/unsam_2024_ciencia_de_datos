@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-## Tarea para el 8/4 - Análisis Inicial de Datos
+## Tarea para el 8/4 - Análisis Inicial de Datos 
 
 ```{r}
 library(tidyverse)

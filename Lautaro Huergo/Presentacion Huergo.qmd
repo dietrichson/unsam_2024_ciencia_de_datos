@@ -1,0 +1,17 @@
+---
+title: "Presentacion Huergo"
+format: html
+editor: visual
+---
+
+## Quien soy?
+
+Soy Huergo Lautaro estudiante de la Licenciatura en Estudios de la Comunicación.
+
+## Conocimientos estadisticos:
+
+Muy pocos. Tuve algun acercamiento con la materia Metodologias Cuantitativas a traves de Python.
+
+### Tipo de proyecto:
+
+Aun no se. Me interesan las redes como X y Instagram
