@@ -14,6 +14,9 @@ theme: darkly
 
 -   [Presentación de la clase 4](./presentaciones/4-metodo-científico.html)
 
+-   [Presentación de la clase 4](./presentaciiones/5-chi-cuadrado.html.html)
+
+
 ## Notas
 
 -   [Notas de la clase 1](./notas/clase-1-notas.html)
