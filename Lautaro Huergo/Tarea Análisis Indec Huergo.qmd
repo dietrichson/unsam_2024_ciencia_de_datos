@@ -1,0 +1,57 @@
+---
+title: "Tarea Analisis Indec Huergo"
+format: html
+editor: visual
+---
+
+## Tarea Análisis Indec Huergo:
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+#Cargamos los datos: 
+my_data <- read_rds("./data/datos_indec.rds")
+```
+
+REGION N (2) Código de región 01 = Gran Buenos Aires 40 = Noroeste 41 = Noreste 42 = Cuyo 43 = Pampeana 44 = Patagonia
+
+## Filtración región seleccionada:
+
+```{r}
+# %>% 
+
+my_data$REGION |> 
+  unique()
+my_data <- my_data |>
+  filter(REGION == 42) 
+```
+
+```{r}
+nrow(my_data)
+```
+
+### Distribución del ingreso de Cuyo:
+
+```{r}
+my_data$ITF |> # Ingreso Total Familiar
+  mean()
+```
+
+```{r}
+my_data$ITF |> # Ingreso Total Familiar
+  median()
+```
+
+```{r}
+my_data$ITF |> 
+  range()
+```
+
+Distibución
+
+```{r}
+my_data$ITF |> 
+  hist()
+```

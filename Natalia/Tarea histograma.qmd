@@ -1,0 +1,23 @@
+---
+title: "Tarea"
+author: "Natalia"
+format: html
+editor: visual
+---
+
+# Tarea
+
+```{r}
+edades <- c(43,41,21,11)
+print("Edades:")
+print(edades)
+# mean es un promedio 
+print("Promedio de edades:")
+mean(edades)
+nombres <- c("Natalia","Juan","EricK","Sofia")
+print("Nombres:")
+nombres
+my_data <- data.frame(nombres,edades)
+my_data
+hist(my_data$edades)
+```
