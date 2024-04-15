@@ -59,3 +59,12 @@ temp_df |>
   ggplot(aes(x=REGION2,y=ITF, fill = REGION2))+
     geom_col()
 ```
+
+2\.
+
+```{r}
+temp_df %>% 
+  filter(ITF<1000000) %>% 
+  ggplot(aes(ITF, fill = REGION2))+
+  geom_density(alpha=.5)
+```
