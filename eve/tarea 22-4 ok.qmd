@@ -1,0 +1,86 @@
+---
+title: "tarea 22-4 ok"
+format: html
+editor: visual
+---
+
+## Tarea
+
+Usando las variables
+
+*V5 y MAS_500*
+
+-   Limpiar los datos
+
+-   Poner etiquetas coherentes
+
+-   Realizar análisis exploratorio
+
+-   Forumular hipótesis
+
+-   Probar hipótesis con la prueba de chi-cuadrado `chisq.test`
+
+#### Datos del Indec:
+
+-   **MAS_500:** más de 500 mil habitantes
+
+-   **V5:** Si tienen o no un subsidio/ayuda social
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+my_data <- my_data |> 
+  select(MAS_500, V5)
+
+my_data$MAS_500 |> unique()
+my_data$V5 |> unique()
+```
+
+#### Limpieza:
+
+```{r}
+datos_indec %>%
+  filter(V5<=2) -> tmp
+table(tmp$V5)
+```
+
+#### Transformaciones:
+
+```{r}
+my_data <- my_data |> 
+  mutate(ayuda_social = case_when(
+    V5 == 1 ~ "Ayuda social si",
+    V5 > 1 ~ "Ayuda social no"
+  ))
+
+```
+
+```{r}
+my_data <- my_data %>% 
+  mutate(ciudades = case_when(
+    MAS_500 == "S" ~ "Ciudades grandes",
+    MAS_500 == "N" ~ "Ciudades pequeñas"
+  ))
+```
+
+```{r}
+table(my_data$ayuda_social, my_data$ciudades)
+
+```
+
+```{r}
+my_data |> 
+  ggplot(aes(ciudades, fill = ayuda_social))+
+  geom_bar()
+
+```
+
+#### Armamos hipótesis:
+
+$H_0$ : Los habitantes de las ciudades con menos de 500.000 habitantes viven de menos subsidio o ayuda social (en dinero) del gobierno, iglesias, etc, que las más grandes.
+
+$H_1$ : En las grandes ciudades los habitantes viven en menor proporción de subsidios o ayuda social (en dinero) del gobierno, iglesias, etc.
+
+```{r}
+table(my_data$ayuda_social, my_data$ciudades) |> 
+  chisq.test()
+```
