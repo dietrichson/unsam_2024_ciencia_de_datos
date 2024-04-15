@@ -68,3 +68,15 @@ temp_df %>%
   ggplot(aes(ITF, fill = REGION2))+
   geom_density(alpha=.5)
 ```
+
+3\.
+
+En base a los resultados, es posible interpretar que el monto de ingreso total familiar (ITF) es mayor en la región de la Patagonia en relación a las demás regiones.
+
+4\.
+
+-   H~0~: La región del Noroeste es la segunda con el mayor monto de ingreso total familiar.
+
+-   La hipótesis nula es que el nivel de ingresos entre las regiones Cuyo, GBA, Noroeste, Noreste, Pampeana y Patagonia es igual.
+
+-   La hipótesis alternativa es que la región de la Patagonia es la que mayor monto de ingreso total familiar posee.
