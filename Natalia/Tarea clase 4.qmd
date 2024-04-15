@@ -1,0 +1,54 @@
+---
+title: "Tarea clase 4"
+author: "Natalia Luna"
+format: html
+editor: visual
+---
+
+# Tarea clase 4
+
+```{r}
+library(tidyverse)
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+
+temp_df <- my_data |> 
+  select(REGION, ITF)
+
+regiones_id <- c(1,40,41,42,43,44)
+regiones_desc <- c("AMBA","NOROESTE","NORESTE","CUYO","PAMPEANA","PATAGONIA")
+region <- data.frame(regiones_id,regiones_desc)
+region
+
+temp_df <- temp_df |>
+  mutate(REGION2 = case_when(
+    REGION == 1 ~ "AMBA",
+    REGION == 40 ~ "NOROESTE",
+    REGION == 41 ~ "NORESTE",
+    REGION == 42 ~ "CUYO",
+    REGION == 43 ~ "PAMPEANA",
+    REGION == 44 ~ "PATAGONIA",
+    .default = "No Encontrado"))
+  
+temp_df <- temp_df |>
+  rename("INGRESO" = ITF)
+temp_df
+
+resultado <- temp_df |> 
+  group_by(REGION2) |> 
+  summarize(
+    Media = mean(INGRESO),
+    Mediana = median(INGRESO),
+    Rango = range(INGRESO) |> paste(collapse = " a "),
+    Desviacion_ST = sd(INGRESO),
+    Desviacion_AB = mad(INGRESO)
+  )
+resultado
+
+
+temp_df |> 
+  filter(INGRESO<1000000) |> 
+  ggplot(aes(INGRESO, fill = REGION2))+
+  geom_density(alpha=.5)+
+  facet_wrap(~REGION2)
+
+```
