@@ -1,4 +1,8 @@
-title: "Hacer Histograma" format: html editor: visual
+---
+title: "Tarea histograma"
+format: html
+editor: visual
+---
 
 ## Hacer Histograma
 
