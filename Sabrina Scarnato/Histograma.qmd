@@ -1,0 +1,23 @@
+---
+title: "Tarea histograma"
+format: html
+editor: visual
+---
+
+## Hacer Histograma
+
+```{r}
+nombres <- c("Sabrina", "Joaquín", "Nicolas", "Lorena", "Lucia", "Marco") 
+edades <- c(23,19,22,36,20,40) 
+my_data <- data.frame(nombres,edades)
+```
+
+## Verificando
+
+```{r}
+print(my_data)
+```
+
+```{r}
+hist(my_data$edades)
+```

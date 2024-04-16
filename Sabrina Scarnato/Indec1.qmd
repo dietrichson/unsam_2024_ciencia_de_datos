@@ -1,0 +1,52 @@
+---
+title: "Tarea clase 8-4"
+format: html
+editor: visual
+---
+
+## Tarea 8-4
+
+```{r}
+library(tidyverse)
+```
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+```
+
+Filtrar por una región
+
+```{r}
+my_data$REGION |> 
+  unique()
+```
+
+```{r}
+# Región Cuyo 
+my_data <- my_data |>
+  filter(REGION == 41)
+```
+
+```{r}
+nrow(my_data)
+```
+
+```{r}
+# Distribución del ingreso en la región Noreste
+my_data$ITF |> # Ingreso Total Familiar
+  mean()
+```
+
+```{r}
+my_data$ITF |> # Ingreso Total Familiar
+  median()
+```
+
+```{r}
+my_data$ITF |> 
+  range()
+```
+
+```{r}
+my_data$ITF |> 
+  hist()
+```
