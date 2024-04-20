@@ -19,7 +19,7 @@ Usando las variables
 
 -   Realizar análisis exploratorio
 
--   Forumular hipótesis
+-   Formular hipótesis
 
 -   Probar hipótesis con la prueba de chi-cuadrado `chisq.test`
 
