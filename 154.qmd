@@ -3,6 +3,7 @@ title: "Ejercicio 15/4"
 format: html
 editor: visual
 ---
+
 Con los datos del Indec crear una variable nueva (región) basada en región. Que cada región (1, 40,41, 42 etc) tenga la etiqueta correspondiente. Puede seleccionar solo las pocas columnas de interés y renombrar las variables para que sean a gusto, legibles y entendibles.
 
 ```{r}
@@ -31,6 +32,7 @@ temp_df <- temp_df |>
 
 temp_df
 ```
+
 #### Ejercicio 2
 
 Realizar un análisis de diferencias entre regiones argentinas (Las 6):
@@ -43,7 +45,8 @@ Realizar un análisis de diferencias entre regiones argentinas (Las 6):
 
 4.  Formular hipótesis
 
-1.
+5.  
+
 ```{r}
 temp_df |>
   group_by(REGION2) |>
@@ -53,7 +56,7 @@ temp_df |>
   )
 ```
 
-2.
+2.  
 
 ```{r}
 temp_df %>%  
@@ -61,18 +64,10 @@ temp_df %>%
   ggplot(aes(ITF, fill = REGION2))+
   geom_density(alpha=.5)
 ```
-```{r}
-temp_df |> 
-  filter(ITF<1000000) |> 
-  ggplot(aes(ITF, fill = REGION2))+
-  geom_density(alpha=.5)+
-  facet_wrap(~REGION2)
-```
-3. La region con mayor ingreso es la Patagonia seguida por el noroeste. En ultimo lugar se encuentra la regíon de 
 
 
-4.
-Hipotesis nula: La region de la patagonia es la region que tiene menores ingresos
+3.  La region con mayor ingreso es la Patagonia seguida por el noroeste. En ultimo lugar se encuentra la regíon de
+
+4.  Hipotesis nula: La region de la patagonia es la region que tiene menores ingresos
 
 Hipotesis alternativa: La region patagonica tiene los mayores niveles de ingresos.
-
