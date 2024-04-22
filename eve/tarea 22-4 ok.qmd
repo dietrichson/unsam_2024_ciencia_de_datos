@@ -1,8 +1,14 @@
 ---
 title: "tarea 22-4 ok"
 format: html
+theme: darkly
 editor: visual
 ---
+
+```{r}
+#| include: false
+library(tidyverse)
+```
 
 ## Tarea
 
@@ -28,6 +34,7 @@ Usando las variables
 
 ```{r}
 my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+datos_indec <- readRDS("/cloud/project/data/datos_indec.rds")
 my_data <- my_data |> 
   select(MAS_500, V5)
 
@@ -81,6 +88,7 @@ $H_0$ : Los habitantes de las ciudades con menos de 500.000 habitantes viven de 
 $H_1$ : En las grandes ciudades los habitantes viven en menor proporción de subsidios o ayuda social (en dinero) del gobierno, iglesias, etc.
 
 ```{r}
+options(scipen = 999)
 table(my_data$ayuda_social, my_data$ciudades) |> 
   chisq.test()
 ```
