@@ -9,4 +9,5 @@ nombrar_regiones <- function(region){
     region == 43 ~ "Pampeana",
     region == 44 ~ "Patagonia",
     .default = "No Encontrado")
+  
 }
