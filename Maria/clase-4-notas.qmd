@@ -1,0 +1,335 @@
+---
+title: "Notas de la clase 4"
+author: "Aleksander Dietrichson"
+format: html
+editor: visual
+---
+
+## Manipular datos con dplyr
+
+`dplyr` es parte de tidyverse.
+
+```{r}
+library(tidyverse)
+```
+
+### Obtenemos datos
+
+Voy a usar los del indec:
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+
+```
+
+### Seleccionar columnas
+
+```{r}
+temp_df <- my_data |> 
+  select(REGION, ITF)
+```
+
+```{r}
+temp_df
+```
+
+## Seleccionar filas
+
+Con `filter`
+
+```{r}
+temp_df |> 
+  filter(REGION == 1)
+```
+
+Igualdad es con `==` (double igual) cando hacés comparaciones.
+
+simple igual `=` es lo mismo que `<-`
+
+```{r}
+#! eval: false
+## Ejemplo
+(1==1)
+(1==2)
+(1=1)
+```
+
+```{r}
+#| eval: false
+temp_df |> 
+  filter(REGION = 1) # Da error
+```
+
+el uso de `!` en código. Significa negación
+
+```{r}
+(1==1)
+
+!(1==1)
+```
+
+$$
+\neg
+$$
+
+Entonces tenemos tambíen el `!=`
+
+```{r}
+(1 != 2)
+(1 != 1)
+```
+
+```{r}
+temp_df |> 
+  filter(REGION != 1)
+
+```
+
+También funcionan los `<` `>`, también hay `<=` `>=`
+
+```{r}
+temp_df |> 
+  filter(ITF > 100000)
+```
+
+```{r}
+temp_df |> 
+  filter(ITF > 1000000)
+```
+
+```{r}
+temp_df |> 
+  filter(ITF >= 1000000)
+```
+
+## Crear columnas nuevas
+
+```{r}
+temp_df |> 
+  mutate(pais = "Argentina")
+```
+
+```{r}
+temp_df
+```
+
+```{r}
+temp_df <- temp_df |> 
+  mutate(pais = "Argentina")
+temp_df
+```
+
+```{r}
+temp_df <- temp_df |> 
+  rename("PAIS" = pais)
+temp_df
+
+```
+
+```{r}
+temp_df2 <- data.frame(a = 1, b =1)
+temp_df2
+```
+
+```{r}
+#| eval: false
+# Esto da error
+temp_df2 <- temp_df2 |> 
+  rename("JORGE"=a)
+
+temp_df2
+```
+
+```{r}
+temp_df2 <- temp_df2 |> 
+  rename("JORGE"=a)
+```
+
+```{r}
+temp_df <- temp_df |> 
+  rename("Ingreso" = ITF)
+temp_df
+```
+
+## Crear etiquetas (labels)
+
+Con `mutate + case_when`
+
+```{r}
+temp_df <- temp_df |> 
+  mutate(REGION2 = 
+           case_when(
+             REGION == 1 ~ "AMBA",
+             REGION != 1 ~ "Interior",
+            .default = "No Encontrado"))
+temp_df
+```
+
+```{r}
+temp_df |> 
+  group_by(REGION2) |> 
+  summarize(
+    Media = mean(Ingreso),
+    Mediana = median(Ingreso)
+  )
+```
+
+### Hipótesis
+
+$$
+H_0: \mu(AMBA)=\mu(Provincias)
+\\
+H_1: \mu(AMBA)>\mu(Provincias)
+\\
+H_2: \mu(AMBA)<\mu(Provincias)
+$$
+
+H~0~: El nivel de ingresos entre AMBA y el Interior es igual.
+
+La hipótesis nula es...
+
+Las alternativas son ....
+
+## Ejercicio
+
+Con los datos del indec crear una variable nuev (Región) basada en región. Que cada región (1, 40,41,42 etc) tenga la etiqueta correspondiente. Pueden seleccionar solo las pocas columnas de interés y renombrar las variables para que sean a gusto/legibles y entendibles.
+
+## Visualizar datos con ggplot2
+
+El paquete se ggplot2 y es parte del tidyverse.
+
+```{r}
+temp_df
+```
+
+aes = aesthetic
+
+```{r}
+temp_df |> 
+  group_by(REGION2) |> 
+  summarize(
+    Ingreso = mean(Ingreso)
+  ) |> 
+  ggplot(aes(x=REGION2,y=Ingreso))+
+    geom_col()
+```
+
+Agreguemos color:
+
+```{r}
+temp_df |> 
+  group_by(REGION2) |> 
+  summarize(
+    Ingreso = mean(Ingreso)
+  ) |> 
+  ggplot(aes(x=REGION2,y=Ingreso, color = REGION2))+
+    geom_col()
+  
+```
+
+En realidad lo que quise hacer fue agregar `fill`
+
+```{r}
+temp_df |> 
+  group_by(REGION2) |> 
+  summarize(
+    Ingreso = mean(Ingreso)
+  ) |> 
+  ggplot(aes(x=REGION2,y=Ingreso, fill = REGION2))+
+    geom_col()
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso))+
+  geom_histogram()
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso,fill=REGION2))+
+  geom_histogram(position = "dodge")
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso))+
+  geom_density()
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso, fill = REGION2))+
+  geom_density()
+```
+
+Uno tapa el otro
+
+Hay dos soluciones
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso, fill = REGION2))+
+  geom_density(alpha=.5)
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso, fill = REGION2))+
+  geom_density(alpha=.5)+
+  facet_wrap(~REGION2)
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso, fill = REGION2))+
+  geom_density(alpha=.5)+
+  facet_wrap(~REGION2, ncol = 1)
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso, fill = REGION2))+
+  geom_density()+
+  facet_wrap(~REGION2, ncol = 1)
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso, color = REGION2,fill = REGION2))+
+  geom_density()+
+  facet_wrap(~REGION2, ncol = 1)
+```
+
+```{r}
+temp_df |> 
+  filter(Ingreso<1000000) |> 
+  ggplot(aes(Ingreso, color = REGION2, fill = REGION2))+
+  geom_density()+
+  facet_wrap(~REGION2, ncol = 1)+theme_bw()
+```
+
+## Tarea para el 15-4-24
+
+Realizar un análisis de diferencias entre regiones argentinas (Las 6):
+
+-   Generar una tabla con los promedios (media y mediano) y medidas de disperción por region.
+
+-   Graficar ls curva de distribución del ingreso por cada región. (Ojo: hacelo en un solo plot).
+
+-   Interpretar los resultados
+
+-   Formular hipótesis
+
+## Lectura
+
+-   Capítulo 6 del libro.
