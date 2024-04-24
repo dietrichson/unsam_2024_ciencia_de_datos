@@ -1,92 +1,84 @@
 ---
-title: "Ejercicio clase 8/4"
+title: "Tarea 22/4"
 format: html
 editor: visual
 ---
 
-## Ejercicio 8/4
+## Tarea 22/4
 
 ```{r}
 library(tidyverse)
 ```
 
+*Se seleccionan las columnas MAS_500 y V5*
+
 ```{r}
 my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+my_data <- my_data %>%  
+  select(MAS_500, V5)
 ```
 
-**Crear variable nueva (columna)**
+*Accede a columnas específicas*
 
 ```{r}
-temp_df <- my_data %>% 
-  select( REGION, ITF)
-```
-
-```{r}
-temp_df
+my_data$MAS_500 %>% unique()
 ```
 
 ```{r}
-temp_df %>% 
-  mutate (PaísArg = "Argentina")
+my_data$V5 %>% unique()
+
+```
+
+**Limpieza de datos** (se saca lo que sería el "9")
+
+```{r}
+datos_indec %>%
+  filter(V5<=2) -> tmp
+table(tmp$V5)
+```
+
+**Cambio de etiqueta**
+
+```{r}
+my_data <- my_data %>%  
+  mutate(ayuda = case_when(
+    V5 == 1 ~ "SI",
+    V5 > 1 ~ "NO"
+    
+  ))
 ```
 
 ```{r}
-temp_df <- temp_df |> 
-  mutate(REGION2 = 
-           case_when(
-             REGION == 1 ~ "AMBA",
-             REGION == 40 ~ "Noroeste",
-             REGION == 41 ~ "Noreste",
-             REGION == 42 ~ "Cuyo",
-             REGION == 43 ~ "PAMPEANA", 
-             REGION == 44 ~ "Patagonia"
-            ))
-temp_df
+my_data <- my_data %>% 
+  mutate(ciudades = case_when(
+    MAS_500 == "S" ~ "Grandes",
+    MAS_500 == "N" ~ "Pequeñas"
+  ))
 ```
 
-# **Tarea para el 15/4**
-
-Punto (1)
+*No entiendo porque esta tabla queda así.*
 
 ```{r}
-temp_df %>%  
-  group_by(REGION2) %>%  
-  summarize(
-    Media = mean(ITF),
-    Mediana = median(ITF)
-  )
+table(my_data$ayuda, my_data$ciudades)
 ```
 
-Punto (2)
+**Gráfico**
 
 ```{r}
-temp_df %>%  
-  group_by(REGION2) %>%  
-  summarize(
-    ITF = mean(ITF)
-  ) |> 
-  ggplot(aes(x=REGION2,y=ITF, fill = REGION2))+
-    geom_col()
+my_data %>%  
+  ggplot(aes(ciudades, fill = ayuda))+
+  geom_bar()
 ```
 
-Punto (3)
+**Armar hipótesis:**
 
-Interpretación de los resultados:
+$H_0$ : En todas las ciudades se recibe la misma ayuda social.
 
--   Patagonia es la región con mayores ingresos
+$H_1$ : En las ciudades pequeñas se recibe más ayuda social.
 
--   Luego el Noroeste
+**Comprobar hipótesis**
 
--   Luego Cuyo
-
--   Luego el AMBA, por muy poco.
-
--   La región del noreste y la Pampeana están bastante parejas y en lo ás bajo de los Ingresos.
-
-Punto (4)
-
-Hipotesis
-
-Hipótesis nula: La patagonia es la región con menores Ingresos.
-
-Hipótesis alternativa: el ingreso del AMBA es menor que el de la Patagonia.
+```{r}
+table(my_data$ayuda_social, my_data$ciudades) %>% 
+  chisq.test()
+```
