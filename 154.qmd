@@ -66,8 +66,8 @@ temp_df %>%
 ```
 
 
-3.  La region con mayor ingreso es la Patagonia seguida por el noroeste. En ultimo lugar se encuentra la regíon de
+3.  La region con mayor ingreso es la Patagonia seguida por el noroeste. 
 
-4.  Hipotesis nula: La region de la patagonia es la region que tiene menores ingresos
+4.  Hipotesis nula: La region de la Patagonia tiene los mismos ingresos que la region Cuyo. 
 
 Hipotesis alternativa: La region patagonica tiene los mayores niveles de ingresos.
