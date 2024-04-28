@@ -1,0 +1,171 @@
+---
+author: "Aleksander Dietrichson"
+format: html
+theme: darkly
+editor: visual
+---
+
+## Tarea de la clase anterior:
+
+Usando las variables
+
+*V5 y MAS_500*
+
+-   Limpiar los datos
+
+-   Poner etiquetas coherentes
+
+-   Realizar análisis exploratorio
+
+-   Forumular hipótesis
+
+-   Probar hipótesis con la prueba de chi-cuadrado `chisq.test`
+
+## Generalizar a tablas más grandes
+
+Queremos generalizar $\chi^2$
+
+MAS_500 es variable nominal y tiene dos niveles (Si o no) entonces sale una tabla de 2x2.
+
+REGION es variable nominal y tiene
+
+```{r}
+library(tidyverse)
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+my_data$REGION |> unique()
+```
+
+```{r}
+# filtrar datos
+my_data <- my_data |> filter(V5 !=9)
+table(my_data$V5, my_data$REGION)
+```
+
+### Armar hipótesis
+
+$H_0$ : El acceso a ayuda social es parejo en todas las regiones.
+
+$H_1$ : El acceso se distribuye de manera despareja.
+
+```{r}
+table(my_data$V5, my_data$REGION) |> 
+  chisq.test()
+```
+
+```{r}
+options(scipen = 999)
+table(my_data$V5, my_data$REGION) |> 
+  chisq.test()
+```
+
+```{r}
+table(my_data$V5, my_data$REGION) |> 
+  chisq.test() |> 
+  broom::tidy()
+```
+
+## Armar funciones en R
+
+```{r}
+x <- 1
+mi_columna <- c("uno","dos", "tres")
+x
+mi_columna
+```
+
+```{r}
+
+addicion <- function(x, y){
+  x+y
+}
+
+addicion <- function(x, y){
+ return( x+y )
+}
+
+addicion(2,2)
+
+addicion( x=2, y=3)
+```
+
+Las funciones no obligatoriamente tienen parámetros (argumentos)
+
+```{r}
+hora <- function(){
+  Sys.time()
+}
+
+hora()
+```
+
+```{r}
+nombrar_regiones <- function(region){
+           case_when(
+             region == 01 ~ "Gran Buenos Aires",
+             region == 40 ~ "Noroeste",
+             region == 41 ~ "Noreste",
+             region == 42 ~ "Cuyo",
+             region == 43 ~ "Pampeana",
+             region == 44 ~ "Patagonia",
+             .default = "No Encontrado")
+}
+```
+
+Testeo
+
+```{r}
+nombrar_regiones(1)
+nombrar_regiones(40)
+nombrar_regiones(41)
+nombrar_regiones(52)
+
+```
+
+```{r}
+my_data |> 
+  mutate(REGION = nombrar_regiones(REGION)) |> 
+  select(REGION) |> 
+  head()
+```
+
+```{r}
+source("/cloud/project/R/nombrar-regiones.R")
+```
+
+### Su uso
+
+```{r}
+my_data <- my_data |> 
+  mutate(Region = nombrar_regiones(REGION)) |> 
+  mutate(Ayuda_Social = case_when(
+    V5 == 1 ~"Si",
+    V5 == 2 ~ "No"
+  ))
+table(my_data$Ayuda_Social,my_data$Region)
+```
+
+```{r}
+my_data |> 
+  ggplot(aes(Region, fill=Ayuda_Social))+
+  geom_bar()
+```
+
+## Tarea para el 4/29
+
+-   Escribir una función que ponga etiquetas a otras variables del conjunto de datos.
+
+-   Guardar en la capeta R
+
+-   Usar la variable creada en una visualización (gráfico)
+
+-   Leer cap 4 y 5 libro
+
+### Rifa de issues
+
+```{r}
+nombres <- c("Evelina", "Lautero", "Sabrina","Michelle", "Belén")
+
+issues <- 33:37
+set.seed(4312)
+data.frame(Issue  = issues, sample(nombres, size=5) )
+```

@@ -592,8 +592,8 @@ A\times D \over{A+B+C+D}
 </tr>
 <tr class="odd">
 <td><strong>ROU</strong></td>
-<td>20</td>
-<td>20</td>
+<td>10</td>
+<td>10</td>
 <td>20</td>
 </tr>
 <tr class="even">
@@ -616,11 +616,11 @@ A\times D \over{A+B+C+D}
 3   Arg Mate
 4   Arg Cafe
 5   Arg Cafe
-6   Arg Cafe
+6   Arg Mate
 7   Arg Cafe
 8   Arg Mate
-9   Arg Mate
-10  Arg Cafe</code></pre>
+9   Arg Cafe
+10  Arg Mate</code></pre>
 </div>
 </div>
 <p>…</p>
@@ -640,8 +640,8 @@ A\times D \over{A+B+C+D}
 <div class="cell-output cell-output-stdout">
 <pre><code>     
       Cafe Mate
-  Arg   24   26
-  ROU    7   13</code></pre>
+  Arg   28   22
+  ROU   11    9</code></pre>
 </div>
 </div>
 <ul>
@@ -661,8 +661,8 @@ A\times D \over{A+B+C+D}
 # Groups:   Pais [2]
   Pais   Cafe  Mate
   &lt;chr&gt; &lt;int&gt; &lt;int&gt;
-1 Arg      24    26
-2 ROU       7    13</code></pre>
+1 Arg      28    22
+2 ROU      11     9</code></pre>
 </div>
 </div>
 </section>
@@ -681,7 +681,7 @@ A\times D \over{A+B+C+D}
     Pearson's Chi-squared test with Yates' continuity correction
 
 data:  table(my_data$Pais, my_data$pref)
-X-squared = 0.52254, df = 1, p-value = 0.4698</code></pre>
+X-squared = 0, df = 1, p-value = 1</code></pre>
 </div>
 </div>
 <p>Con estos datos <strong>NO</strong> logramos refutar la hipótesis nula.</p>
