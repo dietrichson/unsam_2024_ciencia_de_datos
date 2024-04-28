@@ -1,0 +1,23 @@
+---
+title: "Histograma2daparte"
+format: html
+editor: visual
+---
+
+-   Elegir 4 variables del conjunto de datos de Indec: <https://www.indec.gob.ar/ftp/cuadros/menusuperior/eph/EPH_registro_3T2023.pdf>
+
+-   Qué tipo de variable es:
+
+    -   Cuál es su nivel de medición
+
+    -   Es continua o discreta
+
+Variables elegidas:
+
+- IV2. Su nivel de medición es racional y es una variable Discreta.
+
+- II4_1 Su nivel de medición es nominal y no es una variable discreta ni continua.
+
+- V11  Su nivel de medición es nominal y no es una variable discreta ni continua.
+
+- ITF Su nivel de medición es racional y es una variable continua 
