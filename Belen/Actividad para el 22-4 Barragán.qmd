@@ -1,0 +1,158 @@
+---
+title: "Actividad para el 22-4 Barragán"
+author: "Barragán"
+format: html
+editor: visual
+---
+
+## 
+
+## **Tarea**
+
+Usando las variables
+
+*V5 y MAS_500*
+
+-   Limpiar los datos
+
+-   Poner etiquetas coherentes
+
+-   Realizar análisis exploratorio
+
+-   Formular hipótesis
+
+-   Probar hipótesis con la prueba de chi-cuadrado `chisq.test`
+
+    **V5:**¿En los últimos tres meses, las personas de este hogar han vivido......de subsidio o ayuda social (en dinero) del gobierno, iglesias, etc.? 1 = Sí 2 = No
+
+    **MAS_500:** Aglomerados según tamaño
+
+    N = Conjunto de aglomerados de menos de 500.000 habitantes
+
+    S = Conjunto de aglomerados de 500.000 y más habitantes
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+my_data <- my_data |> 
+  select(V5,MAS_500)
+
+my_data$V5 |> unique()
+```
+
+```{r}
+my_data$MAS_500 |> unique()
+```
+
+Limpieza
+
+```         
+```
+
+```{r}
+my_data <- my_data |> 
+  filter(!is.na(V5))
+my_data$V5 |> unique()
+```
+
+```{r}
+my_data <- my_data |> 
+  filter(!is.na(MAS_500))
+my_data$MAS_500 |> unique()
+```
+
+```{r}
+my_data_clean <- my_data |> 
+  select(MAS_500,V5) |> 
+  filter(V5 != 9)
+```
+
+```{r}
+my_data_clean <- my_data_clean |> 
+  mutate(subsidio_ayuda = case_when(
+    V5 == "1" ~ "Si",
+    V5 == "2" ~ "No"
+  ))
+
+my_data_clean <- my_data_clean |> 
+  mutate(ciudad_grande = case_when(
+    MAS_500 == "S" ~ "Si",
+    MAS_500 == "N" ~ "No"
+  ))
+  names(my_data_clean)
+```
+
+```{r}
+my_data <- my_data |> 
+  mutate(subsidio_ayuda = case_when(
+    V5 == 1 ~ "Si",
+    V5 > 1 ~ "No"
+    
+  ))
+```
+
+```{r}
+my_data_clean <- my_data_clean |> 
+  mutate(ciudad_grande = case_when(
+    MAS_500 == "S" ~ "Si",
+    MAS_500 == "N" ~ "No"
+  ))
+```
+
+```{r}
+my_data_clean |> 
+  group_by(subsidio_ayuda,ciudad_grande) |> 
+  count()
+```
+
+```{r}
+table(my_data$subsidio_ayuda,my_data$MAS_500)
+```
+
+```{r}
+temp_df <- my_data |> 
+  select(V5, MAS_500)
+```
+
+```         
+```
+
+```{r}
+temp_df <- temp_df |> 
+  rename("Subsidio_ayuda" = V5)
+temp_df
+```
+
+```         
+```
+
+```{r}
+temp_df <- temp_df |> 
+  rename("ciudad_grande" = MAS_500)
+temp_df
+```
+
+```         
+```
+
+```{r}
+my_data |> 
+  ggplot(aes(MAS_500, fill = subsidio_ayuda))+
+  geom_bar()
+```
+
+## Hipotesis
+
+H0: En las zonas aglomeradas hay mayor proporcion de personas que cobra subsidios que en aquellas zonas de menos de 500000 habitantes, es decir, menos aglomeradas.
+
+## Correccion de H0:
+
+H0: No existe diferencia en la proporción de personas que cobran subsidio entre las grandes y pequeñas aglomeraciones.
+
+H1: Hay una mayor proporción de personas que cobran subsidio en las zonas menos aglomeradas en comparacion con las zonas más aglomeradas.
+
+```{r}
+table(my_data$subsidio_ayuda, my_data$MAS_500) |> 
+  chisq.test()
+```
+
+Teniendo en cuenta que el valor de p es 0.00000007613, y por lo tanto un número menor a 0,05, se podria rechazar la hipotesis nula y afirmar que hay más personas que cobran subsidio en las zonas menos aglomeradas que en las que poseen 500000 o más habitantes.
