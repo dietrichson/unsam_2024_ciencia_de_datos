@@ -14,7 +14,9 @@ theme: darkly
 
 -   [Presentación de la clase 4](./presentaciones/4-metodo-científico.html)
 
--   [Presentación de la clase 4](./presentaciiones/5-chi-cuadrado.html.html)
+-   [Presentación de la clase 5](./presentaciones/5-chi-cuadrado.html)
+
+-   [Presentación de la clase 6](./presentaciones/6-probabilidad-y-estimacion-de-parametros.html)
 
 
 ## Notas
@@ -28,3 +30,5 @@ theme: darkly
 -   [Notas de la clase 4](./notas/clase-4-notas.html)
 
 -   [Notas de la clase 5](./notas/notas-clase-5.html)
+
+-   [Notas de la clase 6](./notas/notas-clase-6.html)
