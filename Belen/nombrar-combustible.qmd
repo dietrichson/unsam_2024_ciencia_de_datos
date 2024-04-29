@@ -44,3 +44,16 @@ my_data |>
 ```{r}
 source("/cloud/project/R/nombrar-combustible.R")
 ```
+
+```{r}
+my_data %>% 
+  mutate(combustible = nombrar_combustible_cocina(II8)) %>% 
+  select(combustible) %>% 
+  head()
+```
+
+```{r}
+my_data %>%
+  ggplot(aes(combustible, fill=nombrar_combustible_cocina(II8)))+
+  geom_bar()
+```
