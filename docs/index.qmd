@@ -18,6 +18,8 @@ theme: darkly
 
 -   [Presentación de la clase 6](./presentaciones/6-probabilidad-y-estimacion-de-parametros.html)
 
+-   [Presentación de la clase 7](./presentaciones/7-pruebas-de-independencia.html)
+
 
 ## Notas
 

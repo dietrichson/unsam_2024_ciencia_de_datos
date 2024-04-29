@@ -83,7 +83,7 @@ my_data |>
 
 #### Armamos hipótesis:
 
-$H_0$ : Los habitantes de las ciudades con menos de 500.000 habitantes viven de menos subsidio o ayuda social (en dinero) del gobierno, iglesias, etc, que las más grandes.
+$H_0$ : No hay diferencia entre los dos tipos de ciudades
 
 $H_1$ : En las grandes ciudades los habitantes viven en menor proporción de subsidios o ayuda social (en dinero) del gobierno, iglesias, etc.
 
