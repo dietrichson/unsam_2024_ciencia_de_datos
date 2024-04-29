@@ -1,0 +1,46 @@
+---
+title: "clase 29-4"
+format: html
+editor: visual
+---
+
+## Tarea 29-4 (re-hecha)
+
+```{r}
+library(tidyverse)
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+my_data$MAS_500%>%  unique()
+```
+
+**Crear Funcion**
+
+```{r}
+conjunto_de_aglomerados<-function(aglomerado){
+  case_when(
+    aglomerado=="N"~ "menos de 500.000 habitantes",
+    aglomerado=="S"~ "igual o más de 500.000 habitantes")
+}
+```
+
+**Testeo**
+
+```{r}
+conjunto_de_aglomerados("N")
+```
+
+```{r}
+conjunto_de_aglomerados("S")
+```
+
+**Grafico**
+
+```{r}
+my_data <- my_data %>%  
+  mutate(aglomerados = conjunto_de_aglomerados(MAS_500))
+```
+
+```{r}
+my_data %>%  
+  ggplot(aes(aglomerados, fill=aglomerados))+
+  geom_bar()
+```
