@@ -47,7 +47,7 @@ source("/cloud/project/R/nombrar-combustible.R")
 
 ```{r}
 my_data %>% 
-  mutate(combustible = nombrar_combustible_cocina(II8)) %>% 
+  mutate(combustible = nombrar_combustible_cocina(II7)) %>% 
   select(combustible) %>% 
   head()
 ```
