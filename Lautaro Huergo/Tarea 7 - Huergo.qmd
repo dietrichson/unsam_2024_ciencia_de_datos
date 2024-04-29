@@ -1,0 +1,79 @@
+---
+title: "Tarea 06/05 Huergo"
+format: html
+editor: visual
+---
+
+## Tarea 7 (06/05) Huergo:
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds") 
+  my_data <- my_data |> select(REGION,ITF)
+```
+
+```{r}
+my_data |>
+  group_by(REGION) |> 
+  summarize(
+    Media = mean(ITF)
+  )
+```
+
+```{r}
+Pampeana <- my_data |> filter(REGION== "43")
+  Noreste  <- my_data |> filter(REGION == "41")
+  # Aplicamos test
+  var.test(Pampeana$ITF, Noreste$ITF)
+```
+
+```{r}
+my_data |> 
+  mutate(region = nombrar_regiones(REGION)) |> 
+  mutate(ingreso = ITF) |> 
+  filter(ingreso > 0) |>
+  group_by(region) |>
+  filter(region != "Gran Buenos Aires") |>
+  filter(region != "Noroeste") |>
+  filter(region != "Cuyo") |>
+  filter(region != "Patagonia") |>
+  summarize(
+    Media = mean(ingreso),
+    Mediana = median(ingreso),
+    Desviacion = sd(ingreso),
+    Desvio = mad(ingreso)
+  )
+```
+
+```{r}
+nombrar_ch04 <- function(x){
+  case_when(
+    x == "43" ~ "Pampeana", 
+    x == "41" ~ "Noreste",
+    .default = "desconocido"
+  )
+}
+
+nombrar_regiones("43")
+nombrar_regiones("41")
+```
+
+```{r}
+wilcox.test(Pampeana$ITF,Noreste$ITF)
+```
+
+# Armamos Hipótesis:
+
+$H0$ El nivel de ingresos entre la region Pampeana y el Noreste es igual.
+
+$H1$: La región pampeana presenta mayor ingreso total familiar que el noreste.
+
+```{r}
+my_data |>
+  ggplot(aes(REGION,ITF))+
+  geom_point()+
+  geom_smooth()
+```
