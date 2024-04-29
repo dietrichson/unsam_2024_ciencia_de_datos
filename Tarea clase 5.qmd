@@ -1,0 +1,83 @@
+---
+title: "tarea clase 5"
+format: html
+editor: visual
+---
+
+Usando las variables
+
+V5 y MAS_500
+
+1.Limpiar los datos
+
+2.Poner etiquetas coherentes
+
+3.Realizar análisis exploratorio
+
+4.Forumular hipótesis
+
+5.Probar hipótesis con la prueba de chi-cuadrado chisq.test
+
+#### Resolución
+
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+my_data <- my_data |> 
+  select(MAS_500, V5)
+my_data$MAS_500 |> unique()
+my_data$V5 |> unique()
+```
+
+1.
+```{r}
+my_data %>%
+  filter(V5<=2) -> tmp
+table(tmp$V5)
+```
+2.
+
+
+```{r}
+my_data <- my_data %>% 
+  mutate(ciudades = case_when(
+    MAS_500 == "S" ~ "Ciudades grandes",
+    MAS_500 == "N" ~ "Ciudades pequeñas"
+  ))
+```
+
+```{r}
+my_data <- my_data |> 
+  mutate(ayuda_social = case_when(
+    V5 == 1 ~ "Ayuda social si",
+    V5 > 1 ~ "Ayuda social no"
+  ))
+
+```
+
+```{r}
+table(my_data$ciudades, my_data$ayuda_social)
+
+```
+
+```{r}
+my_data |> 
+  ggplot(aes(ciudades, fill = ayuda_social))+
+  geom_bar()
+```
+
+3.
+$H_0$ : Las ciudades que tienen menos habitantes reciben la misma cantidad de subsidios que las grandes ciudades.
+
+$H_1$ : En las grandes ciudades, la población recibe menos ayuda social que las ciudades de pocos habitantes.
+
+
+```{r}
+table(my_data$ayuda_social, my_data$ciudades) |> 
+  chisq.test()
+```
+
+
+
+
+
