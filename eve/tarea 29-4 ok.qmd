@@ -45,15 +45,26 @@ nombrar_tenencias(4)
 ```
 
 ```{r}
-my_data %>% 
+my_data$II7 |> unique()
+
+my_data_transformada <- my_data %>% 
   mutate(tenencia = nombrar_tenencias(II7)) %>% 
-  select(tenencia) %>% 
-  head()
+  select(tenencia)
+
+my_data_transformada$tenencia |> unique()
 ```
 
 ```{r}
-my_data %>%
-  ggplot(aes(tenencia, fill=nombrar_tenencias))+
-  geom_bar()
+my_data_transformada %>%
+  ggplot(aes(tenencia, fill=tenencia))+
+  geom_bar() # a diferencia de geom_col, geom_bar cuenta...
          
+```
+
+```{r}
+my_data_transformada |> 
+  group_by(tenencia) |> 
+  count() |> 
+  ggplot(aes(tenencia,n, fill=tenencia))+
+  geom_col()
 ```
