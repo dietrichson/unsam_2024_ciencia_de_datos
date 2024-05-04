@@ -34,3 +34,5 @@ theme: darkly
 -   [Notas de la clase 5](./notas/notas-clase-5.html)
 
 -   [Notas de la clase 6](./notas/notas-clase-6.html)
+
+-   [Notas de la clase 7](./notas/notas-clase-7.html)
