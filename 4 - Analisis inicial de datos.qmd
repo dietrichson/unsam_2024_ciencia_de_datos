@@ -1,0 +1,50 @@
+---
+title: "Cargar datos 1/4"
+format: html
+editor: visual
+---
+
+## Tarea  8/4 - Análisis inicial de datos
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+
+```
+
+**Filtrar por región**
+
+```{r}
+my_data$REGION %>% unique() 
+my_data <- my_data %>%
+  filter(REGION == "40")
+```
+
+```{r}
+nrow(my_data)
+```
+
+**Distribución de Ingreso del Noreste**
+
+```{r}
+my_data$ITF %>%
+mean()
+```
+
+```{r}
+my_data$ITF %>%
+median()
+```
+
+```{r}
+my_data$ITF %>%
+range()
+```
+
+```{r}
+my_data$ITF %>%
+hist()
+```

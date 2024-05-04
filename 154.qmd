@@ -1,0 +1,73 @@
+---
+title: "Ejercicio 15/4"
+format: html
+editor: visual
+---
+
+Con los datos del Indec crear una variable nueva (región) basada en región. Que cada región (1, 40,41, 42 etc) tenga la etiqueta correspondiente. Puede seleccionar solo las pocas columnas de interés y renombrar las variables para que sean a gusto, legibles y entendibles.
+
+```{r}
+library(tidyverse) 
+
+
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+```
+
+```{r}
+temp_df <- my_data %>%    
+  select(REGION, ITF)
+```
+
+```{r}
+temp_df <- temp_df |> 
+  mutate(REGION2 = 
+           case_when(
+             REGION == 1 ~ "GBA",
+             REGION == 40 ~ "Noroeste",
+             REGION == 41 ~ "Noreste",
+             REGION == 42 ~ "Cuyo",
+             REGION == 43 ~ "Pampeana",
+             REGION == 44 ~ "Patagonia"))
+
+
+temp_df
+```
+
+#### Ejercicio 2
+
+Realizar un análisis de diferencias entre regiones argentinas (Las 6):
+
+1.  Generar una tabla con los promedios (media y mediano) y medidas de disperción por region.
+
+2.  Graficar la curva de distribución del ingreso por cada región. (Ojo: hacelo en un solo plot).
+
+3.  Interpretar los resultados
+
+4.  Formular hipótesis
+
+5.  
+
+```{r}
+temp_df |>
+  group_by(REGION2) |>
+  summarise(
+    MEDIA = mean(ITF),
+    MEDIANA = median(ITF)
+  )
+```
+
+2.  
+
+```{r}
+temp_df %>%  
+ filter(ITF<1000000) %>% 
+  ggplot(aes(ITF, fill = REGION2))+
+  geom_density(alpha=.5)
+```
+
+
+3.  La region con mayor ingreso es la Patagonia seguida por el noroeste. 
+
+4.  Hipotesis nula: La region de la Patagonia tiene los mismos ingresos que la region Cuyo. 
+
+Hipotesis alternativa: La region patagonica tiene los mayores niveles de ingresos.
