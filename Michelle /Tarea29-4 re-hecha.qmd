@@ -6,6 +6,8 @@ editor: visual
 
 ## Tarea 29-4 (re-hecha)
 
+Michelle Wilkinson
+
 ```{r}
 library(tidyverse)
 my_data <- readRDS("/cloud/project/data/datos_indec.rds")

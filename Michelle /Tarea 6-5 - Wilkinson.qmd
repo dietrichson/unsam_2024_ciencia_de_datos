@@ -1,0 +1,73 @@
+---
+title: "Tarea 6-5"
+format: html
+editor: visual
+---
+
+## Tarea 6-5
+
+2 regiones: Buenos Aires y Patagonia
+
+```{r}
+library(tidyverse)
+
+```
+
+```{r}
+here::here("data/usu_individual_T423.rds")
+```
+
+Cargar datos
+
+```{r}
+my_data <- readRDS("/cloud/project/data/usu_individual_T423.rds")
+```
+
+```{r}
+my_data<-my_data %>% select(REGION, ITF)
+```
+
+```{r}
+my_data %>% 
+  group_by(REGION) %>% 
+  summarize(
+    Media= mean (ITF)
+    )
+```
+
+Nombrar regiones
+
+```{r}
+BuenosAires <- my_data %>% filter (REGION == "1")
+Patagonia <- my_data %>%  filter (REGION == "44")
+```
+
+Test
+
+```{r}
+var.test(BuenosAires$ITF, Patagonia$ITF)
+```
+
+```{r}
+my_data %>% 
+  mutate(region=nombrar_regiones(REGION)) %>% 
+  mutate(ingreso = ITF) %>%
+  filter(ingreso>0) %>%
+  group_by(region) %>%
+  filter(region == "BuenosAires")%>% 
+  filter(region == "Patagonia") %>% 
+  summarize(
+    Media = mean(ingreso),
+    Mediana = median(ingreso),
+    Desviacion = sd(ingreso),
+    Desvio = mad(ingreso)
+  )
+```
+
+```{r}
+#aca viene lo del ch04 pero no entiendo porque
+```
+
+Hipótesis
+
+cuadro
