@@ -1,0 +1,25 @@
+---
+title: "Diferencias en el ITF entre el 2022 y el 2024"
+subtitle: "Un estudio de ejemplo"
+author: "Aleksander Dietrichson"
+lang: es
+format: html
+editor: visual
+bibliography: references.bib
+---
+
+## Introducción
+
+En presente trabajo es un ejemplo de publicar un análisis de datos basado en datos del INDEC [@indec].
+
+## Datos
+
+Los datos que hemos usado para este análisis provienen del indec. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2022 y 2023.
+
+## Preguntas de investigación
+
+El propósito de esta investigación es dar cuenta de diferencias en el I*ngreso Total Familar (*ITF) en el laspo de tiempo en cuestión.
+
+## Herramientas de análisis
+
+Usamos el lenguaje R @base con los paquetes de tidyverse. [@tidyverse]
