@@ -1,17 +1,3 @@
----
-title: "Clase 6"
-author: "Natalia"
-format: html
-editor: visual
----
-
-```{r}
-my_data <- readRDS("/cloud/project/data/datos_indec.rds")
-my_data$REGION |> unique()
-
-```
-
-```{r}
 nombrar_aglomerados <- function(aglomerado){
   case_when(
     aglomerado == 2 ~ "Gran La Plata",
@@ -50,24 +36,3 @@ nombrar_aglomerados <- function(aglomerado){
   )
   
 }
-my_data |> 
-  mutate(AGLOMERADO = nombrar_aglomerados(AGLOMERADO)) |> 
-  select(AGLOMERADO)
-```
-
-```{r}
-my_data <- my_data |> 
-  filter(V5 != 9) |>
-  mutate(Ciudad_grande = nombrar_aglomerados(AGLOMERADO)) |> 
-  mutate(Vive_subsidio = case_when(
-    V5 == 1 ~"Si",
-    V5 == 2 ~ "No"
-  ))
-table(my_data$Ciudad_grande, my_data$Vive_subsidio)
-```
-
-```{r}
-my_data |> 
-  ggplot(aes(Ciudad_grande, fill=Vive_subsidio))+
-  geom_bar()
-```
