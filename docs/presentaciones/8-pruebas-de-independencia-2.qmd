@@ -228,7 +228,7 @@ Lo hacemos en vivo. Vamos a cubrir:
 
 -   «decoradores» `#|`
 
--   Intercalar cóigo con texto
+-   Intercalar código con texto
 
 -   yaml
 
