@@ -1,0 +1,70 @@
+---
+title: "Tarea clase 5"
+author: "Natalia"
+format: html
+editor: visual
+---
+
+## Tarea
+
+Usando las variables
+
+*V5 y MAS_500*
+
+-   Limpiar los datos
+
+-   Poner etiquetas coherentes
+
+-   Realizar análisis exploratorio
+
+-   Forumular hipótesis
+
+-   Probar hipótesis con la prueba de chi-cuadrado `chisq.test`
+
+```{r}
+library(tidyverse, quietly = TRUE)
+
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+
+
+my_data$V5 |> unique()
+
+my_data <- my_data |> 
+  select(MAS_500, V5) |>
+  filter(V5 != 9)
+my_data
+```
+
+```{r}
+my_data <- my_data |>
+  mutate(Ciudad_grande = case_when(
+    MAS_500 == "S" ~ "Si",
+    MAS_500 == "N" ~ "No"
+    
+  ))
+my_data <- my_data |>
+  mutate(Vive_subsidio = case_when(
+    V5 == "1" ~ "Si",
+    V5 == "2" ~ "No"
+    ))
+my_data |>
+  group_by(Ciudad_grande,Vive_subsidio) |>
+  count()
+```
+
+```{r}
+my_data |> 
+  ggplot(aes(Ciudad_grande, fill = Vive_subsidio))+
+  geom_bar()
+```
+
+```{r}
+table(my_data$Ciudad_grande,my_data$Vive_subsidio) |>
+  chisq.test()
+```
+
+Hipotesis
+
+$H_0$: La proporcion de gente que vive de subsidios es igual tanto en ciudades grandes como en centros urbanos.
+
+$H_1$: La proporcion de gente que vive de subsidios es mayor en los centros urbanos.
