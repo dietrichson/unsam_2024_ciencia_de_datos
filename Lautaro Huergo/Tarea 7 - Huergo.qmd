@@ -62,7 +62,6 @@ nombrar_regiones("41")
 ```
 
 ```{r}
-wilcox.test(Pampeana$ITF,Noreste$ITF)
 ```
 
 # Armamos Hipótesis:
@@ -70,6 +69,12 @@ wilcox.test(Pampeana$ITF,Noreste$ITF)
 $H0$ El nivel de ingresos entre la region Pampeana y el Noreste es igual.
 
 $H1$: La región pampeana presenta mayor ingreso total familiar que el noreste.
+
+```{r}
+wilcox.test(Pampeana$ITF,Noreste$ITF)
+```
+
+Rechazamos la hipótesis nula y concluimos que la región pampeana presenta mayores ingresos totales familiares que el noreste.
 
 ```{r}
 my_data |>
