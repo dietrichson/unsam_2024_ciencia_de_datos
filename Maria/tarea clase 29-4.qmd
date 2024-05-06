@@ -1,0 +1,271 @@
+---
+title: "clase 6"
+format: html
+editor: visual
+---
+
+## 
+
+Queremos generalizar
+
+MAS_500 es variable nominal y tiene dos niveles (Si o no) entonces sale una tabla de 2x2.
+
+REGION es variable nominal y tiene
+
+```         
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+my_data$REGION |> unique()
+```
+
+```{r}
+##filtrar datos
+my_data <- my_data |> filter(V5 !=9)
+table(my_data$V5, my_data$REGION)
+```
+
+### Armar hipótesis
+
+H0: El acceso a ayuda social es parejo en todas las regiones.
+
+H1: El acceso se distribuye de manera despareja.
+
+```{r}
+table(my_data$V5, my_data$REGION) |> 
+    chisq.test()
+```
+
+```{r}
+options(scipen = 999)
+table(my_data$V5, my_data$REGION) |> 
+  chisq.test()
+```
+
+```{r}
+table(my_data$V5, my_data$REGION) |> 
+  chisq.test() |> 
+  broom::tidy()
+```
+
+ARMAR FUNCIONES EN R
+
+```{r}
+x <- 1
+mi_columna <- c("uno","dos", "tres")
+x
+```
+
+```{r}
+mi_columna
+```
+
+```{r}
+addicion <- function(x, y){
+  x+y
+}
+addicion <- function(x, y){
+ return( x+y )
+}
+addicion(2,2)
+```
+
+```{r}
+addicion( x=2, y=3)
+```
+
+```{r}
+# nombrar regiones
+nombrar_regiones <- function(region){
+           case_when(
+             region == 01 ~ "Gran Buenos Aires",
+             region == 40 ~ "Noroeste",
+             region == 41 ~ "Noreste",
+             region == 42 ~ "Cuyo",
+             region == 43 ~ "Pampeana",
+             region == 44 ~ "Patagonia",
+             .default = "No Encontrado")
+}
+nombrar_regiones(1)
+```
+
+```{r}
+my_data |> 
+  mutate(REGION = nombrar_regiones(REGION)) |> 
+  select(REGION) |> 
+  head()
+```
+
+```{r}
+source("/cloud/project/R/nombrar-regiones.R")
+```
+
+```{r}
+my_data <- my_data |> 
+  mutate(Region = nombrar_regiones(REGION)) |> 
+  mutate(Ayuda_Social = case_when(
+    V5 == 1 ~"Si",
+    V5 == 2 ~ "No"
+  ))
+table(my_data$Ayuda_Social,my_data$Region)
+```
+
+```{r}
+my_data |> 
+  ggplot(aes(Region, fill=Ayuda_Social))+
+  geom_bar()
+Tarea
+
+ 
+
+```
+
+## Tarea
+
+-   Escribir una función que ponga etiquetas a otras variables del conjunto de datos.
+
+-   Guardar en la capeta R
+
+-   Usar la variable creada en una visualización (gráfico)
+
+-   Leer cap 4 y 5 libro
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+```
+
+IV7: El agua es de... 1. red pública (agua corriente) 2. perforación con bomba a motor 3. perforación con bomba manual
+
+```{r}
+# Nombrar categorías de suministro de agua
+nombrar_agua <- function(IV7){
+           case_when(
+             IV7 == 1 ~ "Red pública (agua corriente)",
+             IV7 == 2 ~ "Perforación con bomba a motor",
+             IV7 == 3 ~ "Perforación con bomba manual",
+             .default = "Opción no válida")
+}
+nombrar_agua(1)
+```
+
+```{r}
+my_data |> 
+  mutate(AGUA = nombrar_agua(IV7)) |> 
+  select(AGUA) |> 
+  head()
+```
+
+```{r}
+my_data <- my_data |> 
+  mutate(Agua = nombrar_agua(IV7)) |> 
+  mutate(Ayuda_Social = case_when(
+    V5 == 1 ~ "Si",
+    V5 == 2 ~ "No"
+  ))
+table(my_data$Ayuda_Social, my_data$Agua)
+```
+
+```{r}
+
+```
+
+```{r}
+my_data |> 
+  mutate(Agua = nombrar_agua(IV7)) |> 
+  ggplot(aes(Agua, fill = Ayuda_Social)) +
+  geom_bar() +
+  labs(x = "Suministro de Agua", y = "Count", fill = "Ayuda Social")
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+my_data_clean <- my_data |>
+  mutate(Agua = nombrar_agua(IV7)) |>
+  filter(Agua != "Opción no válida")
+
+my_data_clean |>
+  ggplot(aes(Agua, fill = Ayuda_Social)) +
+  geom_bar() +
+  labs(x = "Suministro de Agua", y = "Count", fill = "Ayuda Social")
+```
+
+```{r}
+## NIVEL EDUCATIVO
+etiquetar_nivel_educativo <- function(NIVEL_ED) {
+  case_when(
+    NIVEL_ED == 1 ~ "Primario incompleto",
+    NIVEL_ED == 2 ~ "Primario completo",
+    NIVEL_ED == 3 ~ "Secundario incompleto",
+    NIVEL_ED == 4 ~ "Secundario completo",
+    NIVEL_ED == 5 ~ "Superior universitario incompleto",
+    NIVEL_ED == 6 ~ "Superior universitario completo",
+    NIVEL_ED == 7 ~ "Sin instrucción",
+    NIVEL_ED == 9 ~ "Ns/Nr",
+    TRUE ~ "No Encontrado"
+  )
+}
+
+```
+
+```{r}
+## PROBANDO
+etiquetar_nivel_educativo(1)
+```
+
+```{r}
+etiquetar_nivel_educativo(2)
+```
+
+```{r}
+library(dplyr)
+my_data
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+my_data
+```
+
+```{r}
+my_data |> 
+  mutate(NIVEL_ED = etiquetar_nivel_educativo(NIVEL_ED)) |> 
+  select(NIVEL_ED) |> 
+  head()
+```
+
+```{r}
+## ME DA ERROR.. PRUEBO OTRA VARIABLE
+```
+
+```{r}
+## RÉGIMEN DE TENENCIA
+etiquetar_regimen_tenencia <- function(regimen) {
+  case_when(
+    regimen == 1 ~ "Propietario de la vivienda y el terreno",
+    regimen == 2 ~ "Propietario de la vivienda solamente",
+    regimen == 3 ~ "Inquilino / arrendatario de la vivienda",
+    regimen == 4 ~ "Ocupante por pago de impuestos / expensas",
+    regimen == 5 ~ "Ocupante en relación de dependencia",
+    regimen == 6 ~ "Ocupante gratuito (con permiso)",
+    regimen == 7 ~ "Ocupante de hecho (sin permiso)",
+    regimen == 8 ~ "Está en sucesión",
+    TRUE ~ "No Encontrado"
+  )
+}
+etiquetar_regimen_tenencia(1)
+```
+
+```{r}
+my_data <- my_data |> 
+  mutate(REGIMEN = etiquetar_regimen_tenencia(II7)) |> 
+  select(REGIMEN) |> 
+  head()
+```
+
+```{r}
+str(my_data)
+```

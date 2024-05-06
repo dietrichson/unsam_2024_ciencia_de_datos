@@ -1,0 +1,59 @@
+---
+title: "Creacion etiqueta Barragán 29-4-24"
+author: "Barragán"
+format: html
+editor: visual
+---
+
+## Etiquetar II8
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+```
+
+```{r}
+nombrar_combustible_cocina <- function(combustible){
+           case_when(
+             combustible == 01 ~ "Gas de red",
+             combustible == 02 ~ "Gas de tubo / garrafa",
+             combustible == 03 ~ "Kerosene / leña / carbón",
+             
+             .default = "No Encontrado")
+}
+```
+
+```{r}
+nombrar_combustible_cocina(1)
+```
+
+```{r}
+nombrar_combustible_cocina(2)
+```
+
+```{r}
+nombrar_combustible_cocina(3)
+```
+
+```{r}
+my_data |> 
+  mutate(COMBUSTIBLE = nombrar_combustible_cocina(II8))|> 
+  select(COMBUSTIBLE) |> 
+  head()
+```
+
+```{r}
+source("/cloud/project/R/nombrar-combustible.R")
+```
+
+```{r}
+my_data %>% 
+  mutate(combustible = nombrar_combustible_cocina(II7)) %>% 
+  select(combustible) %>% 
+  head()
+```
+
+```{r}
+my_data %>%
+  ggplot(aes(combustible, fill=nombrar_combustible_cocina(II8)))+
+  geom_bar()
+```

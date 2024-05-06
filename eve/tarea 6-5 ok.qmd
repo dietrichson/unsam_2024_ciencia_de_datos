@@ -1,0 +1,78 @@
+---
+title: "tarea 6-5 ok"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+my_data <- readRDS(here::here("data/usu_individual_T423.rds")) 
+my_data <- my_data |> select(REGION,ITF)
+```
+
+```{r}
+my_data |>
+  group_by(REGION) |> 
+  summarize(
+    Media = mean(ITF)
+  )
+
+```
+
+```{r}
+  Cuyo <- my_data |> filter(REGION =="42")
+    Patagonia  <- my_data |> filter(REGION == "44")
+
+  var.test(Cuyo$ITF, Patagonia$ITF)
+
+```
+
+```{r}
+source(here::here("R/nombrar-regiones.R"))
+
+my_data %>% 
+  mutate(region = nombrar_regiones(REGION)) %>% 
+  mutate(ingreso = ITF) %>% 
+  group_by(region) %>% 
+  filter(region != "Gran Buenos Aires") %>% 
+  filter(region != "Noreste") %>%
+  filter(region != "Noroeste") %>%
+  filter(region != "Pampeana") %>%
+  summarize(
+    Media = mean(ingreso),
+    Mediana = median(ingreso),
+    Desviacion = sd(ingreso),
+    Desvio = mad(ingreso)
+  )
+```
+
+```{r}
+#funcion para etiquetar REGION
+nombrar_regiones <- function(x) {
+  case_when(
+    x == "42" ~ "Cuyo",
+    x == "44" ~ "Patagonia",
+  )
+}
+
+nombrar_regiones("42")
+nombrar_regiones("44")
+
+```
+
+#### Hipótesis:
+
+$H_0$ : No hay diferencia entre los ingresos de ambas regiones
+
+$H_1$ : En la región de la Patagonia hay mayores ingresos que en la región de Cuyo
+
+```{r}
+wilcox.test(Cuyo$ITF,Patagonia$ITF)
+```
+
+```{r}
+my_data %>% 
+  ggplot(aes(REGION,ITF))+
+  geom_point()+
+  geom_smooth()
+```

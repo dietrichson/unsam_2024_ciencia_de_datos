@@ -4,7 +4,9 @@ format: html
 editor: visual
 ---
 
-## Tarea  8/4 - Análisis inicial de datos
+## Tarea 8/4 - Análisis inicial de datos
+
+Michelle Wilkinson
 
 ```{r}
 library(tidyverse)
