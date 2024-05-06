@@ -118,7 +118,7 @@ temp_df |>
 
 Segun la curva de distribución de ingresos de cada región, el monto de ingreso total familiar (ITF) es mayor en la Patagonia que en el resto de las regiones.
 
-## 4. 
+## 4.
 
 H0: El nivel de ingresos en GBA es mayor que en el resto de las regiones.
 
