@@ -6,6 +6,8 @@ editor: visual
 
 ## Ejercicio 8/4
 
+Michelle Wilkinson
+
 ```{r}
 library(tidyverse)
 ```

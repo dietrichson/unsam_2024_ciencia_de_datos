@@ -184,3 +184,29 @@ temp_df |>
 
 
 ```
+
+```{r}
+my_data <- readRDS("../data/datos_indec.rds")
+my_data$MAS_500 |> head()
+```
+
+```{r}
+my_data <- my_data |>
+  select(MAS_500, IV1)
+
+my_data$MAS_500 |> unique()
+```
+
+```{r}
+my_data$IV1 |> unique()
+
+my_data <- my_data |>
+  filter(!is.na(IV1))
+
+my_data$IV1 <- unique()
+
+my_data |>
+  ggplot(aes(MAS_500, vivienda)) +
+  geom_bar()
+
+```

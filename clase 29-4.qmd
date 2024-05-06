@@ -1,0 +1,93 @@
+---
+title: "clase 29-4"
+format: html
+editor: visual
+---
+
+## Clase 29-4
+
+leer caps 7 y 8
+
+Student– una persona que desarrollo un test – se llama t test – se usa con datos de ratio
+
+la hipotesis nula es que no hay diferencia
+
+var.test – calcula las varianzas que tiene que dar 1 – ve que tan distinto es de 1 para poder rechazar o no la hipotesis nula
+
+aparece la hipotesis alternativa:
+
+Prueba U de MANN- WHITNEY
+
+el paquete here no es necesario descargarlo – sirve para buscar un archivo del root del archivo desde cualquier parte
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+my_data <- readRDS("/cloud/project/data/usu_individual_T423.rds")
+```
+
+```{r}
+nrow(my_data)
+```
+
+Variables interesante:
+
+CH04 – sexo
+
+CH12 – nivel educativo
+
+CH14 – escolaridad
+
+TIENE REGIONES?
+
+```{r}
+my_data$REGION %>% unique()
+```
+
+```{r}
+source(here::here("R/nombrar-regiones.R"))
+my_data %>% 
+  mutate(region=nombrar_regiones(REGION)) %>% 
+  mutate(ingreso= P21) %>% 
+  group_by(region) %>% 
+  summarize(
+    media=mean(ingreso),
+    Mediana=median(ingreso),
+    Desviacion=sd(ingreso),
+    Desvio=mad(ingreso)
+  )
+```
+
+los que dan 0 es asi porque hay muchos ceros. Mas de la mitad d elos entrevistados no tienen ingresos. Es porque se entrevista tambien a niños, estudiantes ,,,etc
+
+```{r}
+my_data %>% 
+  mutate(region=nombrar_regiones(REGION)) %>% 
+  mutate(ingreso= P21) %>% 
+  filter(ingreso>0) %>% #se saca los que dan 0
+  group_by(region) %>% 
+  summarize(
+    media=mean(ingreso),
+    Mediana=median(ingreso),
+    Desviacion=sd(ingreso),
+    Desvio=mad(ingreso)
+  )
+```
+
+```{r}
+#funcion para etiquetar ch04
+nombrar_ch04<- function(x){
+  case_when(
+    x== "1"~ "Varon",
+    x== "2"~ "Mujer",
+    .deafult= "desconocido"
+  )
+}
+nombrar_ch04("1")
+nombrar_ch04("2")
+nombrar_cho4("3")
+```
+
+nivel educativo

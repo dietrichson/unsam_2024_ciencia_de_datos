@@ -1,0 +1,38 @@
+nombrar_aglomerados <- function(aglomerado){
+  case_when(
+    aglomerado == 2 ~ "Gran La Plata",
+    aglomerado == 3 ~ "Bahía Blanca - Cerri",
+    aglomerado == 4 ~ "Gran Rosario",
+    aglomerado == 5 ~ "Gran Santa Fé",
+    aglomerado == 6 ~ "Gran Paraná",
+    aglomerado == 7 ~ "Posadas",
+    aglomerado == 8 ~ "Gran Resistencia",
+    aglomerado == 9 ~ "Comodoro Rivadavia - Rada Tilly",
+    aglomerado == 10 ~ "Gran Mendoza",
+    aglomerado == 12 ~ "Corrientes",
+    aglomerado == 13 ~ "Gran Córdoba",
+    aglomerado == 14 ~ "Concordia",
+    aglomerado == 15 ~ "Formosa",
+    aglomerado == 17 ~ "Neuquén – Plottier",
+    aglomerado == 18 ~ "Santiago del Estero - La Banda",
+    aglomerado == 19 ~ "Jujuy - Palpalá",
+    aglomerado == 20 ~ "Río Gallegos",
+    aglomerado == 22 ~ "Gran Catamarca",
+    aglomerado == 23 ~ "Gran Salta",
+    aglomerado == 25 ~ "La Rioja",
+    aglomerado == 26 ~ "Gran San Luis",
+    aglomerado == 27 ~ "Gran San Juan",
+    aglomerado == 29 ~ "Gran Tucumán - Tafí Viejo",
+    aglomerado == 30 ~ "Santa Rosa – Toay",
+    aglomerado == 31 ~ "Ushuaia - Río Grande",
+    aglomerado == 32 ~ "Ciudad Autónoma de Buenos Aires",
+    aglomerado == 33 ~ "Partidos del GBA",
+    aglomerado == 34 ~ "Mar del Plata",
+    aglomerado == 36 ~ "Río Cuarto",
+    aglomerado == 38 ~ "San Nicolás – Villa Constitución",
+    aglomerado == 91 ~ "Rawson – Trelew",
+    aglomerado == 93 ~ "Viedma – Carmen de Patagones",
+    
+  )
+  
+}

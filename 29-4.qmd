@@ -1,0 +1,51 @@
+---
+title: "29-4"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+```
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+my_data$AGLOMERADO %>% unique()
+```
+```{r}
+nombrar_AGLOMERADO <- function(AGLOMERADO){
+  case_when(
+    AGLOMERADO == 2 ~ "Gran La Plata",
+    AGLOMERADO == 3 ~ " Bahía Blanca - Cerri",
+    AGLOMERADO == 4 ~ "Gran Rosario",
+    AGLOMERADO == 5 ~ "Gran Santa Fé",
+    AGLOMERADO == 6 ~ "Gran Paraná",
+    AGLOMERADO == 7 ~ "Posadas",
+    AGLOMERADO == 8 ~ "Gran Resistencia",
+    AGLOMERADO == 9 ~ "Comodoro Rivadavia - Rada Tilly",
+    AGLOMERADO == 10 ~ "Gran Mendoza",
+    AGLOMERADO == 12 ~ "Corrientes",
+    AGLOMERADO == 13 ~ "Gran Córdoba",
+    AGLOMERADO == 14 ~ "Concordia",
+    AGLOMERADO == 15 ~ "Formosa",
+    AGLOMERADO == 17 ~ "Neuquén – Plottier",
+    AGLOMERADO == 18 ~ "Santiago del Estero - La Banda",
+    AGLOMERADO == 19 ~ "Jujuy - Palpalá",
+    AGLOMERADO == 20 ~ "Río Gallegos",
+    AGLOMERADO == 22 ~ "Gran Catamarca",
+    AGLOMERADO == 23 ~ "Gran Salta",
+    AGLOMERADO == 25 ~ "La Rioja",    
+    AGLOMERADO == 26 ~ "Gran San Luis",
+    AGLOMERADO == 27 ~ "Gran San Juan",
+    AGLOMERADO == 29 ~ "Gran Tucumán - Tafí Viejo",
+    AGLOMERADO == 30 ~ "Santa Rosa – Toay",
+    AGLOMERADO == 31 ~ "Ushuaia - Río Grande",
+    AGLOMERADO == 32 ~ "Ciudad Autónoma de Buenos Aires",
+    AGLOMERADO == 33 ~ "Partidos del GBA",
+    AGLOMERADO == 34 ~ "Mar del Plata",
+    AGLOMERADO == 36 ~ "Río Cuarto",
+    AGLOMERADO == 38 ~ "San Nicolás – Villa Constitución",
+    AGLOMERADO == 91 ~ "Rawson – Trelew",
+    AGLOMERADO == 93 ~ "Viedma – Carmen de Patagones",
+    .default = "No Encontrado")
+}
+```

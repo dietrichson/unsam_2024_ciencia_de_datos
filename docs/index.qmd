@@ -20,6 +20,7 @@ theme: darkly
 
 -   [Presentación de la clase 7](./presentaciones/7-pruebas-de-independencia.html)
 
+-   [Presentación de la clase 8](./presentaciones/8-pruebas-de-independencia-2.html)
 
 ## Notas
 
