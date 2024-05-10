@@ -14,7 +14,7 @@ En el presente trabajo se presentará un análisis de datos obtenidos del INDEC.
 
 ## Datos
 
-Los datos que hemos usado para este análisis provienen del indec. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2022 y 2023. Se tendrá en cuenta la tasa de inflación del 2023 (según INDEC [@indec]) en los valores del 2022.
+Los datos que hemos usado para este análisis provienen del indec. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2022 y 2023. Se tendrá en cuenta la tasa de inflación del 2023 (según INDEC \[[agregar cita](https://www.indec.gob.ar/uploads/informesdeprensa/ipc_01_24DBD5D8158C.pdf)\]) en los valores del 2022.
 
 ## Preguntas de investigación
 
@@ -44,7 +44,7 @@ usu_hogar_T423 <- usu_hogar_T423 |> filter(!duplicated(CODUSU))
 
 ## Análisis descriptivo
 
-Como se aprecia en la @tbl-itf hay una diferencia de \$61.286 entre el ITF del 2022 (calculado en base a la inflación del 2023 [@indec]) y el ITF del 2023. Lo mismo se aprecia de la @fig-itf
+Como se aprecia en la @tbl-itf hay una diferencia de \$61.286 entre el ITF del 2022 (calculado en base a la inflación del 2023 \[[agregar cita](https://www.indec.gob.ar/uploads/informesdeprensa/ipc_01_24DBD5D8158C.pdf)\]) y el ITF del 2023. Lo mismo se aprecia de la @fig-itf
 
 ```{r}
 #| include: false
