@@ -8,7 +8,7 @@ editor: visual
 bibliography: references.bib
 ---
 
-# INTRODUCCIÓN
+# INTRODUCCIÓN:
 
 El presente trabajo es un ejemplo de como publicar un análisis de datos basado en datos del INDEC [@indec].
 
@@ -110,4 +110,4 @@ my_test |>
 
 El valor de t es `r my_test$statistic`, el valor p\<.000011 , con un estimado de `r my_test$estimate` de diferencia entre los años de análisis. Dados estos valores rechazamos la hipótesis nula de falta de diferencia entre los dos años y nos quedamos con la hipótesis alternativa de que el ITF es superior en el 2023, siendo este \$37.714 mas alto que el ITF de 2022 calculado con Inflación.
 
-## Limitaciones
+## 
