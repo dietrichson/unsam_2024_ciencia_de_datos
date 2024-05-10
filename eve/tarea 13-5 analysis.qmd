@@ -1,5 +1,5 @@
 ---
-title: "Diferencias en el ITF entre el 2022 y el 2024"
+title: "Diferencias en el ITF entre el 2022 y el 2023"
 subtitle: "Actividad de Análisis 13/5"
 author: "Evelina Fraidenraich"
 lang: es
@@ -14,7 +14,7 @@ En el presente trabajo se presentará un análisis de datos obtenidos del INDEC.
 
 ## Datos
 
-Los datos que hemos usado para este análisis provienen del indec. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2022 y 2023. Se tendrá en cuenta la tasa de inflación del 2023 en los valores del 2022.
+Los datos que hemos usado para este análisis provienen del indec. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2022 y 2023. Se tendrá en cuenta la tasa de inflación del 2023 (según INDEC [@indec]) en los valores del 2022.
 
 ## Preguntas de investigación
 
@@ -44,13 +44,13 @@ usu_hogar_T423 <- usu_hogar_T423 |> filter(!duplicated(CODUSU))
 
 ## Análisis descriptivo
 
-Como se aprecia en la @tbl-itf hay una diferencia de \$37.714 entre el ITF del 2022 (calculado en base a la inflación del 2023) y el ITF del 2023. Lo mismo se aprecia de la @fig-itf
+Como se aprecia en la @tbl-itf hay una diferencia de \$61.286 entre el ITF del 2022 (calculado en base a la inflación del 2023 [@indec]) y el ITF del 2023. Lo mismo se aprecia de la @fig-itf
 
 ```{r}
 #| include: false
 my_data <- bind_rows(
   usu_hogar_T422 |> mutate(Año = "2022 (con inflación agregada)") %>% 
-    mutate (ITF = ITF*2.114),
+    mutate (ITF = ITF*3.114),
   usu_hogar_T423 |> mutate(Año = "2023")
 )
 ```
@@ -83,7 +83,7 @@ my_data |>
 
 ```{r}
 #| include: false
-my_test <- t.test(usu_hogar_T423$ITF, usu_hogar_T422$ITF*2.114, paired = TRUE)
+my_test <- t.test(usu_hogar_T423$ITF, usu_hogar_T422$ITF*3.114, paired = TRUE)
 
 ```
 
@@ -103,4 +103,4 @@ my_test |>
 options(scipen=999)
 ```
 
-El valor de t es `r my_test$statistic`, el valor p es `r my_test$p.value` , con un estimado de `r my_test$estimate` (\<.00001) de diferencia entre los años de análisis. Dados estos valores rechazamos la hipótesis nula de falta de diferencia entre los dos años y nos quedamos con la hipótesis alternativa de que el ITF es superior en el 2023, siendo este \$37.714 más alto que el ITF de 2022 calculado con inflación.
+El valor de t es `r my_test$statistic`, el valor p es `r my_test$p.value` , con un estimado de `r my_test$estimate` (\<.00001) de diferencia entre los años de análisis. Dados estos valores rechazamos la hipótesis nula de falta de diferencia entre los dos años y nos quedamos con la hipótesis alternativa de que el ITF no fue superior en el 2023, siendo este \$61.286 más bajo que el ITF de 2022 calculado con inflación.
