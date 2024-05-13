@@ -72,7 +72,8 @@ wilcox.test(Cuyo$ITF,Patagonia$ITF)
 
 ```{r}
 my_data %>% 
-  ggplot(aes(REGION,ITF))+
+  mutate(region = nombrar_regiones(REGION)) %>% 
+  ggplot(aes(region,ITF))+
   geom_point()+
   geom_smooth()
 ```
