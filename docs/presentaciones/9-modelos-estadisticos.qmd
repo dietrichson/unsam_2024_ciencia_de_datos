@@ -1,6 +1,6 @@
 ---
-title: "Pruebas de independencia II"
-subtitle: "Muestras pareadas"
+title: "Modelos Estadísticos"
+subtitle: "Regresión lineal"
 author: "Aleksander Dietrichson, PhD"
 format: 
   revealjs: 

@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.550">
 
   <meta name="author" content="Aleksander Dietrichson, PhD">
-  <title>Pruebas de independencia II</title>
+  <title>Modelos Estadísticos</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -393,8 +393,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Pruebas de independencia II</h1>
-  <p class="subtitle">Muestras pareadas</p>
+  <h1 class="title">Modelos Estadísticos</h1>
+  <p class="subtitle">Regresión lineal</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -415,7 +415,7 @@ Aleksander Dietrichson, PhD
 <ul>
 <li>Reutilizar funciones de visualización</li>
 </ul></li>
-<li><p>Planificación proyecto</p></li>
+<li><p>Planificación del proyecto</p></li>
 <li><p>Revisión de las tares</p></li>
 </ul>
 </section>
@@ -459,7 +459,7 @@ Aleksander Dietrichson, PhD
 <span id="cb1-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="9-modelos-estadisticos_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<img data-src="9-modelos-estadisticos_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
 <section id="modelos-estadísticos-lineales-2" class="slide level2">
 <h2>Modelos estadísticos lineales</h2>
 <p>Vemos que hay una relación entre las dos variables.</p>
@@ -478,7 +478,7 @@ y \sim \beta_0 + \beta_1 + \epsilon
 <h2>Modelos estadí­sticos lineales</h2>
 <p>Agreguemos una variable</p>
 
-<img data-src="9-modelos-estadisticos_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<img data-src="9-modelos-estadisticos_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
 <section id="modelos-estadísticos-lineales-4" class="slide level2">
 <h2>Modelos estadísticos lineales</h2>
 <p>Ahroa agregamos un término en la fórmula</p>
@@ -491,6 +491,36 @@ y \sim \beta_0 + \beta_1 + \beta_2+ \epsilon
 <p>Fórmula general: <span class="math display">\[
 y \sim \beta_0 + \beta_1 + ... +\beta_n + \epsilon
 \]</span> Para un módelo con n variables.</p>
+</section>
+<section id="modelos-estadísticos-lineales-5" class="slide level2">
+<h2>Modelos estadísticos lineales</h2>
+<p>Lo podemos hacer en R con la función <code>lm</code> (lm = linear model)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>my_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(P21 <span class="sc">~</span> NIVEL_ED <span class="sc">+</span> sexo, <span class="at">data =</span> my_data)</span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_model <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = P21 ~ NIVEL_ED + sexo, data = my_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-340987 -107239  -35048   55078 7742761 
+
+Coefficients:
+            Estimate Std. Error t value             Pr(&gt;|t|)    
+(Intercept)   -16322       5385  -3.031              0.00244 ** 
+NIVEL_ED       46874       1113  42.100 &lt; 0.0000000000000002 ***
+sexovarón      86065       3148  27.342 &lt; 0.0000000000000002 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 203100 on 17375 degrees of freedom
+Multiple R-squared:  0.1108,    Adjusted R-squared:  0.1107 
+F-statistic:  1083 on 2 and 17375 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+</div>
+</div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
