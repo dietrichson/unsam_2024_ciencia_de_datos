@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Aleksander Dietrichson">
 
-<title>Publicaciones Seminario Ciencia de Datos 2024</title>
+<title>Funciones de GGplot</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,19 +21,53 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="index_files/libs/clipboard/clipboard.min.js"></script>
-<script src="index_files/libs/quarto-html/quarto.js"></script>
-<script src="index_files/libs/quarto-html/popper.min.js"></script>
-<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="index_files/libs/quarto-html/anchor.min.js"></script>
-<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="notas-clase-9_files/libs/clipboard/clipboard.min.js"></script>
+<script src="notas-clase-9_files/libs/quarto-html/quarto.js"></script>
+<script src="notas-clase-9_files/libs/quarto-html/popper.min.js"></script>
+<script src="notas-clase-9_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="notas-clase-9_files/libs/quarto-html/anchor.min.js"></script>
+<link href="notas-clase-9_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="notas-clase-9_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="notas-clase-9_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="notas-clase-9_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="notas-clase-9_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 
 
 </head>
@@ -45,13 +80,19 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Publicaciones Seminario Ciencia de Datos 2024</h1>
+<h1 class="title">Funciones de GGplot</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aleksander Dietrichson </p>
+          </div>
+  </div>
     
   
     
@@ -62,32 +103,95 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="presentaciones" class="level2">
-<h2 class="anchored" data-anchor-id="presentaciones">Presentaciones</h2>
-<ul>
-<li><p><a href="./presentaciones/1-inicio-y-setup.html">Presentación de la clase 1</a></p></li>
-<li><p><a href="./presentaciones/2-sincronizar-repositorios-primer-codigo-y-analysis.html">Presentación de la clase 2</a></p></li>
-<li><p><a href="./presentaciones/3-centralizacion-y-dispersión.html">Presentación de la clase 3</a></p></li>
-<li><p><a href="./presentaciones/4-metodo-científico.html">Presentación de la clase 4</a></p></li>
-<li><p><a href="./presentaciones/5-chi-cuadrado.html">Presentación de la clase 5</a></p></li>
-<li><p><a href="./presentaciones/6-probabilidad-y-estimacion-de-parametros.html">Presentación de la clase 6</a></p></li>
-<li><p><a href="./presentaciones/7-pruebas-de-independencia.html">Presentación de la clase 7</a></p></li>
-<li><p><a href="./presentaciones/8-pruebas-de-independencia-2.html">Presentación de la clase 8</a></p></li>
-<li><p><a href="./presentaciones/9-modelos-estadisticos.html">Presentación de la clase 9</a></p></li>
-</ul>
+<section id="armar-funciones-con-ggplot" class="level2">
+<h2 class="anchored" data-anchor-id="armar-funciones-con-ggplot">Armar funciones con ggplot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"R/graficar-2022-2023.R"</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">graficar_2022_2023</span>(my_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="notas-clase-9_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_data <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(REGION <span class="sc">==</span> <span class="dv">1</span> ) <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">graficar_2022_2023</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="notas-clase-9_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="agregar-al-codigo" class="level3">
+<h3 class="anchored" data-anchor-id="agregar-al-codigo">Agregar al codigo</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_data <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(REGION <span class="sc">==</span> <span class="dv">1</span> ) <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">graficar_2022_2023</span>()<span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Ingreso medio en GBA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="notas-clase-9_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_data <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(REGION <span class="sc">==</span> <span class="dv">1</span> ) <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">graficar_2022_2023</span>()<span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Ingreso medio en GBA"</span>)<span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="notas-clase-9_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="notas" class="level2">
-<h2 class="anchored" data-anchor-id="notas">Notas</h2>
+</section>
+<section id="planificación" class="level2">
+<h2 class="anchored" data-anchor-id="planificación">Planificación</h2>
+<p>Tenemos datos, hemos hecho algunos análisis y tenemos herramientas a disposición. Con lo que sabemos de los datos que tenemos qué preguntas de investigación podemos armar:</p>
 <ul>
-<li><p><a href="./notas/clase-1-notas.html">Notas de la clase 1</a></p></li>
-<li><p><a href="./notas/clase-2-hacer-histograma.html">Notas de la clase 2</a></p></li>
-<li><p><a href="./notas/notas-clase-3.html">Notas de la clase 3</a> y <a href="./notas/tarea-analisis-indec-1.html">Análisis Inicial Index</a></p></li>
-<li><p><a href="./notas/clase-4-notas.html">Notas de la clase 4</a></p></li>
-<li><p><a href="./notas/notas-clase-5.html">Notas de la clase 5</a></p></li>
-<li><p><a href="./notas/notas-clase-6.html">Notas de la clase 6</a></p></li>
-<li><p><a href="./notas/notas-clase-7.html">Notas de la clase 7</a></p></li>
-<li><p><a href="./notas/analysis-ITF.html">Análisis Ingreso Total Familiar (de la clase 8)</a></p></li>
-<li><p><a href="./notas/notas-clase-9.html">Notas de la clase 9</a></p></li>
+<li><p>¿Cuál fue la evolución del ingreso familiar total entre 2022 y 2023?</p>
+<ul>
+<li><p>¿Fue igual en las provincias?</p></li>
+<li><p>¿Regiones?</p></li>
+<li><p>¿Por sexo?</p></li>
+</ul></li>
+<li><p>¿En qué medida influye el nivel educativo en el ingreso de la persona?</p>
+<ul>
+<li><p>¿Controlando por la variable de sexo?</p></li>
+<li><p>¿Es lo mismo para todas las provincias y/o regiones?</p></li>
+<li><p>¿Es lo mismo en ciudades grandes (+500) y en las ciudades chicos?</p></li>
+</ul></li>
+<li><p>¿Existe una diferencia brecha entre los sexos en cuanto a ingresos?</p>
+<ul>
+<li><p>¿Es igual en las ciudades grandes que en las peques?</p></li>
+<li><p>¿Como influye el nivel educativo?</p></li>
+<li><p>¿Y las provincias?</p></li>
+</ul></li>
+<li><p>¿Entre el 2022 y 2023 hubo diferencias en los subsidios?</p>
+<ul>
+<li><p>Por regiones</p></li>
+<li><p>Por sexo</p></li>
+<li><p>Por nivel educativo</p></li>
+</ul></li>
+<li><p>¿Tipo de vivienda?</p>
+<ul>
+<li><p>¿Cambio en el período?</p></li>
+<li><p>¿Que diferencias vemos entre zonas urbanas y no urbanas, entre provincias, regiones etc?</p></li>
+</ul></li>
 </ul>
 </section>
 

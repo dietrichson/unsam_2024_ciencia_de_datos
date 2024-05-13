@@ -41,3 +41,5 @@ theme: darkly
 -   [Notas de la clase 7](./notas/notas-clase-7.html)
 
 -   [Análisis Ingreso Total Familiar (de la clase 8)](./notas/analysis-ITF.html)
+
+-   [Notas de la clase 9](./notas/notas-clase-9.html)

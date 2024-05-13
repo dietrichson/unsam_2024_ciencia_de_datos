@@ -2,6 +2,7 @@
 title: "Funciones de GGplot"
 author: "Aleksander Dietrichson"
 format: html
+theme: darkly
 editor: visual
 ---
 
