@@ -1,0 +1,100 @@
+---
+title: "Funciones de GGplot"
+author: "Aleksander Dietrichson"
+format: html
+editor: visual
+---
+
+## Armar funciones con ggplot
+
+```{r}
+#| include: false
+
+library(tidyverse)
+usu_hogar_T423 <- readRDS(here::here("data/usu_hogar_T423.rds"))
+usu_hogar_T422 <- readRDS(here::here("data/usu_hogar_T422.rds"))
+mis_CODUSU <- intersect(usu_hogar_T422$CODUSU,usu_hogar_T423$CODUSU) 
+usu_hogar_T422 <- usu_hogar_T422 |> 
+  filter(CODUSU %in% mis_CODUSU) |> 
+  arrange(CODUSU)
+usu_hogar_T423 <- usu_hogar_T423 |> 
+  filter(CODUSU %in% mis_CODUSU) |> 
+  arrange(CODUSU)
+usu_hogar_T422 <- usu_hogar_T422 |> filter(!duplicated(CODUSU))
+usu_hogar_T423 <- usu_hogar_T423 |> filter(!duplicated(CODUSU))
+my_data <- bind_rows(
+  usu_hogar_T422 |> mutate(Año = "2022"),
+  usu_hogar_T423 |> mutate(Año = "2023")
+)
+
+```
+
+```{r}
+source(here::here("R/graficar-2022-2023.R"))
+graficar_2022_2023(my_data)
+```
+
+```{r}
+my_data |> 
+  filter(REGION == 1 ) |> 
+  graficar_2022_2023()
+```
+
+### Agregar al codigo
+
+```{r}
+my_data |> 
+  filter(REGION == 1 ) |> 
+  graficar_2022_2023()+
+  ylab("Ingreso medio en GBA")
+```
+
+```{r}
+my_data |> 
+  filter(REGION == 1 ) |> 
+  graficar_2022_2023()+
+  ylab("Ingreso medio en GBA")+
+  scale_y_log10()
+```
+
+## Planificación
+
+Tenemos datos, hemos hecho algunos análisis y tenemos herramientas a disposición. Con lo que sabemos de los datos que tenemos qué preguntas de investigación podemos armar:
+
+-   ¿Cuál fue la evolución del ingreso familiar total entre 2022 y 2023?
+
+    -   ¿Fue igual en las provincias?
+
+    -   ¿Regiones?
+
+    -   ¿Por sexo?
+
+-   ¿En qué medida influye el nivel educativo en el ingreso de la persona?
+
+    -   ¿Controlando por la variable de sexo?
+
+    -   ¿Es lo mismo para todas las provincias y/o regiones?
+
+    -   ¿Es lo mismo en ciudades grandes (+500) y en las ciudades chicos?
+
+-   ¿Existe una diferencia brecha entre los sexos en cuanto a ingresos?
+
+    -   ¿Es igual en las ciudades grandes que en las peques?
+
+    -   ¿Como influye el nivel educativo?
+
+    -   ¿Y las provincias?
+
+-   ¿Entre el 2022 y 2023 hubo diferencias en los subsidios?
+
+    -   Por regiones
+
+    -   Por sexo
+
+    -   Por nivel educativo
+
+-   ¿Tipo de vivienda?
+
+    -   ¿Cambio en el período?
+
+    -   ¿Que diferencias vemos entre zonas urbanas y no urbanas, entre provincias, regiones etc?
