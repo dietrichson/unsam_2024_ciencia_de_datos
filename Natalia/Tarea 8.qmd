@@ -1,0 +1,68 @@
+---
+title: "Tarea 8"
+format: html
+editor: visual
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+
+```
+
+```{r}
+usu_hogar_T423 <- readRDS(here::here("data/usu_hogar_T423.rds"))
+usu_hogar_T422 <- readRDS(here::here("data/usu_hogar_T422.rds"))
+```
+
+```{r}
+mis_CODUSU <- intersect(usu_hogar_T422$CODUSU,usu_hogar_T423$CODUSU) 
+
+usu_hogar_T422 <- usu_hogar_T422 |> 
+  filter(CODUSU %in% mis_CODUSU) |> 
+  arrange(CODUSU)
+
+usu_hogar_T423 <- usu_hogar_T423 |> 
+  filter(CODUSU %in% mis_CODUSU) |> 
+  arrange(CODUSU)
+
+usu_hogar_T422 <- usu_hogar_T422 |> filter(!duplicated(CODUSU))
+usu_hogar_T423 <- usu_hogar_T423 |> filter(!duplicated(CODUSU))
+
+my_data <- bind_rows(
+  usu_hogar_T422 |> mutate(Año = "2022"),
+  usu_hogar_T423 |> mutate(Año = "2023")
+)
+
+#| label: tbl-itf
+#| tbl-cap: "Ingreso Total Familiar Media y Desvío para los años 22 y 23"
+#| echo: false
+my_data |> 
+  group_by(Año) |> 
+  summarize(Media = median(ITF)) |> 
+  knitr::kable()
+```
+
+```{r}
+#| echo: false
+#| label: fig-itf
+#| fig-cap: "ITF en el 2022 y 2023"
+
+my_data |> 
+  group_by(Año) |> 
+  summarize(Media = median(ITF)) |> 
+  ggplot(aes(Año, Media, fill = Año))+
+  geom_col()+
+  theme_bw()
+```
+
+```{r}
+my_test <- t.test(usu_hogar_T423$ITF, usu_hogar_T422$ITF, paired = TRUE)
+
+#| label: tbl-test-de-t
+#| echo: false
+#| tbl-cap: "Resultado del test de T"
+my_test |> 
+  broom::tidy() |> 
+  knitr::kable()
+```
