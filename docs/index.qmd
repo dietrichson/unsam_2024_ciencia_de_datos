@@ -22,6 +22,8 @@ theme: darkly
 
 -   [Presentación de la clase 8](./presentaciones/8-pruebas-de-independencia-2.html)
 
+-   [Presentación de la clase 9](./presentaciones/9-modelos-estadisticos.html)
+
 ## Notas
 
 -   [Notas de la clase 1](./notas/clase-1-notas.html)
@@ -37,3 +39,7 @@ theme: darkly
 -   [Notas de la clase 6](./notas/notas-clase-6.html)
 
 -   [Notas de la clase 7](./notas/notas-clase-7.html)
+
+-   [Análisis Ingreso Total Familiar (de la clase 8)](./notas/analysis-ITF.html)
+
+-   [Notas de la clase 9](./notas/notas-clase-9.html)

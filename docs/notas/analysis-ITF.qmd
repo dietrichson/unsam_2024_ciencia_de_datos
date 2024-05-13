@@ -18,11 +18,11 @@ Los datos que hemos usado para este análisis provienen del indec. Corresponden 
 
 ## Preguntas de investigación
 
-El propósito de esta investigación es dar cuenta de diferencias en el I*ngreso Total Familar (*ITF) en el laspo de tiempo en cuestión.
+El propósito de esta investigación es dar cuenta de diferencias en el *Ingreso Total Familar (ITF)* en el lapso de tiempo en cuestión.
 
 ## Herramientas de análisis
 
-Usamos el lenguaje R @base con los paquetes de tidyverse. [@tidyverse]. Usamos el sistema Quarto @Allaire_Quarto_2024.
+Usamos el lenguaje R @base con los paquetes de tidyverse. [@tidyverse]. Usamos el sistema Quarto (@Allaire_Quarto_2024) para su publicación
 
 ## Procedimiento
 
@@ -46,7 +46,7 @@ usu_hogar_T423 <- usu_hogar_T423 |> filter(!duplicated(CODUSU))
 
 ## Análisis descriptivo
 
-Como se aprecia en la @tbl-itf hay una importante diferencia en el ITF nominal entre los dos años. Lo mismo se aprecia de la @fig-itf
+Como se aprecia en la @tbl-itf hay una importante diferencia en el ITF nominal entre los dos años.
 
 ```{r}
 #| include: false
@@ -62,9 +62,12 @@ my_data <- bind_rows(
 #| echo: false
 my_data |> 
   group_by(Año) |> 
-  summarize(Media = median(ITF)) |> 
+  summarize(Media = median(ITF),
+            Desvío = mad(ITF)) |> 
   knitr::kable()
 ```
+
+La misma diferencia se aprecia en la @fig-itf
 
 ```{r}
 #| echo: false
@@ -74,9 +77,12 @@ my_data |>
 my_data |> 
   group_by(Año) |> 
   summarize(Media = median(ITF)) |> 
-  ggplot(aes(Año, Media, fill = Año))+
-  geom_col()+
-  theme_bw()
+  ggplot(aes(Año, Media, fill = Año, group = 1))+
+  geom_col(width = .66)+
+    geom_point(stat="identity", size = 3, color = "gray")+
+  geom_line(lwd = 1, color = "gray")+
+  theme_bw()+
+  theme(legend.position = "none")
 ```
 
 ## Análisis inferencial
@@ -102,11 +108,11 @@ my_test |>
 #options(scipen=999)
 ```
 
-El valor de t es `r my_test$statistic`, el valor p\<.00001, con un estimado de $`r my_test$estimate |> round() |> format(big.mark = ",")` de diferencia entre los años de análisis. Dados estos valores rechazamos la hipótesis nula de falta de diferencia entre los dos años y nos quedamos con la hipótesis alternativa de que el ITF es superior en el 2023.
+El valor de t es `r my_test$statistic`, el valor p\<.00001, con un estimado de $`r my_test$estimate \|\> round() \|\> format(big.mark = ",")\` de diferencia entre los años de análisis. Dados estos valores rechazamos la hipótesis nula de falta de diferencia entre los dos años y nos quedamos con la hipótesis alternativa de que el ITF es superior en el 2023.
 
 ## Limitaciones
 
-La principal limitación de este estudio es que informan diferencias con valores absolutos y sin tomar en cuenta la inflación que obró entre 2022 y 2023. Por ello es imposible saber si hubo deterioro o mejora en el ITF entre los dos puntos de análisis.
+La principal limitación de este estudio es que informan diferencias con valores absolutos y nominales, sin tomar en cuenta la inflación que obró entre 2022 y 2023. Por ello es imposible saber si hubo deterioro o mejora en el ITF entre los dos puntos de análisis.
 
 ## Recomendaciones (tarea)
 

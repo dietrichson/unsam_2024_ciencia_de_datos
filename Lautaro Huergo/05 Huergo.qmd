@@ -1,0 +1,115 @@
+---
+title: "Tarea 13/05 Huergo"
+subtitule: "Continuamos con el analisis del estudio"
+Author: "Huergo Lautaro"
+lang: es
+format: html
+editor: visual
+bibliography: references.bib
+---
+
+# INTRODUCCIÓN:
+
+El presente trabajo es un ejemplo de como publicar un análisis de datos basado en datos del INDEC [@indec].
+
+## Datos
+
+Los datos usados que hemos usado para este analisis provienen del Indec. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2022 y 2023. Se tendra en cuenta la tasa de inflación del 2023 en los valores de 2022.
+
+## Preguntas de investigación
+
+El propósito de esta investigación es dar cuenta de diferencias en el I*ngreso Total Familar (*ITF) en el laspo de tiempo en cuestión y hacer una comparación en relación a la inflación.
+
+## Herramientas de análisis
+
+Usamos el lenguaje R @base64enc con los paquetes de tidyverse. @tidyverse-2. Usamos el sistema Quarto @Allaire_Quarto_2024.
+
+## Procedimiento
+
+Cargamos los datos y los limpiamos eliminando archivos de código de identificación duplicado.
+
+```{r}
+#| include: false
+library(tidyverse)
+usu_hogar_T423 <- readRDS(here::here("data/usu_hogar_T423.rds"))
+usu_hogar_T422 <- readRDS(here::here("data/usu_hogar_T422.rds"))
+mis_CODUSU <- intersect(usu_hogar_T422$CODUSU,usu_hogar_T423$CODUSU) 
+usu_hogar_T422 <- usu_hogar_T422 |> 
+  filter(CODUSU %in% mis_CODUSU) |> 
+  arrange(CODUSU)
+usu_hogar_T423 <- usu_hogar_T423 |> 
+  filter(CODUSU %in% mis_CODUSU) |> 
+  arrange(CODUSU)
+usu_hogar_T422 <- usu_hogar_T422 |> filter(!duplicated(CODUSU))
+usu_hogar_T423 <- usu_hogar_T423 |> filter(!duplicated(CODUSU))
+```
+
+## Análisis descriptivo
+
+Como se aprecia en la @tbl-itf diferencia de \$61.286 entre el ITF del 2022 calculado en base a la inflación del 2023 (agregar cita) y el ITF de 2023. Lo mismo se aprecia de la @fig-itf
+
+```{r}
+#| include: false
+my_data <- bind_rows(
+  usu_hogar_T422 |> mutate(Año = "2022 (con inflacion agregada)") %>% 
+    mutate (ITF = ITF*3.114),
+  usu_hogar_T423 |> mutate(Año = "2023")
+)
+
+
+
+```
+
+```{r}
+#| label: tbl-itf
+#| tbl-cap: "Ingreso Total Familiar Media y Desvío para los años 22 y 23"
+#| echo: false
+my_data |> 
+  group_by(Año) |> 
+  summarize(Media = median(ITF)) |> 
+  knitr::kable()
+```
+
+```{r}
+#| echo: false
+#| label: fig-itf
+#| fig-cap: "ITF en el 2022 y 2023"
+
+my_data |> 
+  group_by(Año) |> 
+  summarize(Media = median(ITF)) |> 
+  ggplot(aes(Año, Media, fill = Año))+
+  geom_col()+
+  theme_bw()
+```
+
+## Análisis inferencial
+
+El número de inflación aplicado es de 211,4% (tasa de inflación correspondiente a 2023) y fue extraido de "Informes técnicos/Vol. 8, n°7 del Indec (¿Como aplico cita aquí?).
+
+```{r}
+#| include: false
+my_test <- t.test(usu_hogar_T423$ITF, usu_hogar_T422$ITF*3.114, paired = TRUE)
+
+```
+
+Usamos el test de t de Student para \@Shier2004 los resultados se ven en la \@tbl-test-de-t.
+
+```{r}
+#| label: tbl-test-de-t
+#| echo: false
+#| tbl-cap: "Resultado del test de T"
+my_test |> 
+  broom::tidy() |> 
+  knitr::kable()
+
+```
+
+```{r}
+#| include: false
+#options(scipen=999)
+```
+
+El valor de t es `r my_test$statistic`, el valor p\<.00001 , con un estimado de `r my_test$estimate` de diferencia entre los años de análisis. Dados estos valores rechazamos la hipótesis nula de falta de diferencia entre los dos años y nos quedamos con la hipótesis alternativa de que el ITF no fue superior en el 2023, siendo este \$61.286 mas bajo que el ITF de 2022 calculado con Inflación.
+
+## 
