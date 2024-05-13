@@ -67,7 +67,6 @@ my_data |>
   knitr::kable()
 ```
 
-
 La misma diferencia se aprecia en la @fig-itf
 
 ```{r}
@@ -109,7 +108,7 @@ my_test |>
 #options(scipen=999)
 ```
 
-El valor de t es `r my_test$statistic`, el valor p\<.00001, con un estimado de $`r my_test$estimate |> round() |> format(big.mark = ",")` de diferencia entre los años de análisis. Dados estos valores rechazamos la hipótesis nula de falta de diferencia entre los dos años y nos quedamos con la hipótesis alternativa de que el ITF es superior en el 2023.
+El valor de t es `r my_test$statistic`, el valor p\<.00001, con un estimado de $`r my_test$estimate \|\> round() \|\> format(big.mark = ",")\` de diferencia entre los años de análisis. Dados estos valores rechazamos la hipótesis nula de falta de diferencia entre los dos años y nos quedamos con la hipótesis alternativa de que el ITF es superior en el 2023.
 
 ## Limitaciones
 
