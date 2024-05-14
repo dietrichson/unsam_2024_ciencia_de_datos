@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Aleksander"
+  given-names: "Dietrichson"
+- family-names: "Lisa"
+  given-names: "Mona"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
+title: "Seminario de Ciencia de datos, UNSAM 2024"
+version: 1.0.0
+doi: 10.5281/zenodo.1234
+date-released: 2024-05-14
+url: "https://github.com/dietrichson/unsam_2024_ciencia_de_datos"
