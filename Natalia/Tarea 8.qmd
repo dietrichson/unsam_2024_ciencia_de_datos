@@ -34,35 +34,29 @@ my_data <- bind_rows(
   usu_hogar_T423 |> mutate(Año = "2023")
 )
 
-#| label: tbl-itf
-#| tbl-cap: "Ingreso Total Familiar Media y Desvío para los años 22 y 23"
-#| echo: false
-my_data |> 
-  group_by(Año) |> 
-  summarize(Media = median(ITF)) |> 
-  knitr::kable()
+my_data |> select(Año, ITF)
 ```
 
 ```{r}
-#| echo: false
-#| label: fig-itf
-#| fig-cap: "ITF en el 2022 y 2023"
 
-my_data |> 
-  group_by(Año) |> 
-  summarize(Media = median(ITF)) |> 
-  ggplot(aes(Año, Media, fill = Año))+
-  geom_col()+
-  theme_bw()
+ajuste_por_inflacion <- 1 + (221.4/100)
+ajuste_por_inflacion
+my_data <- my_data |>
+  mutate(ITF = ifelse(Año == 2022, ITF * ajuste_por_inflacion, ITF))
+
+
+my_data |> select(ITF)
+
+source(here::here("R/graficar-2022-2023.R"))
+graficar_2022_2023(my_data)
 ```
 
 ```{r}
-my_test <- t.test(usu_hogar_T423$ITF, usu_hogar_T422$ITF, paired = TRUE)
+ITF22 <- my_data |> filter(Año == 2022) |> pull(ITF) |> median()
+ITF22 <- ITF22 * ajuste_por_inflacion |> median()
+ITF23 <- my_data |> filter(Año == 2023) |> pull(ITF) |> median()
 
-#| label: tbl-test-de-t
-#| echo: false
-#| tbl-cap: "Resultado del test de T"
-my_test |> 
-  broom::tidy() |> 
-  knitr::kable()
+porcentaje <- ((ITF23 - ITF22)/ITF22) * 100
+porcentaje <- porcentaje |> round(digits = 2)
+porcentaje
 ```
