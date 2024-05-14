@@ -1,11 +1,24 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
-- family-names: "Aleksander"
-  given-names: "Dietrichson"
-- family-names: "Lisa"
-  given-names: "Mona"
-  orcid: "https://orcid.org/0000-0000-0000-0000"
+- family-names: "Dietrichson"
+  given-names: "Aleksander"
+- family-names: "Fraidenraich"
+  given-names: "Evelina"
+- family-names: "Wilkinson Barral"
+  given-names: "Michelle Lara"
+- family-names: "Huergo"
+  given-names: "Lautaro Christian"
+- family-names: "Barragan"
+  given-names: "Belén Anahi"
+- family-names: "Acha"
+  given-names: "María Cecilia"
+- family-names: "Luna"
+  given-names: "Natalia Soledad"
+- family-names: "Scarnato"
+  given-names: "Sabrina Mariné"
+
+
 title: "Seminario de Ciencia de datos, UNSAM 2024"
 version: 1.0.0
 doi: 10.5281/zenodo.1234
