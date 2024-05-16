@@ -27,12 +27,6 @@ my_data
 ```
 
 ```{r}
-my_data |>
-```
-
-`{filter(INGRESO > 0) |>}   group_by(REGION) |>   summarise(     Ingreso_medio = mean(INGRESO)   )`
-
-```{r}
 GBA <- my_data |> filter(REGION =="Gran Buenos Aires")
 PAMPA  <- my_data |> filter(REGION == "Pampeana")
 
