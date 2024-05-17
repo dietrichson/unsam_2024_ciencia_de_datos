@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Acha"
+  given-names: "María Cecilia"
+- family-names: "Dietrichson"
+  given-names: "Aleksander"
+- family-names: "Fraidenraich"
+  given-names: "Evelina"
+- family-names: "Huergo"
+  given-names: "Lautaro Christian"
+- family-names: "Luna"
+  given-names: "Natalia Soledad"
+- family-names: "Scarnato"
+  given-names: "Sabrina Mariné"
+- family-names: "Wilkinson Barral"
+  given-names: "Michelle Lara"
+
+title: "Seminario de Ciencia de datos, UNSAM 2024"
+version: 1.0.0
+doi: 10.5281/zenodo.1234
+date-released: 2024-05-14
+url: "https://github.com/dietrichson/unsam_2024_ciencia_de_datos"
