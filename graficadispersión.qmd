@@ -1,0 +1,44 @@
+```{r}
+library(tidyverse) 
+
+
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+```
+
+```{r}
+temp_df <- my_data %>%    
+  select(REGION, ITF)
+```
+
+```{r}
+temp_df <- temp_df |> 
+  mutate(REGION2 = 
+           case_when(
+             REGION == 1 ~ "GBA",
+             REGION == 40 ~ "Noroeste",
+             REGION == 41 ~ "Noreste",
+             REGION == 42 ~ "Cuyo",
+             REGION == 43 ~ "Pampeana",
+             REGION == 44 ~ "Patagonia"))
+
+
+temp_df
+```
+
+```{r}
+temp_df |>
+  group_by(REGION2) |>
+  summarise(
+    MEDIA = mean(ITF),
+    MEDIANA = median(ITF)
+  )
+```
+
+```{r}
+temp_df %>%  
+ filter(ITF<1000000) %>% 
+  ggplot(aes(ITF, fill = REGION2))+
+  geom_density(alpha=.5)
+```
+
+
