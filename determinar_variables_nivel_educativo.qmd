@@ -178,6 +178,6 @@ ultimo_ciclo_aprobado(9)
 ultimo_ciclo_aprobado(98)
 ```
 
-Opinión/recomendaciones:
+**Opinión/recomendaciones:**
 
-De las tres variables que tienen que ver con lo educativo, considero que la más importantes es "NIVEL_ED" ya que responde
+De las tres variables que tienen que ver con lo educativo, considero que la más importantes es "NIVEL_ED" ya que responde y sintetiza toda la información que las otras dos variables contienen en un solo lugar.
