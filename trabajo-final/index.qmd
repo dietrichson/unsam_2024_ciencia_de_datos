@@ -1,0 +1,3 @@
+# Prefacio {.unnumbered}
+
+Es estas páginas el lector encontrará una selección curada de análisis realizados por los estudiantes de «Ciencia de datos 1», materia que dicta el editor del presente volumen en la Universidad de San Martín. Todo análisis se basa en datos públicos y el código fuente está disponible en github @Seminario_de_Ciencia_2024 y se publica, al igual que este compendio, bajo la licencia de *Creative Commons*.

@@ -1,0 +1,32 @@
+project:
+  type: book
+  output-dir: docs/trabajo-final
+
+book:
+  title: "Título "
+  subtitle: "Trabajo final Ciencia de datos I"
+  author: 
+    - "Belén Barragán"
+    - "Michelle Wilkinson"
+  collection-editor: "Aleksander Dietrichson"
+  editor: "Aleksander Dietrichson"
+  date: "5/20/2024"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - references.qmd
+  appendices: 
+    - A-nota-de-trabajo-1.qmd
+    - B-nota-de-trabajo-2.qmd
+
+lang: es
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  # pdf:
+  #   documentclass: scrreprt
+
+editor: visual
+
