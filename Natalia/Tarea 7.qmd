@@ -1,0 +1,52 @@
+---
+title: "Classe 7"
+author: "NLuna"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+install.packages("here")
+
+```
+
+```{r}
+
+my_data <-readRDS( here::here("data/usu_individual_T423.rds"))
+
+source(here::here("R/nombrar-regiones.R"))
+
+my_data <- my_data |>
+  filter(REGION == 1 | REGION == 43) |>
+  mutate(REGION = nombrar_regiones(REGION)) |>
+  mutate(INGRESO = ITF) |>
+  select(REGION, INGRESO)
+
+my_data
+```
+
+```{r}
+my_data |>
+```
+
+```{filter(INGRESO > 0) |>}
+  group_by(REGION) |>
+  summarise(
+    Ingreso_medio = mean(INGRESO)
+  )
+```
+
+```{r}
+GBA <- my_data |> filter(REGION =="Gran Buenos Aires")
+PAMPA  <- my_data |> filter(REGION == "Pampeana")
+
+var.test(GBA$INGRESO, PAMPA$INGRESO)
+```
+
+```{r}
+my_data |> 
+  ggplot(aes(REGION,INGRESO))+
+  geom_point()+
+  geom_smooth()
+```

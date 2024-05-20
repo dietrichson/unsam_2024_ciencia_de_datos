@@ -1,0 +1,151 @@
+---
+title: "Tarea 22-4 prueba 2"
+format: html
+editor: visual
+---
+
+## Tarea
+
+Usando las variables
+
+*V5 y MAS_500*
+
+-   Limpiar los datos
+
+-   Poner etiquetas coherentes
+
+-   Realizar análisis exploratorio
+
+-   Forumular hipótesis
+
+-   Probar hipótesis con la prueba de chi-cuadrado `chisq.test`
+
+Trabajamos con las variables
+
+-   MAS_500: más de 500 mil habitantes
+
+-   V5: ¿En los últimos tres meses, las personas de este hogar han vivido de subsidio o ayuda social (en dinero) del gobierno, iglesias, etc.? 1 = Sí 2 = No
+
+```{r}
+##Variables MAS_500 y V5
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+my_data <- my_data |> 
+  select(V5,MAS_500)
+
+my_data$MAS_500 |> unique()
+```
+
+```{r}
+my_data$V5 |> unique()
+```
+
+```{r}
+## LIMPIEZA DE DATOS
+my_data <- my_data |> 
+  filter(!is.na(V5))
+my_data$V5 |> unique()
+```
+
+```{r}
+my_data <- my_data |> 
+  filter(!is.na(MAS_500))
+my_data$MAS_500 |> unique()
+```
+
+```{r}
+my_data_clean <- my_data |> 
+  select(MAS_500,V5) |> 
+  filter(V5 != 9)
+```
+
+```{r}
+## RENAME
+my_data_clean <- my_data_clean |> 
+  mutate(subsidio_ayuda = case_when(
+    V5 == "1" ~ "Si",
+    V5 == "2" ~ "No"
+  ))
+```
+
+```{r}
+my_data_clean <- my_data_clean |> 
+  mutate(ciudad_grande = case_when(
+    MAS_500 == "S" ~ "Si",
+    MAS_500 == "N" ~ "No"
+  ))
+  names(my_data_clean)
+```
+
+```{r}
+## renamed columns
+my_data <- my_data |> 
+  mutate(subsidio_ayuda = case_when(
+    V5 == 1 ~ "Si",
+    V5 > 1 ~ "No"
+  ))
+my_data_clean
+```
+
+```{r}
+my_data_clean <- my_data_clean |> 
+  mutate(ciudad_grande = case_when(
+    MAS_500 == "S" ~ "Si",
+    MAS_500 == "N" ~ "No"
+  ))
+my_data_clean
+```
+
+```{r}
+my_data_clean |> 
+  group_by(subsidio_ayuda,ciudad_grande) |> 
+  count()
+```
+
+```{r}
+## table
+table(my_data$subsidio_ayuda,my_data$MAS_500)
+```
+
+```{r}
+temp_df <- my_data |> 
+  select(V5, MAS_500)
+my_data
+```
+
+```{r}
+temp_df <- temp_df |> 
+  rename("Subsidio_ayuda" = V5)
+temp_df
+```
+
+```{r}
+# tabla simplificada
+temp_df <- temp_df |> 
+  rename("ciudad_grande" = MAS_500)
+temp_df
+```
+
+```{r}
+## GRÁFICO 
+my_data |> 
+  ggplot(aes(MAS_500, fill = subsidio_ayuda))+
+  geom_bar()
+```
+
+```{r}
+## HIPÓTESIS
+
+```
+
+Hipótesis
+
+$H_0$ : No hay diferencia en cuanto a proporción de cobro de subsidios en las ciudades grandes y pequeñas.
+
+$H_1$ : En las grandes ciudades hay mayor proporción de cobro de subsidios.
+
+```{r}
+table(my_data$subsidio_ayuda, my_data$MAS_500) |> 
+  chisq.test()
+```
+
+Rechazamos la hipótesis nula y concluimos que la gente que hay mayor cobro de subsidios en las aglomeraciones de menos de 500000 habitantes, que en las aglomeraciones mayores.

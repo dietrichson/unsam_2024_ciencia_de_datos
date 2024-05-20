@@ -14,6 +14,16 @@ theme: darkly
 
 -   [Presentación de la clase 4](./presentaciones/4-metodo-científico.html)
 
+-   [Presentación de la clase 5](./presentaciones/5-chi-cuadrado.html)
+
+-   [Presentación de la clase 6](./presentaciones/6-probabilidad-y-estimacion-de-parametros.html)
+
+-   [Presentación de la clase 7](./presentaciones/7-pruebas-de-independencia.html)
+
+-   [Presentación de la clase 8](./presentaciones/8-pruebas-de-independencia-2.html)
+
+-   [Presentación de la clase 9](./presentaciones/9-modelos-estadisticos.html)
+
 ## Notas
 
 -   [Notas de la clase 1](./notas/clase-1-notas.html)
@@ -23,3 +33,13 @@ theme: darkly
 -   [Notas de la clase 3](./notas/notas-clase-3.html) y [Análisis Inicial Index](./notas/tarea-analisis-indec-1.html)
 
 -   [Notas de la clase 4](./notas/clase-4-notas.html)
+
+-   [Notas de la clase 5](./notas/notas-clase-5.html)
+
+-   [Notas de la clase 6](./notas/notas-clase-6.html)
+
+-   [Notas de la clase 7](./notas/notas-clase-7.html)
+
+-   [Análisis Ingreso Total Familiar (de la clase 8)](./notas/analysis-ITF.html)
+
+-   [Notas de la clase 9](./notas/notas-clase-9.html)

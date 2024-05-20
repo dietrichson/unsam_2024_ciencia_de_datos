@@ -1,0 +1,197 @@
+---
+author: "Aleksander Dietrichson"
+title: "Notas de la clase 7"
+format: html
+theme: darkly
+editor: visual
+---
+
+## Encontrar archivos
+
+```{r}
+library(tidyverse)
+install.packages("here")
+here::here("data/usu_individual_T423.rds")
+```
+
+## Cargar datos
+
+```{r}
+my_data <-readRDS( here::here("data/usu_individual_T423.rds"))
+```
+
+Vamos a explorarlos un poco:
+
+```{r}
+nrow(my_data)
+```
+
+Algunas variables interesantes:
+
+-   CH04: Sexo,
+
+-   CH12 : Nivel educativo
+
+-   Ch14: escolaridad
+
+-   P21: Ingreso
+
+tiene regiónes?
+
+```{r}
+my_data$REGION |> unique()
+```
+
+```{r}
+source(here::here("R/nombrar-regiones.R"))
+
+my_data |> 
+  mutate(region = nombrar_regiones(REGION)) |> 
+  mutate(ingreso = P21) |> 
+  group_by(region) |> 
+  summarize(
+    Media = mean(ingreso),
+    Mediana = median(ingreso),
+    Desviacion = sd(ingreso),
+    Desvio = mad(ingreso)
+  )
+```
+
+Acá la mediana y desvio salieron mal porque hay muchos 0.
+
+```{r}
+my_data |> 
+  mutate(region = nombrar_regiones(REGION)) |> 
+  mutate(ingreso = P21) |> 
+  filter(ingreso > 0) |> # hay muchos que no trabajan porque son niños etc.
+  group_by(region) |> 
+  summarize(
+    Media = mean(ingreso),
+    Mediana = median(ingreso),
+    Desviacion = sd(ingreso),
+    Desvio = mad(ingreso)
+  )
+```
+
+```{r}
+# Funcion para etiquetar CH04 (sexo)
+nombrar_ch04 <- function(x){
+  case_when(
+    x == "1" ~ "Varon", # respetando la norme del indec.
+    x == "2" ~ "Mujer",
+    .default = "desconocido"
+  )
+}
+
+nombrar_ch04("1")
+nombrar_ch04("2")
+nombrar_ch04("3")
+```
+
+```{r}
+
+my_data <- my_data |> 
+  mutate(ingreso = P21) |> 
+  mutate(region = nombrar_regiones(REGION)) |> 
+  mutate(sexo = nombrar_ch04(CH04))
+
+my_data |> 
+  mutate(sexo = nombrar_ch04(CH04)) |> 
+  filter(ingreso > 0) |> 
+  group_by(sexo) |> 
+  summarize(
+    Media = mean(ingreso),
+    Desviacion = sd(ingreso), 
+    Mediana = median(ingreso),
+    Desvio = mad(ingreso)
+  )
+```
+
+## Vemos la ch12
+
+Hay otra «mejor» NIVEL_ED
+
+```{r}
+table(my_data$NIVEL_ED)
+```
+
+```{r}
+my_data |> 
+  filter(ingreso >0 ) |> 
+  filter(NIVEL_ED != 7) |> 
+  group_by(
+    NIVEL_ED
+  ) |> 
+  summarize(
+    Ingreso = mean(ingreso)
+  )
+```
+
+```{r}
+my_data |> 
+  filter(ingreso >0 ) |> 
+  filter(NIVEL_ED != 7) |> 
+  group_by(
+    NIVEL_ED
+  ) |> 
+  summarize(
+    Ingreso = mean(ingreso)
+  ) |> 
+  ggplot(aes(NIVEL_ED,Ingreso))+
+  geom_point()+
+  geom_smooth()
+```
+
+(La próxima vemos como hacer el gráfico más lindo)
+
+```{r}
+my_data |> 
+  filter(ingreso >0 ) |> 
+  filter(NIVEL_ED != 7) |> 
+  group_by(
+    NIVEL_ED,
+    sexo
+  ) |> 
+  summarize(
+    Ingreso = mean(ingreso)
+  ) |> 
+  ggplot(aes(NIVEL_ED,Ingreso, color=sexo ))+
+  geom_point()+
+  geom_smooth()
+```
+
+otra vez con lineas rectas:
+
+```{r}
+my_data |> 
+  filter(ingreso >0 ) |> 
+  filter(NIVEL_ED != 7) |> 
+  group_by(
+    NIVEL_ED,
+    sexo
+  ) |> 
+  summarize(
+    Ingreso = mean(ingreso)
+  ) |> 
+  ggplot(aes(NIVEL_ED,Ingreso, color=sexo ))+
+  geom_point()+
+  geom_smooth(method = "lm")
+```
+
+```{r}
+my_data |> 
+  dplyr::filter(ingreso > 0) |> 
+  ggplot(aes(NIVEL_ED,ingreso, color = sexo))+
+  geom_point()+
+  geom_smooth(method = "lm")
+```
+
+## Tarea para el 6 de mayo
+
+-   Elijan dos provincias o regioness
+
+-   Reutilizen el código compartido en la cardeta R (usen source y here::here) para etiquetar
+
+-   Formular hipótesis sobre la diferencia en ingresos entre las dos y aplicar el test estadístico apropiado.
+
+-   Generar una visualización
