@@ -1,0 +1,44 @@
+project:
+  type: book
+  output-dir: docs/trabajo-final
+
+book:
+  title: "Análisis de datos de la encuesta permantente de hogares: 2022/23"
+  subtitle: "Trabajo final Ciencia de datos I"
+  author: 
+    - "María Acha"
+    - "Belén Barragán"
+    - "Evelina Fraidenraich"
+    - "Lautaro Huergo"
+    - "Natalia Soledad Luna"
+    - "Sabrina Mariné Scarnato"
+    - "Michelle Wilkinson"
+  collection-editor: "Aleksander Dietrichson"
+  editor: "Aleksander Dietrichson"
+  date: "5/20/2024"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - descripcion-de-los-datos.qmd
+    - distribucion-del-ingreso.qmd
+    - evolucion-del-ingreso.qmd
+    - como-vivimos.qmd
+    - brecha-de-genero-e-ingreso.qmd
+    - educacion-e-ingreso.qmd
+    - ayuda-social-distribucion-y-evolucion.qmd
+    - references.qmd
+  appendices: 
+    - A-nota-de-trabajo-1.qmd
+    - B-nota-de-trabajo-2.qmd
+
+lang: es
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  # pdf:
+  #   documentclass: scrreprt
+
+editor: visual
+
