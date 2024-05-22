@@ -1,0 +1,183 @@
+---
+title: "Determinar variables de nivel educativo"
+format: html
+editor: visual
+---
+
+## Consigna:
+
+Hay algunas variables que tienen que ver con nivel educativo, identificarlos, proponer nombre de la variable, sus etiquetas y si hay algún sub-grupo que debería ser filtrado.
+
+```{r}
+library(tidyverse)
+my_data <- readRDS("/cloud/project/data/usu_individual_T423.rds")
+```
+
+**VARIABLE NIVEL_ED**
+
+```{r}
+temp_df <- my_data %>%    
+  select(NIVEL_ED)
+```
+
+```{r}
+my_data <- my_data %>% filter(NIVEL_ED !=9)
+table(my_data$NIVEL_ED)
+```
+
+```{r}
+temp_df <- temp_df |> 
+  mutate(NIVEL_EDUCATIVO = 
+           case_when(
+             NIVEL_ED == 1 ~ "Primario incompleto (incluye educación especial)",
+             NIVEL_ED == 2 ~ "Primario completo",
+             NIVEL_ED == 3 ~ "Secundario incompleto",
+             NIVEL_ED == 4 ~ "Secundario completo",
+             NIVEL_ED == 5 ~ "Superior universitario incompleto",
+             NIVEL_ED == 6 ~ "Superior universitario completo",
+             NIVEL_ED == 7 ~ "Sin instrucción"))
+temp_df
+```
+
+```{r}
+nivel_educativo <- function(NIVEL_ED){
+  case_when(
+             NIVEL_ED == 1 ~ "Primario incompleto (incluye educación especial)",
+             NIVEL_ED == 2 ~ "Primario completo",
+             NIVEL_ED == 3 ~ "Secundario incompleto",
+             NIVEL_ED == 4 ~ "Secundario completo",
+             NIVEL_ED == 5 ~ "Superior universitario incompleto",
+             NIVEL_ED == 6 ~ "Superior universitario completo",
+             NIVEL_ED == 7 ~ "Sin instrucción"
+             )
+}
+```
+
+```{r}
+nivel_educativo(1)
+nivel_educativo(2)
+nivel_educativo(3)
+nivel_educativo(4)
+nivel_educativo(5)
+nivel_educativo(6)
+nivel_educativo(7)
+```
+
+**VARIABLE CH12**
+
+```{r}
+temp_df <- my_data %>%    
+  select(CH12)
+```
+
+```{r}
+temp_df <- temp_df |> 
+  mutate(NIVEL_MAS_ALTO_CURSADA = 
+           case_when(
+             CH12 == 1 ~ "Jardín/preescolar",
+             CH12 == 2 ~ "Primario",
+             CH12 == 3 ~ "EGB",
+             CH12 == 4 ~ "Secundario",
+             CH12 == 5 ~ "Polimodal",
+             CH12 == 6 ~ "Terciario",
+             CH12 == 7 ~ "Universitario",
+             CH12 == 8 ~ "Posgrado universitario",
+             CH12 == 9 ~ "Educación especial (discapacitado)"))
+temp_df
+```
+
+```{r}
+nivel_mas_alto_cursada <- function(CH12){
+  case_when(
+             CH12 == 1 ~ "Jardín/preescolar",
+             CH12 == 2 ~ "Primario",
+             CH12 == 3 ~ "EGB",
+             CH12 == 4 ~ "Secundario",
+             CH12 == 5 ~ "Polimodal",
+             CH12 == 6 ~ "Terciario",
+             CH12 == 7 ~ "Universitario",
+             CH12 == 8 ~ "Posgrado universitario",
+             CH12 == 9 ~ "Educación especial (discapacitado)"
+             )
+}
+
+```
+
+```{r}
+nivel_mas_alto_cursada(1)
+nivel_mas_alto_cursada(2)
+nivel_mas_alto_cursada(3)
+nivel_mas_alto_cursada(4)
+nivel_mas_alto_cursada(5)
+nivel_mas_alto_cursada(6)
+nivel_mas_alto_cursada(7)
+nivel_mas_alto_cursada(8)
+nivel_mas_alto_cursada(9)
+```
+
+**VARIABLE CH14**
+
+```{r}
+temp_df <- my_data %>%    
+  select(CH14)
+```
+
+```{r}
+my_data <- my_data %>% filter(CH14 !=99)
+table(my_data$CH14)
+```
+
+```{r}
+temp_df <- temp_df |> 
+  mutate(ULTIMO_CICLO_APROBADO = 
+           case_when(
+             CH14 == 00 ~ "Ninguno",
+             CH14 == 01 ~ "Primero",
+             CH14 == 02 ~ "Segundo",
+             CH14 == 03 ~ "Tercero",
+             CH14 == 04 ~ "Cuarto",
+             CH14 == 05 ~ "Quinto",
+             CH14 == 06 ~ "Sexto",
+             CH14 == 07 ~ "Séptimo",
+             CH14 == 08 ~ "Octavo",
+             CH14 == 09 ~ "Noveno",
+             CH14 == 98 ~ "Educación especial"))
+temp_df
+```
+
+```{r}
+ultimo_ciclo_aprobado <- function(CH14){
+  case_when(
+             CH14 == 00 ~ "Ninguno",
+             CH14 == 01 ~ "Primero",
+             CH14 == 02 ~ "Segundo",
+             CH14 == 03 ~ "Tercero",
+             CH14 == 04 ~ "Cuarto",
+             CH14 == 05 ~ "Quinto",
+             CH14 == 06 ~ "Sexto",
+             CH14 == 07 ~ "Séptimo",
+             CH14 == 08 ~ "Octavo",
+             CH14 == 09 ~ "Noveno",
+             CH14 == 98 ~ "Educación especial"
+             )
+}
+
+
+```
+
+```{r}
+ultimo_ciclo_aprobado(1)
+ultimo_ciclo_aprobado(2)
+ultimo_ciclo_aprobado(3)
+ultimo_ciclo_aprobado(4)
+ultimo_ciclo_aprobado(5)
+ultimo_ciclo_aprobado(6)
+ultimo_ciclo_aprobado(7)
+ultimo_ciclo_aprobado(8)
+ultimo_ciclo_aprobado(9)
+ultimo_ciclo_aprobado(98)
+```
+
+**Opinión/recomendaciones:**
+
+De las tres variables que tienen que ver con lo educativo, considero que la más importantes es "NIVEL_ED" ya que responde y sintetiza toda la información que las otras dos variables contienen en un solo lugar.
