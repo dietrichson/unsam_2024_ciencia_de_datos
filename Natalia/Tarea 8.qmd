@@ -1,0 +1,62 @@
+---
+title: "Tarea 8"
+format: html
+editor: visual
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+
+```
+
+```{r}
+usu_hogar_T423 <- readRDS(here::here("data/usu_hogar_T423.rds"))
+usu_hogar_T422 <- readRDS(here::here("data/usu_hogar_T422.rds"))
+```
+
+```{r}
+mis_CODUSU <- intersect(usu_hogar_T422$CODUSU,usu_hogar_T423$CODUSU) 
+
+usu_hogar_T422 <- usu_hogar_T422 |> 
+  filter(CODUSU %in% mis_CODUSU) |> 
+  arrange(CODUSU)
+
+usu_hogar_T423 <- usu_hogar_T423 |> 
+  filter(CODUSU %in% mis_CODUSU) |> 
+  arrange(CODUSU)
+
+usu_hogar_T422 <- usu_hogar_T422 |> filter(!duplicated(CODUSU))
+usu_hogar_T423 <- usu_hogar_T423 |> filter(!duplicated(CODUSU))
+
+my_data <- bind_rows(
+  usu_hogar_T422 |> mutate(Año = "2022"),
+  usu_hogar_T423 |> mutate(Año = "2023")
+)
+
+my_data |> select(Año, ITF)
+```
+
+```{r}
+
+ajuste_por_inflacion <- 1 + (221.4/100)
+ajuste_por_inflacion
+my_data <- my_data |>
+  mutate(ITF = ifelse(Año == 2022, ITF * ajuste_por_inflacion, ITF))
+
+
+my_data |> select(ITF)
+
+source(here::here("R/graficar-2022-2023.R"))
+graficar_2022_2023(my_data)
+```
+
+```{r}
+ITF22 <- my_data |> filter(Año == 2022) |> pull(ITF) |> median()
+ITF22 <- ITF22 * ajuste_por_inflacion |> median()
+ITF23 <- my_data |> filter(Año == 2023) |> pull(ITF) |> median()
+
+porcentaje <- ((ITF23 - ITF22)/ITF22) * 100
+porcentaje <- porcentaje |> round(digits = 2)
+porcentaje
+```
