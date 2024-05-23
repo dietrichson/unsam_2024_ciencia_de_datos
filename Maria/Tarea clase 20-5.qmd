@@ -1,0 +1,117 @@
+---
+title: "Funciones de GGplot"
+author: "María Acha"
+format: html
+theme: darkly
+editor: visual
+---
+
+## Armar funciones con ggplot
+
+```{r}
+#| include: false
+
+library(tidyverse)
+usu_hogar_T423 <- readRDS(here::here("data/usu_hogar_T423.rds"))
+usu_hogar_T422 <- readRDS(here::here("data/usu_hogar_T422.rds"))
+mis_CODUSU <- intersect(usu_hogar_T422$CODUSU,usu_hogar_T423$CODUSU) 
+usu_hogar_T422 <- usu_hogar_T422 |> 
+  filter(CODUSU %in% mis_CODUSU) |> 
+  arrange(CODUSU)
+usu_hogar_T423 <- usu_hogar_T423 |> 
+  filter(CODUSU %in% mis_CODUSU) |> 
+  arrange(CODUSU)
+usu_hogar_T422 <- usu_hogar_T422 |> filter(!duplicated(CODUSU))
+usu_hogar_T423 <- usu_hogar_T423 |> filter(!duplicated(CODUSU))
+my_data <- bind_rows(
+  usu_hogar_T422 |> mutate(Año = "2022"),
+  usu_hogar_T423 |> mutate(Año = "2023")
+)
+
+```
+
+```{r}
+source(here::here("R/graficar-2022-2023.R"))
+graficar_2022_2023(my_data)
+```
+
+```{}
+```
+
+## Planificación
+
+-   ¿Tipo de vivienda?
+
+    -   ¿Qué diferencias vemos entre los tipos de vivienda según cada región?
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+```
+
+```{r}
+my_data$IV1
+temp_df <- my_data |> 
+  select(IV1, REGION)
+temp_df <- temp_df |> 
+  mutate(IV1 = 
+           case_when(
+             IV1 == 1 ~ "Casa",
+             IV1 == 2 ~ "Departamento",
+             IV1 == 3 ~ "Pieza de inquilinato",
+             IV1 == 4 ~ "Pieza en hotel/pensión",
+             IV1 == 5 ~ "Local no construido para habitación",
+            .default = "No Encontrado"))
+temp_df |> 
+  filter(IV1 == 1,
+         IV1 == 2)
+temp_df
+```
+
+```{r}
+temp_df <- temp_df |>
+  mutate(REGION =
+           case_when(
+             REGION == 01 ~ "Gran Buenos Aires",
+             REGION == 40 ~ "Noroeste",
+             REGION == 41 ~ "Noreste",
+             REGION == 42 ~ "Cuyo",
+             REGION == 43 ~ "Pampeana",
+             REGION == 44 ~ "Patagonia",
+             REGION != 01 ~ "Interior",
+             .default = "No Encontrado"))
+temp_df
+```
+
+```{r}
+temp_df |>
+    ggplot(aes(REGION, fill = IV1))+
+  geom_bar()
+```
+
+```{r}
+my_data |> 
+  filter(IV1 == 1 | IV1 == 2) |> 
+  group_by(
+    REGION,
+    IV1
+  ) |> 
+  summarize(
+    IV1 = sum(IV1)
+  ) |> 
+  ggplot(aes(REGION,IV1, color=IV1 ))+
+  geom_point()+
+  geom_smooth()
+```
+
+```{r}
+temp_df <- temp_df |> 
+  rename("Tipo de vivienda" = IV1)
+temp_df
+ggplot(my_data)
+```
+
+```{r}
+temp_df <- my_data |> 
+  select(REGION, IV1)
+temp_df
+```

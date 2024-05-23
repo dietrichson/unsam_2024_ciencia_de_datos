@@ -1,0 +1,51 @@
+---
+title: "Función distribución del ingreso-Huergo"
+format: html
+editor: visual
+---
+
+## Función para graficar distribución del ingreso:
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+my_data <- read_rds("./data/datos_indec.rds")
+```
+
+```{r}
+# Filtración región seleccionada (Gran Buenos Aires)
+my_data$REGION |> 
+  unique()
+my_data <- my_data |>
+  filter(REGION == 01) 
+```
+
+```{r}
+nrow(my_data)
+```
+
+## Distribución del ingreso de Gran Buenos Aires:
+
+```{r}
+my_data$ITF |> # Ingreso Total Familiar
+  mean()
+```
+
+```{r}
+my_data$ITF |> # Ingreso Total Familiar
+  median()
+```
+
+```{r}
+my_data$ITF |> 
+  range()
+```
+
+# Distribución función-gráfico:
+
+```{r}
+my_data$ITF |> 
+  hist()
+```

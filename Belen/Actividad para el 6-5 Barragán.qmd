@@ -1,0 +1,66 @@
+---
+title: "Tarea para el 6-5-24 Barragán"
+author: "Barragán"
+format: html
+editor: visual
+---
+
+## **Tarea para el 6 de mayo**
+
+-   Elijan dos provincias o regiones
+
+-   Reutilizen el código compartido en la carpeta R (usen source y here::here) para etiquetar
+
+-   Formular hipótesis sobre la diferencia en ingresos entre las dos y aplicar el test estadístico apropiado.
+
+-   Generar una visualización
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+install.packages("here")
+```
+
+```{r}
+here::here("data/usu_individual_T423.rds")
+```
+
+```{r}
+my_data <-readRDS( here::here("data/usu_individual_T423.rds"))
+```
+
+```{r}
+my_data$REGION |> unique()
+```
+
+```{r}
+source(here::here("R/nombrar-regiones.R"))
+
+my_data |> 
+  mutate(region = nombrar_regiones(REGION)) |> 
+  mutate(ingreso = P21) |> 
+  filter(ingreso > 0) |> 
+  filter(REGION %in%c(43,44)) |>
+  group_by(region) |> 
+  summarize(
+    Media = mean(ingreso),
+    Mediana = median(ingreso),
+    Desviacion = sd(ingreso),
+    Desvio = mad(ingreso)
+  )
+```
+
+## Hipotesis
+
+H0= No existe diferencia entre los ingresos de la region Pampeana(43) y la region de la Patagonia (44)
+
+```{r}
+my_data |> 
+  dplyr::filter(ingreso > 0) |> 
+  filter(REGION %in%c(43,44)) |>
+  ggplot(aes(REGION, ingreso))+
+  geom_point()+
+  geom_smooth(method = "lm")
+```
