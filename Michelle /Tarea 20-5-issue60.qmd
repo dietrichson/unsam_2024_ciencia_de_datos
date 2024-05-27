@@ -1,0 +1,46 @@
+---
+title: "Tarea 20-5"
+format: html
+editor: visual
+---
+
+## Tarea 20/5
+
+Issue #60
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+my_data <- readRDS("/cloud/project/data/usu_individual_T423.rds")
+```
+
+```{r}
+my_data$REGION %>%  unique
+```
+
+```{r}
+my_data %>%
+  mutate(region = nombrar_regiones(REGION)) %>%
+  mutate(ingreso = P21) %>%
+  filter(ingreso > 0) %>%  # que no se tengan en cuenta los que no cobran.
+  group_by(region) %>%
+  summarize(
+    Mediana = median(ingreso), # no se utiliza la media ya que hay gente con muchos ingresos y no sería representativo
+    IQR = IQR(ingreso) # Calcula el rango intercuartílico
+  )
+```
+
+```{r}
+my_data %>%
+  mutate(ingreso = P21) %>%  
+  filter(ingreso > 0) %>%    # Filtramos ingresos mayores que 0
+  group_by(REGION) %>%
+  summarize(
+    Mediana = median(ingreso) 
+  ) %>%
+  ggplot(aes(x = REGION, y = Mediana, fill = factor(REGION))) +  
+  geom_col() 
+
+```
