@@ -1,0 +1,126 @@
+---
+author: "Aleksander Dietrichson"
+date: 2024-05-20
+---
+
+```{r}
+library(tidyverse)
+my_data <- readRDS(here::here("data/datos_indec.rds"))
+```
+
+## Graficar con `hist`
+
+```{r}
+hist(my_data$ITF)
+```
+
+`hist` hace un análisis
+
+```{r}
+my_hist <- hist(my_data$ITF)
+```
+
+```{r}
+print(my_hist)
+```
+
+```{r}
+my_data |> 
+  filter(ITF<5000000) -> tmp
+hist(tmp$ITF)
+```
+
+```{r}
+library(tidyverse)
+my_data |> 
+  ggplot(aes(ITF))+
+  geom_histogram()
+  
+```
+
+```{r}
+my_data |> 
+  ggplot(aes(ITF))+
+  geom_histogram()+
+  xlab("Ingreso total familar")+
+  ylab("Número de hogares")
+```
+
+```{r}
+# Opción 1: filtrar y mirar parte de los datos
+my_data |> 
+  filter(ITF<1500000) |> 
+  ggplot(aes(ITF))+
+  geom_histogram()+
+  xlab("Ingreso total familar")+
+  ylab("Número de hogares")
+```
+
+```{r}
+# Opción 2: filtrar un poco más y mirar parte de los datos
+my_data |> 
+  filter(ITF<1500000) |> 
+  filter(ITF>0) |> 
+  ggplot(aes(ITF))+
+  geom_histogram()+
+  xlab("Ingreso total familar")+
+  ylab("Número de hogares")
+```
+
+```{r}
+# Opción 3: Usar una escala de log10
+my_data |> 
+  ggplot(aes(ITF))+
+  geom_histogram()+
+  xlab("Ingreso total familar")+
+  ylab("Número de hogares")+
+  scale_x_log10()
+```
+
+```{r}
+theme_set(theme_bw() )
+
+my_data |> 
+  ggplot(aes(ITF))+
+  geom_histogram()+
+  xlab("Ingreso total familar")+
+  ylab("Número de hogares")+
+  scale_x_log10()
+```
+
+## Tablas lindas
+
+```{r}
+my_data |> 
+  select(REGION, ITF) |> 
+  head(n=6)
+```
+
+```{r}
+my_data |> 
+  select(REGION, ITF) |> 
+  head(n=6) |> 
+  knitr::kable(col.names = c("Región", "Ingreso"))
+```
+
+## Variable II7
+
+```{r}
+my_data$II7 |> unique()
+```
+
+```{r}
+library(ggplot2)
+my_data |> 
+  ggplot(aes(as.factor(REGION),as.factor(IV1), fill=as.factor(IV1)))+
+  geom_col()+
+  geom_smooth()
+```
+
+```{r}
+my_data |> 
+  ggplot(aes(ITF))+
+
+  scale_x_log10()+
+  geom_density()
+```

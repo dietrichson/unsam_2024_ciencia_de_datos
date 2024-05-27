@@ -1,0 +1,181 @@
+---
+title: "Notas de la clase 11"
+author: "Aleksander Dietrichson"
+format: html
+theme: darkly
+editor: visual
+---
+
+## Identificador para usu_individual
+
+El problema es que tenemos tres identificadores en usu_individual
+
+> CODUSU y NRO_HOGAR pero se diferencian por el número de COMPONENTE
+
+### Buscamos datos
+
+```{r}
+usu_individual_T422 <- readRDS("/cloud/project/data/usu_individual_T422.rds")
+
+usu_individual_T422$COMPONENTE |> unique()
+
+```
+
+```{r}
+usu_individual_T422$CODUSU |> head()
+```
+
+```{r}
+usu_individual_T422$NRO_HOGAR |> unique() |> head()
+usu_individual_T422$NRO_HOGAR |> unique() |> length()
+
+```
+
+Hay que juntar los tres: CODUSU, NRO_HOGAR y COMPONENTE
+
+Hay dos maneras de hacerlo:
+
+-   con `paste0`
+
+```{r}
+# Se  suele poner UID = Universal IDentifier.
+UID <- paste0(my_data$CODUSU,my_data$NRO_HOGAR, my_data$COMPONENTE)
+```
+
+```{r}
+# Verifcar 
+length(UID) == nrow(my_data)
+```
+
+Deberían ser únicos
+
+```{r}
+sum(duplicated(UID))
+```
+
+¿Cómo se ven?
+
+```{r}
+UID |> 
+  head()
+```
+
+La otra manera:
+
+-   con `str_glue`
+
+    ```{r}
+    library(tidyverse)
+    UID2 <- str_glue("{my_data$CODUSU}{my_data$NRO_HOGAR}{my_data$COMPONENTE}")
+    ```
+
+```{r}
+nombre = "Sasha"
+
+str_glue("Hola {nombre}")
+```
+
+```{r}
+# verificamos
+sum(UID2 == UID)
+
+sum(UID2 == UID) == nrow(my_data)
+```
+
+## Usar las funciones
+
+```{r}
+source(here::here("R/agregar-uid.R"))
+
+
+usu_individual_T422 <- usu_individual_T422 |> 
+  agregar_uid_individual()
+```
+
+Carguemos los datos del 23
+
+```{r}
+usu_individual_T423 <- readRDS(here::here("data/usu_individual_T423.rds"))
+
+usu_individual_T423 <- usu_individual_T423 |> 
+  agregar_uid_individual()
+
+usu_individual_T422 <- usu_individual_T422 |> 
+  agregar_uid_individual()
+```
+
+Cuántos hay en común
+
+```{r}
+intersect(usu_individual_T422$UID,usu_individual_T423$UID) |> 
+  length()
+```
+
+```{r}
+nrow(usu_individual_T422)
+nrow(usu_individual_T423)
+```
+
+```{r}
+my_data <- inner_join(
+  usu_individual_T422 |> select(UID, CH04, ingreso22 = P21),
+  usu_individual_T423 |> select(UID, ingreso23 =P21),
+  by = c("UID")
+)
+```
+
+```{r}
+my_data |> head()
+```
+
+Código de -9 = no encontraron a la persona.
+
+```{r}
+my_data <- my_data |> filter(
+  ingreso22 > 0,
+  ingreso23 >0 
+)
+
+my_data |> nrow()
+```
+
+Test de T de Student es posible
+
+## UID encuesta de hogares
+
+```{r}
+usu_hogar_T422 <- readRDS(here::here("data/usu_hogar_T422.rds"))
+usu_hogar_T423 <- readRDS(here::here("data/usu_hogar_T423.rds"))
+
+
+usu_hogar_T422 <- usu_hogar_T422 |> 
+  agregar_uid_hogar()
+
+usu_hogar_T423 <- usu_hogar_T423 |> 
+  agregar_uid_hogar()
+
+
+my_data_hogar <- inner_join(
+  usu_hogar_T422 |> select(UID, ITF),
+  usu_hogar_T423 |> select(UID, ITF),
+  by = c("UID")
+)
+
+nrow(my_data_hogar)
+```
+
+```{r}
+my_data_hogarVivienda <- inner_join(
+  usu_hogar_T422 |> select(CODUSU, ITF),
+  usu_hogar_T423 |> select(CODUSU, ITF),
+  by = c("CODUSU")
+)
+```
+
+```{r}
+nrow(my_data_hogarVivienda)
+```
+
+```{r}
+intersect(usu_hogar_T422$CODUSU, usu_hogar_T423$CODUSU) |> length()
+```
