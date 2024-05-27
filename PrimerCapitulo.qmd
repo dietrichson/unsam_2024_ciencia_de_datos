@@ -1,8 +1,5 @@
 # Distribucion del ingreso
 
-#### Introducción capítulo 
+#### Introducción capítulo
 
-Este capítulo se propone analizar, a través de los principales indicadores, la desigualdad económica en Argentina entre los años 2022 y 2023. Esto se realizará con  los datos informados por el Instituto Nacional de Estadística y Censos (INDEC).
-
-
-
+Este capítulo se propone analizar, a través de los principales indicadores, la desigualdad económica en Argentina entre los años 2022 y 2023. Esto se realizará con los datos informados por el Instituto Nacional de Estadística y Censos (INDEC).
