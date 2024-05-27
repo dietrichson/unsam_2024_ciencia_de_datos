@@ -2,9 +2,13 @@
 
 Bienvenidos! Este repositorio contiene los archivos y códigos del seminario de ciencia de datos, 2023. UNSAM.
 
-## Material de apoyo
+## Material de apoyo:
 
-<https://dietrichson.github.io/metodos_cuantitativos_2/index.html>
+* <https://dietrichson.github.io/metodos_cuantitativos_2/index.html>
+
+## Presentaciones y notas de clase:
+
+* <https://dietrichson.github.io/unsam_2024_ciencia_de_datos/>
 
 ## Antes de empezar
 

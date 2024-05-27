@@ -1,0 +1,128 @@
+---
+title: "Tarea 6 - Huergo"
+format: html
+editor: visual
+---
+
+## Tarea Clase 6 - Huergo
+
+## Armar funciones en R (IV1)
+
+```{r}
+library(tidyverse)
+
+```
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+my_data$REGION |> unique() 
+```
+
+```{r}
+# filtrar datos
+my_data <- my_data |> filter(IV1 !=9)
+table(my_data$IV1, my_data$REGION)
+```
+
+```{r}
+# Armar Funciones en R
+x <- 1
+mi_columna <- c("uno","dos", "tres")
+x
+```
+
+```{r}
+mi_columna
+```
+
+```{r}
+addicion <- function(x, y){
+  x+y
+}
+
+addicion <- function(x, y){
+ return( x+y )
+}
+
+addicion(2,2)
+```
+
+```{r}
+addicion( x=2, y=3)
+```
+
+```{r}
+hora <- function(){
+  Sys.time()
+}
+
+hora()
+```
+
+```{r}
+nombrar_tipodevivienda <- function(tipodevivienda){
+           case_when(
+             tipodevivienda == 1 ~ "Casa",
+             tipodevivienda == 2 ~ "Departamento",
+             tipodevivienda == 3 ~ "Pieza de Inquilinato",
+             tipodevivienda == 4 ~ "Pieza en Hotel/Pensión",
+             tipodevivienda == 5 ~ "Local no construido para Habitación",
+             .default = "No Encontrado")
+}
+```
+
+```{r}
+nombrar_tipodevivienda(1)
+```
+
+```{r}
+nombrar_tipodevivienda(2)
+```
+
+```{r}
+nombrar_tipodevivienda(3)
+```
+
+```{r}
+nombrar_tipodevivienda(4)
+```
+
+```{r}
+nombrar_tipodevivienda(5)
+```
+
+```{r}
+my_data |> 
+  mutate(tipodevivienda = nombrar_tipodevivienda(IV1)) |> 
+  select(tipodevivienda) |> 
+  head()
+```
+
+```{r}
+source("/cloud/project/R/nombrar-regiones.R")
+```
+
+```{r}
+my_data <- my_data |> 
+  mutate(Region = nombrar_regiones(REGION)) |> 
+  mutate(tipodevivienda = case_when(
+    IV1 == 1 ~ "Casa",
+    IV1 == 2 ~ "Departamento",
+    IV1 == 3 ~ "Pieza de Inquilinato",
+    IV1 == 4 ~ "Pieza en Hotel/Pensión",
+    IV1 == 5 ~ "Local no construido para Habitación",
+  ))
+table(my_data$tipodevivienda,my_data$Region)
+```
+
+```{r}
+my_data |> 
+  ggplot(aes(Region, fill=tipodevivienda))+
+  geom_bar()
+```
+
+```{r}
+my_data |> 
+  ggplot(aes(tipodevivienda, fill=tipodevivienda))+
+  geom_bar()
+```

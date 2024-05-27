@@ -1,0 +1,84 @@
+---
+title: "Tarea 6-5"
+format: html
+editor: visual
+---
+
+## Tarea 6-5
+
+Michelle Wilkinson
+
+2 regiones: Buenos Aires y Patagonia
+
+```{r}
+library(tidyverse)
+
+```
+
+```{r}
+here::here("data/usu_individual_T423.rds")
+```
+
+Cargar datos
+
+```{r}
+my_data <- readRDS("/cloud/project/data/usu_individual_T423.rds")
+```
+
+```{r}
+my_data<-my_data %>% select(REGION, P21)
+```
+
+```{r}
+my_data %>% 
+  group_by(REGION) %>% 
+  summarize(
+    Media= mean (P21)
+    )
+```
+
+Nombrar regiones
+
+```{r}
+BuenosAires <- my_data %>% filter (REGION == "1")
+Patagonia <- my_data %>%  filter (REGION == "44")
+```
+
+Test
+
+```{r}
+var.test(BuenosAires$P21, Patagonia$P21)
+```
+
+```{r}
+my_data %>% 
+  mutate(region=nombrar_regiones(REGION)) %>% 
+  mutate(ingreso = P21) %>%
+  filter(ingreso>0) %>%
+  group_by(region) %>%
+  filter(region != "Noroeste")%>% 
+  filter(region != "Cuyo") %>%
+  filter(region != "Pampeana") %>%
+  filter(region != "Noreste") %>%
+  summarize(
+    Media = mean(ingreso),
+    Mediana = median(ingreso),
+    Desviacion = sd(ingreso),
+    Desvio = mad(ingreso)
+  )
+```
+
+**Hipótesis**
+
+$H_0$: La región de Gran Buenos Aires tiene mayores ingresos que la región de la Patagonia.
+
+$H_1$: La región de la Patagonia tiene mayores Ingresos.
+
+**Cuadro:**
+
+```{r}
+  my_data %>% 
+    ggplot(aes(REGION,P21,color=REGION))+
+    geom_point()+
+    geom_smooth()
+```

@@ -1,0 +1,125 @@
+---
+title: "Ejercicio 8-4 clase Barragán"
+author: "Barragán"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+```
+
+```{r}
+temp_df <- my_data %>%    
+  select(REGION, ITF)
+```
+
+```{r}
+temp_df <- temp_df |> 
+  mutate(REGION2 = 
+           case_when(
+             REGION == 1 ~ "GBA",
+             REGION == 40 ~ "Noroeste",
+             REGION == 41 ~ "Noreste",
+             REGION == 42 ~ "Cuyo",
+             REGION == 43 ~ "Pampeana",
+             REGION == 44 ~ "Patagonia"))
+temp_df
+```
+
+```{r}
+temp_df |> 
+  group_by(REGION2) |> 
+  summarize(
+    ITF = mean(ITF), 
+    median(ITF)
+  ) |> 
+  ggplot(aes(x=REGION2,y=ITF, fill = REGION2))+
+    geom_col()
+```
+
+## **Tarea para el 15-4-24**
+
+Realizar un análisis de diferencias entre regiones argentinas (Las 6):
+
+-   Generar una tabla con los promedios (media y mediano) y medidas de disperción por region.
+
+-   Graficar ls curva de distribución del ingreso por cada región. (Ojo: hacelo en un solo plot).
+
+-   Interpretar los resultados
+
+-   Formular hipótesis
+
+```{r}
+temp_df <- temp_df |> 
+  mutate(REGION2 = 
+           case_when(
+             REGION == 1 ~ "AMBA",
+             REGION != 1 ~ "Interior",
+            .default = "No Encontrado"))
+temp_df
+```
+
+## 1.
+
+```{r}
+temp_df |> 
+  group_by(REGION2) |> 
+  summarize(
+    Media = mean(ITF),
+    Mediana = median(ITF)
+  )
+```
+
+```{r}
+temp_df |> 
+  group_by(REGION2) |> 
+  summarize(
+    ITF = mean(ITF)
+  ) |> 
+  ggplot(aes(x=REGION2,y=ITF))+
+    geom_col()
+```
+
+```{r}
+temp_df |> 
+  group_by(REGION2) |> 
+  summarize(
+    ITF = mean(ITF)
+  ) |> 
+  ggplot(aes(x=REGION2,y=ITF, fill = REGION2))+
+    geom_col()
+```
+
+```         
+```
+
+## 2.
+
+```{r}
+temp_df |> 
+  filter(ITF<1000000) |> 
+  ggplot(aes(ITF,fill=REGION2))+
+  geom_histogram(position = "dodge")
+```
+
+```{r}
+temp_df |> 
+  filter(ITF<1000000) |> 
+  ggplot(aes(ITF, fill = REGION2))+
+  geom_density(alpha=.5)
+```
+
+## 3.
+
+Segun la curva de distribución de ingresos de cada región, el monto de ingreso total familiar (ITF) es mayor en la Patagonia que en el resto de las regiones.
+
+## 4.
+
+H0: El nivel de ingresos en GBA es mayor que en el resto de las regiones.
+
+H1: La región de la Patagonia es la que mayor monto de ingreso total familiar posee en comparacion con las otras regiones.

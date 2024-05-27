@@ -1,0 +1,214 @@
+---
+title: "Notas clase 5"
+author: "Aleksander Dietrichson"
+format: html
+theme: darkly
+editor: visual
+---
+
+## Armar datos sintéticos
+
+Para el estudio sobre mate y café en el rio de la plata.
+
+```{r}
+library(tidyverse, quietly = TRUE)
+
+```
+
+```{r}
+# Simulamos datos del estudio
+# Son aleatorios así que no debería haber una tendencia
+my_data <- data.frame(
+  Pais = c(rep("Arg",50),rep("ROU",20)),
+  pref = sample(c("Cafe","Mate"), size = 70, replace = TRUE)
+  ) 
+```
+
+Para armar el contraejemplo voy a generar una asimetría en los datos:
+
+(Los estoy turchando).
+
+```{r}
+
+mas_datos <- data.frame(
+  Pais = "ROU",  #rep("ROU", 20)
+  pref = c(rep("Mate", 20))
+)
+mas_datos
+```
+
+Juntamos los dos conjuntos con `bind_rows`
+
+```{r}
+bind_rows(my_data, mas_datos)
+```
+
+```{r}
+
+my_data2 <- bind_rows(my_data, mas_datos)
+table(my_data2$Pais, my_data2$pref)
+
+```
+
+```{r}
+table(my_data2$Pais, my_data2$pref) |> 
+  chisq.test()
+```
+
+```{r}
+my_data3 <- bind_rows(my_data, mas_datos, mas_datos)
+```
+
+```{r}
+table(my_data3$Pais, my_data3$pref)
+```
+
+```{r}
+table(my_data3$Pais, my_data3$pref) |> 
+  chisq.test()
+```
+
+## Datos del Indec
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+my_data$MAS_500 |> head()
+```
+
+```{r}
+my_data$V19_A |> unique()
+```
+
+Hay que limpiar los datos
+
+```{r}
+my_data_clean <- my_data |> 
+  select(MAS_500,V19_A) |> 
+  filter(V19_A != 9)
+```
+
+En la anterior clase vimos la función `rename` , acá lo que estoy haciendo es generar una columna nueva.
+
+```{r}
+my_data_clean |> head()
+```
+
+```{r}
+my_data_clean <- my_data_clean |> 
+  mutate(trabajan_menores = case_when(
+    V19_A == "1" ~ "Si",
+    V19_A == "2" ~ "No"
+  ))
+
+my_data_clean <- my_data_clean |> 
+  mutate(ciudad_grande = case_when(
+    MAS_500 == "S" ~ "Si",
+    MAS_500 == "N" ~ "No"
+  ))
+  names(my_data_clean)
+```
+
+Ahora armamos tabla
+
+```{r}
+my_data_clean |> 
+  group_by(trabajan_menores,ciudad_grande) |> 
+  count()
+```
+
+```{r}
+table(my_data_clean$MAS_500,my_data_clean$V19_A)
+```
+
+```{r}
+table(my_data_clean$ciudad_grande, my_data_clean$trabajan_menores)
+```
+
+```{r}
+table(my_data_clean$ciudad_grande, my_data_clean$trabajan_menores) |> 
+  chisq.test()
+```
+
+## Ejemplo 2
+
+Con las variables
+
+-   MAS_500
+
+-   IV1
+
+MAS_500: más de 500 mil habitantes
+
+IV1: Tipo de vivienda
+
+Explorar y limpiar los datos.
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+my_data <- my_data |> 
+  select(MAS_500, IV1)
+
+my_data$MAS_500 |> unique()
+```
+
+Limpieza
+
+```{r}
+my_data$IV1 |> unique()
+
+my_data <- my_data |> 
+  filter(!is.na(IV1))
+my_data$IV1 |> unique()
+```
+
+Transformaciónes
+
+```{r}
+my_data <- my_data |> 
+  mutate(vivienda = case_when(
+    IV1 == 1 ~ "Casa",
+    IV1 > 1 ~ "Depto u otro"
+    
+  ))
+```
+
+```{r}
+table(my_data$vivienda, my_data$MAS_500)
+```
+
+```{r}
+my_data |> 
+  ggplot(aes(MAS_500, fill = vivienda))+
+  geom_bar()
+```
+
+### 
+
+Armamos hipótesis
+
+$H_0$ : El tipo de vivienda tiene la proporción entre casas y otros en las grades ciudades y otros lugares.
+
+$H_1$ : En las grandes ciudades hay mayor proporción de departamentos y otros.\
+
+```{r}
+table(my_data$vivienda, my_data$MAS_500) |> 
+  chisq.test()
+```
+
+Rechazamos la hipótesis nula y concluimos que la gente vive proporcinalmente más en departamentos en zonas urbanas.
+
+## Tarea
+
+Usando las variables
+
+*V5 y MAS_500*
+
+-   Limpiar los datos
+
+-   Poner etiquetas coherentes
+
+-   Realizar análisis exploratorio
+
+-   Forumular hipótesis
+
+-   Probar hipótesis con la prueba de chi-cuadrado `chisq.test`

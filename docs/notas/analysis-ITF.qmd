@@ -1,0 +1,126 @@
+---
+title: "Diferencias en el ITF entre el 2022 y el 2024"
+subtitle: "Un estudio de ejemplo"
+author: "Aleksander Dietrichson"
+lang: es
+format: html
+editor: visual
+bibliography: references.bib
+---
+
+## Introducción
+
+En presente trabajo es un ejemplo de publicar un análisis de datos basado en datos del INDEC [@indec].
+
+## Datos
+
+Los datos que hemos usado para este análisis provienen del indec. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2022 y 2023.
+
+## Preguntas de investigación
+
+El propósito de esta investigación es dar cuenta de diferencias en el *Ingreso Total Familar (ITF)* en el lapso de tiempo en cuestión.
+
+## Herramientas de análisis
+
+Usamos el lenguaje R @base con los paquetes de tidyverse. [@tidyverse]. Usamos el sistema Quarto (@Allaire_Quarto_2024) para su publicación
+
+## Procedimiento
+
+Cargamos los datos y los limpiamos eliminando archivos de código de identificación duplicado.
+
+```{r}
+#| include: false
+library(tidyverse)
+usu_hogar_T423 <- readRDS(here::here("data/usu_hogar_T423.rds"))
+usu_hogar_T422 <- readRDS(here::here("data/usu_hogar_T422.rds"))
+mis_CODUSU <- intersect(usu_hogar_T422$CODUSU,usu_hogar_T423$CODUSU) 
+usu_hogar_T422 <- usu_hogar_T422 |> 
+  filter(CODUSU %in% mis_CODUSU) |> 
+  arrange(CODUSU)
+usu_hogar_T423 <- usu_hogar_T423 |> 
+  filter(CODUSU %in% mis_CODUSU) |> 
+  arrange(CODUSU)
+usu_hogar_T422 <- usu_hogar_T422 |> filter(!duplicated(CODUSU))
+usu_hogar_T423 <- usu_hogar_T423 |> filter(!duplicated(CODUSU))
+```
+
+## Análisis descriptivo
+
+Como se aprecia en la @tbl-itf hay una importante diferencia en el ITF nominal entre los dos años.
+
+```{r}
+#| include: false
+my_data <- bind_rows(
+  usu_hogar_T422 |> mutate(Año = "2022"),
+  usu_hogar_T423 |> mutate(Año = "2023")
+)
+```
+
+```{r}
+#| label: tbl-itf
+#| tbl-cap: "Ingreso Total Familiar Media y Desvío para los años 22 y 23"
+#| echo: false
+my_data |> 
+  group_by(Año) |> 
+  summarize(Media = median(ITF),
+            Desvío = mad(ITF)) |> 
+  knitr::kable()
+```
+
+La misma diferencia se aprecia en la @fig-itf
+
+```{r}
+#| echo: false
+#| label: fig-itf
+#| fig-cap: "ITF en el 2022 y 2023"
+
+my_data |> 
+  group_by(Año) |> 
+  summarize(Media = median(ITF)) |> 
+  ggplot(aes(Año, Media, fill = Año, group = 1))+
+  geom_col(width = .66)+
+    geom_point(stat="identity", size = 3, color = "gray")+
+  geom_line(lwd = 1, color = "gray")+
+  theme_bw()+
+  theme(legend.position = "none")
+```
+
+## Análisis inferencial
+
+```{r}
+#| include: false
+my_test <- t.test(usu_hogar_T423$ITF, usu_hogar_T422$ITF, paired = TRUE)
+```
+
+Usamos el test de t de Student para @Shier2004 los resultados se ven en la @tbl-test-de-t.
+
+```{r}
+#| label: tbl-test-de-t
+#| echo: false
+#| tbl-cap: "Resultado del test de T"
+my_test |> 
+  broom::tidy() |> 
+  knitr::kable()
+```
+
+```{r}
+#| include: false
+#options(scipen=999)
+```
+
+El valor de t es `r my_test$statistic`, el valor p\<.00001, con un estimado de $`r my_test$estimate \|\> round() \|\> format(big.mark = ",")\` de diferencia entre los años de análisis. Dados estos valores rechazamos la hipótesis nula de falta de diferencia entre los dos años y nos quedamos con la hipótesis alternativa de que el ITF es superior en el 2023.
+
+## Limitaciones
+
+La principal limitación de este estudio es que informan diferencias con valores absolutos y nominales, sin tomar en cuenta la inflación que obró entre 2022 y 2023. Por ello es imposible saber si hubo deterioro o mejora en el ITF entre los dos puntos de análisis.
+
+## Recomendaciones (tarea)
+
+Volver a realizar este estudio con los mismos datos pero
+
+1.  Tomando en cuenta la tasa de inflación para así comparar valores reales absolutos (no nominales)
+2.  Tomando en cuenta los valores relativos (es decir porcentajes).
+
+## Conclusión
+
+Este estudio puede resultar un buen punto de partida para estudios posteriores usando los mismos o similares datos para investigar la evolución del *ingreso total familiar* (ITF).
