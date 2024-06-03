@@ -60,7 +60,7 @@ temp_df |>
 ```
 
 ```{r}
-temp_df |> 
+temp_df <- temp_df |> 
   mutate (Ingreso = "ITF")
 ```
 
@@ -115,7 +115,7 @@ temp_df |>
 
 ## Analisis descriptivo e inferencial
 
-**Regiones**
+### Regiones
 
 ```{r}
 my_data <- my_data |> 
@@ -165,7 +165,7 @@ my_data |>
   )
 ```
 
-**Sexo**
+### **Sexo**
 
 ```{r}
 my_data <- my_data |> 
@@ -196,6 +196,8 @@ head(table(my_data$ITF, my_data$Sexo), 10)
 
 ```{r}
 ##Consultar
+
+my_data <- my_data |> filter(ITF<10000000,ITF>0)
 hist(my_data$ITF)
 ```
 
@@ -281,8 +283,8 @@ my_data |>
 temp_df <- temp_df |> 
   mutate(REGION2 = 
            case_when(
-             REGION == 1 ~ "AMBA",
-             REGION != 1 ~ "Interior",
+             REGION == "Gran Buenos Aires" ~ "AMBA",
+             REGION != "Gran Buenos Aires" ~ "Interior",
             .default = "No Encontrado"))
 
 temp_df <- temp_df |> 
@@ -301,19 +303,36 @@ temp_df  |>
       summarize(
         Mediana = median(ITF)
       ) |> 
-      ggplot(aes(NIVEL_ED2,Mediana,color=REGION2))+
-      geom_line()
+  ggplot(aes(NIVEL_ED2,Mediana, color = REGION2))+
+  geom_line()
 ```
+
+
+```{r}
+source(here::here("R/variables-nivel-educativo.R"))
+temp_df |> 
+  mutate(Nivel_Educativo = nivel_educativo(NIVEL_ED)) |> 
+  group_by(Nivel_Educativo,REGION2) |> 
+  summarize(
+    Mediana = median(ITF)
+  ) |> 
+  ungroup() |> 
+  ggplot(aes(Nivel_Educativo,Mediana,fill = REGION2))+
+  geom_col(position = "dodge")+
+  coord_flip()
+```
+
+
 
 ```{r}
 ##6
 my_data |> 
   filter(Ingreso>10000) |> 
-  group_by(Nivel_Educativo, REGION) |>
+  group_by(NIVEL_ED, REGION) |>
   summarize(
     Mediana = median(Ingreso)
   ) |> 
-  ggplot(aes(Nivel_Educativo,Mediana,color=REGION))+
+  ggplot(aes(NIVEL_ED,Mediana,color=REGION))+
   geom_line()
 ```
 
