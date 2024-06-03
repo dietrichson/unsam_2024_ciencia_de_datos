@@ -1,4 +1,10 @@
 ---
 author: "Aleksander Dietrichson"
+bibliography: references.bib
 ---
+
 # Introducción
+
+Este volumen corresponde a Los muy brillantes estudiantes y coautores trabajamos con el lenguaje de programación R [@r-base] en particular usamos el dialecto [@tidyverse] para los análisis y creación de diagramas y gráficos.
+
+Los datos utilizados para los análisis provienen de la encuesta permanente de hogares @indec correspondientes a los años 2022 y 2023.
