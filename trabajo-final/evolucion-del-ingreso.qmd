@@ -1,16 +1,21 @@
 ---
 author: "Evelina Fraidenraich"
+bibliography: references.bib
 ---
 
 # Evolución del ingreso
 
 ## Introducción
 
-En este capítulo, se presenta un análisis cuantitativo de la evolución del ingreso en Argentina durante el período comprendido entre los años 2022 y 2023, utilizando datos del Instituto Nacional de Estadística y Censos (INDEC). Este estudio tiene como objetivo proporcionar una visión detallada de las variaciones en los ingresos de los hogares y de los individuos a lo largo del tiempo, identificando tendencias y posibles factores que han influido en estos cambios.
+En este capítulo, se presenta un análisis cuantitativo de la evolución del ingreso en Argentina durante el período comprendido entre los años 2022 y 2023, utilizando datos del Instituto Nacional de Estadística y Censos @indec. Este estudio tiene como objetivo proporcionar una visión detallada de las variaciones en los ingresos de los hogares y de los individuos a lo largo del tiempo, identificando tendencias y posibles factores que han influido en estos cambios.
 
 El ingreso es un indicador clave del bienestar económico y social, y su análisis permite evaluar el impacto de diversas políticas económicas y sociales implementadas en el país. A través de la recopilación y el análisis de datos del INDEC, se busca ofrecer una comprensión profunda de cómo han variado los ingresos en distintos sectores de la población, teniendo en cuenta variables como la inflación y el empleo.
 
 A lo largo de este capítulo, se utilizarán diversos métodos estadísticos para descomponer y analizar los datos, permitiendo una interpretación precisa de la evolución del ingreso.
+
+## Herramientas de análisis
+
+Para la realización del presente análisis se utilizó el lenguaje de programación R @base con los paquetes de tidyverse @tidyverse. Asimismo, se utilizó el sistema Quarto @Allaire_Quarto_2024.
 
 ## Procedimiento
 
@@ -30,13 +35,78 @@ my_data_hogarVivienda <- inner_join(
 ```
 
 ```{r}
+mis_CODUSU <- intersect(usu_hogar_T422$CODUSU,usu_hogar_T423$CODUSU) 
 intersect(usu_hogar_T422$CODUSU, usu_hogar_T423$CODUSU) |> length()
 usu_hogar_T422 <- usu_hogar_T422 |> 
-  filter(CODUSU %in% mis_CODUSU) |> 
+  filter(CODUSU %in% CODUSU) |> 
   arrange(CODUSU)
 usu_hogar_T423 <- usu_hogar_T423 |> 
-  filter(CODUSU %in% mis_CODUSU) |> 
+  filter(CODUSU %in% CODUSU) |> 
   arrange(CODUSU)
 usu_hogar_T422 <- usu_hogar_T422 |> filter(!duplicated(CODUSU))
 usu_hogar_T423 <- usu_hogar_T423 |> filter(!duplicated(CODUSU))
 ```
+
+## Análisis descriptivo
+
+En la @tbl-itf, existe una diferencia de \$61.286 entre el ITF de 2022 (calculado en base a la inflación de 2023 \[[agregar cita](https://www.indec.gob.ar/uploads/informesdeprensa/ipc_01_24DBD5D8158C.pdf)\]) y el ITF de 2023. Esta diferencia también se observa en la @fig-itf
+
+```{r}
+#| include: false
+my_data <- bind_rows(
+  usu_hogar_T422 |> mutate(Año = "2022 (con inflación agregada)") %>% 
+    mutate (ITF = ITF*3.114),
+  usu_hogar_T423 |> mutate(Año = "2023")
+)
+```
+
+```{r}
+#| label: tbl-itf
+#| tbl-cap: "Ingreso Total Familiar Media y Desvío para los años 22 y 23"
+#| echo: false
+my_data |> 
+  group_by(Año) |> 
+  summarize(Media = median(ITF)) |> 
+  knitr::kable()
+```
+
+```{r}
+#| echo: false
+#| label: fig-itf
+#| fig-cap: "ITF en el 2022 y 2023"
+
+my_data |> 
+  group_by(Año) |> 
+  summarize(Media = median(ITF)) |> 
+  ggplot(aes(Año, Media, fill = Año))+
+  geom_col()+
+  theme_bw()
+
+```
+
+## Análisis inferencial
+
+```{r}
+#| include: false
+my_test <- t.test(usu_hogar_T423$ITF, usu_hogar_T422$ITF*3.114)
+```
+
+Usamos el test de t de Student para @Shier2004 los resultados se ven en la @tbl-test-de-t.
+
+```{r}
+#| label: tbl-test-de-t
+#| echo: false
+#| tbl-cap: "Resultado del test de T"
+my_test |> 
+  broom::tidy() |> 
+  knitr::kable()
+```
+
+```{r}
+#| include: false
+options(scipen=999)
+```
+
+El valor de t es `r my_test$statistic`, el valor p es `r my_test$p.value` , con un estimado de `r my_test$estimate` (\<.00001) de diferencia entre los años de análisis. Dado estos valores, rechazamos la hipótesis nula de ausencia de diferencia entre los dos años y aceptamos la hipótesis alternativa de que el ITF no fue superior en 2023, siendo este \$61.286 más bajo que el ITF de 2022 ajustado por inflación.
+
+En términos absolutos, los valores efectivamente han aumentado. Sin emabrgo, a partir de un análisis relativo de los datos hecho por ajustes por inflación, es posible
