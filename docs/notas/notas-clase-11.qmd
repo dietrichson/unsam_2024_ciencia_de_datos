@@ -39,6 +39,7 @@ Hay dos maneras de hacerlo:
 
 ```{r}
 # Se  suele poner UID = Universal IDentifier.
+my_data <- usu_individual_T422
 UID <- paste0(my_data$CODUSU,my_data$NRO_HOGAR, my_data$COMPONENTE)
 ```
 
