@@ -1,0 +1,39 @@
+---
+title: "Notas de la clase 12"
+format: html
+editor: visual
+---
+
+## Nombrar variables
+
+## Ch04
+
+```{r}
+my_data <- readRDS(here::here("data/usu_individual_T422.rds"))
+source(here::here("R/nombrar-ch04.R"))
+```
+
+```{r}
+my_data$sexo <-nombrar_ch04( my_data$CH04)
+```
+
+```{r}
+my_data$sexo |> 
+  head(10)
+
+```
+
+Estilo *tidyverse*
+
+```{r}
+my_data <- my_data |> 
+  mutate(sexo  = nombrar_ch04(CH04))
+  
+  
+  
+```
+
+```{r}
+my_data$sexo |> 
+  head(10)
+```
