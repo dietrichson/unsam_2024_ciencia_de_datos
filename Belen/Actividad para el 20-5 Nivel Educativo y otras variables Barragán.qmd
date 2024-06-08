@@ -60,7 +60,7 @@ temp_df |>
 ```
 
 ```{r}
-temp_df |> 
+temp_df <- temp_df |> 
   mutate (Ingreso = "ITF")
 ```
 
@@ -87,7 +87,7 @@ temp_df |>
 ```
 
 ```{r}
-temp_df |> 
+temp_df <- temp_df |> 
   mutate (Sexo = "CH04")
 ```
 
@@ -115,7 +115,7 @@ temp_df |>
 
 ## Analisis descriptivo e inferencial
 
-**Regiones**
+### Regiones
 
 ```{r}
 my_data <- my_data |> 
@@ -165,7 +165,7 @@ my_data |>
   )
 ```
 
-**Sexo**
+### Sexo
 
 ```{r}
 my_data <- my_data |> 
@@ -204,7 +204,7 @@ hist(my_data$ITF)
 ##Consultar porque no  esta la funcion
 source(here::here("R/nombrar-ch04.R"))
 my_data |> 
-  mutate(Sexo = nombrar_ch04(CH04)) |> 
+  mutate(Sexo = nombrar-ch04(CH04)) |> 
   filter(Ingreso > 0) |> 
   group_by(Sexo) |> 
   summarize(
@@ -215,7 +215,7 @@ my_data |>
   )
 ```
 
-**Aglomeración**
+### Aglomeración
 
 ```{r}
 my_data <- my_data |> 
@@ -267,7 +267,7 @@ my_data |>
 
 ## Gráficos
 
-**Región**
+### Región
 
 ```{r}
     my_data <- my_data |> 
@@ -296,7 +296,7 @@ temp_df <- temp_df |>
 
 ```{r}
 ##Consultar
-temp_df  |> 
+temp_df <- temp_df |> 
       group_by(NIVEL_ED2, REGION2) |>
       summarize(
         Mediana = median(ITF)
@@ -325,7 +325,7 @@ my_data |>
   )
 ```
 
-**Sexo**
+### Sexo
 
 ```{r}
 my_data |> 
@@ -349,7 +349,7 @@ my_data |>
   )
 ```
 
-**Aglomerados**
+### Aglomerados
 
 ```{r}
 my_data |> 
