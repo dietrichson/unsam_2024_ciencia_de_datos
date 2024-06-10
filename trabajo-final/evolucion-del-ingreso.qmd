@@ -77,7 +77,7 @@ usu_hogar_T423 <- usu_hogar_T423 |> filter(!duplicated(CODUSU))
 
 ## Análisis descriptivo
 
-En la @tbl-itf, existe una diferencia de \$61.286 entre el ITF de 2022 (calculado en base a la inflación de 2023 \[[agregar cita](https://www.indec.gob.ar/uploads/informesdeprensa/ipc_01_24DBD5D8158C.pdf)\]) y el ITF de 2023. Esta diferencia también se observa en la @fig-itf
+En la @tbl-itf, existe una diferencia de \$61.286 entre el ITF de 2022 (calculado en base a la inflación de 2023 @indec2024) y el ITF de 2023. Esta diferencia también se observa en la @fig-itf
 
 ```{r}
 #| include: false
