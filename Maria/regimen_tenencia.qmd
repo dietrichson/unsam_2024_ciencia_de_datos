@@ -4,38 +4,112 @@ format: html
 editor: visual
 ---
 
-## 
+## Vivienda y regiones - régimen de tenencia.
+
+## **Introducción**
+
+En el presente capítulo se llevará a cabo un análisis cuantitativo referido al régimen de tenencia de vivienda según cada región de Argentina. Para tal propósito, se utilizarán datos del Instituto Nacional de Estadística y Censos (INDEC) (Censos y estadísticas 2023).
+
+## **Datos**
+
+Los datos que hemos usado para este análisis provienen del INDEC. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2023.
+
+## **Preguntas de investigación**
+
+-   ¿En qué medida varía el régimen de tenencia de vivienda según la región geográfica en Argentina?
+
+-   ¿Cómo influye el sexo en el régimen de tenencia de vivienda?
+
+-   ¿El régimen de tenencia de vivienda es homogéneo en todas las provincias y/o regiones?
+
+-   ¿Existen diferencias significativas en el régimen de tenencia de vivienda entre ciudades grandes (más de 500.000 habitantes) y ciudades pequeñas?
+
+## **Variables a analizar**
+
+-   Régimen de tenencia (II7)
+
+-   Sexo (CH04)
+
+-   Regiones (REGION)
+
+-   Ciudades grandes y cuidades chicas(MAS_500)
+
+## **Herramientas de análisis**
+
+Usamos el lenguaje R ([2024](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-base)) con los paquetes de tidyverse. ([Wickham et al. 2019](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-tidyverse)). Usamos el sistema Quarto (Allaire et al. ([2024](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-Allaire_Quarto_2024))) para su publicación.
 
 ```{r}
 my_data <- readRDS("/cloud/project/data/datos_indec.rds")
 ```
 
+## Funciones
+
 ```{r}
-my_data$II7
-temp_df <- my_data |> 
-  select(II7, REGION)
-temp_df <- temp_df |> 
-  mutate(regimen_tenencia =
-           case_when(
-             II7 == 1 ~ "Propietario de la vivienda",
-             II7 == 2 ~ "Propietario de la vivienda",
-             II7 == 3 ~ "Inquilino / arrendatario",
-             II7 == 4 ~ "Ocupante",
-             II7 == 5 ~ "Ocupante",
-             II7 == 6 ~ "Ocupante",
-             II7 == 7 ~ "Ocupante",
-             II7 == 8 ~ "Está en sucesión",
-            .default = "No Encontrado"))
-source(here::here("R/nombrar-regiones.R"))
-  temp_df
+temp_df <- my_data |>
+  select(II7, REGION) |>
+  mutate(
+    regimen_tenencia = case_when(
+      II7 == 1 ~ "Propietario de la vivienda",
+      II7 == 2 ~ "Propietario de la vivienda",
+      II7 == 3 ~ "Inquilino / arrendatario",
+      II7 == 4 ~ "Ocupante",
+      II7 == 5 ~ "Ocupante",
+      II7 == 6 ~ "Ocupante",
+      II7 == 7 ~ "Ocupante",
+      II7 == 8 ~ "Está en sucesión",
+      TRUE ~ "No Encontrado"
+    ),
+    REGION = case_when(
+      REGION == 1 ~ "Gran Buenos Aires",
+      REGION == 40 ~ "Noroeste",
+      REGION == 41 ~ "Noreste",
+      REGION == 42 ~ "Cuyo",
+      REGION == 43 ~ "Pampeana",
+      REGION == 44 ~ "Patagonia",
+      TRUE ~ "No Encontrado"
+    )
+  ) |>
+  select(REGION, regimen_tenencia)
+
+temp_df
+
+
+```
+
+## Gráficos ggplot
+
+```{r}
+install.packages("ggplot2")
+library(ggplot2)
 ```
 
 ```{r}
-temp_df <- temp_df |> 
-  mutate(II7 = case_when(
-             II7 == c(1, 2) ~ "Propietario de la vivienda",
-             II7 == 3 ~ "Inquilino / arrendatario",
-             II7 == c(4, 5, 6, 7) ~ "Ocupante sin propiedad",
-             II7 == 8 ~ "Está en sucesión"))
+ggplot(temp_df, aes(x = REGION, fill = regimen_tenencia)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Regimen de Tenencia por Región",
+       x = "Región",
+       y = "Count",
+       fill = "Regimen de Tenencia") +
+  theme_minimal()
+```
+
+```{r}
+ggplot(temp_df, aes(x = REGION, fill = regimen_tenencia)) +
+  geom_bar(position = "dodge", color = "black") +
+  labs(title = "Régimen de Tenencia de Vivienda por Región",
+       x = "Región",
+       y = "Count",
+       fill = "Régimen de Tenencia") +
+  theme_minimal()
+```
+
+```{r}
+nombrar_ch04 <- function(x){
+  case_when(
+    x == "1" ~ "Varon", # respetando la norme del indec.
+    x == "2" ~ "Mujer",
+    .default = "desconocido"
+  )
+}
 temp_df
 ```
