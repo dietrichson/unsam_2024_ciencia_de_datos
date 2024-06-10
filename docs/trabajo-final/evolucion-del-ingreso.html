@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -194,7 +160,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./como-vivimos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">como-vivimos.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cómo vivimos - régimen de tenencia.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -302,35 +268,27 @@ div.csl-indent {
 </section>
 <section id="procedimiento" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="procedimiento"><span class="header-section-number">4.3</span> Procedimiento</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>my_data_hogarVivienda <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  usu_hogar_T422 <span class="sc">|&gt;</span> <span class="fu">select</span>(CODUSU, ITF),</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  usu_hogar_T423 <span class="sc">|&gt;</span> <span class="fu">select</span>(CODUSU, ITF),</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"CODUSU"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in inner_join(select(usu_hogar_T422, CODUSU, ITF), select(usu_hogar_T423, : Detected an unexpected many-to-many relationship between `x` and `y`.
-ℹ Row 290 of `x` matches multiple rows in `y`.
-ℹ Row 5424 of `y` matches multiple rows in `x`.
-ℹ If a many-to-many relationship is expected, set `relationship =
-  "many-to-many"` to silence this warning.</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mis_CODUSU <span class="ot">&lt;-</span> <span class="fu">intersect</span>(usu_hogar_T422<span class="sc">$</span>CODUSU,usu_hogar_T423<span class="sc">$</span>CODUSU) </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(usu_hogar_T422<span class="sc">$</span>CODUSU, usu_hogar_T423<span class="sc">$</span>CODUSU) <span class="sc">|&gt;</span> <span class="fu">length</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 6999</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>usu_hogar_T422 <span class="ot">&lt;-</span> usu_hogar_T422 <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CODUSU <span class="sc">%in%</span> CODUSU) <span class="sc">|&gt;</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(CODUSU)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>usu_hogar_T423 <span class="ot">&lt;-</span> usu_hogar_T423 <span class="sc">|&gt;</span> </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CODUSU <span class="sc">%in%</span> CODUSU) <span class="sc">|&gt;</span> </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(CODUSU)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>usu_hogar_T422 <span class="ot">&lt;-</span> usu_hogar_T422 <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(CODUSU))</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>usu_hogar_T423 <span class="ot">&lt;-</span> usu_hogar_T423 <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(CODUSU))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>El procedimiento para analizar la evolución del ingreso en Argentina durante el período 2022-2023 se describe a continuación:</p>
+<ol type="1">
+<li><p><strong>Carga de Datos:</strong></p>
+<ul>
+<li><p>Se cargaron los conjuntos de datos correspondientes a los hogares de los trimestres 4 de 2022 y 2023. Estos datos fueron obtenidos del Instituto Nacional de Estadística y Censos (INDEC).</p></li>
+<li><p>Utilizando el lenguaje de programación R y los paquetes del ecosistema tidyverse, los archivos <code>usu_hogar_T423.rds</code> (2023) y <code>usu_hogar_T422.rds</code> (2022) fueron leídos y almacenados en las variables <code>usu_hogar_T423</code> y <code>usu_hogar_T422</code> respectivamente.</p></li>
+</ul></li>
+<li><p><strong>Preparación de Datos:</strong></p>
+<ul>
+<li><p>Se realizó una unión interna (<code>inner_join</code>) entre los datos de 2022 y 2023 basada en el identificador común de usuario (<code>CODUSU</code>). Esto permite crear un subconjunto de datos donde se tienen observaciones de ingresos para los mismos hogares en ambos años.</p></li>
+<li><p>Este paso asegura que solo se analicen los ingresos de los hogares que tienen datos disponibles tanto para 2022 como para 2023.</p></li>
+</ul></li>
+<li><p><strong>Filtrado y Organización:</strong></p>
+<ul>
+<li><p>Se identificaron y seleccionaron los códigos de usuario (<code>CODUSU</code>) que están presentes en ambos conjuntos de datos mediante la función <code>intersect</code>.</p></li>
+<li><p>Los datos de ambos años se filtraron para incluir solo estos códigos de usuario comunes.</p></li>
+<li><p>Se ordenaron los datos por <code>CODUSU</code> para asegurar una alineación correcta de los registros entre los años.</p></li>
+<li><p>Se eliminaron los registros duplicados de <code>CODUSU</code> en ambos conjuntos de datos para evitar cualquier redundancia que pudiera afectar el análisis.</p>
+<p>Este procedimiento asegura que el análisis se realice sobre datos comparables y homogéneos, permitiendo una evaluación precisa de las variaciones en los ingresos de los hogares entre 2022 y 2023. Con estos datos preparados, se pueden aplicar métodos estadísticos para interpretar las diferencias en los ingresos, considerando factores como la inflación y el empleo, proporcionando una comprensión profunda de la evolución del bienestar económico y social en Argentina durante este período.</p></li>
+</ul></li>
+</ol>
 </section>
 <section id="análisis-descriptivo" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="análisis-descriptivo"><span class="header-section-number">4.4</span> Análisis descriptivo</h2>
@@ -383,7 +341,7 @@ Figura&nbsp;4.1: ITF en el 2022 y 2023
 </section>
 <section id="análisis-inferencial" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="análisis-inferencial"><span class="header-section-number">4.5</span> Análisis inferencial</h2>
-<p>Usamos el test de t de Student para <span class="citation" data-cites="Shier2004">Shier (<a href="references.html#ref-Shier2004" role="doc-biblioref">2004</a>)</span> los resultados se ven en la <a href="#tbl-test-de-t" class="quarto-xref">Tabla&nbsp;<span>4.2</span></a>.</p>
+<p>Se utilizó el test de t de Student <span class="citation" data-cites="student1908">Student (<a href="references.html#ref-student1908" role="doc-biblioref">1908</a>)</span> ; los resultados se visualizan en la <a href="#tbl-test-de-t" class="quarto-xref">Tabla&nbsp;<span>4.2</span></a>.</p>
 <div class="cell">
 <div id="tbl-test-de-t" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -440,7 +398,7 @@ Tabla&nbsp;4.2: Resultado del test de T
 </div>
 </div>
 <p>El valor de t es -7.0615652, el valor p es 0 , con un estimado de 316620.463879, 369541.0163225 (&lt;.00001) de diferencia entre los años de análisis. Dado estos valores, rechazamos la hipótesis nula de ausencia de diferencia entre los dos años y aceptamos la hipótesis alternativa de que el ITF no fue superior en 2023, siendo este $61.286 más bajo que el ITF de 2022 ajustado por inflación.</p>
-<p>En términos absolutos, los valores efectivamente han aumentado. Sin emabrgo, a partir de un análisis relativo de los datos hecho por ajustes por inflación, es posible</p>
+<p>En términos absolutos, los valores efectivamente han aumentado. Sin emabrgo, a partir de un análisis relativo de los datos hecho por ajustes por inflación, es posible observar que el ITF de 2023 es menor en comparación con el ITF de 2022. Esta disminución refleja que, a pesar del incremento nominal, el poder adquisitivo ajustado por inflación ha disminuido, lo que indica una pérdida de valor real en el ITF de 2023.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -453,8 +411,8 @@ Instituto Nacional de Censos y estadísticas. 2024a. <span>«Encuesta permanente
 <div id="ref-base" class="csl-entry" role="listitem">
 R Core Team. 2024b. <span>«R: A Language and Environment for Statistical Computing»</span>. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
 </div>
-<div id="ref-Shier2004" class="csl-entry" role="listitem">
-Shier, Rosie. 2004. <span>«Paired t-tests»</span>. <a href="http://www.statstutor.ac.uk/resources/uploaded/paired-t-test.pdf">http://www.statstutor.ac.uk/resources/uploaded/paired-t-test.pdf</a>.
+<div id="ref-student1908" class="csl-entry" role="listitem">
+Student. 1908. <span>«The probable error of a mean»</span>. <em>Biometrika</em> 6 (1): 1-25.
 </div>
 <div id="ref-tidyverse" class="csl-entry" role="listitem">
 Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et&nbsp;al. 2019. <span>«Welcome to the <span></span>tidyverse<span></span>»</span> 4: 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
@@ -857,8 +815,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./como-vivimos.html" class="pagination-link" aria-label="como-vivimos.html">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">como-vivimos.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./como-vivimos.html" class="pagination-link" aria-label="Cómo vivimos - régimen de tenencia.">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cómo vivimos - régimen de tenencia.</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

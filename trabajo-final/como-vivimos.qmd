@@ -2,25 +2,25 @@
 author: "María Cecilia Acha"
 ---
 
-## Cómo vivimos - régimen de tenencia.
+# Cómo vivimos - régimen de tenencia.
 
-**Introducción**
+## Introducción
 
 En el presente capítulo se llevará a cabo un análisis cuantitativo referido al régimen de tenencia de vivienda según cada región de Argentina. Para tal propósito, se utilizarán datos del Instituto Nacional de Estadística y Censos (INDEC) (Censos y estadísticas 2023).
 
-**Datos**
+## Datos
 
 Los datos que hemos usado para este análisis provienen del INDEC. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2023.
 
-**Preguntas de investigación**
+## Preguntas de investigación
 
-¿En qué medida varía el régimen de tenencia de vivienda según la región geográfica en Argentina?
+1.  ¿En qué medida varía el régimen de tenencia de vivienda según la región geográfica en Argentina?
 
-¿Cómo influye el sexo en el régimen de tenencia de vivienda?
+2.  ¿Cómo influye el sexo en el régimen de tenencia de vivienda?
 
-¿El régimen de tenencia de vivienda es homogéneo en todas las provincias y/o regiones?
+3.  ¿El régimen de tenencia de vivienda es homogéneo en todas las provincias y/o regiones?
 
-**Variables a analizar**
+## Variables a analizar
 
 Régimen de tenencia (II7)
 
@@ -28,18 +28,20 @@ Sexo (CH04)
 
 Regiones (REGION)
 
-**Herramientas de análisis**
+## Herramientas de análisis
 
 Usamos el lenguaje R (2024) con los paquetes de tidyverse. (Wickham et al. 2019). Usamos el sistema Quarto (Allaire et al. (2024)) para su publicación.
 
 ```{r}
-{r}
-my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+#| include: false
+my_data <- readRDS("/cloud/project/data/datos_indec.rds") # Usar here::here
 ```
 
-**Funciones**
+## Funciones
 
 ```{r}
+library(dplyr) # también podés hacer library(tidyverse)
+# Es preferible cargar todas las librerías al principio del documento.
 temp_df <- my_data |>
   select(II7, REGION) |>
   mutate(
@@ -71,17 +73,21 @@ temp_df
 
 ```
 
-**Gráficos ggplot**
+## Gráficos ggplot
 
 ```{r}
-install.packages("ggplot2")
+#| include: false
+install.packages("ggplot2") # No debería ser necesario instalarlo
 library(ggplot2)
 ```
 
 ```{r}
+#| label: fig-regimen-por-region-uno
+#| echo: false
+#| fig-cap: "Regimen de Tenencia por Región"
 ggplot(temp_df, aes(x = REGION, fill = regimen_tenencia)) +
   geom_bar(position = "dodge") +
-  labs(title = "Regimen de Tenencia por Región",
+  labs(
        x = "Región",
        y = "Count",
        fill = "Regimen de Tenencia") +
@@ -89,6 +95,10 @@ ggplot(temp_df, aes(x = REGION, fill = regimen_tenencia)) +
 ```
 
 ```{r}
+#| label: fig-regimen-de-tenencia-region-dos
+#| echo: false
+#| fig-cap: "Régimen de Tenencia de Vivienda por Región"
+#| 
 ggplot(temp_df, aes(x = REGION, fill = regimen_tenencia)) +
   geom_bar(position = "dodge", color = "black") +
   labs(title = "Régimen de Tenencia de Vivienda por Región",
@@ -107,3 +117,5 @@ nombrar_ch04 <- function(x){
   )
 }
 ```
+
+Como observamos en la @fig-regimen-de-tenencia-region-dos hay una marcada diferencia ....
