@@ -1,43 +1,48 @@
 ---
-author: "María Cecilia Acha"
+title: "II7-regimen-tenencia"
+format: html
+editor: visual
 ---
 
-## Cómo vivimos - régimen de tenencia.
+## Vivienda y regiones - régimen de tenencia.
 
-**Introducción**
+## **Introducción**
 
 En el presente capítulo se llevará a cabo un análisis cuantitativo referido al régimen de tenencia de vivienda según cada región de Argentina. Para tal propósito, se utilizarán datos del Instituto Nacional de Estadística y Censos (INDEC) (Censos y estadísticas 2023).
 
-**Datos**
+## **Datos**
 
 Los datos que hemos usado para este análisis provienen del INDEC. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2023.
 
-**Preguntas de investigación**
+## **Preguntas de investigación**
 
-¿En qué medida varía el régimen de tenencia de vivienda según la región geográfica en Argentina?
+-   ¿En qué medida varía el régimen de tenencia de vivienda según la región geográfica en Argentina?
 
-¿Cómo influye el sexo en el régimen de tenencia de vivienda?
+-   ¿Cómo influye el sexo en el régimen de tenencia de vivienda?
 
-¿El régimen de tenencia de vivienda es homogéneo en todas las provincias y/o regiones?
+-   ¿El régimen de tenencia de vivienda es homogéneo en todas las provincias y/o regiones?
 
-**Variables a analizar**
+-   ¿Existen diferencias significativas en el régimen de tenencia de vivienda entre ciudades grandes (más de 500.000 habitantes) y ciudades pequeñas?
 
-Régimen de tenencia (II7)
+## **Variables a analizar**
 
-Sexo (CH04)
+-   Régimen de tenencia (II7)
 
-Regiones (REGION)
+-   Sexo (CH04)
 
-**Herramientas de análisis**
+-   Regiones (REGION)
 
-Usamos el lenguaje R (2024) con los paquetes de tidyverse. (Wickham et al. 2019). Usamos el sistema Quarto (Allaire et al. (2024)) para su publicación.
+-   Ciudades grandes y cuidades chicas(MAS_500)
+
+## **Herramientas de análisis**
+
+Usamos el lenguaje R ([2024](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-base)) con los paquetes de tidyverse. ([Wickham et al. 2019](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-tidyverse)). Usamos el sistema Quarto (Allaire et al. ([2024](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-Allaire_Quarto_2024))) para su publicación.
 
 ```{r}
-{r}
 my_data <- readRDS("/cloud/project/data/datos_indec.rds")
 ```
 
-**Funciones**
+## Funciones
 
 ```{r}
 temp_df <- my_data |>
@@ -71,7 +76,7 @@ temp_df
 
 ```
 
-**Gráficos ggplot**
+## Gráficos ggplot
 
 ```{r}
 install.packages("ggplot2")
@@ -106,4 +111,5 @@ nombrar_ch04 <- function(x){
     .default = "desconocido"
   )
 }
+temp_df
 ```
