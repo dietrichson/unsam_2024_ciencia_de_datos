@@ -1,0 +1,41 @@
+---
+title: "II7-regimen-tenencia"
+format: html
+editor: visual
+---
+
+## 
+
+```{r}
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+```
+
+```{r}
+my_data$II7
+temp_df <- my_data |> 
+  select(II7, REGION)
+temp_df <- temp_df |> 
+  mutate(regimen_tenencia =
+           case_when(
+             II7 == 1 ~ "Propietario de la vivienda",
+             II7 == 2 ~ "Propietario de la vivienda",
+             II7 == 3 ~ "Inquilino / arrendatario",
+             II7 == 4 ~ "Ocupante",
+             II7 == 5 ~ "Ocupante",
+             II7 == 6 ~ "Ocupante",
+             II7 == 7 ~ "Ocupante",
+             II7 == 8 ~ "Está en sucesión",
+            .default = "No Encontrado"))
+source(here::here("R/nombrar-regiones.R"))
+  temp_df
+```
+
+```{r}
+temp_df <- temp_df |> 
+  mutate(II7 = case_when(
+             II7 == c(1, 2) ~ "Propietario de la vivienda",
+             II7 == 3 ~ "Inquilino / arrendatario",
+             II7 == c(4, 5, 6, 7) ~ "Ocupante sin propiedad",
+             II7 == 8 ~ "Está en sucesión"))
+temp_df
+```
