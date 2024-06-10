@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: docs/trabajo-final
+  output-dir: ../docs/trabajo-final
 
 book:
   title: "Análisis de datos de la encuesta permantente de hogares: 2022/23"
