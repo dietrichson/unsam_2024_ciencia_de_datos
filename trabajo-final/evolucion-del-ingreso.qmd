@@ -19,6 +19,32 @@ Para la realización del presente análisis se utilizó el lenguaje de programac
 
 ## Procedimiento
 
+El procedimiento para analizar la evolución del ingreso en Argentina durante el período 2022-2023 se describe a continuación:
+
+1.  **Carga de Datos:**
+
+    -   Se cargaron los conjuntos de datos correspondientes a los hogares de los trimestres 4 de 2022 y 2023. Estos datos fueron obtenidos del Instituto Nacional de Estadística y Censos (INDEC).
+
+    -   Utilizando el lenguaje de programación R y los paquetes del ecosistema tidyverse, los archivos `usu_hogar_T423.rds` (2023) y `usu_hogar_T422.rds` (2022) fueron leídos y almacenados en las variables `usu_hogar_T423` y `usu_hogar_T422` respectivamente.
+
+2.  **Preparación de Datos:**
+
+    -   Se realizó una unión interna (`inner_join`) entre los datos de 2022 y 2023 basada en el identificador común de usuario (`CODUSU`). Esto permite crear un subconjunto de datos donde se tienen observaciones de ingresos para los mismos hogares en ambos años.
+
+    -   Este paso asegura que solo se analicen los ingresos de los hogares que tienen datos disponibles tanto para 2022 como para 2023.
+
+3.  **Filtrado y Organización:**
+
+    -   Se identificaron y seleccionaron los códigos de usuario (`CODUSU`) que están presentes en ambos conjuntos de datos mediante la función `intersect`.
+
+    -   Los datos de ambos años se filtraron para incluir solo estos códigos de usuario comunes.
+
+    -   Se ordenaron los datos por `CODUSU` para asegurar una alineación correcta de los registros entre los años.
+
+    -   Se eliminaron los registros duplicados de `CODUSU` en ambos conjuntos de datos para evitar cualquier redundancia que pudiera afectar el análisis.
+
+        Este procedimiento asegura que el análisis se realice sobre datos comparables y homogéneos, permitiendo una evaluación precisa de las variaciones en los ingresos de los hogares entre 2022 y 2023. Con estos datos preparados, se pueden aplicar métodos estadísticos para interpretar las diferencias en los ingresos, considerando factores como la inflación y el empleo, proporcionando una comprensión profunda de la evolución del bienestar económico y social en Argentina durante este período.
+
 ```{r}
 #| include: false
 library(tidyverse)
@@ -27,6 +53,7 @@ usu_hogar_T422 <- readRDS(here::here("data/usu_hogar_T422.rds"))
 ```
 
 ```{r}
+#| include: false
 my_data_hogarVivienda <- inner_join(
   usu_hogar_T422 |> select(CODUSU, ITF),
   usu_hogar_T423 |> select(CODUSU, ITF),
@@ -35,6 +62,7 @@ my_data_hogarVivienda <- inner_join(
 ```
 
 ```{r}
+#| include: false
 mis_CODUSU <- intersect(usu_hogar_T422$CODUSU,usu_hogar_T423$CODUSU) 
 intersect(usu_hogar_T422$CODUSU, usu_hogar_T423$CODUSU) |> length()
 usu_hogar_T422 <- usu_hogar_T422 |> 
@@ -61,9 +89,9 @@ my_data <- bind_rows(
 ```
 
 ```{r}
+#| echo: false
 #| label: tbl-itf
 #| tbl-cap: "Ingreso Total Familiar Media y Desvío para los años 22 y 23"
-#| echo: false
 my_data |> 
   group_by(Año) |> 
   summarize(Media = median(ITF)) |> 
@@ -91,7 +119,7 @@ my_data |>
 my_test <- t.test(usu_hogar_T423$ITF, usu_hogar_T422$ITF*3.114)
 ```
 
-Usamos el test de t de Student para @Shier2004 los resultados se ven en la @tbl-test-de-t.
+Se utilizó el test de t de Student @student1908 ; los resultados se visualizan en la @tbl-test-de-t.
 
 ```{r}
 #| label: tbl-test-de-t
@@ -109,4 +137,4 @@ options(scipen=999)
 
 El valor de t es `r my_test$statistic`, el valor p es `r my_test$p.value` , con un estimado de `r my_test$estimate` (\<.00001) de diferencia entre los años de análisis. Dado estos valores, rechazamos la hipótesis nula de ausencia de diferencia entre los dos años y aceptamos la hipótesis alternativa de que el ITF no fue superior en 2023, siendo este \$61.286 más bajo que el ITF de 2022 ajustado por inflación.
 
-En términos absolutos, los valores efectivamente han aumentado. Sin emabrgo, a partir de un análisis relativo de los datos hecho por ajustes por inflación, es posible
+En términos absolutos, los valores efectivamente han aumentado. Sin emabrgo, a partir de un análisis relativo de los datos hecho por ajustes por inflación, es posible observar que el ITF de 2023 es menor en comparación con el ITF de 2022. Esta disminución refleja que, a pesar del incremento nominal, el poder adquisitivo ajustado por inflación ha disminuido, lo que indica una pérdida de valor real en el ITF de 2023.
