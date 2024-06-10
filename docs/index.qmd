@@ -47,3 +47,7 @@ theme: darkly
 -   [Notas de la clase 10](./notas/notas-clase-10.html)
 
 -   [Notas de la clase 11](./notas/notas-clase-11.html)
+
+## Trabajo final
+
+- [Trabajo final](trabajo-final/index.html)
