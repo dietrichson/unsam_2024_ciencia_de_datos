@@ -1,5 +1,136 @@
 ---
-author: "Michelle Wilkinson"
+title: "Capitulo"
+format: html
+editor: visual
+Author: Michelle Wilkinson
 ---
 
-# Brecha de género e ingreso
+# Capítulo de brecha de género e ingresos
+
+## Introducción
+
+En el siguiente capítulo se analizará si existe una diferencia en el ingreso de los individuos en relación con su género. A su vez, se hará una comparación entre los años 2022 y 2023 para indicar si se presentó alguna diferencia. Para ello se utilizarán los datos obtenidos del Instituto Nacional de estadísticas y censo (@indec) obtenidos en los años ya mencionados.
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+here::here("/cloud/project/data/usu_individual_T422.rds")
+here::here("/cloud/project/data/usu_individual_T423.rds")
+```
+
+#### Ingresos en 2022
+
+```{r}
+nombrar_ch04 <- function(x){
+  case_when(
+    x == "1" ~ "Varon", # respetando la norme del indec.
+    x == "2" ~ "Mujer",
+    .default = "desconocido"
+  )
+}
+```
+
+```{r}
+my_data <- usu_individual_T422 |> 
+  mutate(ingreso = P21) |> 
+  mutate(sexo = nombrar_ch04(CH04))
+
+my_data |> 
+  mutate(sexo = nombrar_ch04(CH04)) |> 
+  filter(ingreso > 0) |> 
+  group_by(sexo) %>% 
+  summarize(
+    mediana= median(ingreso)
+  )#se busca la mediana para ver cuánto es la diferencia del valor central de cada sexo. Sino, surgían todos los valores.
+```
+
+#### Ingresos en 2023
+
+```{r}
+my_data <-usu_individual_T423 |> 
+  mutate(ingreso = P21) |> 
+  mutate(sexo = nombrar_ch04(CH04))
+
+my_data |> 
+  mutate(sexo = nombrar_ch04(CH04)) |> 
+  filter(ingreso > 0) |> 
+  group_by(sexo) %>% 
+  summarize(
+    mediana= median(ingreso)
+  )
+```
+
+### T. student
+
+S utiliza el test de T student @student1908.
+
+```{r}
+t.test (usu_individual_T422$P21,usu_individual_T423$P21)
+```
+
+En este caso se nota que hay diferencia.
+
+Se calcula en torno a la inflación:
+
+```{r}
+my_data <-bind_rows (
+  usu_individual_T422 %>%
+    select(-CH14) %>%
+    mutate(Año = "2022 con Inflación") %>% 
+    mutate(P21 = P21*3.114),
+  usu_individual_T423 |> select(-CH14) |> mutate(Año = "2023")
+)
+
+```
+
+### Gráfico
+
+```{r}
+   p1 <- usu_individual_T423 |> 
+    mutate(sexo = nombrar_ch04(CH04)) |> 
+  group_by(sexo) |> 
+  summarize(
+    ingreso = mean(P21)
+  ) |> 
+  ggplot(aes(x=sexo,y=ingreso, fill = sexo))+
+    geom_col()
+
+p1 
+
+```
+
+```{r}
+ p2 <- usu_individual_T422 |> 
+    mutate(sexo = nombrar_ch04(CH04)) |> 
+  group_by(sexo) |> 
+  summarize(
+    ingreso = mean(P21)
+  ) |> 
+  ggplot(aes(x=sexo,y=ingreso, fill = sexo))+
+    geom_col()
+
+p2
+
+```
+
+### Comparación
+
+En este segmento se propone comparar los resultados de ambos años.
+
+```{r}
+#| layout-ncol: 2
+
+print(p1)
+print(p2)
+
+```
+
+### Conclusión
+
+A partir del análisis realizado, puede notarse como se manifiesta una disparidad en los salarios dependiendo del género. Logra observarse que, dentro de un mismo año, existe una brecha en el ingreso de alrededor de un 30%. En este caso, se puede destacar que en la Argentina, en promedio, los varones ganan ese porcentaje por encima del sueldo de las mujeres.
+
+Por otro lado, puede notarse que el patrón no ha sufrido modificaciónes entre ambos años. En otras palabras, la diferencia en el ingreso está presente de igual manera en el año 2022 como en el 2023. De este modo, se logra observar que ninguno de los géneros se vio afectado, para bien ni para mal, con el pasar de esos meses.
+
+Otro aspecto a tener en cuenta, es el fenómeno inflacionario que tuvo lugar en este país. De un año a otro, logra notarse una diferencia en los sueldos de ambos géneros ya que ambos parecen multiplicarse más del doble. En este caso particular, no significa un aumento en el poder adquisitivo, sino que se presentan unos sueldos que han sido golpeados por un proceso inflacionario. Al igual que se plantea en el capítulo "evolución del ingreso", el aumento nominal, no es sinónimo de mayores ganancias en el valor real.
