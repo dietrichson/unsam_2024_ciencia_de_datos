@@ -1,0 +1,122 @@
+---
+
+title: "Capitulo"
+format: html
+editor: visual
+author: Michelle Wilkinson
+
+---
+
+# Capítulo de brecha de género e ingresos
+
+## Introducción
+
+En el siguiente capítulo se analizará si existe una diferencia en el ingreso de los individuos en relación con su género. A su vez, se hará una comparación entre los años 2022 y 2023 para indicar si se presentó alguna diferencia. Para ello se utilizarán los datos obtenidos del Instituto Nacional de estadísticas y censo (@indec) obtenidos en los años ya mencionados.
+
+```{r}
+ # Poner decorador para no incluidlo en el documento cuando renderices
+library(tidyverse)
+```
+
+```{r}
+usu_individual_T422 <- readRDS("/cloud/project/data/usu_individual_T422.rds")
+usu_individual_T423 <- readRDS("/cloud/project/data/usu_individual_T423.rds")
+
+# refactorizar con here::here para poder acceder desde cualquier maquina
+# here::here("data/...")
+```
+
+Ingresos en 2022
+
+```{r}
+
+nombrar_ch04 <- function(x){ # podés usar la función ya definida en la carpeta R
+  case_when(
+    x == "1" ~ "Varon", # respetando la norme del indec.
+    x == "2" ~ "Mujer",
+    .default = "desconocido"
+  )
+}
+
+```
+
+```{r}
+my_data <- usu_individual_T422 |> 
+  mutate(ingreso = P21) |> 
+  mutate(sexo = nombrar_ch04(CH04))
+
+my_data |> 
+  mutate(sexo = nombrar_ch04(CH04)) |> 
+  filter(ingreso > 0) |> 
+  group_by(sexo) %>% 
+  summarize(
+    mediana= median(ingreso)
+  )
+
+#se busca la mediana para ver cuánto es la diferencia del valor central de cada sexo. Sino, surgían todos los valores.
+
+```
+
+Ingresos en 2023
+
+```{r}
+my_data <-usu_individual_T423 |> 
+  mutate(ingreso = P21) |> 
+  mutate(sexo = nombrar_ch04(CH04))
+
+my_data |> 
+  mutate(sexo = nombrar_ch04(CH04)) |> 
+  filter(ingreso > 0) |> 
+  group_by(sexo) %>% 
+  summarize(
+    mediana= median(ingreso)
+  )
+```
+
+T. student
+
+```{r}
+t.test (usu_individual_T422$P21,usu_individual_T423$P21)
+```
+
+En este caso se nota que hay diferencia.
+
+Se calcula en torno a la inflación:
+
+```{r}
+my_data <-bind_rows (
+  usu_individual_T422 %>%
+    select(-CH14) %>%
+    mutate(Año = "2022 con Inflación") %>% 
+    mutate(P21 = P21*3.114),
+  usu_individual_T423 |> select(-CH14) |> mutate(Año = "2023")
+)
+
+```
+
+
+## Gráfico
+
+```{r}
+ p1 <- usu_individual_T423 |> 
+    mutate(sexo = nombrar_ch04(CH04)) |> 
+  group_by(sexo) |> 
+  summarize(
+    ingreso = mean(P21)
+  ) |> 
+  ggplot(aes(x=sexo,y=ingreso, fill = sexo))+
+    geom_col()
+
+p1 
+
+```
+
+
+```{r}
+#| layout-ncol: 2
+
+print(p1)
+print(p1)
+
+```
+
