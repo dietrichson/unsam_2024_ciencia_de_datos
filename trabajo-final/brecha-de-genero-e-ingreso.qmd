@@ -12,6 +12,7 @@ Author: Michelle Wilkinson
 En el siguiente capítulo se analizará si existe una diferencia en el ingreso de los individuos en relación con su género. A su vez, se hará una comparación entre los años 2022 y 2023 para indicar si se presentó alguna diferencia. Para ello se utilizarán los datos obtenidos del Instituto Nacional de estadísticas y censo (@indec) obtenidos en los años ya mencionados.
 
 ```{r}
+#| include:false
 library(tidyverse)
 ```
 
