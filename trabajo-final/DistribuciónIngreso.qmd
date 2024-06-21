@@ -1,0 +1,274 @@
+# Distribución del ingreso
+
+### Introducción 
+
+Este capítulo se propone analizar, a través de los principales indicadores, la desigualdad económica en Argentina entre los años 2022 y 2023. Esto se realizará con un análisis cualitativo sobre los datos informados por el Instituto Nacional de Estadística y Censos (INDEC).
+
+El análisis se centrará en el Ingreso Total Familiar (ITF) como un indicador clave para distinguir las áreas del país donde existen mayores diferencias entre las familias con ingresos altos y aquellas cuyos ingresos se sitúan por debajo de la Canasta Básica Total. Este enfoque permitirá identificar las regiones y sectores más afectados por la desigualdad, proporcionando una visión detallada de cómo se distribuye la riqueza a lo largo del territorio nacional.
+
+## Desarrollo metodológico
+
+### Tipo de investigación
+
+Para esta investigación, decidí utilizar un enfoque metodológico cuantitativo con el objetivo de obtener un resultado riguroso del fenómeno de la distribución del ingreso familiar en el país.
+
+El método cuantitativo es, según David Alan Neill y Liliana Cortez Suárez (2018), una forma estructurada de recopilar y analizar datos de diversas fuentes que utiliza computadoras, herramientas estadísticas y matemáticas para producir resultados. Recopila datos numéricos y estadísticos con el objetivo claro de obtener “objetividad” a través de la cuantificación.
+
+### Datos
+
+Los datos fueron recopilados de la encuesta permanente de hogares realizada por el Instituto Nacional de Estadística y Censos (INDEC). Pertenecen al 4to trimestre del 2022 y 2023 de todo el país.
+
+### Objetivo
+
+Indagar cómo es la distribución del ingreso en las diversas regiones de Argentina durante el lapso de tiempo seleccionado.
+
+### Pregunta de investigación
+
+¿Hay diferencias en la distribución de ingresos entre las regiones?
+
+¿La media de los ingresos se encuentra por debajo de la canasta básica o logran superar el valor de la misma?
+
+### Procedimiento
+
+Para llevar a cabo el análisis procederé a:
+
+1.  Cargar los datos del informe.
+
+2.  A través de la librería tidyverse y utilizando el indicador de Ingreso Total Familiar (ITF), filtrar por regiones.
+
+3.  Generar gráficos para poder visualizar los datos obtenidos.
+
+
+### Herramientas de análisis
+
+Usamos el lenguaje R (2024) con los paquetes de tidyverse. (Wickham et al. 2019). Usamos el sistema Quarto (Allaire et al. (2024)) para su publicación
+
+## Análisis
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+my_data <- read_rds(here::here("data/datos_indec.rds"))
+```
+
+```{r}
+# Filtración de región Gran Buenos Aires
+my_data$REGION |> 
+  unique()
+temp_df <- my_data |>
+  filter(REGION == 01) 
+```
+
+```{r}
+nrow(temp_df)
+```
+
+```{r}
+temp_df$ITF |> # Ingreso Total Familiar
+  mean()
+```
+
+```{r}
+temp_df$ITF |> # Ingreso Total Familiar
+  median()
+```
+
+```{r}
+temp_df$ITF |> 
+  range()
+```
+
+```{r}
+options(scipen = 999)
+temp_df |> 
+  ggplot(aes(ITF))+
+  geom_histogram()+
+  scale_x_log10()
+```
+
+```{r}
+# Filtración de región Noroeste
+my_data$REGION |> 
+  unique()
+temp_df <- my_data |>
+  filter(REGION == 40) 
+```
+
+```{r}
+nrow(temp_df)
+```
+
+```{r}
+temp_df$ITF |> # Ingreso Total Familiar
+  mean()
+```
+
+```{r}
+temp_df$ITF |> # Ingreso Total Familiar
+  median()
+```
+```{r}
+temp_df$ITF |> 
+  range()
+```
+
+```{r}
+options(scipen = 999)
+temp_df |> 
+  ggplot(aes(ITF))+
+  geom_histogram()+
+  scale_x_log10()
+```
+
+```{r}
+# Filtración de región Noreste
+my_data$REGION |> 
+  unique()
+temp_df <- my_data |>
+  filter(REGION == 41) 
+```
+
+```{r}
+nrow(temp_df)
+```
+
+```{r}
+temp_df$ITF |> # Ingreso Total Familiar
+  mean()
+```
+
+```{r}
+temp_df$ITF |> # Ingreso Total Familiar
+  median()
+```
+```{r}
+temp_df$ITF |> 
+  range()
+```
+
+```{r}
+options(scipen = 999)
+temp_df |> 
+  ggplot(aes(ITF))+
+  geom_histogram()+
+  scale_x_log10()
+```
+
+```{r}
+# Filtración de región Cuyo
+my_data$REGION |> 
+  unique()
+temp_df <- my_data |>
+  filter(REGION == 42) 
+```
+
+```{r}
+nrow(temp_df)
+```
+
+```{r}
+temp_df$ITF |> # Ingreso Total Familiar
+  mean()
+```
+
+```{r}
+temp_df$ITF |> # Ingreso Total Familiar
+  median()
+```
+```{r}
+temp_df$ITF |> 
+  range()
+```
+
+```{r}
+options(scipen = 999)
+temp_df |> 
+  ggplot(aes(ITF))+
+  geom_histogram()+
+  scale_x_log10()
+```
+
+
+```{r}
+# Filtración de región Pampeana
+my_data$REGION |> 
+  unique()
+temp_df <- my_data |>
+  filter(REGION == 43) 
+```
+
+```{r}
+nrow(temp_df)
+```
+
+```{r}
+temp_df$ITF |> # Ingreso Total Familiar
+  mean()
+```
+
+```{r}
+temp_df$ITF |> # Ingreso Total Familiar
+  median()
+```
+```{r}
+temp_df$ITF |> 
+  range()
+```
+
+```{r}
+options(scipen = 999)
+temp_df |> 
+  ggplot(aes(ITF))+
+  geom_histogram()+
+  scale_x_log10()
+```
+
+```{r}
+# Filtración de región Patagonica
+my_data$REGION |> 
+  unique()
+temp_df <- my_data |>
+  filter(REGION == 44) 
+```
+
+```{r}
+nrow(temp_df)
+```
+
+```{r}
+temp_df$ITF |> # Ingreso Total Familiar
+  mean()
+```
+
+```{r}
+temp_df$ITF |> # Ingreso Total Familiar
+  median()
+```
+
+```{r}
+temp_df$ITF |> 
+  range()
+```
+
+```{r}
+options(scipen = 999)
+temp_df |> 
+ ggplot(aes(ITF))+
+  geom_histogram()+
+  scale_x_log10()
+
+```
+
+REGION == 1 ~ "AMBA",
+             REGION == 40 ~ "Noroeste",
+             REGION == 41 ~ "Noreste",
+             REGION == 42 ~ "Cuyo",
+             REGION == 43 ~ "PAMPEANA", 
+             REGION == 44 ~ "Patagonia"
+             
+             
+## Conclusiones
+Podemos observar que existe una amplia diferencia entre las diversas regiones del país, especialmente entre la región de la Patagonia y la región Pampeana. La Patagonia se destaca por tener los índices de ITF (Ingreso Total Familiar) más altos, mientras que la región Pampeana se encuentra en el extremo opuesto, ocupando el lugar más bajo en cuanto a este indicador.
+Estas diferencias en el ITF tiene profundas implicaciones para la calidad de vida de los habitantes de cada región. En la Patagonia, los altos ingresos permiten un mayor acceso a bienes y servicios, mejor educación y atención sanitaria, y una mayor estabilidad económica. Por otro lado, en la región Pampeana, los ingresos más bajos pueden limitar el acceso a estos mismos beneficios, afectando el bienestar general de las familias.
