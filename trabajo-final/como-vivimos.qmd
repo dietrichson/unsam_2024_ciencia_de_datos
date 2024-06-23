@@ -6,7 +6,7 @@ author: "María Cecilia Acha"
 
 ## Introducción
 
-En este capítulo se realizará un análisis cuantitativo del régimen de tenencia de vivienda según cada región de Argentina. Para ello, se utilizarán datos del Instituto Nacional de Estadística y Censos (INDEC) (Censos y estadísticas 2023). Los datos especifican los siguientes regímenes de tenencia:
+En este capítulo se realizará un análisis cuantitativo del régimen de tenencia de vivienda según cada región de Argentina. Para ello, se utilizarán datos del Instituto Nacional de Estadística y Censos (INDEC) (Censos y estadísticas 2023).
 
 El acceso a la propiedad y el régimen de tenencia de la tierra es un tema crítico en casi todos los lugares del mundo, y Argentina no es la excepción. Este análisis busca entender mejor cómo se distribuyen los distintos tipos de tenencia de vivienda en el país, proporcionando una base sólida para discutir políticas y estrategias que aborden las necesidades y desafíos específicos de cada región.
 
@@ -94,6 +94,7 @@ library(ggplot2)
 ```
 
 ```{r}
+#| include: false
 # Nombramos variables 
 temp_df <- my_data |>
   select(II7, REGION) |>
