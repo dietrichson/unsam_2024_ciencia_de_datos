@@ -1,8 +1,23 @@
 ---
-title: "Tarea 9"
+title: "Capítulo Ayuda Social"
 format: html
 editor: visual
+author: "Natalia Luna"
 ---
+
+## Capítulo de ayuda social: distribución y evolución
+
+## Introducción
+
+En el siguiente capítulo se analizará la distribución de la ayuda social en los individuos de la población argentina durante los periodos del cuarto trimestre del año 2022 y el año 2023. Tambien analizaremos la evolución de la ayuda social durante estos mismos periodos, con el propósito de identificar si hubo diferencias. Para ello se utilizarán los datos obtenidos del Instituto Nacional de estadísticas y censo (@indec) obtenidos en los años ya mencionados.
+
+### Herramientas de análisis
+
+Para la realización del presente análisis se utilizó el lenguaje de programación R @base con los paquetes de tidyverse @tidyverse. Asimismo, se utilizó el sistema Quarto @Allaire_Quarto_2024.
+
+### Procedimiento
+
+Extraemos de la base de datos de INDEC, los periodos que comprenden el cuarto trimestre de los años 2022 y 2023. De los cuales, seleccionaremos los prospectos individuales que han recibido una ayuda social. Luego, para obtener información mas detallada, seleccionamos las regiones, los aglomerados (como cuidades grandes y cuidades pequeñas en relacion a mayor o menor concentración), .
 
 ```{r}
 #| include: false
@@ -10,11 +25,6 @@ library(tidyverse)
 ```
 
 ```{r}
-#T422_dir <- here::here("data/EPH_usu_4to_Trim_2022_txt/usu_individual_T422.txt.txt")
-#T423_dir <- here::here("data/EPH_usu_4to_Trim_2023_txt/usu_individual_T423.txt")
-
-#usu_individual_T422 <- read.table(T422_dir, header = TRUE, sep = ";", stringsAsFactors = FALSE)
-#usu_individual_T423 <- read.table(T423_dir, header = TRUE, sep = ";", stringsAsFactors = FALSE)
 
 usu_individual_T422 <- readRDS(here::here("data/usu_individual_T422.rds"))
 usu_individual_T423 <- readRDS(here::here("data/usu_individual_T423.rds"))
