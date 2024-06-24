@@ -72,51 +72,51 @@
   {
     "objectID": "como-vivimos.html",
     "href": "como-vivimos.html",
-    "title": "5  Cómo vivimos - régimen de tenencia.",
+    "title": "5  Cómo vivimos - Régimen de tenencia.",
     "section": "",
-    "text": "5.1 Introducción\nEn el presente capítulo se llevará a cabo un análisis cuantitativo referido al régimen de tenencia de vivienda según cada región de Argentina. Para tal propósito, se utilizarán datos del Instituto Nacional de Estadística y Censos (INDEC) (Censos y estadísticas 2023).",
+    "text": "5.1 Introducción\nEn este capítulo se realizará un análisis cuantitativo del régimen de tenencia de vivienda según cada región de Argentina. Para ello, se utilizarán datos del Instituto Nacional de Estadística y Censos (INDEC) (Censos y estadísticas 2023).\nEl acceso a la propiedad y el régimen de tenencia de la tierra es un tema crítico en casi todos los lugares del mundo, y Argentina no es la excepción. Este análisis busca entender mejor cómo se distribuyen los distintos tipos de tenencia de vivienda en el país, proporcionando una base sólida para discutir políticas y estrategias que aborden las necesidades y desafíos específicos de cada región.\nLos datos del INDEC especifican los siguientes regímenes de tenencia:\nPara facilitar el análisis descriptivo, estas categorías se agruparán en cuatro principales:\nEn cuanto a las regiones, se considerarán las seis principales regiones de Argentina:",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - régimen de tenencia.</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - Régimen de tenencia.</span>"
     ]
   },
   {
     "objectID": "como-vivimos.html#datos",
     "href": "como-vivimos.html#datos",
-    "title": "5  Cómo vivimos - régimen de tenencia.",
+    "title": "5  Cómo vivimos - Régimen de tenencia.",
     "section": "5.2 Datos",
     "text": "5.2 Datos\nLos datos que hemos usado para este análisis provienen del INDEC. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2023.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - régimen de tenencia.</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - Régimen de tenencia.</span>"
     ]
   },
   {
     "objectID": "como-vivimos.html#preguntas-de-investigación",
     "href": "como-vivimos.html#preguntas-de-investigación",
-    "title": "5  Cómo vivimos - régimen de tenencia.",
+    "title": "5  Cómo vivimos - Régimen de tenencia.",
     "section": "5.3 Preguntas de investigación",
-    "text": "5.3 Preguntas de investigación\n\n¿En qué medida varía el régimen de tenencia de vivienda según la región geográfica en Argentina?\n¿Cómo influye el sexo en el régimen de tenencia de vivienda?\n¿El régimen de tenencia de vivienda es homogéneo en todas las provincias y/o regiones?",
+    "text": "5.3 Preguntas de investigación\nLas preguntas clave que esta investigación busca responder son:\n\n¿En qué medida varía el régimen de tenencia de vivienda según la región geográfica en Argentina?\n¿Hay algún tipo de régimen de tenencia que destaque entre los demás?\n¿La distribución de los distintos tipos de régimen de tenencia es uniforme en todas las regiones?",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - régimen de tenencia.</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - Régimen de tenencia.</span>"
     ]
   },
   {
     "objectID": "como-vivimos.html#variables-a-analizar",
     "href": "como-vivimos.html#variables-a-analizar",
-    "title": "5  Cómo vivimos - régimen de tenencia.",
+    "title": "5  Cómo vivimos - Régimen de tenencia.",
     "section": "5.4 Variables a analizar",
-    "text": "5.4 Variables a analizar\nRégimen de tenencia (II7)\nSexo (CH04)\nRegiones (REGION)",
+    "text": "5.4 Variables a analizar\nLas variables consideradas en el presente análisis son:\n\nRégimen de tenencia (II7): Se refiere al tipo de régimen de tenencia de las personas con respecto a la propiedad en la que habitan.\nSexo (CH04): El sistema utilizado distingue únicamente entre “varón” y “mujer”.\nRegiones (REGION): Las seis regiones que conforman Argentina.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - régimen de tenencia.</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - Régimen de tenencia.</span>"
     ]
   },
   {
     "objectID": "como-vivimos.html#herramientas-de-análisis",
     "href": "como-vivimos.html#herramientas-de-análisis",
-    "title": "5  Cómo vivimos - régimen de tenencia.",
+    "title": "5  Cómo vivimos - Régimen de tenencia.",
     "section": "5.5 Herramientas de análisis",
-    "text": "5.5 Herramientas de análisis\nUsamos el lenguaje R (2024) con los paquetes de tidyverse. (Wickham et al. 2019). Usamos el sistema Quarto (Allaire et al. (2024)) para su publicación.",
+    "text": "5.5 Herramientas de análisis\nUtilizamos el lenguaje R (2024) con los paquetes de tidyverse (Wickham et al., 2019) y dplyr (Wickham et al., 2019). Usamos el sistema Quarto (Allaire et al., 2024) para la publicación.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - régimen de tenencia.</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - Régimen de tenencia.</span>"
     ]
   },
   {
@@ -147,6 +147,26 @@
     "text": "Acha, María Cecilia, Aleksander Dietrichson, Evelina Fraidenraich,\nLautaro Christian Huergo, Natalia Soledad Luna, Sabrina Mariné Scarnato,\nand Michelle Lara Wilkinson Barral. 2024. “Seminario de Ciencia de datos, UNSAM 2024.”\nhttps://github.com/dietrichson/unsam_2024_ciencia_de_datos.\n\n\nAllaire, J. J., Charles Teague, Carlos Scheidegger, Yihui Xie, and\nChristophe Dervieux. 2024. “Quarto.” https://doi.org/10.5281/zenodo.5960048.\n\n\nEstadística y Censos (INDEC), Instituto Nacional de. 2024. “Índice\nde Precios Al Consumidor (IPC). Enero 2024.” https://www.indec.gob.ar/uploads/informesdeprensa/ipc_01_24DBD5D8158C.pdf.\n\n\nInstituto Nacional de Censos y estadísticas. 2024a. “Encuesta\nPermanente de Hogares.” https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos.\n\n\nR Core Team. 2024b. “R: A Language and Environment for Statistical\nComputing.” https://www.R-project.org/.\n\n\nR Core Team. 2024. R: A Language and Environment for Statistical\nComputing. Vienna, Austria: R Foundation for Statistical Computing.\nhttps://www.R-project.org/.\n\n\nStudent. 1908. “The Probable Error of a Mean.”\nBiometrika 6 (1): 1–25.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy\nD’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019.\n“Welcome to the Tidyverse” 4:\n1686. https://doi.org/10.21105/joss.01686.",
     "crumbs": [
       "Bibliografía"
+    ]
+  },
+  {
+    "objectID": "como-vivimos.html#introducción",
+    "href": "como-vivimos.html#introducción",
+    "title": "5  Cómo vivimos - Régimen de tenencia.",
+    "section": "",
+    "text": "Propietario de la vivienda y el terreno\nPropietario de la vivienda solamente\nInquilino / arrendatario de la vivienda\nOcupante por pago de impuestos / expensas\nOcupante en relación de dependencia\nOcupante gratuito (con permiso)\nOcupante de hecho (sin permiso)\nEstá en sucesión\n\n\n\nPropietario de la vivienda\nInquilino / arrendatario de la vivienda\nOcupante\nEstá en sucesión\n\n\n\nGran Buenos Aires\nNoroeste\nNoreste\nPampeana\nCuyo\nPatagonia",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - Régimen de tenencia.</span>"
+    ]
+  },
+  {
+    "objectID": "como-vivimos.html#análisis-descriptivo",
+    "href": "como-vivimos.html#análisis-descriptivo",
+    "title": "5  Cómo vivimos - Régimen de tenencia.",
+    "section": "5.6 Análisis descriptivo",
+    "text": "5.6 Análisis descriptivo\n\n\n\n\n\n\n\n\nFigura 5.1: Régimen de Tenencia de Vivienda por Región\n\n\n\n\n\nSe puede observar en la Figura 5.1 que, en todas las regiones de Argentina, los propietarios constituyen la mayoría en cuanto al régimen de tenencia de vivienda. Le siguen los inquilinos y, en menor medida, los ocupantes.\nLa región Pampeana destaca por tener una población considerablemente mayor, lo que se refleja en los datos del régimen de tenencia. Esta región muestra la mayor cantidad de propietarios, inquilinos y ocupantes en comparación con otras regiones.\n\n# Calcular porcentajes por región\ntemp_df &lt;- temp_df |&gt;\n  group_by(REGION, regimen_tenencia) |&gt;\n  summarise(count = n(), .groups = \"drop\") |&gt;\n  mutate(percentage = count / sum(count) * 100)\n\n# Graficar porcentaje por región\n#| label: porcentaje-regimen-de-tenencia-region\n#| echo: false\n#| fig-cap: \"Porcentaje de Régimen de Tenencia de Vivienda por Región\"\nggplot(temp_df, aes(x = \"\", y = percentage, fill = regimen_tenencia)) +\n  geom_bar(stat = \"identity\", color = \"white\") +\n  labs(\n       x = NULL,\n       y = NULL,\n       fill = \"Régimen de Tenencia\") +\n  theme_minimal() +\n  facet_wrap(~ REGION, scales = \"free\") +\n  coord_polar(\"y\", start = 0)\n\n\n\n\n\n\n\n\nAl analizar los gráficos de pastel de cada regiónen (porcentaje-regimen-de-tenencia-region?), se puede ver que no existen diferencias significativas en la distribución del régimen de tenencia entre la mayoría de las regiones. Sin embargo, la región Noroeste se distingue por tener una proporción significativamente mayor de propietarios en comparación con las otras regiones. Esta diferencia es notable, ya que las demás regiones no presentan variaciones tan marcadas.\nAsimismo, tanto en el Noreste como en el Noroeste, la proporción de inquilinos es menor en comparación con otras regiones, destacándose la Patagonia como la región con el mayor porcentaje de inquilinos.\nEn resumen, aunque la tendencia general muestra que los propietarios son la mayoría en todas las regiones, las particularidades de cada área, como la alta proporción de propietarios en el Noroeste y el mayor porcentaje de inquilinos en la Patagonia, resaltan las diferencias regionales en el régimen de tenencia de vivienda en Argentina.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - Régimen de tenencia.</span>"
     ]
   }
 ]
