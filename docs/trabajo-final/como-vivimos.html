@@ -8,7 +8,7 @@
 
 <meta name="author" content="María Cecilia Acha">
 
-<title>Análisis de datos de la encuesta permantente de hogares: 2022/23 - 5&nbsp; Cómo vivimos - Régimen de tenencia.</title>
+<title>Análisis de datos de la encuesta permantente de hogares: 2022/23 - 5&nbsp; Cómo vivimos - régimen de tenencia.</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -116,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./como-vivimos.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cómo vivimos - Régimen de tenencia.</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./como-vivimos.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cómo vivimos - régimen de tenencia.</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -174,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./como-vivimos.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cómo vivimos - Régimen de tenencia.</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cómo vivimos - régimen de tenencia.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -239,7 +239,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#preguntas-de-investigación" id="toc-preguntas-de-investigación" class="nav-link" data-scroll-target="#preguntas-de-investigación"><span class="header-section-number">5.3</span> Preguntas de investigación</a></li>
   <li><a href="#variables-a-analizar" id="toc-variables-a-analizar" class="nav-link" data-scroll-target="#variables-a-analizar"><span class="header-section-number">5.4</span> Variables a analizar</a></li>
   <li><a href="#herramientas-de-análisis" id="toc-herramientas-de-análisis" class="nav-link" data-scroll-target="#herramientas-de-análisis"><span class="header-section-number">5.5</span> Herramientas de análisis</a></li>
-  <li><a href="#análisis-descriptivo" id="toc-análisis-descriptivo" class="nav-link" data-scroll-target="#análisis-descriptivo"><span class="header-section-number">5.6</span> Análisis descriptivo</a></li>
+  <li><a href="#funciones" id="toc-funciones" class="nav-link" data-scroll-target="#funciones"><span class="header-section-number">5.6</span> Funciones</a></li>
+  <li><a href="#gráficos-ggplot" id="toc-gráficos-ggplot" class="nav-link" data-scroll-target="#gráficos-ggplot"><span class="header-section-number">5.7</span> Gráficos ggplot</a></li>
   </ul>
 </nav>
     </div>
@@ -248,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cómo vivimos - Régimen de tenencia.</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cómo vivimos - régimen de tenencia.</span></h1>
 </div>
 
 
@@ -273,35 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introducción" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">5.1</span> Introducción</h2>
-<p>En este capítulo se realizará un análisis cuantitativo del régimen de tenencia de vivienda según cada región de Argentina. Para ello, se utilizarán datos del Instituto Nacional de Estadística y Censos (INDEC) (Censos y estadísticas 2023).</p>
-<p>El acceso a la propiedad y el régimen de tenencia de la tierra es un tema crítico en casi todos los lugares del mundo, y Argentina no es la excepción. Este análisis busca entender mejor cómo se distribuyen los distintos tipos de tenencia de vivienda en el país, proporcionando una base sólida para discutir políticas y estrategias que aborden las necesidades y desafíos específicos de cada región.</p>
-<p>Los datos del INDEC especifican los siguientes regímenes de tenencia:</p>
-<ul>
-<li><p>Propietario de la vivienda y el terreno</p></li>
-<li><p>Propietario de la vivienda solamente</p></li>
-<li><p>Inquilino / arrendatario de la vivienda</p></li>
-<li><p>Ocupante por pago de impuestos / expensas</p></li>
-<li><p>Ocupante en relación de dependencia</p></li>
-<li><p>Ocupante gratuito (con permiso)</p></li>
-<li><p>Ocupante de hecho (sin permiso)</p></li>
-<li><p>Está en sucesión</p></li>
-</ul>
-<p>Para facilitar el análisis descriptivo, estas categorías se agruparán en cuatro principales:</p>
-<ul>
-<li><p>Propietario de la vivienda</p></li>
-<li><p>Inquilino / arrendatario de la vivienda</p></li>
-<li><p>Ocupante</p></li>
-<li><p>Está en sucesión</p></li>
-</ul>
-<p>En cuanto a las regiones, se considerarán las seis principales regiones de Argentina:</p>
-<ul>
-<li><p>Gran Buenos Aires</p></li>
-<li><p>Noroeste</p></li>
-<li><p>Noreste</p></li>
-<li><p>Pampeana</p></li>
-<li><p>Cuyo</p></li>
-<li><p>Patagonia</p></li>
-</ul>
+<p>En el presente capítulo se llevará a cabo un análisis cuantitativo referido al régimen de tenencia de vivienda según cada región de Argentina. Para tal propósito, se utilizarán datos del Instituto Nacional de Estadística y Censos (INDEC) (Censos y estadísticas 2023).</p>
 </section>
 <section id="datos" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="datos"><span class="header-section-number">5.2</span> Datos</h2>
@@ -309,75 +282,126 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="preguntas-de-investigación" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="preguntas-de-investigación"><span class="header-section-number">5.3</span> Preguntas de investigación</h2>
-<p>Las preguntas clave que esta investigación busca responder son:</p>
 <ol type="1">
-<li>¿En qué medida varía el régimen de tenencia de vivienda según la región geográfica en Argentina?</li>
-<li>¿Hay algún tipo de régimen de tenencia que destaque entre los demás?</li>
-<li>¿La distribución de los distintos tipos de régimen de tenencia es uniforme en todas las regiones?</li>
+<li><p>¿En qué medida varía el régimen de tenencia de vivienda según la región geográfica en Argentina?</p></li>
+<li><p>¿Cómo influye el sexo en el régimen de tenencia de vivienda?</p></li>
+<li><p>¿El régimen de tenencia de vivienda es homogéneo en todas las provincias y/o regiones?</p></li>
 </ol>
 </section>
 <section id="variables-a-analizar" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="variables-a-analizar"><span class="header-section-number">5.4</span> Variables a analizar</h2>
-<p>Las variables consideradas en el presente análisis son:</p>
-<ul>
-<li><p><strong>Régimen de tenencia (II7):</strong> Se refiere al tipo de régimen de tenencia de las personas con respecto a la propiedad en la que habitan.</p></li>
-<li><p><strong>Sexo (CH04):</strong> El sistema utilizado distingue únicamente entre “varón” y “mujer”.</p></li>
-<li><p><strong>Regiones (REGION):</strong> Las seis regiones que conforman Argentina.</p></li>
-</ul>
+<p>Régimen de tenencia (II7)</p>
+<p>Sexo (CH04)</p>
+<p>Regiones (REGION)</p>
 </section>
 <section id="herramientas-de-análisis" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="herramientas-de-análisis"><span class="header-section-number">5.5</span> Herramientas de análisis</h2>
-<p>Utilizamos el lenguaje R (2024) con los paquetes de <strong>tidyverse</strong> (Wickham et al., 2019) y <strong>dplyr</strong> (Wickham et al., 2019). Usamos el sistema <strong>Quarto</strong> (Allaire et al., 2024) para la publicación.</p>
+<p>Usamos el lenguaje R (2024) con los paquetes de tidyverse. (Wickham et&nbsp;al.&nbsp;2019). Usamos el sistema Quarto (Allaire et&nbsp;al.&nbsp;(2024)) para su publicación.</p>
 </section>
-<section id="análisis-descriptivo" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="análisis-descriptivo"><span class="header-section-number">5.6</span> Análisis descriptivo</h2>
+<section id="funciones" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="funciones"><span class="header-section-number">5.6</span> Funciones</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># también podés hacer library(tidyverse)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Es preferible cargar todas las librerías al principio del documento.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>temp_df <span class="ot">&lt;-</span> my_data <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(II7, REGION) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">regimen_tenencia =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      II7 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Propietario de la vivienda"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      II7 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Propietario de la vivienda"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      II7 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Inquilino / arrendatario"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      II7 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Ocupante"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      II7 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"Ocupante"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      II7 <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Ocupante"</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      II7 <span class="sc">==</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">"Ocupante"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      II7 <span class="sc">==</span> <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Está en sucesión"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"No Encontrado"</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">REGION =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      REGION <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Gran Buenos Aires"</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      REGION <span class="sc">==</span> <span class="dv">40</span> <span class="sc">~</span> <span class="st">"Noroeste"</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>      REGION <span class="sc">==</span> <span class="dv">41</span> <span class="sc">~</span> <span class="st">"Noreste"</span>,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>      REGION <span class="sc">==</span> <span class="dv">42</span> <span class="sc">~</span> <span class="st">"Cuyo"</span>,</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>      REGION <span class="sc">==</span> <span class="dv">43</span> <span class="sc">~</span> <span class="st">"Pampeana"</span>,</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>      REGION <span class="sc">==</span> <span class="dv">44</span> <span class="sc">~</span> <span class="st">"Patagonia"</span>,</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"No Encontrado"</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(REGION, regimen_tenencia)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>temp_df</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16,656 × 2
+   REGION            regimen_tenencia          
+   &lt;chr&gt;             &lt;chr&gt;                     
+ 1 Cuyo              Propietario de la vivienda
+ 2 Noroeste          Propietario de la vivienda
+ 3 Gran Buenos Aires Propietario de la vivienda
+ 4 Pampeana          Propietario de la vivienda
+ 5 Gran Buenos Aires Propietario de la vivienda
+ 6 Gran Buenos Aires Propietario de la vivienda
+ 7 Pampeana          Inquilino / arrendatario  
+ 8 Pampeana          Propietario de la vivienda
+ 9 Noreste           Propietario de la vivienda
+10 Noreste           Propietario de la vivienda
+# ℹ 16,646 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="gráficos-ggplot" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="gráficos-ggplot"><span class="header-section-number">5.7</span> Gráficos ggplot</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-regimen-de-tenencia-region" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-regimen-por-region-uno" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-regimen-de-tenencia-region-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="como-vivimos_files/figure-html/fig-regimen-de-tenencia-region-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-regimen-por-region-uno-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="como-vivimos_files/figure-html/fig-regimen-por-region-uno-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regimen-de-tenencia-region-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.1: Régimen de Tenencia de Vivienda por Región
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regimen-por-region-uno-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.1: Regimen de Tenencia por Región
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Se puede observar en la <a href="#fig-regimen-de-tenencia-region" class="quarto-xref">Figura&nbsp;<span>5.1</span></a> que, en todas las regiones de Argentina, los propietarios constituyen la mayoría en cuanto al régimen de tenencia de vivienda. Le siguen los inquilinos y, en menor medida, los ocupantes.</p>
-<p>La región Pampeana destaca por tener una población considerablemente mayor, lo que se refleja en los datos del régimen de tenencia. Esta región muestra la mayor cantidad de propietarios, inquilinos y ocupantes en comparación con otras regiones.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular porcentajes por región</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>temp_df <span class="ot">&lt;-</span> temp_df <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(REGION, regimen_tenencia) <span class="sc">|&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentage =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count) <span class="sc">*</span> <span class="dv">100</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar porcentaje por región</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: porcentaje-regimen-de-tenencia-region</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Porcentaje de Régimen de Tenencia de Vivienda por Región"</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(temp_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> percentage, <span class="at">fill =</span> regimen_tenencia)) <span class="sc">+</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Régimen de Tenencia"</span>) <span class="sc">+</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> REGION, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="como-vivimos_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<div id="fig-regimen-de-tenencia-region-dos" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regimen-de-tenencia-region-dos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="como-vivimos_files/figure-html/fig-regimen-de-tenencia-region-dos-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regimen-de-tenencia-region-dos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.2: Régimen de Tenencia de Vivienda por Región
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Al analizar los gráficos de pastel de cada regiónen <span class="citation" data-cites="porcentaje-regimen-de-tenencia-region">(<a href="references.html#ref-porcentaje-regimen-de-tenencia-region" role="doc-biblioref"><strong>porcentaje-regimen-de-tenencia-region?</strong></a>)</span>, se puede ver que no existen diferencias significativas en la distribución del régimen de tenencia entre la mayoría de las regiones. Sin embargo, la región Noroeste se distingue por tener una proporción significativamente mayor de propietarios en comparación con las otras regiones. Esta diferencia es notable, ya que las demás regiones no presentan variaciones tan marcadas.</p>
-<p>Asimismo, tanto en el Noreste como en el Noroeste, la proporción de inquilinos es menor en comparación con otras regiones, destacándose la Patagonia como la región con el mayor porcentaje de inquilinos.</p>
-<p>En resumen, aunque la tendencia general muestra que los propietarios son la mayoría en todas las regiones, las particularidades de cada área, como la alta proporción de propietarios en el Noroeste y el mayor porcentaje de inquilinos en la Patagonia, resaltan las diferencias regionales en el régimen de tenencia de vivienda en Argentina.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nombrar_ch04 <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">case_when</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    x <span class="sc">==</span> <span class="st">"1"</span> <span class="sc">~</span> <span class="st">"Varon"</span>, <span class="co"># respetando la norme del indec.</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    x <span class="sc">==</span> <span class="st">"2"</span> <span class="sc">~</span> <span class="st">"Mujer"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="st">"desconocido"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Como observamos en la <a href="#fig-regimen-de-tenencia-region-dos" class="quarto-xref">Figura&nbsp;<span>5.2</span></a> hay una marcada diferencia ….</p>
 
 
 </section>

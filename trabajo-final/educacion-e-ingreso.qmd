@@ -6,7 +6,6 @@ editor: visual
 bibliography: references.bib
 ---
 
-
 ## Introducción
 
 En el presente capitulo se llevara a cabo un análisis cuantitativo referido al vinculo entre el nivel educativo y el ingreso con diversos factores tales como el sexo, la región geográfica y la aglomeración. Para tal proposito, se utilizaran datos del Instituto Nacional de Estadística y Censos (INDEC)([Censos y estadísticas 2023](/cloud/project/data/usu_individual_T423.rds)).
@@ -55,8 +54,6 @@ temp_df <- my_data |>
   select(NIVEL_ED,CH04,ITF,REGION,MAS_500)
 ```
 
-## 
-
 ```{r}
 #| include: false
 temp_df |> 
@@ -77,10 +74,6 @@ temp_df <- temp_df |>
 temp_df |> 
   select(Nivel_Educativo) |> 
   head()
-
-```
-
-```         
 ```
 
 ```{r}
@@ -120,7 +113,6 @@ temp_df <- temp_df |>
 temp_df |> 
   select(MAS_500) |> 
   head()
-
 ```
 
 ## Análisis descriptivo
@@ -180,7 +172,7 @@ En terminos generales, se puede observar en base a la **media** (promedio de ing
 
 Por otro lado, la **mediana** más alta pertenece a la Patagonia con \$460000 y la más baja al Noreste con \$310000, es decir que la mitad de la población de cada region gana por debajo de ese monto y la otra por arriba de ese monto. En cuanto a la **desviación**, es decir el promedio de cuanto se alejan los valores con respecto a la media, la más alta pertenece a la Patagonia con \$544746.9 y la más baja al Noreste con \$278537.8. En cuanto al **desvío**, el promedio de cuanto se alejan los valores de la mediana, la más alta pertenece a la Patagonia con \$281694 y la más baja a Noreste con \$192738.
 
-Es asi, que podemos concluir que en todas las regiones, la media es mayor que la mediana, lo cual indica una distribución sesgada a la derecha, es decir, sugiere la presencia de individuos con ingresos significativamente altos. La diferencia en los ingresps es particularmente pronunciada en el Gran Buenos Aires y Patagonia, en donde hay una mayor desigualdad. En este sentido, en cuanto a la variabilidad, la desviación estándar y el desvio tambien son más altos tanto en Gran Buenos Aires como en la Patagonia, indicando una mayor dispersión en los ingresos. Por otro lado, la region Noreste y Noroeste muestran menos variabilidad en comparación con el resto delas regiones.
+Es asi, que podemos concluir que en todas las regiones, la media es mayor que la mediana, lo cual indica una distribución sesgada a la derecha, es decir, sugiere la presencia de individuos con ingresos significativamente altos. La diferencia en los ingresps es particularmente pronunciada en el Gran Buenos Aires y Patagonia, en donde hay una mayor desigualdad. En este sentido, en cuanto a la variabilidad, la desviación y el desvio tambien son más altos tanto en Gran Buenos Aires como en la Patagonia, indicando una mayor dispersión en los ingresos. Por otro lado, la region Noreste y Noroeste muestran menos variabilidad en comparación con el resto delas regiones.
 
 ```{r}
 #| echo: false
@@ -196,7 +188,8 @@ my_data |>
     Mediana = median(ingreso),
     Desviacion = sd(ingreso),
     Desvio = mad(ingreso)
-  )
+  )|>
+knitr::kable()
 ```
 
 ```{r}
@@ -247,10 +240,10 @@ Nivel 6- Secundario Completo: Las personas con educación universitaria completa
 En conclusion, se puede observar una clara ventaja de la region Patagonica en cuanto a ingresos, mas alla de la categoria educativa que se observe. Por otro lado, la region del Gran Buenos Aires es la que mas claramente se encuentra en desventaja que el resto de las regiones en todas los niveles educativos.
 
 ```{r}
-##6
 #| echo: false
 #| label: fig-regeduitf
 #| fig-cap: "Gráfico vinculo entre nivel educativo e ingreso por región"
+##6
 source(here::here("R/variables-nivel-educativo.R"))
 temp_df |> 
   mutate(Nivel_Educativo = nivel_educativo(NIVEL_ED)) |> 
@@ -290,7 +283,8 @@ my_data |>
  group_by(Nivel_Educativo, REGION) |>
   summarize(
     Mediana = median(Ingreso)
-  )
+  )|>
+knitr::kable()
 ```
 
 Por otro lado, resulta interesante hacer una nueva recategorizacion geografica para analizar y comparar la influencia del nivel educativo en el ingreso por un lado en el AMBA (Gran Buenos Aires) y por otro lado en el Interior del pais (Cuyo, Noreste, Noroeste, Pampeana y Patagonia). Es asi que analizando la @fig-regedu , se puede observar una clara ventaja en el Interior del pais por sobre AMBA en cuanto ingresos. En otras palabras, si bien es evidente que a medida que se avanza en el nivel educativo , los ingresos van en aumento, hay una clara superioridad de las oportunidades que ofrece el interior sobre el AMBA. Si bien hay una tendencia pareja entre ambas categorias geograficas, surge una evidente diferencia en el nivel "Secundario completo": mientras que en Interior hay un aumento en los ingresos, en el AMBA hay un indudable descenso en el mismo.
@@ -323,7 +317,9 @@ H1: el nivel educativo influye mas en el ingreso de Interior que en el del AMBA.
 
 ```{r}
 #| include: false
-#my_test <- t.test(Interior$ITF, AMBA$ITF, paired = TRUE)
+Interior <- my_data|>filter (REGION=="Interior")
+AMBA <- my_data|> filter(REGION=="AMBA")
+my_test <- t.test(Interior$ITF, AMBA$ITF)
 ```
 
 ```{r}
@@ -340,10 +336,10 @@ H1: el nivel educativo influye mas en el ingreso de Interior que en el del AMBA.
 En la @tbl-sexoedu, se puede observar que en el nivel "Sin Instruccion" se ve una ligera predominancia de varones. En el nivel "Primario incompleto" y "Primario completo" vuelven a predominar los varones pero con poca diferencia sobre las mujeres. En el nivel "Secundario incompleto" predominana los varores. En el nivel "Secundario completo" ocurre un cambio y hay mas mujeres que varones. En el nivel "Universitario incompleto"como "Universitario completo" hay una clara predominancia de las mujeres. En resumen, en los niveles iniciales tienden a predomianr la presencia de varones y en los niveles sueriores, hay una tendencia predominantemente de mujeres.
 
 ```{r}
-##13
 #| echo: false
 #| label: tbl-sexoedu
 #| fig-cap: "Tabla nivel educativo según el sexo"
+##13
 my_data <- my_data |> 
   mutate(Nivel_Educativo = NIVEL_ED) |> 
   mutate(Sexo = case_when(
@@ -352,7 +348,8 @@ my_data <- my_data |>
     TRUE ~ "desconocido"
   ))
 
-table(my_data$Sexo, my_data$Nivel_Educativo)
+table(my_data$Sexo, my_data$Nivel_Educativo)|>
+knitr::kable()
 ```
 
 ```{r}
@@ -410,7 +407,8 @@ my_data |>
     Desviacion = sd(Ingreso), 
     Mediana = median(Ingreso),
     Desvio = mad(Ingreso)
-  )
+  )|>
+knitr::kable()
 ```
 
 En este @fig-regeduitf, se puede observar que, en cuanto al sexo, hay una clara predominancia de los varones sobre las mujeres en sus ingresos. Es decir que hay una tendencia a que los varones ganen mas que las mujeres teniendo el mismo nivel educativo. En cuanto al nivel educativo se observa que aumenta los ingresos en los niveles secundarios y universitario completos en comparacion con los mismos niveles incompleto. Sin embargo, cabe dar cuenta de que en el nivel primario, hay una tendencia a que baje el salario en el nivel completo en comparacion con el incompleto. En otras palabras, los ingresos son mas bajos en aquellos que terminaron la primaria que en quienes no la finalizaron. En el el nivel "Sin instruccion", se observa la unica ventaja de las mujeres en cuanto a ingresos.
@@ -474,7 +472,8 @@ my_data |>
  group_by(Nivel_Educativo,Sexo) |>
   summarize(
     Mediana = median(Ingreso)
-  )
+  )|>
+knitr::kable()
 ```
 
 Analisis inferencial
@@ -485,10 +484,8 @@ H1: el nivel educativo influye mas en el ingreso de los varones que en el de las
 
 ```{r}
 #| include: false
-
-Mujer <- my_data |> filter(Sexo == "Mujer")
-Varon <- my_data |> filter(Sexo == "Varon")
-
+Mujer <- my_data|> filter (Sexo=="Mujer")
+Varon <- my_data|> filter (Sexo=="Varon")
 my_test <- t.test(Mujer$ITF, Varon$ITF)
 ```
 
@@ -523,7 +520,8 @@ my_data <- my_data |>
     MAS_500 == "S" ~ "igual o más de 500.000 habitantes"
   ))
 
-table(my_data$MAS_500, my_data$Nivel_Educativo)
+table(my_data$MAS_500, my_data$Nivel_Educativo)|>
+knitr::kable()
 ```
 
 ```{r}
@@ -579,7 +577,8 @@ my_data |>
     Desviacion = sd(Ingreso), 
     Mediana = median(Ingreso),
     Desvio = mad(Ingreso)
-  )
+  )|>
+knitr::kable()
 ```
 
 ```{r}
@@ -643,7 +642,8 @@ my_data |>
  group_by(Nivel_Educativo, MAS_5002) |>
   summarize(
     Mediana = median(Ingreso)
-  )
+  )|>
+knitr::kable()
 ```
 
 Analisis inferencial
@@ -653,8 +653,11 @@ H0: el nivel educativo influye en el ingreso de la persona en igual medida tanto
 H1: el nivel educativo influye mas en el ingreso de las ciudades pequeñas que en el de las ciudades grandes.
 
 ```{r}
+igual o más de 500.000 habitantes	 <- my_data|> filter (MAS_500=="igual o más de 500.000 habitantes")
+menos de 500.000 habitantes <- my_data|> filter (Sexo=="menos de 500.000 habitantes")
+my_test <- t.test(igual o más de 500.000 habitantes$ITF, menos de 500.000 habitantes$ITF)
 # Falta agrupar y generar conjuntos separados
-#my_test <- t.test(Interior$ITF, AMBA$ITF, paired = TRUE)
+#my_test <- t.test(Interior$ITF, AMBA$ITF, )
 ```
 
 ```{r}
