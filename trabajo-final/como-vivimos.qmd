@@ -1,5 +1,6 @@
 ---
 author: "María Cecilia Acha"
+bibliography: references.bib
 ---
 
 # Cómo vivimos - Régimen de tenencia.
@@ -76,7 +77,7 @@ Las variables consideradas en el presente análisis son:
 
 ## Herramientas de análisis
 
-Utilizamos el lenguaje R (2024) con los paquetes de **tidyverse** (Wickham et al., 2019) y **dplyr** (Wickham et al., 2019). Usamos el sistema **Quarto** (Allaire et al., 2024) para la publicación.
+Utilizamos el lenguaje R (2024) con los paquetes de [@tidyverse] **tidyverse** y **dplyr** (Wickham et al., 2019). Usamos el sistema **Quarto** (Allaire et al., 2024) para la publicación.
 
 ```{r}
 #| include: false
