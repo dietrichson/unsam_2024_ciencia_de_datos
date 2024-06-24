@@ -41,7 +41,7 @@ Para llevar a cabo el análisis procederé a:
 
 ### Herramientas de análisis
 
-Usamos el lenguaje R (2024) con los paquetes de tidyverse. (Wickham et al. 2019). Usamos el sistema Quarto (Allaire et al. (2024)) para su publicación
+Usamos el lenguaje R ([2024](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-base)) con los paquetes de tidyverse. ([Wickham et al. 2019](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-tidyverse)). Usamos el sistema Quarto (Allaire et al. ([2024](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-Allaire_Quarto_2024))) para su publicación.
 
 ## Análisis
 
@@ -54,6 +54,7 @@ my_data <- read_rds(here::here("data/datos_indec.rds"))
 ```
 
 ```{r}
+#| echo: false
 # Filtración de región Gran Buenos Aires
 my_data$REGION |> 
   unique()
