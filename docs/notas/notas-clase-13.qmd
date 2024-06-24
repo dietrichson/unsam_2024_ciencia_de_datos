@@ -1,41 +1,9 @@
 ---
-title: "6. Educacion e Ingreso"
-author: "Barragán"
+title: "Notas de la clase 13"
+author: "Aleksander Dietrichson"
 format: html
 editor: visual
 ---
-
-# 6. Educación e Ingreso
-
-## **Introducción**
-
-En el presente capitulo se llevara a cabo un análisis cuantitativo referido al vinculo entre el nivel educativo y el ingreso con diversos factores tales como el sexo, la región geográfica y la aglomeración. Para tal proposito, se utilizaran datos del Instituto Nacional de Estadística y Censos (INDEC)([Censos y estadísticas 2023](/cloud/project/data/usu_individual_T423.rds)).
-
-## **Datos**
-
-Los datos que hemos usado para este análisis provienen del indec. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2023.
-
-## **Preguntas de investigación**
-
-¿En qué medida influye el **nivel educativo** en el **ingreso** de la persona?
-
--   ¿Controlando por la variable de **sexo**?
-
--   ¿Es lo mismo para todas las provincias y/o **regiones**?
-
--   ¿Es lo mismo en **ciudades grandes** (+500) y en las **ciudades chicas**?
-
-Variables a analizar en relación al nivel educativo(NIVEL_ED) y el ingreso (ITF):
-
--   Sexo (CH04)
-
--   Regiones (REGION)
-
--   Ciudades grandes y cuidades chicas(MAS_500)
-
-## **Herramientas de análisis**
-
-Usamos el lenguaje R ([2024](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-base)) con los paquetes de tidyverse. ([Wickham et al. 2019](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-tidyverse)). Usamos el sistema Quarto (Allaire et al. ([2024](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-Allaire_Quarto_2024))) para su publicación.
 
 ## Procedimiento
 
@@ -55,13 +23,7 @@ temp_df <- my_data |>
   select(NIVEL_ED,CH04,ITF,REGION,MAS_500)
 ```
 
-## ---
-
-```{r}
-#| include: false
-temp_df |> 
-  mutate (Nivel_Educativo = NIVEL_ED)
-```
+## 
 
 ```{r}
 #| include: false
@@ -211,12 +173,12 @@ temp_df <- temp_df |>
 
 ```{r}
 ##CONSULTAR
-##temp_df |> 
+temp_df |> 
       group_by(NIVEL_ED2, REGION2) |>
       summarize(
         Mediana = median(ITF)
       ) |> 
-   ggplot(aes(NIVEL_ED2,Mediana, color = REGION2))+
+   ggplot(aes(NIVEL_ED2,Mediana, color = REGION2, group=REGION2))+
   geom_line()
 ```
 
@@ -233,24 +195,26 @@ temp_df |>
     Mediana = median(ITF)
   ) |> 
   ungroup() |> 
-  ggplot(aes(Nivel_Educativo,Mediana,fill = REGION2))+
-  geom_col(position = "dodge")+
-  coord_flip()
+  ggplot(aes(Nivel_Educativo,Mediana, color = REGION2, group=REGION2))+
+  geom_line()+
+  geom_point(size=2)+
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 ```
 
 ```{r}
 ##6
 #| echo: false
-#| label: fig-regeduitf
+#| label: fig-regeduitf-tres
 #| fig-cap: "Gráfico vinculo entre nivel educativo e ingreso por región"
-##my_data |> 
+my_data |> 
   filter(ITF<10000000,ITF>0) |> 
   group_by(NIVEL_ED, REGION) |>
   summarize(
     Mediana = median(Ingreso)
   ) |> 
   ggplot(aes(NIVEL_ED,Mediana,color=REGION))+
-  geom_line()
+  geom_line()+
+  geom_point(size=2)
 ```
 
 ```{r}
@@ -302,7 +266,7 @@ hist(my_data$ITF)
 
 ```{r}
 #| echo: false
-#| label: tbl-regmeannediansdmad
+#| label: tbl-regmeannediansdmad-dos
 #| fig-cap: "Tabla media, mediana, desviacion y desvio por sexo en base a los ingresos"
 ##3
 source(here::here("R/nombrar-ch04.R"))
@@ -320,7 +284,7 @@ my_data |>
 
 ```{r}
 #| echo: false
-#| label: fig-regeduitf
+#| label: fig-regeduitf-dos
 #| fig-cap: "Gráfico vinculo entre nivel educativo e ingreso por sexo"
 my_data |> 
   ##7
@@ -407,7 +371,7 @@ my_data |>
 
 ```{r}
 #| echo: false
-#| label: fig-regeduitf
+#| label: fig-regeduitf-uno
 #| fig-cap: "Gráfico vinculo entre nivel educativo e ingreso por aglomerado"
 my_data |> 
   ##7
@@ -427,4 +391,77 @@ my_data |>
   summarize(
     Mediana = median(Ingreso)
   )
+```
+
+## Dos gráficos en el mismo cuadro
+
+```{r}
+
+my_data |> 
+  ##7
+  filter(ITF<10000000,ITF>0) |> 
+  group_by(Nivel_Educativo, Sexo) |>
+  summarize(
+    Mediana = median(Ingreso)
+  ) |> 
+  ggplot(aes(Nivel_Educativo,Mediana,fill=Sexo))+
+  geom_col(position="dodge")
+```
+
+```{r}
+#| label: fig-dos-graficos
+#| echo: false
+#| fig-cap: 
+#|  - "Mujer"
+#|  - "Hombre"
+#| layout-ncol: 2
+my_data <- my_data |>  filter(ITF<10000000,ITF>0)
+
+my_data |> 
+  filter(Sexo == "Mujer") |> 
+  group_by(Nivel_Educativo) |>
+  summarize(
+    Mediana = median(Ingreso)
+  ) |> 
+  ggplot(aes(Nivel_Educativo,Mediana))+
+  geom_col(fill = "red")
+
+
+my_data |> 
+  filter(Sexo == "Varon") |> 
+  group_by(Nivel_Educativo) |>
+  summarize(
+    Mediana = median(Ingreso)
+  ) |> 
+  ggplot(aes(Nivel_Educativo,Mediana))+
+  geom_col(fill = "blue")
+```
+
+```{r}
+#| label: fig-dos-graficos-dos
+#| echo: false
+#| fig-cap: 
+#|  - "Mujer"
+#|  - "Hombre"
+#| layout-ncol: 1
+my_data <- my_data |>  filter(ITF<10000000,ITF>0)
+
+my_data |> 
+  filter(Sexo == "Mujer") |> 
+  group_by(Nivel_Educativo) |>
+  summarize(
+    Mediana = median(Ingreso)
+  ) |> 
+  ggplot(aes(Nivel_Educativo,Mediana))+
+  geom_col(fill = "red")
+
+
+my_data |> 
+  filter(Sexo == "Varon") |> 
+  group_by(Nivel_Educativo) |>
+  summarize(
+    Mediana = median(Ingreso)
+  ) |> 
+  ggplot(aes(Nivel_Educativo,Mediana))+
+  geom_col(fill = "blue")
 ```

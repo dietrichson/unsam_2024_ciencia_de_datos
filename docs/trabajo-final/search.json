@@ -1,0 +1,152 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Análisis de datos de la encuesta permantente de hogares: 2022/23",
+    "section": "",
+    "text": "Prefacio\nEs estas páginas el lector encontrará una selección curada de análisis realizados por los estudiantes de «Ciencia de datos 1», materia que dicta el editor del presente volumen en la Universidad de San Martín. Todo análisis se basa en datos públicos y el código fuente está disponible en github Acha et al. (2024) y se publica, al igual que este compendio, bajo la licencia de Creative Commons.\n\n\n\n\nAcha, María Cecilia, Aleksander Dietrichson, Evelina Fraidenraich, Lautaro Christian Huergo, Natalia Soledad Luna, Sabrina Mariné Scarnato, y Michelle Lara Wilkinson Barral. 2024. «Seminario de Ciencia de datos, UNSAM 2024». https://github.com/dietrichson/unsam_2024_ciencia_de_datos.",
+    "crumbs": [
+      "Prefacio"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introducción",
+    "section": "",
+    "text": "Este volumen corresponde a Los muy brillantes estudiantes y coautores trabajamos con el lenguaje de programación R (R Core Team 2024) en particular usamos el dialecto (Wickham et al. 2019) para los análisis y creación de diagramas y gráficos.\nLos datos utilizados para los análisis provienen de la encuesta permanente de hogares  (2024) correspondientes a los años 2022 y 2023.\n\n\n\n\nInstituto Nacional de Censos y estadísticas. 2024. «Encuesta permanente de hogares». https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos.\n\n\nR Core Team. 2024. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. https://www.R-project.org/.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. «Welcome to the tidyverse» 4: 1686. https://doi.org/10.21105/joss.01686.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introducción</span>"
+    ]
+  },
+  {
+    "objectID": "evolucion-del-ingreso.html",
+    "href": "evolucion-del-ingreso.html",
+    "title": "4  Evolución del ingreso",
+    "section": "",
+    "text": "4.1 Introducción\nEn este capítulo, se presenta un análisis cuantitativo de la evolución del ingreso en Argentina durante el período comprendido entre los años 2022 y 2023, utilizando datos del Instituto Nacional de Estadística y Censos  (2024a). Este estudio tiene como objetivo proporcionar una visión detallada de las variaciones en los ingresos de los hogares y de los individuos a lo largo del tiempo, identificando tendencias y posibles factores que han influido en estos cambios.\nEl ingreso es un indicador clave del bienestar económico y social, y su análisis permite evaluar el impacto de diversas políticas económicas y sociales implementadas en el país. A través de la recopilación y el análisis de datos del INDEC, se busca ofrecer una comprensión profunda de cómo han variado los ingresos en distintos sectores de la población, teniendo en cuenta variables como la inflación y el empleo.\nA lo largo de este capítulo, se utilizarán diversos métodos estadísticos para descomponer y analizar los datos, permitiendo una interpretación precisa de la evolución del ingreso.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Evolución del ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "evolucion-del-ingreso.html#herramientas-de-análisis",
+    "href": "evolucion-del-ingreso.html#herramientas-de-análisis",
+    "title": "4  Evolución del ingreso",
+    "section": "4.2 Herramientas de análisis",
+    "text": "4.2 Herramientas de análisis\nPara la realización del presente análisis se utilizó el lenguaje de programación R  (2024b) con los paquetes de tidyverse Wickham et al. (2019). Asimismo, se utilizó el sistema Quarto Allaire et al. (2024).",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Evolución del ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "evolucion-del-ingreso.html#procedimiento",
+    "href": "evolucion-del-ingreso.html#procedimiento",
+    "title": "4  Evolución del ingreso",
+    "section": "4.3 Procedimiento",
+    "text": "4.3 Procedimiento\nEl procedimiento para analizar la evolución del ingreso en Argentina durante el período 2022-2023 se describe a continuación:\n\nCarga de Datos:\n\nSe cargaron los conjuntos de datos correspondientes a los hogares de los trimestres 4 de 2022 y 2023. Estos datos fueron obtenidos del Instituto Nacional de Estadística y Censos (INDEC).\nUtilizando el lenguaje de programación R y los paquetes del ecosistema tidyverse, los archivos usu_hogar_T423.rds (2023) y usu_hogar_T422.rds (2022) fueron leídos y almacenados en las variables usu_hogar_T423 y usu_hogar_T422 respectivamente.\n\nPreparación de Datos:\n\nSe realizó una unión interna (inner_join) entre los datos de 2022 y 2023 basada en el identificador común de usuario (CODUSU). Esto permite crear un subconjunto de datos donde se tienen observaciones de ingresos para los mismos hogares en ambos años.\nEste paso asegura que solo se analicen los ingresos de los hogares que tienen datos disponibles tanto para 2022 como para 2023.\n\nFiltrado y Organización:\n\nSe identificaron y seleccionaron los códigos de usuario (CODUSU) que están presentes en ambos conjuntos de datos mediante la función intersect.\nLos datos de ambos años se filtraron para incluir solo estos códigos de usuario comunes.\nSe ordenaron los datos por CODUSU para asegurar una alineación correcta de los registros entre los años.\nSe eliminaron los registros duplicados de CODUSU en ambos conjuntos de datos para evitar cualquier redundancia que pudiera afectar el análisis.\nEste procedimiento asegura que el análisis se realice sobre datos comparables y homogéneos, permitiendo una evaluación precisa de las variaciones en los ingresos de los hogares entre 2022 y 2023. Con estos datos preparados, se pueden aplicar métodos estadísticos para interpretar las diferencias en los ingresos, considerando factores como la inflación y el empleo, proporcionando una comprensión profunda de la evolución del bienestar económico y social en Argentina durante este período.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Evolución del ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "evolucion-del-ingreso.html#análisis-descriptivo",
+    "href": "evolucion-del-ingreso.html#análisis-descriptivo",
+    "title": "4  Evolución del ingreso",
+    "section": "4.4 Análisis descriptivo",
+    "text": "4.4 Análisis descriptivo\nEn la Tabla 4.1, existe una diferencia de $61.286 entre el ITF de 2022 (calculado en base a la inflación de 2023 Estadística y Censos (INDEC) (2024)) y el ITF de 2023. Esta diferencia también se observa en la Figura 4.1\n\n\n\n\nTabla 4.1: Ingreso Total Familiar Media y Desvío para los años 22 y 23\n\n\n\n\n\n\nAño\nMedia\n\n\n\n\n2022 (con inflación agregada)\n305172\n\n\n2023\n242100\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigura 4.1: ITF en el 2022 y 2023",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Evolución del ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "evolucion-del-ingreso.html#análisis-inferencial",
+    "href": "evolucion-del-ingreso.html#análisis-inferencial",
+    "title": "4  Evolución del ingreso",
+    "section": "4.5 Análisis inferencial",
+    "text": "4.5 Análisis inferencial\nSe utilizó el test de t de Student Student (1908) ; los resultados se visualizan en la Tabla 4.2.\n\n\n\n\nTabla 4.2: Resultado del test de T\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nestimate\nestimate1\nestimate2\nstatistic\np.value\nparameter\nconf.low\nconf.high\nmethod\nalternative\n\n\n\n\n-52920.55\n316620.5\n369541\n-7.061565\n0\n22661.55\n-67609.64\n-38231.47\nWelch Two Sample t-test\ntwo.sided\n\n\n\n\n\n\n\n\nEl valor de t es -7.0615652, el valor p es 0 , con un estimado de 316620.463879, 369541.0163225 (&lt;.00001) de diferencia entre los años de análisis. Dado estos valores, rechazamos la hipótesis nula de ausencia de diferencia entre los dos años y aceptamos la hipótesis alternativa de que el ITF no fue superior en 2023, siendo este $61.286 más bajo que el ITF de 2022 ajustado por inflación.\nEn términos absolutos, los valores efectivamente han aumentado. Sin emabrgo, a partir de un análisis relativo de los datos hecho por ajustes por inflación, es posible observar que el ITF de 2023 es menor en comparación con el ITF de 2022. Esta disminución refleja que, a pesar del incremento nominal, el poder adquisitivo ajustado por inflación ha disminuido, lo que indica una pérdida de valor real en el ITF de 2023.\n\n\n\n\nAllaire, J. J., Charles Teague, Carlos Scheidegger, Yihui Xie, y Christophe Dervieux. 2024. «Quarto». https://doi.org/10.5281/zenodo.5960048.\n\n\nEstadística y Censos (INDEC), Instituto Nacional de. 2024. «Índice de Precios al Consumidor (IPC). Enero 2024». https://www.indec.gob.ar/uploads/informesdeprensa/ipc_01_24DBD5D8158C.pdf.\n\n\nInstituto Nacional de Censos y estadísticas. 2024a. «Encuesta permanente de hogares». https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos.\n\n\nR Core Team. 2024b. «R: A Language and Environment for Statistical Computing». https://www.R-project.org/.\n\n\nStudent. 1908. «The probable error of a mean». Biometrika 6 (1): 1-25.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. «Welcome to the tidyverse» 4: 1686. https://doi.org/10.21105/joss.01686.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Evolución del ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "como-vivimos.html",
+    "href": "como-vivimos.html",
+    "title": "5  Cómo vivimos - régimen de tenencia.",
+    "section": "",
+    "text": "5.1 Introducción\nEn el presente capítulo se llevará a cabo un análisis cuantitativo referido al régimen de tenencia de vivienda según cada región de Argentina. Para tal propósito, se utilizarán datos del Instituto Nacional de Estadística y Censos (INDEC) (Censos y estadísticas 2023).",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - régimen de tenencia.</span>"
+    ]
+  },
+  {
+    "objectID": "como-vivimos.html#datos",
+    "href": "como-vivimos.html#datos",
+    "title": "5  Cómo vivimos - régimen de tenencia.",
+    "section": "5.2 Datos",
+    "text": "5.2 Datos\nLos datos que hemos usado para este análisis provienen del INDEC. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2023.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - régimen de tenencia.</span>"
+    ]
+  },
+  {
+    "objectID": "como-vivimos.html#preguntas-de-investigación",
+    "href": "como-vivimos.html#preguntas-de-investigación",
+    "title": "5  Cómo vivimos - régimen de tenencia.",
+    "section": "5.3 Preguntas de investigación",
+    "text": "5.3 Preguntas de investigación\n\n¿En qué medida varía el régimen de tenencia de vivienda según la región geográfica en Argentina?\n¿Cómo influye el sexo en el régimen de tenencia de vivienda?\n¿El régimen de tenencia de vivienda es homogéneo en todas las provincias y/o regiones?",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - régimen de tenencia.</span>"
+    ]
+  },
+  {
+    "objectID": "como-vivimos.html#variables-a-analizar",
+    "href": "como-vivimos.html#variables-a-analizar",
+    "title": "5  Cómo vivimos - régimen de tenencia.",
+    "section": "5.4 Variables a analizar",
+    "text": "5.4 Variables a analizar\nRégimen de tenencia (II7)\nSexo (CH04)\nRegiones (REGION)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - régimen de tenencia.</span>"
+    ]
+  },
+  {
+    "objectID": "como-vivimos.html#herramientas-de-análisis",
+    "href": "como-vivimos.html#herramientas-de-análisis",
+    "title": "5  Cómo vivimos - régimen de tenencia.",
+    "section": "5.5 Herramientas de análisis",
+    "text": "5.5 Herramientas de análisis\nUsamos el lenguaje R (2024) con los paquetes de tidyverse. (Wickham et al. 2019). Usamos el sistema Quarto (Allaire et al. (2024)) para su publicación.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - régimen de tenencia.</span>"
+    ]
+  },
+  {
+    "objectID": "como-vivimos.html#funciones",
+    "href": "como-vivimos.html#funciones",
+    "title": "5  Cómo vivimos - régimen de tenencia.",
+    "section": "5.6 Funciones",
+    "text": "5.6 Funciones\n\nlibrary(dplyr) # también podés hacer library(tidyverse)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n# Es preferible cargar todas las librerías al principio del documento.\ntemp_df &lt;- my_data |&gt;\n  select(II7, REGION) |&gt;\n  mutate(\n    regimen_tenencia = case_when(\n      II7 == 1 ~ \"Propietario de la vivienda\",\n      II7 == 2 ~ \"Propietario de la vivienda\",\n      II7 == 3 ~ \"Inquilino / arrendatario\",\n      II7 == 4 ~ \"Ocupante\",\n      II7 == 5 ~ \"Ocupante\",\n      II7 == 6 ~ \"Ocupante\",\n      II7 == 7 ~ \"Ocupante\",\n      II7 == 8 ~ \"Está en sucesión\",\n      TRUE ~ \"No Encontrado\"\n    ),\n    REGION = case_when(\n      REGION == 1 ~ \"Gran Buenos Aires\",\n      REGION == 40 ~ \"Noroeste\",\n      REGION == 41 ~ \"Noreste\",\n      REGION == 42 ~ \"Cuyo\",\n      REGION == 43 ~ \"Pampeana\",\n      REGION == 44 ~ \"Patagonia\",\n      TRUE ~ \"No Encontrado\"\n    )\n  ) |&gt;\n  select(REGION, regimen_tenencia)\n\ntemp_df\n\n# A tibble: 16,656 × 2\n   REGION            regimen_tenencia          \n   &lt;chr&gt;             &lt;chr&gt;                     \n 1 Cuyo              Propietario de la vivienda\n 2 Noroeste          Propietario de la vivienda\n 3 Gran Buenos Aires Propietario de la vivienda\n 4 Pampeana          Propietario de la vivienda\n 5 Gran Buenos Aires Propietario de la vivienda\n 6 Gran Buenos Aires Propietario de la vivienda\n 7 Pampeana          Inquilino / arrendatario  \n 8 Pampeana          Propietario de la vivienda\n 9 Noreste           Propietario de la vivienda\n10 Noreste           Propietario de la vivienda\n# ℹ 16,646 more rows",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - régimen de tenencia.</span>"
+    ]
+  },
+  {
+    "objectID": "como-vivimos.html#gráficos-ggplot",
+    "href": "como-vivimos.html#gráficos-ggplot",
+    "title": "5  Cómo vivimos - régimen de tenencia.",
+    "section": "5.7 Gráficos ggplot",
+    "text": "5.7 Gráficos ggplot\n\n\n\n\n\n\n\n\nFigura 5.1: Regimen de Tenencia por Región\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigura 5.2: Régimen de Tenencia de Vivienda por Región\n\n\n\n\n\n\nnombrar_ch04 &lt;- function(x){\n  case_when(\n    x == \"1\" ~ \"Varon\", # respetando la norme del indec.\n    x == \"2\" ~ \"Mujer\",\n    .default = \"desconocido\"\n  )\n}\n\nComo observamos en la Figura 5.2 hay una marcada diferencia ….",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - régimen de tenencia.</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "Bibliografía",
+    "section": "",
+    "text": "Acha, María Cecilia, Aleksander Dietrichson, Evelina Fraidenraich,\nLautaro Christian Huergo, Natalia Soledad Luna, Sabrina Mariné Scarnato,\nand Michelle Lara Wilkinson Barral. 2024. “Seminario de Ciencia de datos, UNSAM 2024.”\nhttps://github.com/dietrichson/unsam_2024_ciencia_de_datos.\n\n\nAllaire, J. J., Charles Teague, Carlos Scheidegger, Yihui Xie, and\nChristophe Dervieux. 2024. “Quarto.” https://doi.org/10.5281/zenodo.5960048.\n\n\nEstadística y Censos (INDEC), Instituto Nacional de. 2024. “Índice\nde Precios Al Consumidor (IPC). Enero 2024.” https://www.indec.gob.ar/uploads/informesdeprensa/ipc_01_24DBD5D8158C.pdf.\n\n\nInstituto Nacional de Censos y estadísticas. 2024a. “Encuesta\nPermanente de Hogares.” https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos.\n\n\nR Core Team. 2024b. “R: A Language and Environment for Statistical\nComputing.” https://www.R-project.org/.\n\n\nR Core Team. 2024. R: A Language and Environment for Statistical\nComputing. Vienna, Austria: R Foundation for Statistical Computing.\nhttps://www.R-project.org/.\n\n\nStudent. 1908. “The Probable Error of a Mean.”\nBiometrika 6 (1): 1–25.\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy\nD’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019.\n“Welcome to the Tidyverse” 4:\n1686. https://doi.org/10.21105/joss.01686.",
+    "crumbs": [
+      "Bibliografía"
+    ]
+  }
+]
