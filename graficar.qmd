@@ -1,0 +1,29 @@
+```{r}
+library(tidyverse) 
+
+
+my_data <- readRDS("/cloud/project/data/datos_indec.rds")
+```
+
+```{r}
+temp_df <- my_data %>%    
+  select(REGION, ITF)
+```
+
+```{r}
+conjunto_de_aglomerados<-function(aglomerado){
+  case_when(
+    aglomerado=="N"~ "menos de 500.000 habitantes",
+    aglomerado=="S"~ "igual o más de 500.000 habitantes")
+}
+```
+
+```{r}
+temp_df |>
+  group_by(REGION2) |>
+  summarise(
+    MEDIA = mean(ITF),
+    MEDIANA = median(ITF)
+  )
+```
+
