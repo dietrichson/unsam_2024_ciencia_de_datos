@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Belén Barragán">
+<meta name="author" content="Barragán">
 
-<title>Análisis de datos de la encuesta permantente de hogares: 2022/23 - 7&nbsp; Educacion e Ingreso</title>
+<title>Análisis de datos de la encuesta permantente de hogares: 2022/23 - 7&nbsp; Educación e Ingreso</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -82,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./educacion-e-ingreso.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Educacion e Ingreso</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./educacion-e-ingreso.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Educación e Ingreso</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -152,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./educacion-e-ingreso.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Educacion e Ingreso</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Educación e Ingreso</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -196,14 +230,31 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">7.1</span> Introducción</a></li>
+  <li><a href="#datos" id="toc-datos" class="nav-link" data-scroll-target="#datos"><span class="header-section-number">7.2</span> Datos</a></li>
+  <li><a href="#preguntas-de-investigación" id="toc-preguntas-de-investigación" class="nav-link" data-scroll-target="#preguntas-de-investigación"><span class="header-section-number">7.3</span> <strong>Preguntas de investigación</strong></a></li>
+  <li><a href="#herramientas-de-análisis" id="toc-herramientas-de-análisis" class="nav-link" data-scroll-target="#herramientas-de-análisis"><span class="header-section-number">7.4</span> <strong>Herramientas de análisis</strong></a></li>
+  <li><a href="#procedimiento" id="toc-procedimiento" class="nav-link" data-scroll-target="#procedimiento"><span class="header-section-number">7.5</span> Procedimiento</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">7.6</span> </a></li>
+  <li><a href="#análisis-descriptivo" id="toc-análisis-descriptivo" class="nav-link" data-scroll-target="#análisis-descriptivo"><span class="header-section-number">7.7</span> Análisis descriptivo</a>
+  <ul class="collapse">
+  <li><a href="#regiones" id="toc-regiones" class="nav-link" data-scroll-target="#regiones"><span class="header-section-number">7.7.1</span> Regiones</a></li>
+  <li><a href="#sexo" id="toc-sexo" class="nav-link" data-scroll-target="#sexo"><span class="header-section-number">7.7.2</span> <strong>Sexo</strong></a></li>
+  <li><a href="#aglomeración" id="toc-aglomeración" class="nav-link" data-scroll-target="#aglomeración"><span class="header-section-number">7.7.3</span> Aglomeración</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Educacion e Ingreso</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Educación e Ingreso</span></h1>
 </div>
 
 
@@ -213,7 +264,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Autor/a</div>
     <div class="quarto-title-meta-contents">
-             <p>Belén Barragán </p>
+             <p>Barragán </p>
           </div>
   </div>
     
@@ -226,8 +277,521 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introducción" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">7.1</span> Introducción</h2>
+<p>En el presente capitulo se llevara a cabo un análisis cuantitativo referido al vinculo entre el nivel educativo y el ingreso con diversos factores tales como el sexo, la región geográfica y la aglomeración. Para tal proposito, se utilizaran datos del Instituto Nacional de Estadística y Censos (INDEC)(<a href="./cloud/project/data/usu_individual_T423.rds">Censos y estadísticas 2023</a>).</p>
+</section>
+<section id="datos" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="datos"><span class="header-section-number">7.2</span> Datos</h2>
+<p>Los datos que hemos usado para este análisis provienen del indec. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2023.</p>
+</section>
+<section id="preguntas-de-investigación" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="preguntas-de-investigación"><span class="header-section-number">7.3</span> <strong>Preguntas de investigación</strong></h2>
+<p>¿En qué medida influye el <strong>nivel educativo</strong> en el <strong>ingreso</strong> de la persona?</p>
+<ul>
+<li><p>¿Es lo mismo para todas las provincias y/o <strong>regiones del país</strong>? ¿Es igual en AMBA y en el Interior?</p></li>
+<li><p>¿Es igual para los dos <strong>sexos</strong>?</p></li>
+<li><p>¿Es lo mismo en <strong>ciudades grandes</strong> (+500) y en las <strong>ciudades chicas</strong>?</p></li>
+</ul>
+<p>Variables a analizar en relación al nivel educativo (NIVEL_ED) y el ingreso (ITF):</p>
+<ul>
+<li><p>Sexo (CH04)</p></li>
+<li><p>Regiones (REGION)</p></li>
+<li><p>Ciudades grandes y cuidades chicas (MAS_500)</p></li>
+</ul>
+</section>
+<section id="herramientas-de-análisis" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="herramientas-de-análisis"><span class="header-section-number">7.4</span> <strong>Herramientas de análisis</strong></h2>
+<p>Usamos el lenguaje R (<a href="https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-base">2024</a>) con los paquetes de tidyverse. (<a href="https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-tidyverse">Wickham et&nbsp;al.&nbsp;2019</a>). Usamos el sistema Quarto (Allaire et&nbsp;al.&nbsp;(<a href="https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-Allaire_Quarto_2024">2024</a>)) para su publicación.</p>
+</section>
+<section id="procedimiento" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="procedimiento"><span class="header-section-number">7.5</span> Procedimiento</h2>
+</section>
+<section id="section" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="section"><span class="header-section-number">7.6</span> </h2>
+<pre><code></code></pre>
+</section>
+<section id="análisis-descriptivo" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="análisis-descriptivo"><span class="header-section-number">7.7</span> Análisis descriptivo</h2>
+<section id="regiones" class="level3" data-number="7.7.1">
+<h3 data-number="7.7.1" class="anchored" data-anchor-id="regiones"><span class="header-section-number">7.7.1</span> Regiones</h3>
+<p>En la siguiente <a href="#tbl-regmeannediansdmad" class="quarto-xref">Tabla&nbsp;<span>7.4</span></a> , se puede observar que:</p>
+<ul>
+<li><p>En cuanto a Cuyo, la comparacion entre la media ($456198.7) y la mediana ($ 396000) indica que, al ser menor la mediana que la media, una parte predominante de la poblacion tiene ingresos menores al promedio. Teniendo en cuanta los altos valores de dispersion del desvio ($230544.3) y la desviacion ($303319.0 ) y que la mediana es más baja que la media, se puede delucidar que hay una gran variabilidad y por lo tanto, existe una pequeña parte de la poblacion que tiene ingresos muy altos lo que a su vez significa que hay una gran desigualdad en cuanto a los ingresos en la region de Cuyo.</p></li>
+<li><p>En cuanto al Gran Buenos Aires, la comparacionentre la media ($500974.2) y la mediana ($390000) indica que, al ser menor la mediana que la media, una parte predominante de la poblacion tiene ingresos menores al promedio. Teniendo en cuanta los altos valores de dispersion del desvio ($262420.2) y la desviacion ($540662.2) y que la mediana es más baja que la media, se puede deducir que hay una gran variabilidad en los ingresos, y por lo tanto, existe una pequeña parte de la poblacion que tiene ingresos muy altos, lo que a su vez significa que hay una gran desigualdad en cuanto a los ingresos en la region del Gran Buenos Aires.</p></li>
+<li><p>En cuanto al Noreste, la comparacion entre la media ($373542.2 ) y la mediana ($310000) indica que, al ser menor la mediana que la media, una parte predominante de la poblacion tiene ingresos menores al promedio. Teniendo en cuanta los altos valores de dispersion del desvio($ 192738.0) y la desviacion ($278537.8) y que la mediana es más baja que la media, se puede deducir que hay una gran variabilidad en los ingresos, y por lo tanto, existe una pequeña parte de la poblacion que tiene ingresos muy altos, lo que a su vez significa que hay una gran desigualdad en cuanto a los ingresos en la region del Noreste.</p></li>
+<li><p>En cuanto al Noroeste, la comparacion entre la media ($411348.6 ) y la mediana ($350000) indica que, al ser menor la mediana que la media, una parte predominante de la poblacion tiene ingresos menores al promedio. Teniendo en cuanta los altos valores de dispersion del desvio($207564.0) y la desviacion ($288345.9 ) y que la mediana es más baja que la media, se puede deducir que hay una gran variabilidad en los ingresos, y por lo tanto, existe una pequeña parte de la poblacion que tiene ingresos muy altos, lo que a su vez significa que hay una gran desigualdad en cuanto a los ingresos en la region del Noroeste.</p></li>
+<li><p>En cuanto a la región Pampeana, la comparacion entre la media ($431613.9 ) y la mediana ($ 340000) indica que, al ser menor la mediana que la media, una parte predominante de la poblacion tiene ingresos menores al promedio. Teniendo en cuanta los altos valores de dispersion del desvio($233577.7) y la desviacion($366175.3 ) y que la mediana es más baja que la media, se puede deducir que hay una gran variabilidad en los ingresos, y por lo tanto, existe una pequeña parte de la poblacion que tiene ingresos muy altos, lo que a su vez significa que hay una gran desigualdad en cuanto a los ingresos en la region Pampeana.</p></li>
+<li><p>En cuanto a la Patagonia, la comparacion entre la media ($563456.0 ) y la mediana ($460000) indica que, al ser menor la mediana que la media, una parte predominante de la poblacion tiene ingresos menores al promedio. Teniendo en cuanta los altos valores de dispersion del desvio($281694.0) y la desviacion($544746.9 ) y que la mediana es más baja que la media, se puede deducir que hay una gran variabilidad en los ingresos, y por lo tanto, existe una pequeña parte de la poblacion que tiene ingresos muy altos, lo que a su vez significa que hay una gran desigualdad en cuanto a los ingresos en la region de la Patagonia.</p></li>
+</ul>
+<p>En terminos generales, se puede observar en base a la <strong>media</strong> (promedio de ingresos por región), que los ingresos más altos pertenecen a la region de la Patagonia (con un ingreso promedio de $563456), dejando al Noreste como la región con menor ingreso promedio (con $373542).</p>
+<p>Por otro lado, la <strong>mediana</strong> más alta pertenece a la Patagonia con $460000 y la más baja al Noreste con $310000, es decir que la mitad de la población de cada region gana por debajo de ese monto y la otra por arriba de ese monto. En cuanto a la <strong>desviación</strong>, es decir el promedio de cuanto se alejan los valores con respecto a la media, la más alta pertenece a la Patagonia con $544746.9 y la más baja al Noreste con $278537.8. En cuanto al <strong>desvío</strong>, el promedio de cuanto se alejan los valores de la mediana, la más alta pertenece a la Patagonia con $281694 y la más baja a Noreste con $192738.</p>
+<p>Es asi, que podemos concluir que en todas las regiones, la media es mayor que la mediana, lo cual indica una distribución sesgada a la derecha, es decir, sugiere la presencia de individuos con ingresos significativamente altos. La diferencia en los ingresps es particularmente pronunciada en el Gran Buenos Aires y Patagonia, en donde hay una mayor desigualdad. En este sentido, en cuanto a la variabilidad, la desviación estándar y el desvio tambien son más altos tanto en Gran Buenos Aires como en la Patagonia, indicando una mayor dispersión en los ingresos. Por otro lado, la region Noreste y Noroeste muestran menos variabilidad en comparación con el resto delas regiones.</p>
+<div id="tbl-regmeannediansdmad-1" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-regmeannediansdmad-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;7.1
+</figcaption>
+<div aria-describedby="tbl-regmeannediansdmad-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  REGION              Media Mediana Desviacion  Desvio
+  &lt;chr&gt;               &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;
+1 Cuyo              456199.  396000    303319. 230544.
+2 Gran Buenos Aires 500974.  390000    540662. 262420.
+3 Noreste           373542.  310000    278538. 192738 
+4 Noroeste          411349.  350000    288346. 207564 
+5 Pampeana          431614.  340000    366175. 233578.
+6 Patagonia         563456.  460000    544747. 281694 </code></pre>
+</div>
+</div>
+</figure>
+</div>
+<p>En el siguiente <a href="#fig-regeduitf" class="quarto-xref">Figura&nbsp;<span>7.4</span></a> se destaca en primer lugar la region de la Patagonia la presenta en todos los niveles educativos de manera consistente las medianas de ingresos más altas. Esto sugiere que las personas en esta región tienen, en general, mejores oportunidades económicas, mas alla de su nivel educativo.</p>
+<p>En segundo lugar se destaca la region de Cuyo la cual tiene medianas de ingresos intermedias, situándose por debajo de la Patagonia y, en algunos casos, comparables con otras regiones como por ejemplo la region Noroeste.</p>
+<p>En tercer lugar, cabe observar las regiones Noreste y Noroeste, las cuales muestran una tendencia similar con medianas de ingresos que son más altas que Gran Buenos Aires y la region Pampeana, pero más bajas que la Patagonia; no obstante, se observa una pequeña diferencia entre ambas regiones en donde el Noroeste tiende a tener ingresos un poco más altos que el Noreste.</p>
+<p>En cuartolugar, se puede reparar en que la region Pampeana presenta medianas de ingresos que son superiores a las de Gran Buenos Aires y la segunda con ingresos mas bajos.</p>
+<p>En ultimo lugar, se puede advertir que en Gran Buenos Aires las medianas de ingresos las más bajas en forma constante en la mayoría de los niveles educativos, particularmente en niveles bajos como “Primario incompleto” y “Sin instrucción”. Esto indica que las oportunidades económicas para personas con menores niveles educativos son más limitadas en esta región.</p>
+<p>En cuanto a los niveles educativos:</p>
+<p>Nivel 0-Sin Instrucción: Esta categoría muestra ingresos medianos que son relativamente bajos en todas las regiones; sin embargo, la Patagonia es la región con mayores ingresos.</p>
+<p>Nivel 1-Primario Incompleto: Las personas con educación primaria incompleta tienen las medianas de ingresos más bajas en todas las regiones. Gran Buenos Aires presenta los ingresos más bajos, mientras que Patagonia los más altos.</p>
+<p>Nievel 2-Primario Completo: Se observa una ligera mejora en las medianas de ingresos en comparación con el nivel anterior. Las diferencias entre las regiones siguen una tendencia similar a la categoria “sin instruccion”, en donde lidera la Patagonia.</p>
+<p>Nivel 3-Secundario Incompleto: existe una tendencia casi constante en todas las regiones con respecto a la medianas de ingresos en los niveles de secundario completo e incompleto, salvo en la Patagonia. En esta ultima, se observa un marcado descenso desde la categoria secundario completo a secundario incompleto, es decir, aquellas personas que no terminaron de instruirse en la educacion secundaria tendran un ingreso mas bajo que aquellos que si.</p>
+<p>Nivel4- Secundario Completo: A medida que aumenta el nivel educativo, también lo hacen las medianas de ingresos en todas las regiones, salvo en el Gran Buenos Aires, en donde se nota un descenso en comparacion del nivel 1 (primario incompleto)</p>
+<p>Nivel 5-Superior Universitario Incompleto: en esta categoria se nota un marcado descenso en los ingresos en comparacion a quienes terminaron su educacion universitaria, incluso una diferencia mas categorica entre quienes termianron el secundario y quienes no.</p>
+<p>Nivel 6- Secundario Completo: Las personas con educación universitaria completa tienen una mayor ingreso que el resto de las categorias. En esta cabe destacar a la Patagonia como la que tiene los ingresos más altos y a Gran Buenos Aires como aquella con ingresos mas bajos, seguida de cerca por la region Pampeana.</p>
+<p>En conclusion, se puede observar una clara ventaja de la region Patagonica en cuanto a ingresos, mas alla de la categoria educativa que se observe. Por otro lado, la region del Gran Buenos Aires es la que mas claramente se encuentra en desventaja que el resto de las regiones en todas los niveles educativos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">##6</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-regeduitf</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Gráfico vinculo entre nivel educativo e ingreso por región"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"R/variables-nivel-educativo.R"</span>))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>temp_df <span class="sc">|&gt;</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Nivel_Educativo =</span> <span class="fu">nivel_educativo</span>(NIVEL_ED)) <span class="sc">|&gt;</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Nivel_Educativo,REGION) <span class="sc">|&gt;</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mediana =</span> <span class="fu">median</span>(ITF)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Nivel_Educativo,Mediana, <span class="at">color =</span> REGION, <span class="at">group=</span>REGION))<span class="sc">+</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Nivel_Educativo'. You can override using
+the `.groups` argument.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="educacion-e-ingreso_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>En la siguiente <a href="#tbl-mednivedureg" class="quarto-xref">Tabla&nbsp;<span>7.2</span></a> se puede observar como el nivel educativo evidentemente influye en los ingresos aunque no es lo mismo para todas las regiones. En el nivel 0 (Sin instruccion) quien tiene la mediana de ingresos mas alta es la Patagonia con $360000 y quien tiene la mediana de ingresos mas baja es Gran Buenos Aires con $189750.</p>
+<p>En el nivel 1 (Primario incompleto) quien tiene la mediana de ingresos mas alta es la Patagonia con $350000 y quien tiene la mediana de ingresos mas baja es el Gran Buenos Aires con $200500.</p>
+<p>En el nivel 2 (Primario completo) quien tiene la mediana de ingresos mas alta es Cuyo con $300000 seguido de cerca por el Noroeste ($297500) y la Patagonia ($297000) y quien tiene la mediana de ingresos mas baja es el Gran BuenosAires con $145500.</p>
+<p>En el nivel 3 (Secundario incompleto) quien tiene la mediana de ingresos mas alta es la Patagonia con $350000 y quien tiene la mediana de ingresos mas baja es el Gran Bueno Aires con $185000.</p>
+<p>En el nivel 4 (Secundario completo) quien tiene la mediana de ingresos mas alta es la Patagonia con $400000 y quien tiene la mediana de ingresos mas baja es el Gran Buenos Aires con $170000.</p>
+<p>En el nivel 5 (Universitario incompleto) quien tiene la mediana de ingresos mas alta es la Patagonia con $400000 y quien tiene la mediana de ingresos mas baja es el Gran Buenos Aires con $210000.</p>
+<p>En el nivel 6 (Universitario completo) quien tiene la mediana de ingresos mas alta es la Patagonia con $468000 y quien tiene la mediana de ingresos mas baja es el gran Buenos Aires con $270000.</p>
+<p>Se observa una clara tendencia de la Patagonia en liderar la lista con los ingresos mas altos de todas las regiones. Sin embargo, el Gran Buenos Aires tienen el puesto de ser la region con mas bajos ingresos en todos los niveles educativos, por lo que podemos advertir que existe una gran disparidad entre estas regiones. Ademas se puede reparar en el hecho de que el ingreso aumenta a medida que se avanza en el nivel educativo. Es asi que podemos concluir que si bien el nivel educativo tiene una fuerte influencia en los ingresos de las personas, la gran disparidad interregional de ingresos puede llegar a sugerir que existen otros factores vinculados particualrmente a cada region que hace posible esta gran desigualdad.</p>
+<div id="tbl-mednivedureg" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-mednivedureg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;7.2
+</figcaption>
+<div aria-describedby="tbl-mednivedureg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Nivel_Educativo'. You can override using
+the `.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 42 × 3
+# Groups:   Nivel_Educativo [7]
+   Nivel_Educativo REGION            Mediana
+             &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;
+ 1               0 Cuyo               356430
+ 2               0 Gran Buenos Aires  189750
+ 3               0 Noreste            240000
+ 4               0 Noroeste           305000
+ 5               0 Pampeana           242000
+ 6               0 Patagonia          360000
+ 7               1 Cuyo               305000
+ 8               1 Gran Buenos Aires  200500
+ 9               1 Noreste            220250
+10               1 Noroeste           287500
+# ℹ 32 more rows</code></pre>
+</div>
+</div>
+</figure>
+</div>
+<p>Por otro lado, resulta interesante hacer una nueva recategorizacion geografica para analizar y comparar la influencia del nivel educativo en el ingreso por un lado en el AMBA (Gran Buenos Aires) y por otro lado en el Interior del pais (Cuyo, Noreste, Noroeste, Pampeana y Patagonia). Es asi que analizando la <a href="#fig-regedu" class="quarto-xref">Figura&nbsp;<span>7.1</span></a> , se puede observar una clara ventaja en el Interior del pais por sobre AMBA en cuanto ingresos. En otras palabras, si bien es evidente que a medida que se avanza en el nivel educativo , los ingresos van en aumento, hay una clara superioridad de las oportunidades que ofrece el interior sobre el AMBA. Si bien hay una tendencia pareja entre ambas categorias geograficas, surge una evidente diferencia en el nivel “Secundario completo”: mientras que en Interior hay un aumento en los ingresos, en el AMBA hay un indudable descenso en el mismo.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Nivel_Educativo'. You can override using
+the `.groups` argument.</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-regedu" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="educacion-e-ingreso_files/figure-html/fig-regedu-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.1: Gráfico vinculo entre nivel educativo e ingreso por región
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Analisis inferencial</p>
+<p>H0: el nivel educativo influye en el ingreso de la persona en igual medida tanto en el AMBA como en el Interior.</p>
+<p>H1: el nivel educativo influye mas en el ingreso de Interior que en el del AMBA.</p>
+<div id="tbl-test-de-treg" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-test-de-treg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;7.3: Resultado del test de T
+</figcaption>
+<div aria-describedby="tbl-test-de-treg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+
+</div>
+</figure>
+</div>
+</section>
+<section id="sexo" class="level3" data-number="7.7.2">
+<h3 data-number="7.7.2" class="anchored" data-anchor-id="sexo"><span class="header-section-number">7.7.2</span> <strong>Sexo</strong></h3>
+<p>En la <span class="quarto-unresolved-ref">?tbl-sexoedu</span>, se puede observar que en el nivel “Sin Instruccion” se ve una ligera predominancia de varones. En el nivel “Primario incompleto” y “Primario completo” vuelven a predominar los varones pero con poca diferencia sobre las mujeres. En el nivel “Secundario incompleto” predominana los varores. En el nivel “Secundario completo” ocurre un cambio y hay mas mujeres que varones. En el nivel “Universitario incompleto”como “Universitario completo” hay una clara predominancia de las mujeres. En resumen, en los niveles iniciales tienden a predomianr la presencia de varones y en los niveles sueriores, hay una tendencia predominantemente de mujeres.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">##13</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-sexoedu</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Tabla nivel educativo según el sexo"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> my_data <span class="sc">|&gt;</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Nivel_Educativo =</span> NIVEL_ED) <span class="sc">|&gt;</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Sexo =</span> <span class="fu">case_when</span>(</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    CH04 <span class="sc">==</span> <span class="st">"1"</span> <span class="sc">~</span> <span class="st">"Varon"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    CH04 <span class="sc">==</span> <span class="st">"2"</span> <span class="sc">~</span> <span class="st">"Mujer"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"desconocido"</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(my_data<span class="sc">$</span>Sexo, my_data<span class="sc">$</span>Nivel_Educativo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       
+           1    2    3    4    5    6    7
+  Mujer 3291 2778 4567 5182 3301 3971 1653
+  Varon 3350 2674 5088 4836 2464 2480 1702</code></pre>
+</div>
+</div>
+<p>Aclaracion: En <a href="#fig-histitf" class="quarto-xref">Figura&nbsp;<span>7.2</span></a>, por un error de tipeo, hay un salario de 101.250.000. Este factor hara que los datos y sus resultados se vean erroneamente modificados por lo que se filtrara y seleccionara el ingreso desde 0 hasta el máximo previo a error :10000000.</p>
+<p>Aclarado esto, se observa un sesgo a la derecha, lo cual indica que los ingresos se encuentran concentrados en su mayoria en los rangos mas bajos y que hay algunos valores extremadamente altos. Es decir, que hay una gran cantidad de personas con ingresos bajos y unos pocos con ingresos muy altos.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-histitf" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-histitf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="educacion-e-ingreso_files/figure-html/fig-histitf-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-histitf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.2: Histograma ITF
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En <a href="#tbl-regmeannediansdmad-1" class="quarto-xref">Tabla&nbsp;<span>7.1</span></a>, se puede observar que en cuanto a la media es ligeramente superior en los varones($461565.1) en comparación con las mujeres($437146.8). Esto sugiere que, en promedio, los varones ganan más que las mujeres.</p>
+<p>En cuanto a la desviacion, tanto de los varones ($402943.0) como de las mujeres ($382566.2) se puede ver que los ingresos de los varones muestran una mayor dispersión que los de las mujeres, indicando una mayor variabilidad en los ingresos de aquellos. Esto puede significar que hay una mayor brecha entre los ingresos altos y bajos entre los varones en comparación con las mujeres.</p>
+<p>En cuanto a la mediana, es superior para los varones. En este caso, la mediana para los varones es de $380000, mientras que para las mujeres es de $350000.</p>
+<p>En cuanto al desvio, las mujeres tiene un valor de $222390 y los varones de $237216. Nuevamente, los varones tienen un mayor desvío lo cual refuerza la idea de una mayor variabilidad en sus ingresos.</p>
+<p>En la categoria “Mujeres” se puede observar que tienen ingresos ligeramente menores en promedio en comparacion con los varones; en cambio, muestran una distribución de ingresos más concentrada y menos dispersa.</p>
+<p>En la categoria de “Varones” se puede observar que estos tiene los ingresos más altos en promedioen comparacion a las mujeres; sin embargo, experimentan una mayor variabilidad en sus ingresos.</p>
+<div id="tbl-regmeannediansdmad" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-regmeannediansdmad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;7.4
+</figcaption>
+<div aria-describedby="tbl-regmeannediansdmad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  Sexo    Media Desviacion Mediana Desvio
+  &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+1 Mujer 437147.    382566.  350000 222390
+2 Varon 461565.    402943.  380000 237216</code></pre>
+</div>
+</div>
+</figure>
+</div>
+<p>En este <a href="#fig-regeduitf" class="quarto-xref">Figura&nbsp;<span>7.4</span></a>, se puede observar que, en cuanto al sexo, hay una clara predominancia de los varones sobre las mujeres en sus ingresos. Es decir que hay una tendencia a que los varones ganen mas que las mujeres teniendo el mismo nivel educativo. En cuanto al nivel educativo se observa que aumenta los ingresos en los niveles secundarios y universitario completos en comparacion con los mismos niveles incompleto. Sin embargo, cabe dar cuenta de que en el nivel primario, hay una tendencia a que baje el salario en el nivel completo en comparacion con el incompleto. En otras palabras, los ingresos son mas bajos en aquellos que terminaron la primaria que en quienes no la finalizaron. En el el nivel “Sin instruccion”, se observa la unica ventaja de las mujeres en cuanto a ingresos.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Nivel_Educativo'. You can override using
+the `.groups` argument.</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-regeduitf-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regeduitf-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="educacion-e-ingreso_files/figure-html/fig-regeduitf-1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regeduitf-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.3: Gráfico vinculo entre nivel educativo e ingreso por sexo
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A partir de la siguiente <a href="#tbl-mednivedusex" class="quarto-xref">Tabla&nbsp;<span>7.5</span></a> veremos como el nivel educativo influye en los ingresos aunque no es lo mismo para varones y mujeres.</p>
+<p>En el nivel 0 (Sin instruccion) quien tiene la mediana de ingresos mas alta son las mujeres con $350000 y quien tiene la mediana de ingresos mas baja son los varones con $337000. Esta pequeña diferencia indica que en este nivel educativo el ingreso es relativamente similar entre ambos sexos.</p>
+<p>En el nivel 1 (Primario incompleto) quien tiene la mediana de ingresos mas alta son los varones con $ 328000 y quien tiene la mediana de ingresos mas baja son las mujeres con $314000. La diferencia sugiere que los varones tienen una ligera ventaja en ingresos en este nivel educativo.</p>
+<p>En el nivel 2 (Primario completo) quien tiene la mediana de ingresos mas alta son los varones con $315000 y quien tiene la mediana de ingresos mas baja son las mujeres con $297000. La diferencia en ingresos es consistente con la tendencia observada en el nivel primario incompleto.</p>
+<p>En el nivel 3 (Secundario incompleto)quien tiene la mediana de ingresos mas alta son los varones con $350000 y quien tiene la mediana de ingresos mas baja son las mujeres con $317000.</p>
+<p>En el nivel 4 (Secundario completo) quien tiene la mediana de ingresos mas alta son los varones con $400000 y quien tiene la mediana de ingresos mas baja son las mujeres con $352430. La diferencia es notable, indicando que completar la educación secundaria ofrece un mayor beneficio en ingresos para los varones.</p>
+<p>En el nivel 5 (Universitario incompleto) quien tiene la mediana de ingresos mas alta son los varones con $420000 y quien tiene la mediana de ingresos mas baja son las mujeres con $369000. La diferencia en ingresos sigue siendo ventajosa para los varones.</p>
+<p>En el nivel 6 (Universitario completo) quien tiene la mediana de ingresos mas alta son los varones con $ 580000 y quien tiene la mediana de ingresos mas baja son las mujeres con $500000.Al alcanzar este nivel, la brecha de ingresos entre varones y mujeres es la más amplia.</p>
+<p>En resumen podemos observar que, como en la variable anterior, el ingreso aumenta a medida que se avanza en el nivel educativo tanto para mujeres como para varones. Sin embargo, en todos los niveles educativos, los varones ganan más que las mujeres. Esto se hace evidente al observar como la brecha de ingresos se amplía a medida que aumenta el nivel educativo.</p>
+<p>Es asi que podemos concluir que si bien el nivel educativo tiene una fuerte influencia en los ingresos de las personas, la gran disparidad de ingresos entre los sexos puede llegar a sugerir que existen otros factores ademas del nivel educativos que influyen en la desigualdad de ingresos.<br>
+<br>
+<br>
+</p>
+<div id="tbl-mednivedusex" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-mednivedusex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;7.5
+</figcaption>
+<div aria-describedby="tbl-mednivedusex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Nivel_Educativo'. You can override using
+the `.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 3
+# Groups:   Nivel_Educativo [7]
+   Nivel_Educativo Sexo  Mediana
+             &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+ 1               0 Mujer  350000
+ 2               0 Varon  337000
+ 3               1 Mujer  314000
+ 4               1 Varon  328000
+ 5               2 Mujer  297000
+ 6               2 Varon  315000
+ 7               3 Mujer  317000
+ 8               3 Varon  350000
+ 9               4 Mujer  352430
+10               4 Varon  400000
+11               5 Mujer  369000
+12               5 Varon  420000
+13               6 Mujer  500000
+14               6 Varon  580000</code></pre>
+</div>
+</div>
+</figure>
+</div>
+<p>Analisis inferencial</p>
+<p>H0: el nivel educativo influye en el ingreso de la persona en igual medida tanto en varones como en mujeres.</p>
+<p>H1: el nivel educativo influye mas en el ingreso de los varones que en el de las mujeres.</p>
+<div class="cell">
+<div id="tbl-test-de-tsexo" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-test-de-tsexo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;7.6: Resultado del test de T
+</figcaption>
+<div aria-describedby="tbl-test-de-tsexo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell table table-sm table-striped small">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 21%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">estimate1</th>
+<th style="text-align: right;">estimate2</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+<th style="text-align: right;">parameter</th>
+<th style="text-align: right;">conf.low</th>
+<th style="text-align: right;">conf.high</th>
+<th style="text-align: left;">method</th>
+<th style="text-align: left;">alternative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-24418.28</td>
+<td style="text-align: right;">437146.8</td>
+<td style="text-align: right;">461565.1</td>
+<td style="text-align: right;">-5.84929</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">34892.21</td>
+<td style="text-align: right;">-32600.58</td>
+<td style="text-align: right;">-16235.99</td>
+<td style="text-align: left;">Welch Two Sample t-test</td>
+<td style="text-align: left;">two.sided</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="aglomeración" class="level3" data-number="7.7.3">
+<h3 data-number="7.7.3" class="anchored" data-anchor-id="aglomeración"><span class="header-section-number">7.7.3</span> Aglomeración</h3>
+<div id="tbl-agloedu" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-agloedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;7.7
+</figcaption>
+<div aria-describedby="tbl-agloedu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-stdout">
+<pre><code>   
+       1    2    3    4    5    6    7
+  N 2919 2337 4077 4299 2271 2385 1535
+  S 2291 1807 3325 3036 2015 2142 1142</code></pre>
+</div>
+</div>
+</figure>
+</div>
+<p>En el siguiente histograma <span class="quarto-unresolved-ref">?fig-itfaglo</span>, se observa que hay un sesgo hacia la derecho, lo cual implica que la mayoría de los ingresos son relativamente bajos, pero hay algunas personas con ingresos significativamente más altos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">##15 </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-itfaglo</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Histograma comparativo de iTF y aglomerados "</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>my_data <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(ITF<span class="sc">&gt;</span><span class="dv">0</span>,ITF<span class="sc">&lt;</span><span class="dv">10000000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(ITF))<span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">xlab</span>(<span class="st">"Ingreso total familar"</span>)<span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ylab</span>(<span class="st">"Conjunto de aglomerados"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="educacion-e-ingreso_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Como se observa en <a href="#tbl-meanmediasdmadaglo" class="quarto-xref">Tabla&nbsp;<span>7.8</span></a>, en cuanto a la media de ingresos en aglomeraciones de igual o más de 500000 habitantes es de $448187.2, mientras que en aglomeraciones de menos de 500000 habitantes es de $449315.0. Las medias son muy similares, lo que sugiere que, en promedio, los ingresos son casi iguales en ambas categorías de aglomeraciones.</p>
+<p>En cuanto a la desviacion es $393,352.6 para aglomeraciones de igual o más de 500000 habitantes y $392045.2 para aglomeraciones de menos de 500000 habitantes. La variabilidad de los ingresos en ambas categorías es prácticamente igua, lo cual indica que la dispersión de los ingresos es similar en ambas categorías.</p>
+<p>En cuanto a la mediana de ingresos es $360000 en aglomeraciones de igual o más de 500000 habitantes y $366000 en aglomeraciones de menos de 500000 habitantes.La mediana es ligeramente más alta en aglomeraciones más pequeñas. Esto sugiere que, en la distribución de ingresos, la mitad de la población en aglomeraciones más pequeñas gana un poco más que la mitad de la población en aglomeraciones más grandes.</p>
+<p>En cuanto al desvio, es el mismo en ambas categorías $231285.6.Este valor indica que la dispersión de los ingresos en torno a la mediana es la misma en ambas categorías.</p>
+<p>La similitud o poca diferencia entre ciudades grandes y ciudades pequeñas indica que en ambos lugares, los ingresos de las personas son parecidos, sin grandes diferencias. Por otro lado, observando la desviacion y el desvio, se puede dilucidar que la variabilidad en los ingresos es casi idéntica en ambos tipos de aglomeraciones, lo cual implica que no hay una gran diferencia en la desigualdad de ingresos entre las áreas más y menos pobladas.</p>
+<div id="tbl-meanmediasdmadaglo" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-meanmediasdmadaglo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;7.8
+</figcaption>
+<div aria-describedby="tbl-meanmediasdmadaglo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  conjunto_de_aglomerados             Media Desviacion Mediana  Desvio
+  &lt;chr&gt;                               &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 igual o más de 500.000 habitantes 448187.    393353.  360000 231286.
+2 menos de 500.000 habitantes       449315.    392045.  366000 231286.</code></pre>
+</div>
+</div>
+</figure>
+</div>
+<p>En <a href="#fig-regeduitf-1" class="quarto-xref">Figura&nbsp;<span>7.3</span></a>, se observa que en el nivel “Sin instruccion”, hay una similitud casi inperceptible entre las ciudades grandes (Igual o más de 500.000 habitantes ) y las ciudades pequeñas ( Menos de 500.000 habitantes). En los niveles primario y secundario (tanto completos como incompletos) hay una evidente ventaja de las ciudades pequeñas por sobre las grandes en cuanto a ingresos. Sin embargo, a nivel universitario (completo e incompleto), las ciudades grandes sobresalen por sobre las ciudades pequeñas.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Nivel_Educativo'. You can override using
+the `.groups` argument.</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-regeduitf" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regeduitf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="educacion-e-ingreso_files/figure-html/fig-regeduitf-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regeduitf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.4: Gráfico vinculo entre nivel educativo e ingreso por aglomerado
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Como se observa en <a href="#tbl-medniveduaglo" class="quarto-xref">Tabla&nbsp;<span>7.9</span></a>, veremos como el nivel educativo influye en los ingresos aunque no es lo mismo para las ciudades grandes(Igual o más de 500.000 habitantes ) y las ciudades pequeñas ( Menos de 500.000 habitantes ).</p>
+<p>En el nivel 0 (Sin instruccion) quien tiene la mediana de ingresos mas alta son las ciudades grandes con $341900 y quien tiene la mediana de ingresos mas baja son las ciudades pequeñas con $340200.</p>
+<p>En el nivel 1 (Primario incompleto) quien tiene la mediana de ingresos mas alta son las ciudades pequeñas con $325000 y quien tiene la mediana de ingresos mas baja son las ciudades grandes con $315000.</p>
+<p>En el nivel 2 (Primario completo) quien tiene la mediana de ingresos mas alta son las ciudades pequeñas con $308000 y quien tiene la mediana de ingresos mas baja son las ciudades grandes con $298000.</p>
+<p>En el nivel 3 (Secundario incompleto) quien tiene la mediana de ingresos mas alta son las ciudades pequeñas con $341700 y quien tiene la mediana de ingresos mas baja sonlas ciudades grandes con $320000.</p>
+<p>En el nivel 4 (Secundario completo) quien tiene la mediana de ingresos mas alta son las ciudades pequeñas con $384500 y quien tiene la mediana de ingresos mas baja son las ciudades grandes con $365000.</p>
+<p>En el nivel 5 (Universitario incompleto) quien tiene la mediana de ingresos mas alta son las ciudades grandes con $400000 y quien tiene la mediana de ingresos mas baja son las ciudades pequeñas con $380000.</p>
+<p>En el nivel 6 (Universitario completo) quien tiene la mediana de ingresos mas alta son las ciudades grandes con $540000 y quien tiene la mediana de ingresos mas baja son las ciuddes pequeñas con $505000.</p>
+<p>En resumen podemos observar que, como en las dos variables anteriores, el ingreso aumenta a medida que se avanza en el nivel educativo tanto para las ciudades grandes como para las ciudades pequeñas. Tambien se puede deducir que en las aglomeraciones más grandes tienden a tener ingresos medianos más altos en los niveles educativos universitario. Sin embargo, para niveles educativos primarios y secundarios, quienes poseen una mayor mediana son las ciudades pequeñas.</p>
+<p>Es asi que podemos concluir que si bien el nivel educativo tiene una fuerte influencia en los ingresos de las personas, la gran disparidad de ingresos entre los sexos puede llegar a sugerir que existen otros factores ademas del nivel educativos que influyen en la desigualdad de ingresos.<br>
+</p>
+<div id="tbl-medniveduaglo" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-medniveduaglo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;7.9
+</figcaption>
+<div aria-describedby="tbl-medniveduaglo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Nivel_Educativo'. You can override using
+the `.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 3
+# Groups:   Nivel_Educativo [7]
+   Nivel_Educativo MAS_5002                          Mediana
+             &lt;dbl&gt; &lt;chr&gt;                               &lt;dbl&gt;
+ 1               1 Igual o más de 500.000 habitantes  315000
+ 2               1 Menos de 500.000 habitantes        325000
+ 3               2 Igual o más de 500.000 habitantes  298000
+ 4               2 Menos de 500.000 habitantes        308000
+ 5               3 Igual o más de 500.000 habitantes  320000
+ 6               3 Menos de 500.000 habitantes        341700
+ 7               4 Igual o más de 500.000 habitantes  365000
+ 8               4 Menos de 500.000 habitantes        384500
+ 9               5 Igual o más de 500.000 habitantes  400000
+10               5 Menos de 500.000 habitantes        380000
+11               6 Igual o más de 500.000 habitantes  540000
+12               6 Menos de 500.000 habitantes        505000
+13               7 Igual o más de 500.000 habitantes  341900
+14               7 Menos de 500.000 habitantes        340200</code></pre>
+</div>
+</div>
+</figure>
+</div>
+<p>Analisis inferencial</p>
+<p>H0: el nivel educativo influye en el ingreso de la persona en igual medida tanto en ciudades grandes como en ciudades pequeñas.</p>
+<p>H1: el nivel educativo influye mas en el ingreso de las ciudades pequeñas que en el de las ciudades grandes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Falta agrupar y generar conjuntos separados</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#my_test &lt;- t.test(Interior$ITF, AMBA$ITF, paired = TRUE)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tbl-test-de-taglo" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-test-de-taglo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;7.10: Resultado del test de T
+</figcaption>
+<div aria-describedby="tbl-test-de-taglo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+
+</div>
+</figure>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
