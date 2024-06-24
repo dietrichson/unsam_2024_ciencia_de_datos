@@ -1,18 +1,16 @@
 ---
-title: "Educacion e Ingreso"
+title: "Educación e Ingreso"
 author: "Barragán"
 format: html
 editor: visual
 bibliography: references.bib
 ---
 
-# Educación e Ingreso
-
-## **Introducción**
+## Introducción
 
 En el presente capitulo se llevara a cabo un análisis cuantitativo referido al vinculo entre el nivel educativo y el ingreso con diversos factores tales como el sexo, la región geográfica y la aglomeración. Para tal proposito, se utilizaran datos del Instituto Nacional de Estadística y Censos (INDEC)([Censos y estadísticas 2023](/cloud/project/data/usu_individual_T423.rds)).
 
-## **Datos**
+## Datos
 
 Los datos que hemos usado para este análisis provienen del indec. Corresponden a la encuesta permanente de hogares para el 4to trimestre del 2023.
 
@@ -178,7 +176,7 @@ Es asi, que podemos concluir que en todas las regiones, la media es mayor que la
 
 ```{r}
 #| echo: false
-#| label: tbl-regmeannediansdmad
+#| label: tbl-regmeannediansdmad-1
 #| fig-cap: "Tabla media, mediana, desviacion y desvio por region en base a los ingresos"
 ##1
 my_data |> 
@@ -321,16 +319,16 @@ H1: el nivel educativo influye mas en el ingreso de Interior que en el del AMBA.
 #| include: false
 Interior <- my_data|>filter (REGION=="Interior")
 AMBA <- my_data|> filter(REGION=="AMBA")
-my_test <- t.test(AMBA$ITF, Interior$ITF)
+my_test <- t.test(Interior$ITF, AMBA$ITF)
 ```
 
 ```{r}
 #| label: tbl-test-de-treg
 #| echo: false
 #| tbl-cap: "Resultado del test de T"
-my_test |> 
-  broom::tidy() |> 
-  knitr::kable()
+# my_test |> 
+#   broom::tidy() |> 
+#   knitr::kable()
 ```
 
 ### **Sexo**
@@ -382,7 +380,7 @@ my_data <- my_data |> filter(ITF<10000000,ITF>0)
 hist(my_data$ITF)
 ```
 
-En @tbl-regmeannediansdmad, se puede observar que en cuanto a la media es ligeramente superior en los varones(\$461565.1) en comparación con las mujeres(\$437146.8). Esto sugiere que, en promedio, los varones ganan más que las mujeres.
+En @tbl-regmeannediansdmad-1, se puede observar que en cuanto a la media es ligeramente superior en los varones(\$461565.1) en comparación con las mujeres(\$437146.8). Esto sugiere que, en promedio, los varones ganan más que las mujeres.
 
 En cuanto a la desviacion, tanto de los varones (\$402943.0) como de las mujeres (\$382566.2) se puede ver que los ingresos de los varones muestran una mayor dispersión que los de las mujeres, indicando una mayor variabilidad en los ingresos de aquellos. Esto puede significar que hay una mayor brecha entre los ingresos altos y bajos entre los varones en comparación con las mujeres.
 
@@ -417,7 +415,7 @@ En este @fig-regeduitf, se puede observar que, en cuanto al sexo, hay una clara 
 
 ```{r}
 #| echo: false
-#| label: fig-regeduitf
+#| label: fig-regeduitf-1
 #| fig-cap: "Gráfico vinculo entre nivel educativo e ingreso por sexo"
 ##7
 source(here::here("R/variables-nivel-educativo.R"))
@@ -593,7 +591,7 @@ my_data <- my_data |>
             .default = "No Encontrado"))
 ```
 
-En @fig-regeduitf, se observa que en el nivel "Sin instruccion", hay una similitud casi inperceptible entre las ciudades grandes (Igual o más de 500.000 habitantes ) y las ciudades pequeñas ( Menos de 500.000 habitantes). En los niveles primario y secundario (tanto completos como incompletos) hay una evidente ventaja de las ciudades pequeñas por sobre las grandes en cuanto a ingresos. Sin embargo, a nivel universitario (completo e incompleto), las ciudades grandes sobresalen por sobre las ciudades pequeñas.
+En @fig-regeduitf-1, se observa que en el nivel "Sin instruccion", hay una similitud casi inperceptible entre las ciudades grandes (Igual o más de 500.000 habitantes ) y las ciudades pequeñas ( Menos de 500.000 habitantes). En los niveles primario y secundario (tanto completos como incompletos) hay una evidente ventaja de las ciudades pequeñas por sobre las grandes en cuanto a ingresos. Sin embargo, a nivel universitario (completo e incompleto), las ciudades grandes sobresalen por sobre las ciudades pequeñas.
 
 ```{r}
 #| echo: false
@@ -655,16 +653,18 @@ H0: el nivel educativo influye en el ingreso de la persona en igual medida tanto
 H1: el nivel educativo influye mas en el ingreso de las ciudades pequeñas que en el de las ciudades grandes.
 
 ```{r}
-igual o más de 500.000 habitantes	 <- my_data|> filter (MAS_500=="igual o más de 500.000 habitantes	")
+igual o más de 500.000 habitantes	 <- my_data|> filter (MAS_500=="igual o más de 500.000 habitantes")
 menos de 500.000 habitantes <- my_data|> filter (Sexo=="menos de 500.000 habitantes")
 my_test <- t.test(igual o más de 500.000 habitantes$ITF, menos de 500.000 habitantes$ITF)
+# Falta agrupar y generar conjuntos separados
+#my_test <- t.test(Interior$ITF, AMBA$ITF, )
 ```
 
 ```{r}
 #| label: tbl-test-de-taglo
 #| echo: false
 #| tbl-cap: "Resultado del test de T"
-my_test |> 
-  broom::tidy() |> 
-  knitr::kable()
+# my_test |> 
+#   broom::tidy() |> 
+#   knitr::kable()
 ```
