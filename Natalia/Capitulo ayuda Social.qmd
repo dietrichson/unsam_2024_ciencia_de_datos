@@ -9,7 +9,7 @@ author: "Natalia Luna"
 
 ## Introducción
 
-En el siguiente capítulo se analizará la distribución de la ayuda social en los individuos de la población argentina durante los periodos del cuarto trimestre del año 2022 y el año 2023. Tambien analizaremos la evolución de la ayuda social durante estos mismos periodos, con el propósito de identificar si hubo diferencias. Para ello se utilizarán los datos obtenidos del Instituto Nacional de estadísticas y censo (@indec) obtenidos en los años ya mencionados.
+En el siguiente capítulo se analizará la distribución de la ayuda social en los individuos de la población argentina durante los periodos del cuarto trimestre del año 2022 y el año 2023. También analizaremos la evolución de la ayuda social durante estos mismos periodos, con el propósito de identificar si hubo diferencias. Para ello se utilizarán los datos obtenidos del Instituto Nacional de estadísticas y censo (@indec) obtenidos en los años ya mencionados.
 
 ### Herramientas de análisis
 
@@ -49,6 +49,18 @@ usu_individual_T423 |>
   nrow()
 ```
 
+Ordenamiento y flitrado de datos
+
+Procedemos a filtrar los datos individuales de los cuartos trimestres de los años mencionados (2022-2023).
+
+Para esto realizamos:
+
+-   Utilizamos un "interset" del campo UIDs, para indentificar aquellos valores presentes en ambos conjuntos.
+
+-   En segundo lugar utilizamos el conjunto de datos resultante del intersect, para filtrar los marcos de datos de 2022 y 2023. A su vez seleccionamos aquellos campos que son relevantes para el estudio y los renombramos.
+
+-   Finalmente procedemos a mutar los campos Región, Aglomerado y Ciudad grande.
+
 ```{r}
 UIDs <- intersect(usu_individual_T422$UID,usu_individual_T423$UID)
 
@@ -86,13 +98,17 @@ usu_individual_T423_filtrado <- usu_individual_T423_filtrado |>
 usu_individual_T422_filtrado
 ```
 
+Ordenamiento por ayuda social
+
+-   Utilizamos un "bind_rows" para combinar filas de dos marcos de datos en uno solo.
+
+-   Procedemos a graficar utilizando el marco de datos devuelto por "bind_rows". Para eso filtramos los registros con "Monto_ayuda_social" mayor que 0 y realizamos dos graficos, el primero con los valores originales y el segundo con el ajuste por inflación.
+
 ```{r}
 usu_individual_T422_T423_f <- bind_rows(
   usu_individual_T422_filtrado,
   usu_individual_T423_filtrado 
 )
-
-usu_individual_T422_T423_f
 ```
 
 ```{r}
@@ -112,3 +128,14 @@ usu_individual_T422_T423_f |>
   filter(Monto_ayuda_social > 0) |> 
   graficar_ayuda_social_2022_2023()
 ```
+
+```{r}
+usu_individual_T422_T423_f  |> 
+  mutate(Monto_ayuda_social = ifelse(Año == 2022, Monto_ayuda_social * ajuste_por_inflacion, Monto_ayuda_social)) |> 
+  filter(Monto_ayuda_social > 0) |> 
+  group_by(Año) |> 
+  summarize(Media = median(Monto_ayuda_social)) |> 
+  knitr::kable()
+```
+
+En conclusión lo que se puede observar en el primer gráfico, es que la ayuda social en 2023 es superior al 2022. Sin embargo, cuando realizamos el ajuste por inflación podemos asumir que el monto de ayuda social se redujo en el año 2023.
