@@ -9,11 +9,11 @@ author: "Natalia Luna"
 
 ## Introducción
 
-En el siguiente capítulo se analizará la distribución de la ayuda social en los individuos de la población argentina durante los periodos del cuarto trimestre del año 2022 y el año 2023. También analizaremos la evolución de la ayuda social durante estos mismos periodos, con el propósito de identificar si hubo diferencias. Para ello se utilizarán los datos obtenidos del Instituto Nacional de estadísticas y censo (@indec) obtenidos en los años ya mencionados.
+En el siguiente capítulo se analizará la distribución de la ayuda social en los individuos de la población argentina durante los periodos del cuarto trimestre del año 2022 y el año 2023. También analizaremos la evolución de la ayuda social durante estos mismos periodos, con el propósito de identificar si hubo diferencias. Para ello se utilizarán los datos obtenidos del Instituto Nacional de estadísticas y censo (INDEC) obtenidos en los años ya mencionados.
 
 ### Herramientas de análisis
 
-Para la realización del presente análisis se utilizó el lenguaje de programación R @base con los paquetes de tidyverse @tidyverse. Asimismo, se utilizó el sistema Quarto @Allaire_Quarto_2024.
+Para la realización del presente análisis se utilizó el lenguaje de programación R Base con los paquetes de tidyverse. Asimismo, se utilizó el sistema Quarto.
 
 ### Procedimiento
 
