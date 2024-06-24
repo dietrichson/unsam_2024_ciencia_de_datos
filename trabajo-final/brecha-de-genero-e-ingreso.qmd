@@ -5,33 +5,33 @@ editor: visual
 Author: Michelle Wilkinson
 ---
 
-# Introducción
+## Introducción
 
 En el siguiente capítulo se analizará si existe una diferencia en el ingreso de los individuos en relación con su género. A su vez, se hará una comparación entre los años 2022 y 2023 para indicar si se presentó alguna diferencia. Para ello se utilizarán los datos obtenidos del Instituto Nacional de estadísticas y censo (@indec) obtenidos en los años ya mencionados.
 
 ```{r}
-#| include:false
+#| include: false
 library(tidyverse)
 ```
 
 ```{r}
-#| include:false
-here::here("/cloud/project/data/usu_individual_T422.rds")
-here::here("/cloud/project/data/usu_individual_T423.rds")
+#| include: false
+usu_individual_T422 <- readRDS( here::here("data/usu_individual_T422.rds"))
+usu_individual_T423 <- readRDS( here::here("data/usu_individual_T423.rds"))
 ```
 
-# Análisis
+## Análisis
 
 En las siguientes secciones, se buscará comaparar el ingreso de los hombres y las mujeres de la Argentina para identificar diferencias (o similitudes) en sus valores. De esta manera, se observará si existe alguna tendencia a que exista una diferencia entre los ingresos y ganancias según el género. A su vez, se realizará una comparación entre los años 2022 y 2023 para verificar si a lo largo de los meses el valor sufrió algún tipo de cambio. Además, se tendrán en cuenta los valores inflacionarios.
 
 Para relaizar el procedimiento mencionado, se calculará la "mediana", es decir, la estadística que representa el valor de posición central de los datos a analizar, en este caso, del monto de ingreso de ocupación principal. Para ello, se eliminaran todos los valores que sean iguales a cero para poder crear un resultado con mayor exactitud.
 
-## Ingresos en 2022
+### Ingresos en 2022
 
 En esta primer instancia, se llega al resultado de que los hombres obtienen un ingreso de 80.000 pesos mientras que las mujeres promedian un sueldo de 60.000.
 
 ```{r}
-#| include:false
+#| include: false
 nombrar_ch04 <- function(x){
   case_when(
     x == "1" ~ "Varon", # respetando la norma del indec.
@@ -42,7 +42,7 @@ nombrar_ch04 <- function(x){
 ```
 
 ```{r}
-#| include:false
+#| include: false
 my_data <- usu_individual_T422 |> 
   mutate(ingreso = P21) |> 
   mutate(sexo = nombrar_ch04(CH04))
@@ -56,12 +56,12 @@ my_data |>
   )#se busca la mediana para ver cuánto es la diferencia del valor central de cada sexo. Sino, surgían todos los valores.
 ```
 
-## Ingresos en 2023
+### Ingresos en 2023
 
 Luego del análisis del año 2023, se reconoce que, en dicho año, el sueldo de los hombres fue de 200.000 mientras que el de las mujeres de 150.000. De esta manera, logra observarse que perdura una diferencia entre ambos años y géneros.
 
 ```{r}
-#| include:false
+#| include: false
 my_data <-usu_individual_T423 |> 
   mutate(ingreso = P21) |> 
   mutate(sexo = nombrar_ch04(CH04))
@@ -75,7 +75,7 @@ my_data |>
   )
 ```
 
-## Test de comparación según el año
+### Test de comparación según el año
 
 Se utiliza el test de T student @student1908 para comparar el valor del Ingreso en los diferentes años.
 
@@ -136,7 +136,7 @@ p2
 
 ```
 
-## Comparación según el género mediante gráficos
+### Comparación según el género mediante gráficos
 
 En este segmento se propone comparar los resultados de ambos años para visualizar la diferencia entre los géneros..
 
@@ -148,7 +148,7 @@ print(p2)
 
 ```
 
-# Conclusión
+## Conclusión
 
 A partir del análisis realizado, puede notarse como se manifiesta una disparidad en los salarios dependiendo del género. Logra observarse que, dentro de un mismo año, existe una brecha en el ingreso de alrededor de un 25%. En este caso, se puede destacar que en la Argentina, en promedio, los varones ganan ese porcentaje por encima del sueldo de las mujeres.
 
