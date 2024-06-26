@@ -1,8 +1,12 @@
-# Distribución del ingreso
+---
+title: "Distribución del ingreso"
+author: "Sabrina Scarnato"
+bibliography: references.bib
+---
 
-### Introducción 
+## Introducción
 
-Este capítulo se propone analizar, a través de los principales indicadores, la desigualdad económica en Argentina entre los años 2022 y 2023 en las regiones de Gran Buenos Aires, Noroeste, Noreste, Pampeana, Cuyo y Patagonia. Esto se realizará con un análisis cualitativo sobre los datos informados por el Instituto Nacional de Estadística y Censos (INDEC).
+Este capítulo se propone analizar, a través de los principales indicadores, la desigualdad económica en Argentina entre los años 2022 y 2023 en las regiones de Gran Buenos Aires, Noroeste, Noreste, Pampeana, Cuyo y Patagonia. Esto se realizará con un análisis cualitativo sobre los datos informados por el Instituto Nacional de Estadística y Censos [@indec].
 
 El análisis se centrará en el Ingreso Total Familiar (ITF) como un indicador clave para distinguir las áreas del país donde existen mayores diferencias entre las familias con ingresos altos y aquellas cuyos ingresos se sitúan por debajo de la Canasta Básica Total. Este enfoque permitirá identificar las regiones y sectores más afectados por la desigualdad, proporcionando una visión detallada de cómo se distribuye la riqueza a lo largo del territorio nacional.
 
@@ -21,10 +25,10 @@ Los datos fueron recopilados de la encuesta permanente de hogares realizada por 
 ### Objetivo
 
 Indagar cómo es la distribución del ingreso en las diversas regiones de Argentina durante el lapso de tiempo seleccionado.
- 
+
 ### Pregunta de investigación
 
-¿Hay diferencias en la distribución de ingresos entre las regiones? De ser así, ¿Cuáles son las que tienen mayor disparidad? 
+¿Hay diferencias en la distribución de ingresos entre las regiones? De ser así, ¿Cuáles son las que tienen mayor disparidad?
 
 ¿Cuanto es la diferencia entre la media de las regiones?
 
@@ -38,18 +42,19 @@ Para llevar a cabo el análisis procederé a:
 
 3.  Generar gráficos para poder visualizar los datos obtenidos.
 
-
 ### Herramientas de análisis
 
-Usamos el lenguaje R ([2024](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-base)) con los paquetes de tidyverse. ([Wickham et al. 2019](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-tidyverse)). Usamos el sistema Quarto (Allaire et al. ([2024](https://dietrichson.github.io/unsam_2024_ciencia_de_datos/notas/analysis-ITF.html#ref-Allaire_Quarto_2024))) para su publicación.
+Usamos el lenguaje R [@base] con los paquetes de tidyverse [@tidyverse]. Usamos el sistema Quarto [@Allaire_Quarto_2024] para su publicación.
 
 ## Análisis
 
 ```{r}
+#| include: false
 library(tidyverse)
 ```
 
 ```{r}
+#| include: false
 my_data <- read_rds(here::here("data/datos_indec.rds"))
 ```
 
@@ -63,25 +68,31 @@ temp_df <- my_data |>
 ```
 
 ```{r}
+#| include: false
 nrow(temp_df)
 ```
 
+
 ```{r}
+#| include: false
 temp_df$ITF |> # Ingreso Total Familiar
   mean()
 ```
 
 ```{r}
+#| include: false
 temp_df$ITF |> # Ingreso Total Familiar
   median()
 ```
 
 ```{r}
+#| include: false
 temp_df$ITF |> 
   range()
 ```
 
 ```{r}
+#| echo: false
 options(scipen = 999)
 temp_df |> 
   ggplot(aes(ITF))+
@@ -89,10 +100,11 @@ temp_df |>
   scale_x_log10()
 ```
 
-En la región de Gran Buenos Aires más de la mitad de los hogares se encuentra por encima de la media de la ITF por tanto la distribución de la riqueza es dispar. 
-Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $224668.3 
+En el gráfico anterior podemos observar que en la región de Gran Buenos Aires más de la mitad de los hogares se encuentra por encima de la media del ITF (Ingreso Total Familiar). Esto indica que la distribución de la riqueza en esta región es dispar, con una considerable proporción de hogares obteniendo ingresos superiores al promedio regional.
+Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $224,668.3. Este valor medio proporciona una perspectiva clara sobre el nivel económico promedio en Gran Buenos Aires, destacando la disparidad en la distribución de los ingresos. Aunque esta cifra es más alta que en algunas otras regiones del país, la existencia de una mayoría de hogares por encima de la media sugiere una economía regional bastante robusta.
 
 ```{r}
+#| include: false
 # Filtración de región Noroeste
 my_data$REGION |> 
   unique()
@@ -101,24 +113,29 @@ temp_df <- my_data |>
 ```
 
 ```{r}
+#| include: false
 nrow(temp_df)
 ```
 
 ```{r}
+#| include: false
 temp_df$ITF |> # Ingreso Total Familiar
   mean()
 ```
 
 ```{r}
+#| include: false
 temp_df$ITF |> # Ingreso Total Familiar
   median()
 ```
 ```{r}
+#| include: false
 temp_df$ITF |> 
   range()
 ```
 
 ```{r}
+#| echo: false
 options(scipen = 999)
 temp_df |> 
   ggplot(aes(ITF))+
@@ -130,6 +147,7 @@ En la región Noroeste la distribución de la riqueza se encuentra dispar ya que
 Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $269987 
 
 ```{r}
+#| include: false
 # Filtración de región Noreste
 my_data$REGION |> 
   unique()
@@ -138,24 +156,29 @@ temp_df <- my_data |>
 ```
 
 ```{r}
+#| include: false
 nrow(temp_df)
 ```
 
 ```{r}
+#| include: false
 temp_df$ITF |> # Ingreso Total Familiar
   mean()
 ```
 
 ```{r}
+#| include: false
 temp_df$ITF |> # Ingreso Total Familiar
   median()
 ```
 ```{r}
+#| include: false
 temp_df$ITF |> 
   range()
 ```
 
 ```{r}
+#| echo: false
 options(scipen = 999)
 temp_df |> 
   ggplot(aes(ITF))+
@@ -163,10 +186,11 @@ temp_df |>
   scale_x_log10()
 ```
 
-En éste grafico de la región Noreste se puede observar que hay picos en la cantidad de hogares con ITF mayores a la media pero la brecha no es tan amplia. 
-Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $209483.7
+En este gráfico de la región Noreste se puede observar que hay picos en la cantidad de hogares con ITF (Ingreso Total Familiar) mayores a la media, pero la brecha no es tan amplia.
+Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $209,483.7. Esta cifra, aunque es una de las más bajas en comparación con otras regiones del país, proporciona una visión clara de la situación económica en el Noreste. A pesar de que los ingresos son menores, la presencia de picos en el gráfico muestra que hay segmentos de la población que logran superar el promedio.
 
 ```{r}
+#| include: false
 # Filtración de región Cuyo
 my_data$REGION |> 
   unique()
@@ -175,24 +199,29 @@ temp_df <- my_data |>
 ```
 
 ```{r}
+#| include: false
 nrow(temp_df)
 ```
 
 ```{r}
+#| include: false
 temp_df$ITF |> # Ingreso Total Familiar
   mean()
 ```
 
 ```{r}
+#| include: false
 temp_df$ITF |> # Ingreso Total Familiar
   median()
 ```
 ```{r}
+#| include: false
 temp_df$ITF |> 
   range()
 ```
 
 ```{r}
+#| echo: false
 options(scipen = 999)
 temp_df |> 
   ggplot(aes(ITF))+
@@ -200,10 +229,11 @@ temp_df |>
   scale_x_log10()
 ```
 
-En éste grafico de la región de Cuyo se puede observar que aunque hay picos en la cantidad de hogares con ITF mayores a la media el grafico se encuentra nivelado.
-Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $252978.3
+En este gráfico de la región de Cuyo se puede observar que, aunque hay picos en la cantidad de hogares con ITF (Ingreso Total Familiar) mayores a la media, el gráfico se encuentra relativamente nivelado.
+Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $252,978.3. Esta cifra indica un nivel de ingreso promedio que, si bien no es el más alto del país, muestra una posición intermedia que podría reflejar una economía regional relativamente estable. Además, la nivelación del gráfico sugiere una menor desigualdad en comparación con otras regiones donde los ingresos pueden estar más polarizados. 
 
 ```{r}
+#| include: false
 # Filtración de región Pampeana
 my_data$REGION |> 
   unique()
@@ -212,24 +242,29 @@ temp_df <- my_data |>
 ```
 
 ```{r}
+#| include: false
 nrow(temp_df)
 ```
 
 ```{r}
+#| include: false
 temp_df$ITF |> # Ingreso Total Familiar
   mean()
 ```
 
 ```{r}
+#| include: false
 temp_df$ITF |> # Ingreso Total Familiar
   median()
 ```
 ```{r}
+#| include: false
 temp_df$ITF |> 
   range()
 ```
 
 ```{r}
+#| echo: false
 options(scipen = 999)
 temp_df |> 
   ggplot(aes(ITF))+
@@ -237,10 +272,11 @@ temp_df |>
   scale_x_log10()
 ```
 
-En éste grafico de la región Pampeana se puede observar que la mayor cantidad de hogares se concentra por encima de la media de ITF. 
-Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $211733.7
+En este gráfico de la región Pampeana, se puede observar que la mayor cantidad de hogares se concentra por encima de la media del ITF (Ingreso Total Familiar).
+Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $211,733.7. 
 
 ```{r}
+#| include: false
 # Filtración de región Patagonica
 my_data$REGION |> 
   unique()
@@ -249,25 +285,30 @@ temp_df <- my_data |>
 ```
 
 ```{r}
+#| include: false
 nrow(temp_df)
 ```
 
 ```{r}
+#| include: false
 temp_df$ITF |> # Ingreso Total Familiar
   mean()
 ```
 
 ```{r}
+#| include: false
 temp_df$ITF |> # Ingreso Total Familiar
   median()
 ```
 
 ```{r}
+#| include: false
 temp_df$ITF |> 
   range()
 ```
 
 ```{r}
+#| echo: false
 options(scipen = 999)
 temp_df |> 
  ggplot(aes(ITF))+
@@ -276,11 +317,12 @@ temp_df |>
 
 ```
 
-En éste grafico de la región Patagonica se puede observar que la mayor cantidad de hogares se encuentra superior a la media de ITF. 
-Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $343434.3
+En este gráfico de la región Patagónica, se puede observar que la mayor cantidad de hogares se encuentra por encima de la media del ITF (Ingreso Total Familiar). Esta tendencia indica que una gran proporción de las familias en esta región disfruta de ingresos superiores al promedio, lo cual refleja una situación económica relativamente favorable en comparación con otras áreas del país.
+En cuanto a la media del Ingreso Total Familiar en los hogares de esta región, este valor asciende a $343,434.3. Este dato es significativo porque no solo señala una media elevada, sino que también resalta la disparidad económica entre la región Patagónica y otras regiones con menores niveles de ingreso familiar. 
              
 ```{r}
-temp_df <- temp_df |> 
+#| include: false
+temp_df <- my_data |> 
   mutate(REGION2 = 
            case_when(
              REGION == 1 ~ "GBA",
@@ -291,18 +333,20 @@ temp_df <- temp_df |>
              REGION == 44 ~ "Patagonia"))
 
 
-temp_df
-```             
+```
+
 ```{r}
+#| include: false
 temp_df |>
   group_by(REGION2) |>
   summarise(
-    MEDIA = mean(ITF),
-    MEDIANA = median(ITF)
+    media = mean(ITF),
+    mediana = median(ITF)
   )
 ```
 
 ```{r}
+#| echo: false
 temp_df %>%  
   group_by(REGION2) %>%  
   summarize(
@@ -312,12 +356,11 @@ temp_df %>%
     geom_col()
 ```
              
+En este último gráfico, podemos observar el Ingreso Total Familiar desglosado por todas las regiones. Este gráfico proporciona una visión clara y detallada de las variaciones en los ingresos familiares entre las diferentes áreas geográficas,  facilitando la comparación directa entre las distintas zonas, destacando tanto las similitudes como las disparidades en los niveles de ingreso familiar a lo largo del territorio analizado. 
              
 ## Conclusiones
-Pudimos observar que si existe una amplia diferencia entre las diversas regiones del país, especialmente entre la región de la Patagonia y la región Noreste. La Patagonia se destaca por tener los índices de ITF (Ingreso Total Familiar) más altos, mientras que la región Noreste se encuentra en el extremo opuesto, ocupando el lugar más bajo en cuanto a este indicador.
-Estas diferencias en el ITF tiene profundas implicaciones para la calidad de vida de los habitantes de cada región. En la Patagonia, los altos ingresos permiten un mayor acceso a bienes y servicios, mejor educación y atención sanitaria, y una mayor estabilidad económica. Por otro lado, en la región Noreste, los ingresos más bajos pueden limitar el acceso a estos mismos beneficios, afectando el bienestar general de las familias.
+Pudimos observar que sí existe una amplia diferencia entre las diversas regiones del país, especialmente entre la región de la Patagonia y la región Noreste. La Patagonia se destaca por tener los índices de ITF (Ingreso Total Familiar) más altos, mientras que la región Noreste se encuentra en el extremo opuesto, ocupando el lugar más bajo en cuanto a este indicador.
+Aun así, la región Pampeana se encuentra muy cercana al Noreste en los niveles más bajos.
+Estas diferencias en el ITF tienen profundas implicaciones para la calidad de vida de los habitantes de cada región. En la Patagonia, los altos ingresos permiten un mayor acceso a bienes y servicios, mejor educación y atención sanitaria, y una mayor estabilidad económica. Por otro lado, en la región Noreste, los ingresos más bajos pueden limitar el acceso a estos mismos beneficios, afectando el bienestar general de las familias.
 
-Por otro lado pudimos encontrar que las medias varían en más de 100000$ entre las regiones.
-Las regiones del Noreste (209483.7) y la Pampeana (211733.7) son las que menores valores tienen. Seguidas por el AMBA (224668.3), Cuyo (252978.3) y Noroeste (269987). Despegado ampliamente se ubica la region Patagonica (343434.3). 
-
-
+Por otro lado, pudimos encontrar que las medias varían en más de 100,000$ entre las regiones. Las regiones del Noreste (209,483.7) y la Pampeana (211,733.7) son las que tienen los valores más bajos, seguidas por el AMBA (224,668.3), Cuyo (252,978.3) y Noroeste (269,987). Amplia y claramente destacada se ubica la región Patagónica (343,434.3).
