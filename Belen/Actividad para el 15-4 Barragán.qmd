@@ -120,6 +120,6 @@ Segun la curva de distribución de ingresos de cada región, el monto de ingreso
 
 ## 4.
 
-H0: El nivel de ingresos en GBA es igual que en el resto de las regiones.
+H0: El nivel de ingresos en GBA es mayor que en el resto de las regiones.
 
 H1: La región de la Patagonia es la que mayor monto de ingreso total familiar posee en comparacion con las otras regiones.

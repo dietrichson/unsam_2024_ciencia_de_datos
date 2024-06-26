@@ -1,11 +1,11 @@
 ---
-title: "Educacion e Ingreso"
+title: "6. Educacion e Ingreso"
 author: "Barragán"
 format: html
 editor: visual
 ---
 
-# Educación e Ingreso
+# 6. Educación e Ingreso
 
 ## **Introducción**
 
@@ -19,9 +19,9 @@ Los datos que hemos usado para este análisis provienen del indec. Corresponden 
 
 ¿En qué medida influye el **nivel educativo** en el **ingreso** de la persona?
 
--   ¿Es lo mismo para todas las provincias y/o **regiones del país**? ¿Es igual en AMBA y en el Interior?
+-   ¿Controlando por la variable de **sexo**?
 
--   ¿Es igual para los dos **sexos**?
+-   ¿Es lo mismo para todas las provincias y/o **regiones**?
 
 -   ¿Es lo mismo en **ciudades grandes** (+500) y en las **ciudades chicas**?
 
@@ -55,7 +55,7 @@ temp_df <- my_data |>
   select(NIVEL_ED,CH04,ITF,REGION,MAS_500)
 ```
 
-## 
+## ---
 
 ```{r}
 #| include: false
@@ -128,7 +128,9 @@ temp_df |>
 ### Regiones
 
 ```{r}
-#| include: false
+#| echo: false
+#| label: tbl-regedu
+#| fig-cap: "Tabla nivel de educacion por región"
 my_data <- my_data |> 
   mutate(Nivel_Educativo = NIVEL_ED) |>  
   mutate(Region = case_when( 
@@ -155,14 +157,13 @@ my_data <- my_data |>
              REGION == 42 ~ "Cuyo",
              REGION == 43 ~ "Pampeana",
              REGION == 44 ~ "Patagonia",
-               TRUE ~ "No Encontrado"  
-     )
+               .default = "desconocido" 
+         )
   )
 
-head(table(my_data$ITF, my_data$Region), 10)
-```
+head(table(my_data$ITF, my_data$REGION), 10)
 
-En la siguiente tabla, se puede observar en base a la media (promedio de ingresos por región), que los ingresos más altos pertenecen a la region de la Patagonia (con un ingreso promedio de \$563456), dejando al Noreste como la región con menor ingreso promedio (con \$373542).
+```
 
 ```{r}
 #| echo: false
@@ -199,16 +200,23 @@ temp_df <- temp_df |>
              REGION != "Gran Buenos Aires" ~ "Interior",
             .default = "No Encontrado"))
 
+temp_df <- temp_df |> 
+  mutate(NIVEL_ED2 = 
+           case_when(
+             NIVEL_ED %in% c (1, 3, 5) ~ "Estudio incompleto",
+             NIVEL_ED %in% c (2, 4, 6) ~ "Estudio completo",
+             NIVEL_ED == 0 ~ "Sin Instruccion",
+             .default = "Sin datos"))
 ```
 
 ```{r}
-##10 hacer subdivision (amba/interior)
-temp_df |> 
-      group_by(NIVEL_ED, REGION2) |>
+##CONSULTAR
+##temp_df |> 
+      group_by(NIVEL_ED2, REGION2) |>
       summarize(
         Mediana = median(ITF)
       ) |> 
-   ggplot(aes(NIVEL_ED,Mediana, color = REGION2))+
+   ggplot(aes(NIVEL_ED2,Mediana, color = REGION2))+
   geom_line()
 ```
 
@@ -216,7 +224,7 @@ temp_df |>
 #| echo: false
 #| label: fig-regedu
 #| fig-cap: "Gráfico vinculo entre nivel educativo e ingreso por región"
-##11
+##CONSULTAR si elegir uno o ambos graficos
 source(here::here("R/variables-nivel-educativo.R"))
 temp_df |> 
   mutate(Nivel_Educativo = nivel_educativo(NIVEL_ED)) |> 
@@ -235,18 +243,17 @@ temp_df |>
 #| echo: false
 #| label: fig-regeduitf
 #| fig-cap: "Gráfico vinculo entre nivel educativo e ingreso por región"
-my_data |> 
+##my_data |> 
   filter(ITF<10000000,ITF>0) |> 
   group_by(NIVEL_ED, REGION) |>
   summarize(
-    Mediana = median(ITF)
+    Mediana = median(Ingreso)
   ) |> 
   ggplot(aes(NIVEL_ED,Mediana,color=REGION))+
   geom_line()
 ```
 
 ```{r}
-##12
 my_data |> 
  group_by(Nivel_Educativo, REGION) |>
   summarize(
@@ -257,7 +264,6 @@ my_data |>
 ### **Sexo**
 
 ```{r}
-##13
 #| echo: false
 #| label: tbl-sexoedu
 #| fig-cap: "Tabla nivel educativo según el sexo"
@@ -329,14 +335,6 @@ my_data |>
 ```
 
 ```{r}
-#| include: false
-my_data <- my_data |> 
-  mutate(
-         Nivel_Educativo =  ifelse(Nivel_Educativo == 7, 0, Nivel_Educativo)
-      )
-```
-
-```{r}
 ##8
 my_data |> 
  group_by(Nivel_Educativo, Sexo) |>
@@ -348,18 +346,9 @@ my_data |>
 ### Aglomeración
 
 ```{r}
-#| include: false
-my_data <- my_data |> 
-  mutate(
-         Nivel_Educativo =  ifelse(Nivel_Educativo == 7, 0, Nivel_Educativo)
-      )
-```
-
-```{r}
 #| echo: false
 #| label: tbl-agloedu
 #| fig-cap: "Tabla nivel educativo según aglomerados"
-##14
 my_data <- my_data |> 
   mutate(Nivel_Educativo = NIVEL_ED) |> 
   mutate(conjunto_de_aglomerados = case_when(
@@ -385,7 +374,7 @@ head(table(my_data$ITF, my_data$MAS_500), 6)
 ```
 
 ```{r}
-##15 
+##CONSULTAR PARA AGREGAR FILTRO filter(ITF<10000000,ITF>0) 
 #| echo: false
 #| label: fig-itfaglo
 #| fig-cap: "Histograma comparativo de iTF y aglomerados "
@@ -432,11 +421,7 @@ my_data |>
   geom_point(size=2)
 ```
 
-```         
-```
-
 ```{r}
-##16
 my_data |> 
  group_by(Nivel_Educativo, MAS_500) |>
   summarize(

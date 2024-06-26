@@ -1,57 +1,12 @@
 ---
 author: "María Cecilia Acha"
-bibliography: references.bib
 ---
 
-# Cómo vivimos - Régimen de tenencia.
+# Cómo vivimos - régimen de tenencia.
 
 ## Introducción
 
-En este capítulo se realizará un análisis cuantitativo del régimen de tenencia de vivienda según cada región de Argentina. Para ello, se utilizarán datos del Instituto Nacional de Estadística y Censos (INDEC) (Censos y estadísticas 2023).
-
-El acceso a la propiedad y el régimen de tenencia de la tierra es un tema crítico en casi todos los lugares del mundo, y Argentina no es la excepción. Este análisis busca entender mejor cómo se distribuyen los distintos tipos de tenencia de vivienda en el país, proporcionando una base sólida para discutir políticas y estrategias que aborden las necesidades y desafíos específicos de cada región.
-
-Los datos del INDEC especifican los siguientes regímenes de tenencia:
-
--   Propietario de la vivienda y el terreno
-
--   Propietario de la vivienda solamente
-
--   Inquilino / arrendatario de la vivienda
-
--   Ocupante por pago de impuestos / expensas
-
--   Ocupante en relación de dependencia
-
--   Ocupante gratuito (con permiso)
-
--   Ocupante de hecho (sin permiso)
-
--   Está en sucesión
-
-Para facilitar el análisis descriptivo, estas categorías se agruparán en cuatro principales:
-
--   Propietario de la vivienda
-
--   Inquilino / arrendatario de la vivienda
-
--   Ocupante
-
--   Está en sucesión
-
-En cuanto a las regiones, se considerarán las seis principales regiones de Argentina:
-
--   Gran Buenos Aires
-
--   Noroeste
-
--   Noreste
-
--   Pampeana
-
--   Cuyo
-
--   Patagonia
+En el presente capítulo se llevará a cabo un análisis cuantitativo referido al régimen de tenencia de vivienda según cada región de Argentina. Para tal propósito, se utilizarán datos del Instituto Nacional de Estadística y Censos (INDEC) (Censos y estadísticas 2023).
 
 ## Datos
 
@@ -59,44 +14,34 @@ Los datos que hemos usado para este análisis provienen del INDEC. Corresponden 
 
 ## Preguntas de investigación
 
-Las preguntas clave que esta investigación busca responder son:
-
 1.  ¿En qué medida varía el régimen de tenencia de vivienda según la región geográfica en Argentina?
-2.  ¿Hay algún tipo de régimen de tenencia que destaque entre los demás?
-3.  ¿La distribución de los distintos tipos de régimen de tenencia es uniforme en todas las regiones?
+
+2.  ¿Cómo influye el sexo en el régimen de tenencia de vivienda?
+
+3.  ¿El régimen de tenencia de vivienda es homogéneo en todas las provincias y/o regiones?
 
 ## Variables a analizar
 
-Las variables consideradas en el presente análisis son:
+Régimen de tenencia (II7)
 
--   **Régimen de tenencia (II7):** Se refiere al tipo de régimen de tenencia de las personas con respecto a la propiedad en la que habitan.
+Sexo (CH04)
 
--   **Sexo (CH04):** El sistema utilizado distingue únicamente entre "varón" y "mujer".
-
--   **Regiones (REGION):** Las seis regiones que conforman Argentina.
+Regiones (REGION)
 
 ## Herramientas de análisis
 
-Utilizamos el lenguaje R (2024) con los paquetes de [@tidyverse] **tidyverse** y **dplyr** (Wickham et al., 2019). Usamos el sistema **Quarto** (Allaire et al., 2024) para la publicación.
+Usamos el lenguaje R (2024) con los paquetes de tidyverse. (Wickham et al. 2019). Usamos el sistema Quarto (Allaire et al. (2024)) para su publicación.
 
 ```{r}
 #| include: false
 my_data <- readRDS("/cloud/project/data/datos_indec.rds") # Usar here::here
 ```
 
-## Análisis descriptivo
+## Funciones
 
 ```{r}
-#| include: false
-# Cargar librerías
-library(dplyr) 
-library(tidyverse)
-library(ggplot2)
-```
-
-```{r}
-#| include: false
-# Nombramos variables 
+library(dplyr) # también podés hacer library(tidyverse)
+# Es preferible cargar todas las librerías al principio del documento.
 temp_df <- my_data |>
   select(II7, REGION) |>
   mutate(
@@ -128,8 +73,29 @@ temp_df
 
 ```
 
+## Gráficos ggplot
+
 ```{r}
-#| label: fig-regimen-de-tenencia-region
+#| include: false
+install.packages("ggplot2") # No debería ser necesario instalarlo
+library(ggplot2)
+```
+
+```{r}
+#| label: fig-regimen-por-region-uno
+#| echo: false
+#| fig-cap: "Regimen de Tenencia por Región"
+ggplot(temp_df, aes(x = REGION, fill = regimen_tenencia)) +
+  geom_bar(position = "dodge") +
+  labs(
+       x = "Región",
+       y = "Count",
+       fill = "Regimen de Tenencia") +
+  theme_minimal()
+```
+
+```{r}
+#| label: fig-regimen-de-tenencia-region-dos
 #| echo: false
 #| fig-cap: "Régimen de Tenencia de Vivienda por Región"
 #| 
@@ -142,34 +108,14 @@ ggplot(temp_df, aes(x = REGION, fill = regimen_tenencia)) +
   theme_minimal()
 ```
 
-Se puede observar en la @fig-regimen-de-tenencia-region que, en todas las regiones de Argentina, los propietarios constituyen la mayoría en cuanto al régimen de tenencia de vivienda. Le siguen los inquilinos y, en menor medida, los ocupantes.
-
-La región Pampeana destaca por tener una población considerablemente mayor, lo que se refleja en los datos del régimen de tenencia. Esta región muestra la mayor cantidad de propietarios, inquilinos y ocupantes en comparación con otras regiones.
-
 ```{r}
-# Calcular porcentajes por región
-temp_df <- temp_df |>
-  group_by(REGION, regimen_tenencia) |>
-  summarise(count = n(), .groups = "drop") |>
-  mutate(percentage = count / sum(count) * 100)
-
-# Graficar porcentaje por región
-#| label: porcentaje-regimen-de-tenencia-region
-#| echo: false
-#| fig-cap: "Porcentaje de Régimen de Tenencia de Vivienda por Región"
-ggplot(temp_df, aes(x = "", y = percentage, fill = regimen_tenencia)) +
-  geom_bar(stat = "identity", color = "white") +
-  labs(
-       x = NULL,
-       y = NULL,
-       fill = "Régimen de Tenencia") +
-  theme_minimal() +
-  facet_wrap(~ REGION, scales = "free") +
-  coord_polar("y", start = 0)
+nombrar_ch04 <- function(x){
+  case_when(
+    x == "1" ~ "Varon", # respetando la norme del indec.
+    x == "2" ~ "Mujer",
+    .default = "desconocido"
+  )
+}
 ```
 
-Al analizar los gráficos de pastel de cada regiónen @porcentaje-regimen-de-tenencia-region, se puede ver que no existen diferencias significativas en la distribución del régimen de tenencia entre la mayoría de las regiones. Sin embargo, la región Noroeste se distingue por tener una proporción significativamente mayor de propietarios en comparación con las otras regiones. Esta diferencia es notable, ya que las demás regiones no presentan variaciones tan marcadas.
-
-Asimismo, tanto en el Noreste como en el Noroeste, la proporción de inquilinos es menor en comparación con otras regiones, destacándose la Patagonia como la región con el mayor porcentaje de inquilinos.
-
-En resumen, aunque la tendencia general muestra que los propietarios son la mayoría en todas las regiones, las particularidades de cada área, como la alta proporción de propietarios en el Noroeste y el mayor porcentaje de inquilinos en la Patagonia, resaltan las diferencias regionales en el régimen de tenencia de vivienda en Argentina.
+Como observamos en la @fig-regimen-de-tenencia-region-dos hay una marcada diferencia ....
