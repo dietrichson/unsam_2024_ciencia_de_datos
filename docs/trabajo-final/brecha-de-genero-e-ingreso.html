@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Michelle Wilkinson">
 
-<title>Análisis de datos de la encuesta permantente de hogares: 2022/23 - 6&nbsp; Brecha de género e ingreso</title>
+<title>Análisis de datos de la encuesta permantente de hogares: 2022/23 - 6&nbsp; Brecha de genero e Ingreso</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,7 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -70,6 +123,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -82,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./brecha-de-genero-e-ingreso.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Brecha de género e ingreso</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./brecha-de-genero-e-ingreso.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Brecha de genero e Ingreso</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -140,19 +222,19 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./como-vivimos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cómo vivimos - régimen de tenencia.</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cómo vivimos - Régimen de tenencia.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./brecha-de-genero-e-ingreso.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Brecha de género e ingreso</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Brecha de genero e Ingreso</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./educacion-e-ingreso.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Educacion e Ingreso</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Educación e Ingreso</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -196,26 +278,35 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">6.1</span> Introducción</a></li>
+  <li><a href="#análisis" id="toc-análisis" class="nav-link" data-scroll-target="#análisis"><span class="header-section-number">6.2</span> Análisis</a>
+  <ul class="collapse">
+  <li><a href="#ingresos-en-2022" id="toc-ingresos-en-2022" class="nav-link" data-scroll-target="#ingresos-en-2022"><span class="header-section-number">6.2.1</span> Ingresos en 2022</a></li>
+  <li><a href="#ingresos-en-2023" id="toc-ingresos-en-2023" class="nav-link" data-scroll-target="#ingresos-en-2023"><span class="header-section-number">6.2.2</span> Ingresos en 2023</a></li>
+  <li><a href="#test-de-comparación-según-el-año" id="toc-test-de-comparación-según-el-año" class="nav-link" data-scroll-target="#test-de-comparación-según-el-año"><span class="header-section-number">6.2.3</span> Test de comparación según el año</a></li>
+  <li><a href="#gráficos" id="toc-gráficos" class="nav-link" data-scroll-target="#gráficos"><span class="header-section-number">6.2.4</span> Gráficos</a></li>
+  <li><a href="#comparación-según-el-género-mediante-gráficos" id="toc-comparación-según-el-género-mediante-gráficos" class="nav-link" data-scroll-target="#comparación-según-el-género-mediante-gráficos"><span class="header-section-number">6.2.5</span> Comparación según el género mediante gráficos</a></li>
+  </ul></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">6.3</span> Conclusión</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Brecha de género e ingreso</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Brecha de genero e Ingreso</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Autor/a</div>
-    <div class="quarto-title-meta-contents">
-             <p>Michelle Wilkinson </p>
-          </div>
-  </div>
     
   
     
@@ -226,8 +317,131 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introducción" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="introducción"><span class="header-section-number">6.1</span> Introducción</h2>
+<p>En el siguiente capítulo se analizará si existe una diferencia en el ingreso de los individuos en relación con su género. A su vez, se hará una comparación entre los años 2022 y 2023 para indicar si se presentó alguna diferencia. Para ello se utilizarán los datos obtenidos del Instituto Nacional de estadísticas y censo (<span class="citation" data-cites="indec"> (<a href="references.html#ref-indec" role="doc-biblioref">2024</a>)</span>) obtenidos en los años ya mencionados.</p>
+</section>
+<section id="análisis" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="análisis"><span class="header-section-number">6.2</span> Análisis</h2>
+<p>En las siguientes secciones, se buscará comaparar el ingreso de los hombres y las mujeres de la Argentina para identificar diferencias (o similitudes) en sus valores. De esta manera, se observará si existe alguna tendencia a que exista una diferencia entre los ingresos y ganancias según el género. A su vez, se realizará una comparación entre los años 2022 y 2023 para verificar si a lo largo de los meses el valor sufrió algún tipo de cambio. Además, se tendrán en cuenta los valores inflacionarios.</p>
+<p>Para relaizar el procedimiento mencionado, se calculará la “mediana”, es decir, la estadística que representa el valor de posición central de los datos a analizar, en este caso, del monto de ingreso de ocupación principal. Para ello, se eliminaran todos los valores que sean iguales a cero para poder crear un resultado con mayor exactitud.</p>
+<section id="ingresos-en-2022" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="ingresos-en-2022"><span class="header-section-number">6.2.1</span> Ingresos en 2022</h3>
+<p>En esta primer instancia, se llega al resultado de que los hombres obtienen un ingreso de 80.000 pesos mientras que las mujeres promedian un sueldo de 60.000.</p>
+</section>
+<section id="ingresos-en-2023" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="ingresos-en-2023"><span class="header-section-number">6.2.2</span> Ingresos en 2023</h3>
+<p>Luego del análisis del año 2023, se reconoce que, en dicho año, el sueldo de los hombres fue de 200.000 mientras que el de las mujeres de 150.000. De esta manera, logra observarse que perdura una diferencia entre ambos años y géneros.</p>
+</section>
+<section id="test-de-comparación-según-el-año" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="test-de-comparación-según-el-año"><span class="header-section-number">6.2.3</span> Test de comparación según el año</h3>
+<p>Se utiliza el test de T student <span class="citation" data-cites="student1908">Student (<a href="references.html#ref-student1908" role="doc-biblioref">1908</a>)</span> para comparar el valor del Ingreso en los diferentes años.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span> (usu_individual_T422<span class="sc">$</span>P21,usu_individual_T423<span class="sc">$</span>P21)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  usu_individual_T422$P21 and usu_individual_T423$P21
+t = -61.941, df = 59658, p-value &lt; 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -52772.72 -49535.39
+sample estimates:
+mean of x mean of y 
+ 30499.67  81653.73 </code></pre>
+</div>
+</div>
+<p>En este caso se nota que hay diferencia entre ambos años analizados.</p>
+<p><span class="math inline">\(H_0\)</span> : No existe diferencia en el valor del Ingreso entre ambos años.</p>
+<p><span class="math inline">\(H_1\)</span> : Existe una diferencia entre los valores de ambos años.</p>
+<p>Sin embargo, debe calcularse si dicha diferencia se deba a cuestiones en torno a la inflación o no:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span><span class="fu">bind_rows</span> (</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  usu_individual_T422 <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>CH14) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(Año <span class="ot">=</span> <span class="st">"2022 con Inflación"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">P21 =</span> P21<span class="sc">*</span><span class="fl">3.114</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  usu_individual_T423 <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>CH14) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(Año <span class="ot">=</span> <span class="st">"2023"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se logra identificar que la diferencia que existe entre los valores se debe a la inflación y no a otras cuestiones.</p>
+</section>
+<section id="gráficos" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="gráficos"><span class="header-section-number">6.2.4</span> Gráficos</h3>
+<p>En el primer gráfico se intenta realizar una visualización de la diferencia entre los Ingresos según el género del año 2023. El segundo, tiene el mismo objetivo pero en relación al año 2022. De esta manera luego se puede crear una imágen visual para failitar la comparación. A su vez, puede notarse que en ambos casos, las mujeres poseen un valor de ingreso por debajo de los hombres, cuestión que no cambia a lo largo de este período.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>   p1 <span class="ot">&lt;-</span> usu_individual_T423 <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">sexo =</span> <span class="fu">nombrar_ch04</span>(CH04)) <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sexo) <span class="sc">|&gt;</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ingreso =</span> <span class="fu">mean</span>(P21)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>sexo,<span class="at">y=</span>ingreso, <span class="at">fill =</span> sexo))<span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>p1 </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="brecha-de-genero-e-ingreso_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> p2 <span class="ot">&lt;-</span> usu_individual_T422 <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">sexo =</span> <span class="fu">nombrar_ch04</span>(CH04)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sexo) <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ingreso =</span> <span class="fu">mean</span>(P21)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>sexo,<span class="at">y=</span>ingreso, <span class="at">fill =</span> sexo))<span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="brecha-de-genero-e-ingreso_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="comparación-según-el-género-mediante-gráficos" class="level3" data-number="6.2.5">
+<h3 data-number="6.2.5" class="anchored" data-anchor-id="comparación-según-el-género-mediante-gráficos"><span class="header-section-number">6.2.5</span> Comparación según el género mediante gráficos</h3>
+<p>En este segmento se propone comparar los resultados de ambos años para visualizar la diferencia entre los géneros..</p>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p1)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="brecha-de-genero-e-ingreso_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="brecha-de-genero-e-ingreso_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusión" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">6.3</span> Conclusión</h2>
+<p>A partir del análisis realizado, puede notarse como se manifiesta una disparidad en los salarios dependiendo del género. Logra observarse que, dentro de un mismo año, existe una brecha en el ingreso de alrededor de un 25%. En este caso, se puede destacar que en la Argentina, en promedio, los varones ganan ese porcentaje por encima del sueldo de las mujeres.</p>
+<p>Por otro lado, puede notarse que el patrón no ha sufrido modificaciónes entre ambos años. En otras palabras, la diferencia en el ingreso está presente de igual manera en el año 2022 como en el 2023. De este modo, se logra observar que ninguno de los géneros se vio afectado, para bien ni para mal, con el pasar de esos meses.</p>
+<p>Otro aspecto a tener en cuenta, es el fenómeno inflacionario que tuvo lugar en este país. De un año a otro, logra notarse una diferencia en los sueldos de ambos géneros ya que ambos parecen multiplicarse más del doble. En este caso particular, no significa un aumento en el poder adquisitivo, sino que se presentan unos sueldos que han sido golpeados por un proceso inflacionario. Al igual que se plantea en el capítulo “evolución del ingreso”, el aumento nominal, no es sinónimo de mayores ganancias en el valor real.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-indec" class="csl-entry" role="listitem">
+Instituto Nacional de Censos y estadísticas. 2024. <span>«Encuesta permanente de hogares»</span>. <a href="https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos">https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos</a>.
+</div>
+<div id="ref-student1908" class="csl-entry" role="listitem">
+Student. 1908. <span>«The probable error of a mean»</span>. <em>Biometrika</em> 6 (1): 1-25.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -619,13 +833,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./como-vivimos.html" class="pagination-link" aria-label="Cómo vivimos - régimen de tenencia.">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cómo vivimos - régimen de tenencia.</span></span>
+      <a href="./como-vivimos.html" class="pagination-link" aria-label="Cómo vivimos - Régimen de tenencia.">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cómo vivimos - Régimen de tenencia.</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./educacion-e-ingreso.html" class="pagination-link" aria-label="Educacion e Ingreso">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Educacion e Ingreso</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./educacion-e-ingreso.html" class="pagination-link" aria-label="Educación e Ingreso">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Educación e Ingreso</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

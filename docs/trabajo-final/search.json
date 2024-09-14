@@ -114,7 +114,7 @@
     "href": "como-vivimos.html#herramientas-de-análisis",
     "title": "5  Cómo vivimos - Régimen de tenencia.",
     "section": "5.5 Herramientas de análisis",
-    "text": "5.5 Herramientas de análisis\nUtilizamos el lenguaje R (2024) con los paquetes de tidyverse (Wickham et al., 2019) y dplyr (Wickham et al., 2019). Usamos el sistema Quarto (Allaire et al., 2024) para la publicación.",
+    "text": "5.5 Herramientas de análisis\nUtilizamos el lenguaje R (2024) con los paquetes de (Wickham et al. 2019) tidyverse y dplyr (Wickham et al., 2019). Usamos el sistema Quarto (Allaire et al., 2024) para la publicación.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - Régimen de tenencia.</span>"
     ]
@@ -164,9 +164,279 @@
     "href": "como-vivimos.html#análisis-descriptivo",
     "title": "5  Cómo vivimos - Régimen de tenencia.",
     "section": "5.6 Análisis descriptivo",
-    "text": "5.6 Análisis descriptivo\n\n\n\n\n\n\n\n\nFigura 5.1: Régimen de Tenencia de Vivienda por Región\n\n\n\n\n\nSe puede observar en la Figura 5.1 que, en todas las regiones de Argentina, los propietarios constituyen la mayoría en cuanto al régimen de tenencia de vivienda. Le siguen los inquilinos y, en menor medida, los ocupantes.\nLa región Pampeana destaca por tener una población considerablemente mayor, lo que se refleja en los datos del régimen de tenencia. Esta región muestra la mayor cantidad de propietarios, inquilinos y ocupantes en comparación con otras regiones.\n\n# Calcular porcentajes por región\ntemp_df &lt;- temp_df |&gt;\n  group_by(REGION, regimen_tenencia) |&gt;\n  summarise(count = n(), .groups = \"drop\") |&gt;\n  mutate(percentage = count / sum(count) * 100)\n\n# Graficar porcentaje por región\n#| label: porcentaje-regimen-de-tenencia-region\n#| echo: false\n#| fig-cap: \"Porcentaje de Régimen de Tenencia de Vivienda por Región\"\nggplot(temp_df, aes(x = \"\", y = percentage, fill = regimen_tenencia)) +\n  geom_bar(stat = \"identity\", color = \"white\") +\n  labs(\n       x = NULL,\n       y = NULL,\n       fill = \"Régimen de Tenencia\") +\n  theme_minimal() +\n  facet_wrap(~ REGION, scales = \"free\") +\n  coord_polar(\"y\", start = 0)\n\n\n\n\n\n\n\n\nAl analizar los gráficos de pastel de cada regiónen (porcentaje-regimen-de-tenencia-region?), se puede ver que no existen diferencias significativas en la distribución del régimen de tenencia entre la mayoría de las regiones. Sin embargo, la región Noroeste se distingue por tener una proporción significativamente mayor de propietarios en comparación con las otras regiones. Esta diferencia es notable, ya que las demás regiones no presentan variaciones tan marcadas.\nAsimismo, tanto en el Noreste como en el Noroeste, la proporción de inquilinos es menor en comparación con otras regiones, destacándose la Patagonia como la región con el mayor porcentaje de inquilinos.\nEn resumen, aunque la tendencia general muestra que los propietarios son la mayoría en todas las regiones, las particularidades de cada área, como la alta proporción de propietarios en el Noroeste y el mayor porcentaje de inquilinos en la Patagonia, resaltan las diferencias regionales en el régimen de tenencia de vivienda en Argentina.",
+    "text": "5.6 Análisis descriptivo\n\n\n\n\n\n\n\n\nFigura 5.1: Régimen de Tenencia de Vivienda por Región\n\n\n\n\n\nSe puede observar en la Figura 5.1 que, en todas las regiones de Argentina, los propietarios constituyen la mayoría en cuanto al régimen de tenencia de vivienda. Le siguen los inquilinos y, en menor medida, los ocupantes.\nLa región Pampeana destaca por tener una población considerablemente mayor, lo que se refleja en los datos del régimen de tenencia. Esta región muestra la mayor cantidad de propietarios, inquilinos y ocupantes en comparación con otras regiones.\n\n# Calcular porcentajes por región\ntemp_df &lt;- temp_df |&gt;\n  group_by(REGION, regimen_tenencia) |&gt;\n  summarise(count = n(), .groups = \"drop\") |&gt;\n  mutate(percentage = count / sum(count) * 100)\n\n# Graficar porcentaje por región\n#| label: porcentaje-regimen-de-tenencia-region\n#| echo: false\n#| fig-cap: \"Porcentaje de Régimen de Tenencia de Vivienda por Región\"\nggplot(temp_df, aes(x = \"\", y = percentage, fill = regimen_tenencia)) +\n  geom_bar(stat = \"identity\", color = \"white\") +\n  labs(\n       x = NULL,\n       y = NULL,\n       fill = \"Régimen de Tenencia\") +\n  theme_minimal() +\n  facet_wrap(~ REGION, scales = \"free\") +\n  coord_polar(\"y\", start = 0)\n\n\n\n\n\n\n\n\nAl analizar los gráficos de pastel de cada regiónen (porcentaje-regimen-de-tenencia-region?), se puede ver que no existen diferencias significativas en la distribución del régimen de tenencia entre la mayoría de las regiones. Sin embargo, la región Noroeste se distingue por tener una proporción significativamente mayor de propietarios en comparación con las otras regiones. Esta diferencia es notable, ya que las demás regiones no presentan variaciones tan marcadas.\nAsimismo, tanto en el Noreste como en el Noroeste, la proporción de inquilinos es menor en comparación con otras regiones, destacándose la Patagonia como la región con el mayor porcentaje de inquilinos.\nEn resumen, aunque la tendencia general muestra que los propietarios son la mayoría en todas las regiones, las particularidades de cada área, como la alta proporción de propietarios en el Noroeste y el mayor porcentaje de inquilinos en la Patagonia, resaltan las diferencias regionales en el régimen de tenencia de vivienda en Argentina.\n\n\n\n\nWickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. «Welcome to the tidyverse» 4: 1686. https://doi.org/10.21105/joss.01686.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Cómo vivimos - Régimen de tenencia.</span>"
+    ]
+  },
+  {
+    "objectID": "brecha-de-genero-e-ingreso.html",
+    "href": "brecha-de-genero-e-ingreso.html",
+    "title": "6  Brecha de genero e Ingreso",
+    "section": "",
+    "text": "6.1 Introducción\nEn el siguiente capítulo se analizará si existe una diferencia en el ingreso de los individuos en relación con su género. A su vez, se hará una comparación entre los años 2022 y 2023 para indicar si se presentó alguna diferencia. Para ello se utilizarán los datos obtenidos del Instituto Nacional de estadísticas y censo ( (2024)) obtenidos en los años ya mencionados.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Brecha de genero e Ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "brecha-de-genero-e-ingreso.html#ingresos-en-2022",
+    "href": "brecha-de-genero-e-ingreso.html#ingresos-en-2022",
+    "title": "6  Brecha de genero e Ingreso",
+    "section": "8.1 Ingresos en 2022",
+    "text": "8.1 Ingresos en 2022\nEn esta primer instancia, se llega al resultado de que los hombres obtienen un ingreso de 80.000 pesos mientras que las mujeres promedian un sueldo de 60.000.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Brecha de genero e Ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "brecha-de-genero-e-ingreso.html#ingresos-en-2023",
+    "href": "brecha-de-genero-e-ingreso.html#ingresos-en-2023",
+    "title": "6  Brecha de genero e Ingreso",
+    "section": "8.2 Ingresos en 2023",
+    "text": "8.2 Ingresos en 2023\nLuego del análisis del año 2023, se reconoce que, en dicho año, el sueldo de los hombres fue de 200.000 mientras que el de las mujeres de 150.000. De esta manera, logra observarse que perdura una diferencia entre ambos años y géneros.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Brecha de genero e Ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "brecha-de-genero-e-ingreso.html#test-de-comparación-según-el-año",
+    "href": "brecha-de-genero-e-ingreso.html#test-de-comparación-según-el-año",
+    "title": "6  Brecha de genero e Ingreso",
+    "section": "8.3 Test de comparación según el año",
+    "text": "8.3 Test de comparación según el año\nSe utiliza el test de T student Student (1908) para comparar el valor del Ingreso en los diferentes años.\n\nt.test (usu_individual_T422$P21,usu_individual_T423$P21)\n\n\n    Welch Two Sample t-test\n\ndata:  usu_individual_T422$P21 and usu_individual_T423$P21\nt = -61.941, df = 59658, p-value &lt; 2.2e-16\nalternative hypothesis: true difference in means is not equal to 0\n95 percent confidence interval:\n -52772.72 -49535.39\nsample estimates:\nmean of x mean of y \n 30499.67  81653.73 \n\n\nEn este caso se nota que hay diferencia entre ambos años analizados.\n\\(H_0\\) : No existe diferencia en el valor del Ingreso entre ambos años.\n\\(H_1\\) : Existe una diferencia entre los valores de ambos años.\nSin embargo, debe calcularse si dicha diferencia se deba a cuestiones en torno a la inflación o no:\n\nmy_data &lt;-bind_rows (\n  usu_individual_T422 %&gt;%\n    select(-CH14) %&gt;%\n    mutate(Año = \"2022 con Inflación\") %&gt;% \n    mutate(P21 = P21*3.114),\n  usu_individual_T423 |&gt; select(-CH14) |&gt; mutate(Año = \"2023\")\n)\n\nSe logra identificar que la diferencia que existe entre los valores se debe a la inflación y no a otras cuestiones.\n\n8.3.1 Gráficos\nEn el primer gráfico se intenta realizar una visualización de la diferencia entre los Ingresos según el género del año 2023. El segundo, tiene el mismo objetivo pero en relación al año 2022. De esta manera luego se puede crear una imágen visual para failitar la comparación. A su vez, puede notarse que en ambos casos, las mujeres poseen un valor de ingreso por debajo de los hombres, cuestión que no cambia a lo largo de este período.\n\n   p1 &lt;- usu_individual_T423 |&gt; \n    mutate(sexo = nombrar_ch04(CH04)) |&gt; \n  group_by(sexo) |&gt; \n  summarize(\n    ingreso = mean(P21)\n  ) |&gt; \n  ggplot(aes(x=sexo,y=ingreso, fill = sexo))+\n    geom_col()\n\np1 \n\n\n\n\n\n\n\n\n\n p2 &lt;- usu_individual_T422 |&gt; \n    mutate(sexo = nombrar_ch04(CH04)) |&gt; \n  group_by(sexo) |&gt; \n  summarize(\n    ingreso = mean(P21)\n  ) |&gt; \n  ggplot(aes(x=sexo,y=ingreso, fill = sexo))+\n    geom_col()\n\np2",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Brecha de genero e Ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "brecha-de-genero-e-ingreso.html#comparación-según-el-género-mediante-gráficos",
+    "href": "brecha-de-genero-e-ingreso.html#comparación-según-el-género-mediante-gráficos",
+    "title": "6  Brecha de genero e Ingreso",
+    "section": "8.4 Comparación según el género mediante gráficos",
+    "text": "8.4 Comparación según el género mediante gráficos\nEn este segmento se propone comparar los resultados de ambos años para visualizar la diferencia entre los géneros..\nprint(p1)\nprint(p2)",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Brecha de genero e Ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "descripcion-de-los-datos.html",
+    "href": "descripcion-de-los-datos.html",
+    "title": "2  Descripción de los datos",
+    "section": "",
+    "text": "2.1 ITF\nLa misma es una variable continua que refiere al ingreso total familiar. Permite realizar un análisis en profundidad a fines de observar como han variado los ingresos de las familias argentinas en relación con la inflación de 2022 y 2023. A los objetivos de obtener el total entendimiento de lo trabajado, se podra encontrar dicha variable bajo la denominación de, “Ingreso Total Familiar” en reemplazo de su abreviatura.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Descripción de los datos</span>"
+    ]
+  },
+  {
+    "objectID": "descripcion-de-los-datos.html#v5_m",
+    "href": "descripcion-de-los-datos.html#v5_m",
+    "title": "2  Descripción de los datos",
+    "section": "2.2 V5_M",
+    "text": "2.2 V5_M\nEste dato es posible encontrarlo a lo largo del trabajo como “Monto_ayuda_social”. Refiere a los subsidios/ayuda social total en dinero entregado por el gobierno o distintas organizaciones beneficas. Se trata de una variable económica y continua.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Descripción de los datos</span>"
+    ]
+  },
+  {
+    "objectID": "descripcion-de-los-datos.html#p21",
+    "href": "descripcion-de-los-datos.html#p21",
+    "title": "2  Descripción de los datos",
+    "section": "2.3 P21",
+    "text": "2.3 P21\nEsta variable, de caracter continuo, hace referencia al monto de ingreso de la ocupación principal de cada persona encuestada. Es utilizada en el capítulo de “Brecha de Género e Ingreso”.\n\nEste trabajo cuenta con variables categorizadoras, entre ellas podemos mencionar:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Descripción de los datos</span>"
+    ]
+  },
+  {
+    "objectID": "descripcion-de-los-datos.html#codusu",
+    "href": "descripcion-de-los-datos.html#codusu",
+    "title": "2  Descripción de los datos",
+    "section": "2.4 CODUSU",
+    "text": "2.4 CODUSU\nSe trata de una nomenclatura categorizadora que permite distinguir cada una de las viviendas que conforman los datos del INDEC y relacionar cada hogar con sus integrantes (personas). Variable discreta.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Descripción de los datos</span>"
+    ]
+  },
+  {
+    "objectID": "descripcion-de-los-datos.html#an04",
+    "href": "descripcion-de-los-datos.html#an04",
+    "title": "2  Descripción de los datos",
+    "section": "2.5 AN04",
+    "text": "2.5 AN04\nEs la denominación del año de relevamiento de la información. Para una mayor comprension en este trabajo es posible encontrar la palabra “año” en referencia a este dato. Se trata de una variable discreta.\n\nEn tercer lugar, se trabajan nomenclaturas que en los datos del INDEC hacen referencia al territorio analizado:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Descripción de los datos</span>"
+    ]
+  },
+  {
+    "objectID": "descripcion-de-los-datos.html#mas_500",
+    "href": "descripcion-de-los-datos.html#mas_500",
+    "title": "2  Descripción de los datos",
+    "section": "2.6 MAS_500",
+    "text": "2.6 MAS_500\nEs una variable discreta. La misma corresponde a conjuntos de aglomerados de habitantes. Permite organizar las muestras analiticas tomadas de cada territorio. Se subdivide en N -aquellos territorios de menos de 500.000 habitantes- y S -aglomerado de mas de 500.000 habitantes. En este caso será común encontrar la denominación “Ciudad_grande”/“Ciudad pequeña”, refiere a dichos aglomerados.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Descripción de los datos</span>"
+    ]
+  },
+  {
+    "objectID": "descripcion-de-los-datos.html#region",
+    "href": "descripcion-de-los-datos.html#region",
+    "title": "2  Descripción de los datos",
+    "section": "2.7 REGION:",
+    "text": "2.7 REGION:\nVariable discreta. Refiere al código de región. Es fundamental para realizar un estudio geográfico de los ingresos. Si bien para un mejor entendimiento las regiones geográficas tendrán su nombre según corresponda, el INDEC utiliza cádigos para diferenciarlas. En tal sentido, será posible encontrar en este trabajo los siguientes códigos:\n                   01 = Gran Buenos Aires\n                   40 = Noroeste\n                   41 = Noreste\n                   42 = Cuyo\n                   43 = Pampeana\n                   44 = Patagonia\n                   \nA su vez, es común encontrar en las siguientes paginas las etiquetas de “AMBA” e “Interior” para realizar un análisis regional comparativo a partir de los datos entre centro y periferia del país.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Descripción de los datos</span>"
+    ]
+  },
+  {
+    "objectID": "descripcion-de-los-datos.html#aglomerado",
+    "href": "descripcion-de-los-datos.html#aglomerado",
+    "title": "2  Descripción de los datos",
+    "section": "2.8 AGLOMERADO",
+    "text": "2.8 AGLOMERADO\nEste termino engloba los códigos de distitas ciudades encuestadas (variabel discreta).\n                      02 = Gran La Plata\n                      03 = Bahía Blanca - Cerri\n                      04 = Gran Rosario\n                      05 = Gram Santa Fé\n                      06 = Gran Parana\n                      07 = Posadas\n                      08 = Gran Resistencia\n                      09 = Comodoro Rivadavia - Rada Tilly\n                      10 = Gran Mendoza\n                      12 = Corrientes\n                      13 = Gran Córdoba\n                      14 = Concordia\n                      15 = Formosa\n                      17 = Neuquén-Plottier\n                      18 = Santiago del Estero - La Banda\n                      19 = Jujuy - Palpalá\n                      20 = Río Gallegos\n                      22 = Gran Catamarca\n                      23 = Gran Salta\n                      25 = La Rioja\n                      26 = Gran San Luis\n                      27 = Gran San Juan \n                      29 = Gram Tucumán - Tafí Viejo\n                      30 = Santa Rosa - Toay\n                      31 = Ushuaia - Río Grande\n                      32 = Ciudad Autónoma de Buenos Aires\n                      33 = Partidos del GBA\n                      34 = Mar del Plata\n                      36 = Río Cuarto\n                      38 = San Nicolás\n                      91 = Rawson - Trelew\n                      93 = Vidma - Carmen de Patagones",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Descripción de los datos</span>"
+    ]
+  },
+  {
+    "objectID": "descripcion-de-los-datos.html#ii7",
+    "href": "descripcion-de-los-datos.html#ii7",
+    "title": "2  Descripción de los datos",
+    "section": "2.9 II7",
+    "text": "2.9 II7\nEsta es una variable discreta que hace referencia al regimen de tenencia de cada encuestado ¿Se trata de una persona propietaria de su vivienda, de un inquilino, de alguien que solo paga expensas, de una persona que ocupa un espacio sin consentimiento o esta en un espacio gratuito?\n\nEn el capitulo de “Brecha de Genero e Ingreso” se trabaja con la siguiente variable:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Descripción de los datos</span>"
+    ]
+  },
+  {
+    "objectID": "descripcion-de-los-datos.html#ch04",
+    "href": "descripcion-de-los-datos.html#ch04",
+    "title": "2  Descripción de los datos",
+    "section": "2.10 CH04",
+    "text": "2.10 CH04\nEs un dato discreto, refiere al género de cada una de las personas encuestadas. El Instituo Nacional de Estadisticas y Censos subdivide en 2 categorías, Hombre y Mujer. A lo largo del trabajo es probable encontrar a esta variable bajo la etiqueta de “Sexo”. Este dato, también será utiizado en capítulos como el de “Regimen de Tenencia”, “Educación e Ingreso” y “Brecha de Genero e Ingreso”.\n\nVariables que brindan información sobre educación:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Descripción de los datos</span>"
+    ]
+  },
+  {
+    "objectID": "descripcion-de-los-datos.html#nivel_ed",
+    "href": "descripcion-de-los-datos.html#nivel_ed",
+    "title": "2  Descripción de los datos",
+    "section": "2.11 NIVEL_ED",
+    "text": "2.11 NIVEL_ED\nEsta una variable discreta que trata sobre el nivel educativo. Detalla si esa persona completo o no tal nivel, o si presenta instrucción.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Descripción de los datos</span>"
+    ]
+  },
+  {
+    "objectID": "brecha-de-genero-e-ingreso.html#análisis",
+    "href": "brecha-de-genero-e-ingreso.html#análisis",
+    "title": "6  Brecha de genero e Ingreso",
+    "section": "6.2 Análisis",
+    "text": "6.2 Análisis\nEn las siguientes secciones, se buscará comaparar el ingreso de los hombres y las mujeres de la Argentina para identificar diferencias (o similitudes) en sus valores. De esta manera, se observará si existe alguna tendencia a que exista una diferencia entre los ingresos y ganancias según el género. A su vez, se realizará una comparación entre los años 2022 y 2023 para verificar si a lo largo de los meses el valor sufrió algún tipo de cambio. Además, se tendrán en cuenta los valores inflacionarios.\nPara relaizar el procedimiento mencionado, se calculará la “mediana”, es decir, la estadística que representa el valor de posición central de los datos a analizar, en este caso, del monto de ingreso de ocupación principal. Para ello, se eliminaran todos los valores que sean iguales a cero para poder crear un resultado con mayor exactitud.\n\n6.2.1 Ingresos en 2022\nEn esta primer instancia, se llega al resultado de que los hombres obtienen un ingreso de 80.000 pesos mientras que las mujeres promedian un sueldo de 60.000.\n\n\n6.2.2 Ingresos en 2023\nLuego del análisis del año 2023, se reconoce que, en dicho año, el sueldo de los hombres fue de 200.000 mientras que el de las mujeres de 150.000. De esta manera, logra observarse que perdura una diferencia entre ambos años y géneros.\n\n\n6.2.3 Test de comparación según el año\nSe utiliza el test de T student Student (1908) para comparar el valor del Ingreso en los diferentes años.\n\nt.test (usu_individual_T422$P21,usu_individual_T423$P21)\n\n\n    Welch Two Sample t-test\n\ndata:  usu_individual_T422$P21 and usu_individual_T423$P21\nt = -61.941, df = 59658, p-value &lt; 2.2e-16\nalternative hypothesis: true difference in means is not equal to 0\n95 percent confidence interval:\n -52772.72 -49535.39\nsample estimates:\nmean of x mean of y \n 30499.67  81653.73 \n\n\nEn este caso se nota que hay diferencia entre ambos años analizados.\n\\(H_0\\) : No existe diferencia en el valor del Ingreso entre ambos años.\n\\(H_1\\) : Existe una diferencia entre los valores de ambos años.\nSin embargo, debe calcularse si dicha diferencia se deba a cuestiones en torno a la inflación o no:\n\nmy_data &lt;-bind_rows (\n  usu_individual_T422 %&gt;%\n    select(-CH14) %&gt;%\n    mutate(Año = \"2022 con Inflación\") %&gt;% \n    mutate(P21 = P21*3.114),\n  usu_individual_T423 |&gt; select(-CH14) |&gt; mutate(Año = \"2023\")\n)\n\nSe logra identificar que la diferencia que existe entre los valores se debe a la inflación y no a otras cuestiones.\n\n\n6.2.4 Gráficos\nEn el primer gráfico se intenta realizar una visualización de la diferencia entre los Ingresos según el género del año 2023. El segundo, tiene el mismo objetivo pero en relación al año 2022. De esta manera luego se puede crear una imágen visual para failitar la comparación. A su vez, puede notarse que en ambos casos, las mujeres poseen un valor de ingreso por debajo de los hombres, cuestión que no cambia a lo largo de este período.\n\n   p1 &lt;- usu_individual_T423 |&gt; \n    mutate(sexo = nombrar_ch04(CH04)) |&gt; \n  group_by(sexo) |&gt; \n  summarize(\n    ingreso = mean(P21)\n  ) |&gt; \n  ggplot(aes(x=sexo,y=ingreso, fill = sexo))+\n    geom_col()\n\np1 \n\n\n\n\n\n\n\n\n\n p2 &lt;- usu_individual_T422 |&gt; \n    mutate(sexo = nombrar_ch04(CH04)) |&gt; \n  group_by(sexo) |&gt; \n  summarize(\n    ingreso = mean(P21)\n  ) |&gt; \n  ggplot(aes(x=sexo,y=ingreso, fill = sexo))+\n    geom_col()\n\np2\n\n\n\n\n\n\n\n\n\n\n6.2.5 Comparación según el género mediante gráficos\nEn este segmento se propone comparar los resultados de ambos años para visualizar la diferencia entre los géneros..\nprint(p1)\nprint(p2)",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Brecha de genero e Ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "brecha-de-genero-e-ingreso.html#conclusión",
+    "href": "brecha-de-genero-e-ingreso.html#conclusión",
+    "title": "6  Brecha de genero e Ingreso",
+    "section": "6.3 Conclusión",
+    "text": "6.3 Conclusión\nA partir del análisis realizado, puede notarse como se manifiesta una disparidad en los salarios dependiendo del género. Logra observarse que, dentro de un mismo año, existe una brecha en el ingreso de alrededor de un 25%. En este caso, se puede destacar que en la Argentina, en promedio, los varones ganan ese porcentaje por encima del sueldo de las mujeres.\nPor otro lado, puede notarse que el patrón no ha sufrido modificaciónes entre ambos años. En otras palabras, la diferencia en el ingreso está presente de igual manera en el año 2022 como en el 2023. De este modo, se logra observar que ninguno de los géneros se vio afectado, para bien ni para mal, con el pasar de esos meses.\nOtro aspecto a tener en cuenta, es el fenómeno inflacionario que tuvo lugar en este país. De un año a otro, logra notarse una diferencia en los sueldos de ambos géneros ya que ambos parecen multiplicarse más del doble. En este caso particular, no significa un aumento en el poder adquisitivo, sino que se presentan unos sueldos que han sido golpeados por un proceso inflacionario. Al igual que se plantea en el capítulo “evolución del ingreso”, el aumento nominal, no es sinónimo de mayores ganancias en el valor real.\n\n\n\n\nInstituto Nacional de Censos y estadísticas. 2024. «Encuesta permanente de hogares». https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos.\n\n\nStudent. 1908. «The probable error of a mean». Biometrika 6 (1): 1-25.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Brecha de genero e Ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "ayuda-social-distribucion-y-evolucion.html",
+    "href": "ayuda-social-distribucion-y-evolucion.html",
+    "title": "8  Ayuda social: Distribución y evolución",
+    "section": "",
+    "text": "8.1 Introducción\nEn el siguiente capítulo se analizará la distribución de la ayuda social en los individuos de la población argentina durante los periodos del cuarto trimestre del año 2022 y el año 2023. También analizaremos la evolución de la ayuda social durante estos mismos periodos, con el propósito de identificar si hubo diferencias. Para ello se utilizarán los datos obtenidos del Instituto Nacional de estadísticas y censo (INDEC) obtenidos en los años ya mencionados.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ayuda social: Distribución y evolución</span>"
+    ]
+  },
+  {
+    "objectID": "ayuda-social-distribucion-y-evolucion.html#desarrollo-metodológico",
+    "href": "ayuda-social-distribucion-y-evolucion.html#desarrollo-metodológico",
+    "title": "8  Ayuda social: Distribución y evolución",
+    "section": "8.2 Desarrollo metodológico",
+    "text": "8.2 Desarrollo metodológico\n\n8.2.1 Tipo de investigación\nPara esta investigación, decidí utilizar un enfoque metodológico cuantitativo con el objetivo de obtener un resultado riguroso del fenómeno de la distribución del ingreso familiar en el país.\nEl método cuantitativo es, según David Alan Neill y Liliana Cortez Suárez (2018), una forma estructurada de recopilar y analizar datos de diversas fuentes que utiliza computadoras, herramientas estadísticas y matemáticas para producir resultados. Recopila datos numéricos y estadísticos con el objetivo claro de obtener “objetividad” a través de la cuantificación.\n\n\n8.2.2 Datos\nLos datos fueron recopilados de la encuesta permanente de hogares realizada por el Instituto Nacional de Estadística y Censos (INDEC). Pertenecen al 4to trimestre del 2022 y 2023 de todo el país.\n\n\n8.2.3 Objetivo\nIndagar cómo es la distribución del ingreso en las diversas regiones de Argentina durante el lapso de tiempo seleccionado.\n\n\n8.2.4 Pregunta de investigación\n¿Hay diferencias en la distribución de ingresos entre las regiones? De ser así, ¿Cuáles son las que tienen mayor disparidad?\n¿Cuanto es la diferencia entre la media de las regiones?\n\n\n8.2.5 Procedimiento\nPara llevar a cabo el análisis procederé a:\n\nCargar los datos del informe.\nA través de la librería tidyverse y utilizando el indicador de Ingreso Total Familiar (ITF), filtrar por regiones.\nGenerar gráficos para poder visualizar los datos obtenidos.\n\n\n\n8.2.6 Herramientas de análisis\nUsamos el lenguaje R (2024) con los paquetes de tidyverse. (Wickham et al. 2019). Usamos el sistema Quarto (Allaire et al. (2024)) para su publicación.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ayuda social: Distribución y evolución</span>"
+    ]
+  },
+  {
+    "objectID": "ayuda-social-distribucion-y-evolucion.html#análisis",
+    "href": "ayuda-social-distribucion-y-evolucion.html#análisis",
+    "title": "8  Ayuda social: Distribución y evolución",
+    "section": "8.3 Análisis",
+    "text": "8.3 Análisis\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\nnrow(temp_df)\n\n[1] 2605\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  mean()\n\n[1] 224668.3\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  median()\n\n[1] 130000\n\n\n\ntemp_df$ITF |&gt; \n  range()\n\n[1]       0 4340000\n\n\n\noptions(scipen = 999)\ntemp_df |&gt; \n  ggplot(aes(ITF))+\n  geom_histogram()+\n  scale_x_log10()\n\nWarning in scale_x_log10(): log-10 transformation introduced infinite values.\n\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 1015 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\nEn la región de Gran Buenos Aires más de la mitad de los hogares se encuentra por encima de la media de la ITF por tanto la distribución de la riqueza es dispar. Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $224668.3\n\n# Filtración de región Noroeste\nmy_data$REGION |&gt; \n  unique()\n\n[1] 42 40  1 43 41 44\n\ntemp_df &lt;- my_data |&gt;\n  filter(REGION == 40) \n\n\nnrow(temp_df)\n\n[1] 3102\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  mean()\n\n[1] 269987\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  median()\n\n[1] 220000\n\n\n\ntemp_df$ITF |&gt; \n  range()\n\n[1]       0 2100000\n\n\n\noptions(scipen = 999)\ntemp_df |&gt; \n  ggplot(aes(ITF))+\n  geom_histogram()+\n  scale_x_log10()\n\nWarning in scale_x_log10(): log-10 transformation introduced infinite values.\n\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 210 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\nEn la región Noroeste la distribución de la riqueza se encuentra dispar ya que la mayoria de los hogares se encuentra por encima de la media. Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $269987\n\n# Filtración de región Noreste\nmy_data$REGION |&gt; \n  unique()\n\n[1] 42 40  1 43 41 44\n\ntemp_df &lt;- my_data |&gt;\n  filter(REGION == 41) \n\n\nnrow(temp_df)\n\n[1] 1624\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  mean()\n\n[1] 209483.7\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  median()\n\n[1] 170000\n\n\n\ntemp_df$ITF |&gt; \n  range()\n\n[1]       0 1920000\n\n\n\noptions(scipen = 999)\ntemp_df |&gt; \n  ggplot(aes(ITF))+\n  geom_histogram()+\n  scale_x_log10()\n\nWarning in scale_x_log10(): log-10 transformation introduced infinite values.\n\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 312 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\nEn éste grafico de la región Noreste se puede observar que hay picos en la cantidad de hogares con ITF mayores a la media pero la brecha no es tan amplia. Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $209483.7\n\n# Filtración de región Cuyo\nmy_data$REGION |&gt; \n  unique()\n\n[1] 42 40  1 43 41 44\n\ntemp_df &lt;- my_data |&gt;\n  filter(REGION == 42) \n\n\nnrow(temp_df)\n\n[1] 1626\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  mean()\n\n[1] 252978.3\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  median()\n\n[1] 208900\n\n\n\ntemp_df$ITF |&gt; \n  range()\n\n[1]       0 3048000\n\n\n\noptions(scipen = 999)\ntemp_df |&gt; \n  ggplot(aes(ITF))+\n  geom_histogram()+\n  scale_x_log10()\n\nWarning in scale_x_log10(): log-10 transformation introduced infinite values.\n\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 257 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\nEn éste grafico de la región de Cuyo se puede observar que aunque hay picos en la cantidad de hogares con ITF mayores a la media el grafico se encuentra nivelado. Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $252978.3\n\n# Filtración de región Pampeana\nmy_data$REGION |&gt; \n  unique()\n\n[1] 42 40  1 43 41 44\n\ntemp_df &lt;- my_data |&gt;\n  filter(REGION == 43) \n\n\nnrow(temp_df)\n\n[1] 5524\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  mean()\n\n[1] 211733.7\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  median()\n\n[1] 150000\n\n\n\ntemp_df$ITF |&gt; \n  range()\n\n[1]       0 8410000\n\n\n\noptions(scipen = 999)\ntemp_df |&gt; \n  ggplot(aes(ITF))+\n  geom_histogram()+\n  scale_x_log10()\n\nWarning in scale_x_log10(): log-10 transformation introduced infinite values.\n\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 1736 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\nEn éste grafico de la región Pampeana se puede observar que la mayor cantidad de hogares se concentra por encima de la media de ITF. Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $211733.7\n\n# Filtración de región Patagonica\nmy_data$REGION |&gt; \n  unique()\n\n[1] 42 40  1 43 41 44\n\ntemp_df &lt;- my_data |&gt;\n  filter(REGION == 44) \n\n\nnrow(temp_df)\n\n[1] 2175\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  mean()\n\n[1] 343434.3\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  median()\n\n[1] 289000\n\n\n\ntemp_df$ITF |&gt; \n  range()\n\n[1]       0 3600000\n\n\n\noptions(scipen = 999)\ntemp_df |&gt; \n ggplot(aes(ITF))+\n  geom_histogram()+\n  scale_x_log10()\n\nWarning in scale_x_log10(): log-10 transformation introduced infinite values.\n\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 320 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\nEn éste grafico de la región Patagonica se puede observar que la mayor cantidad de hogares se encuentra superior a la media de ITF. Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $343434.3\n\ntemp_df &lt;- temp_df |&gt; \n  mutate(REGION2 = \n           case_when(\n             REGION == 1 ~ \"GBA\",\n             REGION == 40 ~ \"Noroeste\",\n             REGION == 41 ~ \"Noreste\",\n             REGION == 42 ~ \"Cuyo\",\n             REGION == 43 ~ \"Pampeana\",\n             REGION == 44 ~ \"Patagonia\"))\n\n\ntemp_df\n\n# A tibble: 2,175 × 89\n   CODUSU   ANO4 TRIMESTRE NRO_HOGAR REALIZADA REGION MAS_500 AGLOMERADO PONDERA\n   &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;\n 1 TQRMNO…  2023         3         1         1     44 N               20     222\n 2 TQRMNO…  2023         3         1         1     44 N               91     101\n 3 TQRMNO…  2023         3         1         1     44 N               91     298\n 4 TQRMNO…  2023         3         1         1     44 N                9     466\n 5 TQRMNO…  2023         3         1         1     44 N                9     277\n 6 TQRMNO…  2023         3         1         1     44 N                9     235\n 7 TQRMNO…  2023         3         1         1     44 N                9     170\n 8 TQRMNO…  2023         3         1         1     44 N                9     111\n 9 TQRMNO…  2023         3         1         1     44 N               91      80\n10 TQRMNO…  2023         3         1         1     44 N               91     131\n# ℹ 2,165 more rows\n# ℹ 80 more variables: IV1 &lt;dbl&gt;, IV1_ESP &lt;chr&gt;, IV2 &lt;dbl&gt;, IV3 &lt;dbl&gt;,\n#   IV3_ESP &lt;chr&gt;, IV4 &lt;dbl&gt;, IV5 &lt;dbl&gt;, IV6 &lt;dbl&gt;, IV7 &lt;dbl&gt;, IV7_ESP &lt;chr&gt;,\n#   IV8 &lt;dbl&gt;, IV9 &lt;dbl&gt;, IV10 &lt;dbl&gt;, IV11 &lt;dbl&gt;, IV12_1 &lt;dbl&gt;, IV12_2 &lt;dbl&gt;,\n#   IV12_3 &lt;dbl&gt;, II1 &lt;dbl&gt;, II2 &lt;dbl&gt;, II3 &lt;dbl&gt;, II3_1 &lt;dbl&gt;, II4_1 &lt;dbl&gt;,\n#   II4_2 &lt;dbl&gt;, II4_3 &lt;dbl&gt;, II5 &lt;dbl&gt;, II5_1 &lt;dbl&gt;, II6 &lt;dbl&gt;, II6_1 &lt;dbl&gt;,\n#   II7 &lt;dbl&gt;, II7_ESP &lt;chr&gt;, II8 &lt;dbl&gt;, II8_ESP &lt;chr&gt;, II9 &lt;dbl&gt;, V1 &lt;dbl&gt;, …\n\n\n\ntemp_df |&gt;\n  group_by(REGION2) |&gt;\n  summarise(\n    MEDIA = mean(ITF),\n    MEDIANA = median(ITF)\n  )\n\n# A tibble: 1 × 3\n  REGION2     MEDIA MEDIANA\n  &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;\n1 Patagonia 343434.  289000\n\n\n\ntemp_df %&gt;%  \n  group_by(REGION2) %&gt;%  \n  summarize(\n    ITF = mean(ITF)\n  ) |&gt; \n  ggplot(aes(x=REGION2,y=ITF, fill = REGION2))+\n    geom_col()",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ayuda social: Distribución y evolución</span>"
+    ]
+  },
+  {
+    "objectID": "ayuda-social-distribucion-y-evolucion.html#conclusiones",
+    "href": "ayuda-social-distribucion-y-evolucion.html#conclusiones",
+    "title": "8  Ayuda social: Distribución y evolución",
+    "section": "8.4 Conclusiones",
+    "text": "8.4 Conclusiones\nPudimos observar que si existe una amplia diferencia entre las diversas regiones del país, especialmente entre la región de la Patagonia y la región Noreste. La Patagonia se destaca por tener los índices de ITF (Ingreso Total Familiar) más altos, mientras que la región Noreste se encuentra en el extremo opuesto, ocupando el lugar más bajo en cuanto a este indicador. Estas diferencias en el ITF tiene profundas implicaciones para la calidad de vida de los habitantes de cada región. En la Patagonia, los altos ingresos permiten un mayor acceso a bienes y servicios, mejor educación y atención sanitaria, y una mayor estabilidad económica. Por otro lado, en la región Noreste, los ingresos más bajos pueden limitar el acceso a estos mismos beneficios, afectando el bienestar general de las familias.\nPor otro lado pudimos encontrar que las medias varían en más de 100000$ entre las regiones. Las regiones del Noreste (209483.7) y la Pampeana (211733.7) son las que menores valores tienen. Seguidas por el AMBA (224668.3), Cuyo (252978.3) y Noroeste (269987). Despegado ampliamente se ubica la region Patagonica (343434.3).",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ayuda social: Distribución y evolución</span>"
+    ]
+  },
+  {
+    "objectID": "ayuda-social-distribucion-y-evolucion.html#introducción",
+    "href": "ayuda-social-distribucion-y-evolucion.html#introducción",
+    "title": "8  Ayuda social: Distribución y evolución",
+    "section": "",
+    "text": "8.1.1 Herramientas de análisis\nPara la realización del presente análisis se utilizó el lenguaje de programación R Base con los paquetes de tidyverse. Asimismo, se utilizó el sistema Quarto.\n\n\n8.1.2 Procedimiento\nExtraemos de la base de datos de INDEC, los periodos que comprenden el cuarto trimestre de los años 2022 y 2023. De los cuales, seleccionaremos los prospectos individuales que han recibido una ayuda social. Luego, para obtener información mas detallada, seleccionamos las regiones, los aglomerados (como cuidades grandes y cuidades pequeñas en relacion a mayor o menor concentración), .\n\nusu_individual_T422 &lt;- readRDS(here::here(\"data/usu_individual_T422.rds\"))\nusu_individual_T423 &lt;- readRDS(here::here(\"data/usu_individual_T423.rds\"))\n\n\nsource(here::here(\"R/agregar-uid.R\"))\n\nusu_individual_T422 &lt;- usu_individual_T422 |&gt;\n  agregar_uid_individual()\nusu_individual_T423 &lt;- usu_individual_T423 |&gt;\n  agregar_uid_individual()\n\n\nusu_individual_T422 |&gt; \n  filter(V5_M &gt; 0) |&gt; \n  nrow()\n\n[1] 2790\n\nusu_individual_T423 |&gt; \n  filter(V5_M &gt; 0) |&gt; \n  nrow()\n\n[1] 2834\n\n\nOrdenamiento y flitrado de datos\nProcedemos a filtrar los datos individuales de los cuartos trimestres de los años mencionados (2022-2023).\nPara esto realizamos:\n\nUtilizamos un “interset” del campo UIDs, para indentificar aquellos valores presentes en ambos conjuntos.\nEn segundo lugar utilizamos el conjunto de datos resultante del intersect, para filtrar los marcos de datos de 2022 y 2023. A su vez seleccionamos aquellos campos que son relevantes para el estudio y los renombramos.\nFinalmente procedemos a mutar los campos Región, Aglomerado y Ciudad grande.\n\n\nUIDs &lt;- intersect(usu_individual_T422$UID,usu_individual_T423$UID)\n\nusu_individual_T422_filtrado &lt;- usu_individual_T422 |&gt;\n  filter(UID %in% UIDs) |&gt; \n  arrange(CODUSU) |&gt; \n  select(Año = ANO4, Region = REGION, Ciudad_grande = MAS_500, Aglomerado = AGLOMERADO, Sexo = CH04, Monto_ayuda_social = V5_M)\n  \nusu_individual_T423_filtrado &lt;- usu_individual_T423 |&gt;\n  filter(UID %in% UIDs) |&gt; \n  arrange(CODUSU) |&gt; \n  select(Año = ANO4, Region = REGION, Ciudad_grande = MAS_500, Aglomerado = AGLOMERADO, Sexo = CH04, Monto_ayuda_social = V5_M)\n\n\nsource(here::here(\"R/nombrar_aglomerados.R\"))\nsource(here::here(\"R/nombrar-regiones.R\"))\n\nusu_individual_T422_filtrado &lt;- usu_individual_T422_filtrado |&gt; \n  mutate(Region = nombrar_regiones(Region)) |&gt;\n  mutate(Aglomerado = nombrar_aglomerados(Aglomerado)) |&gt;\n  mutate(Ciudad_grande = case_when(\n    Ciudad_grande == \"S\" ~ \"Si\",\n    Ciudad_grande == \"N\" ~ \"No\"\n  ))\n\nusu_individual_T423_filtrado &lt;- usu_individual_T423_filtrado |&gt; \n  mutate(Region = nombrar_regiones(Region)) |&gt;\n  mutate(Aglomerado = nombrar_aglomerados(Aglomerado)) |&gt;\n  mutate(Ciudad_grande = case_when(\n    Ciudad_grande == \"S\" ~ \"Si\",\n    Ciudad_grande == \"N\" ~ \"No\"\n  ))\n\nusu_individual_T422_filtrado\n\n# A tibble: 19,385 × 6\n     Año Region   Ciudad_grande Aglomerado               Sexo Monto_ayuda_social\n   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;                   &lt;dbl&gt;              &lt;dbl&gt;\n 1  2022 Pampeana Si            Gran Rosario                1                  0\n 2  2022 Pampeana Si            Gran Rosario                2                  0\n 3  2022 Pampeana Si            Gran Rosario                1                  0\n 4  2022 Pampeana Si            Gran Rosario                1                  0\n 5  2022 Noroeste Si            Gran Tucumán - Tafí Vi…     1                  0\n 6  2022 Noroeste Si            Gran Tucumán - Tafí Vi…     2                  0\n 7  2022 Noroeste Si            Gran Tucumán - Tafí Vi…     2                  0\n 8  2022 Noroeste Si            Gran Tucumán - Tafí Vi…     2              16000\n 9  2022 Noroeste Si            Gran Tucumán - Tafí Vi…     1                  0\n10  2022 Noroeste Si            Gran Salta                  1                  0\n# ℹ 19,375 more rows\n\n\nOrdenamiento por ayuda social\n\nUtilizamos un “bind_rows” para combinar filas de dos marcos de datos en uno solo.\nProcedemos a graficar utilizando el marco de datos devuelto por “bind_rows”. Para eso filtramos los registros con “Monto_ayuda_social” mayor que 0 y realizamos dos graficos, el primero con los valores originales y el segundo con el ajuste por inflación.\n\n\nusu_individual_T422_T423_f &lt;- bind_rows(\n  usu_individual_T422_filtrado,\n  usu_individual_T423_filtrado \n)\n\n\nsource(here::here(\"R/graficar_ayuda_social_2022_2023.R\"))\n\nusu_individual_T422_T423_f |&gt; \n  filter(Monto_ayuda_social &gt; 0) |&gt; \n  graficar_ayuda_social_2022_2023()\n\n\n\n\n\n\n\n\n\najuste_por_inflacion &lt;- 1 + (211.4 / 100)\n\nusu_individual_T422_T423_f |&gt; \n  mutate(Monto_ayuda_social = ifelse(Año == 2022, Monto_ayuda_social * ajuste_por_inflacion, Monto_ayuda_social)) |&gt; \n  filter(Monto_ayuda_social &gt; 0) |&gt; \n  graficar_ayuda_social_2022_2023()\n\n\n\n\n\n\n\n\n\n\n\n\nTabla 8.1: Monto ayuda social en 2022 y 2023\n\n\n\n\n\n\nAño\nMedia\n\n\n\n\n2022\n51108.53\n\n\n2023\n37000.00\n\n\n\n\n\n\n\n\nEn conclusión lo que se puede observar en el primer gráfico, es que la ayuda social en 2023 es superior al 2022. Sin embargo, cuando realizamos el ajuste por inflación podemos asumir que el monto de ayuda social se redujo en el año 2023.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ayuda social: Distribución y evolución</span>"
+    ]
+  },
+  {
+    "objectID": "distribucion-del-ingreso.html",
+    "href": "distribucion-del-ingreso.html",
+    "title": "3  Distribución del ingreso",
+    "section": "",
+    "text": "3.1 Introducción\nEste capítulo se propone analizar, a través de los principales indicadores, la desigualdad económica en Argentina entre los años 2022 y 2023 en las regiones de Gran Buenos Aires, Noroeste, Noreste, Pampeana, Cuyo y Patagonia. Esto se realizará con un análisis cualitativo sobre los datos informados por el Instituto Nacional de Estadística y Censos (2024).\nEl análisis se centrará en el Ingreso Total Familiar (ITF) como un indicador clave para distinguir las áreas del país donde existen mayores diferencias entre las familias con ingresos altos y aquellas cuyos ingresos se sitúan por debajo de la Canasta Básica Total. Este enfoque permitirá identificar las regiones y sectores más afectados por la desigualdad, proporcionando una visión detallada de cómo se distribuye la riqueza a lo largo del territorio nacional.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Distribución del ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "distribucion-del-ingreso.html#desarrollo-metodológico",
+    "href": "distribucion-del-ingreso.html#desarrollo-metodológico",
+    "title": "3  Distribución del ingreso",
+    "section": "3.2 Desarrollo metodológico",
+    "text": "3.2 Desarrollo metodológico\n\n3.2.1 Tipo de investigación\nPara esta investigación, decidí utilizar un enfoque metodológico cuantitativo con el objetivo de obtener un resultado riguroso del fenómeno de la distribución del ingreso familiar en el país.\nEl método cuantitativo es, según David Alan Neill y Liliana Cortez Suárez (2018), una forma estructurada de recopilar y analizar datos de diversas fuentes que utiliza computadoras, herramientas estadísticas y matemáticas para producir resultados. Recopila datos numéricos y estadísticos con el objetivo claro de obtener “objetividad” a través de la cuantificación.\n\n\n3.2.2 Datos\nLos datos fueron recopilados de la encuesta permanente de hogares realizada por el Instituto Nacional de Estadística y Censos (INDEC). Pertenecen al 4to trimestre del 2022 y 2023 de todo el país.\n\n\n3.2.3 Objetivo\nIndagar cómo es la distribución del ingreso en las diversas regiones de Argentina durante el lapso de tiempo seleccionado.\n\n\n3.2.4 Pregunta de investigación\n¿Hay diferencias en la distribución de ingresos entre las regiones? De ser así, ¿Cuáles son las que tienen mayor disparidad?\n¿Cuanto es la diferencia entre la media de las regiones?\n\n\n3.2.5 Procedimiento\nPara llevar a cabo el análisis procederé a:\n\nCargar los datos del informe.\nA través de la librería tidyverse y utilizando el indicador de Ingreso Total Familiar (ITF), filtrar por regiones.\nGenerar gráficos para poder visualizar los datos obtenidos.\n\n\n\n3.2.6 Herramientas de análisis\nUsamos el lenguaje R con los paquetes de tidyverse. (Wickham et al. 2019). Usamos el sistema Quarto (Allaire et al. (2024)) para su publicación.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Distribución del ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "distribucion-del-ingreso.html#análisis",
+    "href": "distribucion-del-ingreso.html#análisis",
+    "title": "3  Distribución del ingreso",
+    "section": "3.3 Análisis",
+    "text": "3.3 Análisis\n\n\n[1] 42 40  1 43 41 44\n\n\n\nnrow(temp_df)\n\n[1] 2605\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  mean()\n\n[1] 224668.3\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  median()\n\n[1] 130000\n\n\n\ntemp_df$ITF |&gt; \n  range()\n\n[1]       0 4340000\n\n\n\noptions(scipen = 999)\ntemp_df |&gt; \n  ggplot(aes(ITF))+\n  geom_histogram()+\n  scale_x_log10()\n\nWarning in scale_x_log10(): log-10 transformation introduced infinite values.\n\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 1015 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\nEn la región de Gran Buenos Aires más de la mitad de los hogares se encuentra por encima de la media de la ITF por tanto la distribución de la riqueza es dispar. Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $224668.3\n\n# Filtración de región Noroeste\nmy_data$REGION |&gt; \n  unique()\n\n[1] 42 40  1 43 41 44\n\ntemp_df &lt;- my_data |&gt;\n  filter(REGION == 40) \n\n\nnrow(temp_df)\n\n[1] 3102\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  mean()\n\n[1] 269987\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  median()\n\n[1] 220000\n\n\n\ntemp_df$ITF |&gt; \n  range()\n\n[1]       0 2100000\n\n\n\noptions(scipen = 999)\ntemp_df |&gt; \n  ggplot(aes(ITF))+\n  geom_histogram()+\n  scale_x_log10()\n\nWarning in scale_x_log10(): log-10 transformation introduced infinite values.\n\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 210 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\nEn la región Noroeste la distribución de la riqueza se encuentra dispar ya que la mayoria de los hogares se encuentra por encima de la media. Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $269987\n\n# Filtración de región Noreste\nmy_data$REGION |&gt; \n  unique()\n\n[1] 42 40  1 43 41 44\n\ntemp_df &lt;- my_data |&gt;\n  filter(REGION == 41) \n\n\nnrow(temp_df)\n\n[1] 1624\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  mean()\n\n[1] 209483.7\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  median()\n\n[1] 170000\n\n\n\ntemp_df$ITF |&gt; \n  range()\n\n[1]       0 1920000\n\n\n\noptions(scipen = 999)\ntemp_df |&gt; \n  ggplot(aes(ITF))+\n  geom_histogram()+\n  scale_x_log10()\n\nWarning in scale_x_log10(): log-10 transformation introduced infinite values.\n\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 312 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\nEn éste grafico de la región Noreste se puede observar que hay picos en la cantidad de hogares con ITF mayores a la media pero la brecha no es tan amplia. Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $209483.7\n\n# Filtración de región Cuyo\nmy_data$REGION |&gt; \n  unique()\n\n[1] 42 40  1 43 41 44\n\ntemp_df &lt;- my_data |&gt;\n  filter(REGION == 42) \n\n\nnrow(temp_df)\n\n[1] 1626\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  mean()\n\n[1] 252978.3\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  median()\n\n[1] 208900\n\n\n\ntemp_df$ITF |&gt; \n  range()\n\n[1]       0 3048000\n\n\n\noptions(scipen = 999)\ntemp_df |&gt; \n  ggplot(aes(ITF))+\n  geom_histogram()+\n  scale_x_log10()\n\nWarning in scale_x_log10(): log-10 transformation introduced infinite values.\n\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 257 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\nEn éste grafico de la región de Cuyo se puede observar que aunque hay picos en la cantidad de hogares con ITF mayores a la media el grafico se encuentra nivelado. Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $252978.3\n\n# Filtración de región Pampeana\nmy_data$REGION |&gt; \n  unique()\n\n[1] 42 40  1 43 41 44\n\ntemp_df &lt;- my_data |&gt;\n  filter(REGION == 43) \n\n\nnrow(temp_df)\n\n[1] 5524\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  mean()\n\n[1] 211733.7\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  median()\n\n[1] 150000\n\n\n\ntemp_df$ITF |&gt; \n  range()\n\n[1]       0 8410000\n\n\n\noptions(scipen = 999)\ntemp_df |&gt; \n  ggplot(aes(ITF))+\n  geom_histogram()+\n  scale_x_log10()\n\nWarning in scale_x_log10(): log-10 transformation introduced infinite values.\n\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 1736 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\nEn éste grafico de la región Pampeana se puede observar que la mayor cantidad de hogares se concentra por encima de la media de ITF. Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $211733.7\n\n# Filtración de región Patagonica\nmy_data$REGION |&gt; \n  unique()\n\n[1] 42 40  1 43 41 44\n\ntemp_df &lt;- my_data |&gt;\n  filter(REGION == 44) \n\n\nnrow(temp_df)\n\n[1] 2175\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  mean()\n\n[1] 343434.3\n\n\n\ntemp_df$ITF |&gt; # Ingreso Total Familiar\n  median()\n\n[1] 289000\n\n\n\ntemp_df$ITF |&gt; \n  range()\n\n[1]       0 3600000\n\n\n\noptions(scipen = 999)\ntemp_df |&gt; \n ggplot(aes(ITF))+\n  geom_histogram()+\n  scale_x_log10()\n\nWarning in scale_x_log10(): log-10 transformation introduced infinite values.\n\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 320 rows containing non-finite outside the scale range\n(`stat_bin()`).\n\n\n\n\n\n\n\n\n\nEn éste grafico de la región Patagonica se puede observar que la mayor cantidad de hogares se encuentra superior a la media de ITF. Respecto a la media del Ingreso Total Familiar en los hogares de esta región, este número es de $343434.3\n\ntemp_df &lt;- my_data |&gt; \n  mutate(REGION2 = \n           case_when(\n             REGION == 1 ~ \"GBA\",\n             REGION == 40 ~ \"Noroeste\",\n             REGION == 41 ~ \"Noreste\",\n             REGION == 42 ~ \"Cuyo\",\n             REGION == 43 ~ \"Pampeana\",\n             REGION == 44 ~ \"Patagonia\"))\n\n\ntemp_df |&gt;\n  group_by(REGION2) |&gt;\n  summarise(\n    MEDIA = mean(ITF),\n    MEDIANA = median(ITF)\n  )\n\n# A tibble: 6 × 3\n  REGION2     MEDIA MEDIANA\n  &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;\n1 Cuyo      252978.  208900\n2 GBA       224668.  130000\n3 Noreste   209484.  170000\n4 Noroeste  269987.  220000\n5 Pampeana  211734.  150000\n6 Patagonia 343434.  289000\n\n\n\ntemp_df %&gt;%  \n  group_by(REGION2) %&gt;%  \n  summarize(\n    ITF = mean(ITF)\n  ) |&gt; \n  ggplot(aes(x=REGION2,y=ITF, fill = REGION2))+\n    geom_col()",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Distribución del ingreso</span>"
+    ]
+  },
+  {
+    "objectID": "distribucion-del-ingreso.html#conclusiones",
+    "href": "distribucion-del-ingreso.html#conclusiones",
+    "title": "3  Distribución del ingreso",
+    "section": "3.4 Conclusiones",
+    "text": "3.4 Conclusiones\nPudimos observar que si existe una amplia diferencia entre las diversas regiones del país, especialmente entre la región de la Patagonia y la región Noreste. La Patagonia se destaca por tener los índices de ITF (Ingreso Total Familiar) más altos, mientras que la región Noreste se encuentra en el extremo opuesto, ocupando el lugar más bajo en cuanto a este indicador. Estas diferencias en el ITF tiene profundas implicaciones para la calidad de vida de los habitantes de cada región. En la Patagonia, los altos ingresos permiten un mayor acceso a bienes y servicios, mejor educación y atención sanitaria, y una mayor estabilidad económica. Por otro lado, en la región Noreste, los ingresos más bajos pueden limitar el acceso a estos mismos beneficios, afectando el bienestar general de las familias.\nPor otro lado pudimos encontrar que las medias varían en más de 100000$ entre las regiones. Las regiones del Noreste (209483.7) y la Pampeana (211733.7) son las que menores valores tienen. Seguidas por el AMBA (224668.3), Cuyo (252978.3) y Noroeste (269987). Despegado ampliamente se ubica la region Patagonica (343434.3).\n\n\n\n\nInstituto Nacional de Censos y estadísticas. 2024. «Encuesta permanente de hogares». https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Distribución del ingreso</span>"
     ]
   }
 ]
